@@ -1,0 +1,15 @@
+{
+  "presets": [["env", { "loose": true, "modules": false }], "react"],
+  "plugins": [
+    "transform-object-rest-spread",
+    ["transform-class-properties", { "loose": true }]
+  ],
+  "env": {
+    "lib": {
+      "plugins": [["transform-es2015-modules-commonjs", { "loose": true }]]
+    },
+    "rollup": {
+      "plugins": ["external-helpers"]
+    }
+  }
+}
