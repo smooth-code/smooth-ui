@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": "styleguide",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
