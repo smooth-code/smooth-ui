@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png" alt="smooth-ui" title="smooth-ui" width="300">
+  <img src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png?token=AAQQPuM4Puh4DdUkTB1OufRD9oW_EOHzks5agcuiwA%3D%3D" alt="smooth-ui" title="smooth-ui" width="300">
 </h1>
 <p align="center" style="font-size: 1.2rem;">React Components library based on Styled Components.</p>
 
