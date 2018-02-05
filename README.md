@@ -1,7 +1,7 @@
 <h1 align="center">
   <img src="https://user-images.githubusercontent.com/266302/27487896-6a8cc4fa-5835-11e7-8061-b481ad72a065.png" alt="smooth-ui" title="smooth-ui" width="300">
 </h1>
-<p align="center" style="font-size: 1.2rem;">React Components library based on styled-components.</p>
+<p align="center" style="font-size: 1.2rem;">React Components library based on Styled Components.</p>
 
 [![Build Status][build-badge]][build]
 [![Code Coverage][coverage-badge]][coverage]
@@ -9,7 +9,7 @@
 [![MIT License][license-badge]][license]
 [![Small size][size-badge]][build-min]
 
-[![PRs Welcome][prs-badge]][prs] [![Chat][chat-badge]][chat]
+[![PRs Welcome][prs-badge]][prs]
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
@@ -35,8 +35,6 @@ It is focused on developer experience and accessibility. With Smooth UI, it is e
 [license]: https://github.com/smooth-code/smooth-ui/blob/master/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
-[chat]: https://gitter.im/smooth-code/smooth-ui
-[chat-badge]: https://img.shields.io/gitter/room/smooth-code/smooth-ui.svg?style=flat-square
 [github-watch-badge]: https://img.shields.io/github/watchers/smooth-code/smooth-ui.svg?style=social
 [github-watch]: https://github.com/smooth-code/smooth-ui/watchers
 [github-star-badge]: https://img.shields.io/github/stars/smooth-code/smooth-ui.svg?style=social
