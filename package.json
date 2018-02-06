@@ -13,12 +13,11 @@
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
     "build:rollup": "cross-env BABEL_ENV=rollup rollup -c",
     "build:watch": "yarn build:lib --watch",
-    "deploy": "yarn deploy:docs && npm publish build",
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "prebuild": "shx rm -rf dist/*",
     "release":
-      "standard-version && conventional-github-releaser -p angular && yarn build"
+      "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
