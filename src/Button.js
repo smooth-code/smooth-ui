@@ -20,44 +20,47 @@ const ButtonComponent = ({ className, size, ...props }) => (
 )
 
 const Button = styled(handleRef(ButtonComponent))`
-  &.sui-button {
-    display: inline-block;
+  display: inline-block;
+  padding: ${props => props.theme.textControlPadding.sm};
+  z-index: ${props => props.theme.zIndexes.control};
+  border-radius: ${props => props.theme.borderRadius.md};
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
+  border: 0;
+  cursor: pointer;
+  transition: background-color 300ms;
+
+  &:focus {
+    ${props => props.theme.mixins.controlFocus};
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    background-color: ${props => darken(0.05, props.theme.colors.primary)};
+  }
+
+  &.sui-button-lg {
+    padding: ${props => props.theme.textControlPadding.lg};
+    font-size: ${props => props.theme.controlFontSize.lg};
+    border-radius: ${props => props.theme.borderRadius.lg};
+  }
+
+  &.sui-button-sm {
     padding: ${props => props.theme.textControlPadding.sm};
-    z-index: ${props => props.theme.zIndexes.control};
-    border-radius: ${props => props.theme.borderRadius.md};
-    font-size: 1rem;
-    line-height: 1.5;
-    background-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.white};
-    border: 0;
-    cursor: pointer;
-    transition: background-color 300ms;
+    font-size: ${props => props.theme.controlFontSize.sm};
+    border-radius: ${props => props.theme.borderRadius.sm};
+  }
 
-    &:focus {
-      ${props => props.theme.mixins.controlFocus};
-    }
-
-    &:hover,
-    &:active {
-      background-color: ${props => darken(0.05, props.theme.colors.primary)};
-    }
-
-    &.sui-button-lg {
-      padding: ${props => props.theme.textControlPadding.lg};
-      font-size: ${props => props.theme.controlFontSize.lg};
-      border-radius: ${props => props.theme.borderRadius.lg};
-    }
-
-    &.sui-button-sm {
-      padding: ${props => props.theme.textControlPadding.sm};
-      font-size: ${props => props.theme.controlFontSize.sm};
-      border-radius: ${props => props.theme.borderRadius.sm};
-    }
+  &:disabled {
+    opacity: 0.8;
   }
 `
 
 Button.propTypes = {
   size: PropTypes.oneOf(['sm', 'lg']),
+  disabled: PropTypes.bool,
   theme: PropTypes.object,
 }
 

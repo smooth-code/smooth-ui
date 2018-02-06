@@ -3,22 +3,17 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const FormGroupComponent = ({ className, control, label }) => (
-  <div className={classNames('sui-form-group', className)}>
-    <div className="sui-form-group-label">{label}</div>
-    {control}
-  </div>
+const FormGroupComponent = ({ className, ...props }) => (
+  <div className={classNames('sui-form-group', className)} {...props} />
 )
 
 const FormGroup = styled(FormGroupComponent)`
-  .sui-form-group-label {
-    margin-bottom: 0.5rem;
-  }
+  margin-bottom: 1rem;
 `
 
 FormGroup.propTypes = {
-  control: PropTypes.node,
-  label: PropTypes.node,
+  children: PropTypes.node,
+  className: PropTypes.string,
 }
 
 /** @component */

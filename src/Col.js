@@ -56,13 +56,11 @@ const addProp = (propName, attribute, transform = x => x) => props =>
       `
     : null
 
-const ColComponent = ({ className, xs, sm, md, lg, xl, all, ...props }) => (
+const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
   <div
     className={classNames(
       'sui-col',
       {
-        'sui-col-all': all === true,
-        [`sui-col-all-${String(all)}`]: all && all !== true,
         'sui-col-xs': xs === true,
         [`sui-col-xs-${String(xs)}`]: xs && xs !== true,
         'sui-col-sm': sm === true,
@@ -100,11 +98,6 @@ const Col = styled(handleRef(ColComponent))`
 `
 
 Col.propTypes = {
-  all: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-    PropTypes.number,
-  ]),
   sm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   xs: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   md: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),

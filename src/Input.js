@@ -5,12 +5,13 @@ import styled from 'styled-components'
 import handleRef from './internal/handleRef'
 import defaultTheme from './style/defaultTheme'
 
-const InputComponent = ({ className, size, ...props }) => (
+const InputComponent = ({ className, size, control, ...props }) => (
   <input
     {...props}
     className={classNames(
       'sui-input',
       {
+        'sui-control': control,
         [`sui-input-${size}`]: size,
       },
       className,
@@ -57,10 +58,13 @@ const Input = styled(handleRef(InputComponent))`
     font-size: ${props => props.theme.controlFontSize.lg};
     border-radius: ${props => props.theme.borderRadius.lg};
   }
+
+  ${props => props.theme.mixins.control};
 `
 
 Input.propTypes = {
   theme: PropTypes.object,
+  control: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'lg']),
 }
 

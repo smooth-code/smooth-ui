@@ -6,7 +6,13 @@ import defaultTheme from './style/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
 
 const SwitchComponent = ({ className, labeled, ...props }) => (
-  <div className={classNames('sui-switch', className)}>
+  <div
+    className={classNames(
+      'sui-switch',
+      { 'sui-switch-disabled': props.disabled },
+      className,
+    )}
+  >
     <InnerSwitch inputType="checkbox" {...props}>
       {({ checked, focused, disabled }) => (
         <div

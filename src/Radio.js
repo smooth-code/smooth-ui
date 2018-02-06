@@ -10,6 +10,7 @@ const RadioComponent = ({ className, size, ...props }) => (
     className={classNames(
       'sui-radio',
       {
+        'sui-radio-disabled': props.disabled,
         [`sui-radio-${size}`]: size,
       },
       className,

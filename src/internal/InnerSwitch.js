@@ -27,6 +27,7 @@ class InnerSwitch extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     children: PropTypes.func,
+    defaultChecked: PropTypes.bool,
     disabled: PropTypes.bool,
     inputType: PropTypes.string,
     onChange: PropTypes.func,
@@ -40,12 +41,23 @@ class InnerSwitch extends React.Component {
     theme: defaultTheme,
   }
 
+  static contextTypes = {
+    suiGroup: PropTypes.object,
+  }
+
   constructor(props) {
     super(props)
-    this.state = { focused: false, checked: props.checked || false }
+    this.state = {
+      focused: false,
+      checked: props.checked || props.defaultChecked || false,
+    }
   }
 
   componentWillMount() {
+    if (this.context.suiGroup) {
+      this.context.suiGroup.register(this)
+    }
+
     if (this.props.onStateChange) {
       this.props.onStateChange(this.state)
     }
@@ -60,9 +72,19 @@ class InnerSwitch extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.context.suiGroup) {
+      this.context.suiGroup.unregister(this)
+    }
+  }
+
   handleChange = event => {
     if (this.props.checked === undefined) {
       this.updateState({ checked: event.target.checked })
+    }
+
+    if (this.context.suiGroup) {
+      this.context.suiGroup.notify(event)
     }
 
     if (this.props.onChange) {
@@ -96,6 +118,7 @@ class InnerSwitch extends React.Component {
       baseRef,
       checked,
       children,
+      defaultChecked,
       inputType,
       onStateChange,
       onChange,

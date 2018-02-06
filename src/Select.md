@@ -1,20 +1,32 @@
-Different sizes:
+### Sizes
+
+Set heights using `size` prop like `"sm"` or `"lg"`.
 
 ```js
 <div>
-  <div>
-    <Select size="sm" options={['One', 'Two']} />
+  <div style={{ margin: '5px' }}>
+    <Select size="sm" placeholder="Small" options={['One', 'Two']} />
   </div>
-  <div>
-    <Select options={['One', 'Two']} />
+  <div style={{ margin: '5px' }}>
+    <Select placeholder="Medium" options={['Yes', 'No', 'Maybe']} />
   </div>
-  <div>
-    <Select size="lg" options={['One', 'Two']} />
+  <div style={{ margin: '5px' }}>
+    <Select size="lg" placeholder="Large" options={['Amazing', 'Great']} />
   </div>
 </div>
 ```
 
-Custom labels:
+### Disabled
+
+Disable using `disabled` prop.
+
+```js
+<Select disabled placeholder="Disabled" options={['Disabled']} />
+```
+
+### Custom labels
+
+Specify custom labels by passing an object to `options`.
 
 ```js
 <Select
@@ -22,7 +34,9 @@ Custom labels:
 />
 ```
 
-Groups:
+### Groups
+
+Define groups in `options` props.
 
 ```js
 <Select

@@ -10,6 +10,7 @@ const CheckboxComponent = ({ className, size, ...props }) => (
     className={classNames(
       'sui-checkbox',
       {
+        'sui-checkbox-disabled': props.disabled,
         [`sui-checkbox-${size}`]: size,
       },
       className,

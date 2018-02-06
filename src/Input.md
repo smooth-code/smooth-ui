@@ -1,27 +1,33 @@
-Different sizes:
+### Sizes
+
+Set heights using `size` prop like `"sm"` or `"lg"`.
 
 ```js
 <div>
-  <div>
-    <Input size="sm" placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Input size="sm" placeholder="Small" />
   </div>
-  <div>
-    <Input placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Input placeholder="Medium" />
   </div>
-  <div>
-    <Input size="lg" placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Input size="lg" placeholder="Large" />
   </div>
 </div>
 ```
 
-Number:
+### Types
+
+All HTML5 types are supported, `"number"` is adapted.
 
 ```js
-<Input type="number" />
+<Input type="number" placeholder="100" />
 ```
 
-Disabled:
+### Disabled
+
+Disable using `disabled` prop.
 
 ```js
-<Input value="Disabled" disabled />
+<Input disabled placeholder="Disabled" />
 ```

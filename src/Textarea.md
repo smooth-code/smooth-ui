@@ -1,21 +1,25 @@
-Different sizes:
+### Sizes
+
+Set heights using `size` prop like `"sm"` or `"lg"`.
 
 ```js
 <div>
-  <div>
-    <Textarea size="sm" placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Textarea size="sm" placeholder="Small" />
   </div>
-  <div>
-    <Textarea placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Textarea placeholder="Medium" />
   </div>
-  <div>
-    <Textarea size="lg" placeholder="Hello" />
+  <div style={{ margin: '5px' }}>
+    <Textarea size="lg" placeholder="Large" />
   </div>
 </div>
 ```
 
-Disabled:
+### Disabled
+
+Disable using `disabled` prop.
 
 ```js
-<Textarea value="Disabled" disabled />
+<Textarea disabled placeholder="Disabled" />
 ```

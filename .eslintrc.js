@@ -11,7 +11,8 @@ module.exports = {
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
 
-    'no-return-assign': 'off',
     'import/prefer-default-export': 'off',
+
+    'no-return-assign': 'off',
   },
 }
