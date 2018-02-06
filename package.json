@@ -1,6 +1,6 @@
 {
   "name": "smooth-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/smooth-ui.cjs.js",
   "module": "dist/smooth-ui.es.js",
   "jsnext:main": "dist/smooth-ui.es.js",
@@ -16,8 +16,7 @@
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "prebuild": "shx rm -rf dist/*",
-    "release":
-      "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
+    "release": "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
