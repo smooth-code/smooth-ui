@@ -3,17 +3,21 @@
 </h1>
 <p align="center" style="font-size: 1.2rem;">React Components library based on Styled Components.</p>
 
-[![Build Status][build-badge]][build]
-[![Code Coverage][coverage-badge]][coverage]
+<!-- [![Build Status][build-badge]][build] -->
+
+<!-- [![Code Coverage][coverage-badge]][coverage] -->
+
 [![Version][version-badge]][package]
 [![MIT License][license-badge]][license]
 [![Small size][size-badge]][build-min]
 
-[![PRs Welcome][prs-badge]][prs]
+<!-- [![PRs Welcome][prs-badge]][prs] -->
 
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-[![Tweet][twitter-badge]][twitter]
+<!-- [![Watch on GitHub][github-watch-badge]][github-watch] -->
+
+<!-- [![Star on GitHub][github-star-badge]][github-star] -->
+
+<!-- [![Tweet][twitter-badge]][twitter] -->
 
 ```sh
 npm install smooth-ui
