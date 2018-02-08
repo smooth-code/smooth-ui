@@ -7,7 +7,8 @@
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:cp && yarn build:rollup && yarn build:lib",
+    "build":
+      "yarn build:cp && yarn build:rollup && yarn build:lib && build:docs",
     "build:cp": "shx mkdir -p build/ && shx cp {package.json,README.md} build/",
     "build:docs": "styleguidist build",
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
@@ -16,7 +17,8 @@
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "prebuild": "shx rm -rf dist/*",
-    "release": "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
+    "release":
+      "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
