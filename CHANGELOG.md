@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/smooth-code/smooth-ui/compare/v0.1.0...v0.1.1) (2018-02-08)
+
+
+### Bug Fixes
+
+* fix box, checkbox, col style def ([67cb8c1](https://github.com/smooth-code/smooth-ui/commit/67cb8c1))
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/smooth-code/smooth-ui/compare/v0.0.3...v0.1.0) (2018-02-08)
 
