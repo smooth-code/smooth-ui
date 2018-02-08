@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build":
-      "yarn build:cp && yarn build:rollup && yarn build:lib && build:docs",
+      "yarn build:cp && yarn build:rollup && yarn build:lib && yarn build:docs",
     "build:cp": "shx mkdir -p build/ && shx cp {package.json,README.md} build/",
     "build:docs": "styleguidist build",
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
