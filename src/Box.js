@@ -33,19 +33,17 @@ const BoxComponent = ({ className, component: Component, ...props }) => (
 
 /** @component */
 const Box = styled(handleRef(BoxComponent))`
-  &.sui-box {
-    display: flex;
+  display: flex;
 
-    ${addProp('flex', 'flex', flex => (flex === true ? 1 : flex))};
-    ${addProp('direction', 'flex-direction')};
-    ${addProp('wrap', 'flex-wrap')};
-    ${addProp('alignItems', 'align-items')};
-    ${addProp('alignContent', 'align-content')};
-    ${addProp('alignSelf', 'align-self')};
-    ${addProp('justifyContent', 'justify-content')};
-    ${addProp('padding')};
-    ${addProp('margin')};
-  }
+  ${addProp('flex', 'flex', flex => (flex === true ? 1 : flex))};
+  ${addProp('direction', 'flex-direction')};
+  ${addProp('wrap', 'flex-wrap')};
+  ${addProp('alignItems', 'align-items')};
+  ${addProp('alignContent', 'align-content')};
+  ${addProp('alignSelf', 'align-self')};
+  ${addProp('justifyContent', 'justify-content')};
+  ${addProp('padding')};
+  ${addProp('margin')};
 `
 
 Box.propTypes = {

@@ -86,15 +86,13 @@ const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
 
 /** @component */
 const Col = styled(handleRef(ColComponent))`
-  &.sui-col {
-    display: flex;
+  display: flex;
 
-    ${addProp('alignItems', 'align-items')};
-    ${addProp('alignContent', 'align-content')};
-    ${addProp('alignSelf', 'align-self')};
-    ${addProp('justifyContent', 'justify-content')};
-    ${props => Object.keys(props.theme.breakPoints).map(generateBreakPoint)};
-  }
+  ${addProp('alignItems', 'align-items')};
+  ${addProp('alignContent', 'align-content')};
+  ${addProp('alignSelf', 'align-self')};
+  ${addProp('justifyContent', 'justify-content')};
+  ${props => Object.keys(props.theme.breakPoints).map(generateBreakPoint)};
 `
 
 Col.propTypes = {

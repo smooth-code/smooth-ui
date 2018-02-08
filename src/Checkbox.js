@@ -39,73 +39,71 @@ const CheckboxComponent = ({ className, size, ...props }) => (
 )
 
 const Checkbox = styled(CheckboxComponent)`
-  &.sui-checkbox {
-    display: inline-block;
-    position: relative;
-    width: 1.5rem;
-    height: 1.5rem;
-    z-index: ${props => props.theme.zIndexes.control};
+  display: inline-block;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  z-index: ${props => props.theme.zIndexes.control};
 
+  .sui-checkbox-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    background-color: ${props => props.theme.colors.white};
+    border-radius: ${props => props.theme.borderRadius.md};
+    border: 1px solid ${props => props.theme.colors.controlBorder};
+    transition: border-color ${props => props.theme.transition.time},
+      background-color ${props => props.theme.transition.time},
+      box-shadow ${props => props.theme.transition.time};
+
+    &.checked {
+      background-color: ${props => props.theme.colors.primary};
+      border-color: transparent;
+
+      svg {
+        transform: scale(1);
+      }
+    }
+
+    &.focused {
+      ${props => props.theme.mixins.controlFocus};
+    }
+
+    &.disabled {
+      background-color: ${props => props.theme.colors.disabledControlBg};
+    }
+  }
+
+  svg {
+    width: 0.75rem;
+    pointer-events: none;
+    transform: scale(0);
+    transition: transform ${props => props.theme.transition.time};
+  }
+
+  &.sui-checkbox-sm {
     .sui-checkbox-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 1rem;
-      height: 1rem;
-      background-color: ${props => props.theme.colors.white};
-      border-radius: ${props => props.theme.borderRadius.md};
-      border: 1px solid ${props => props.theme.colors.controlBorder};
-      transition: border-color ${props => props.theme.transition.time},
-        background-color ${props => props.theme.transition.time},
-        box-shadow ${props => props.theme.transition.time};
-
-      &.checked {
-        background-color: ${props => props.theme.colors.primary};
-        border-color: transparent;
-
-        svg {
-          transform: scale(1);
-        }
-      }
-
-      &.focused {
-        ${props => props.theme.mixins.controlFocus};
-      }
-
-      &.disabled {
-        background-color: ${props => props.theme.colors.disabledControlBg};
-      }
+      border-radius: ${props => props.theme.borderRadius.sm};
+      width: 0.875rem;
+      height: 0.875rem;
     }
 
     svg {
-      width: 0.75rem;
-      pointer-events: none;
-      transform: scale(0);
-      transition: transform ${props => props.theme.transition.time};
+      width: 0.65rem;
+    }
+  }
+
+  &.sui-checkbox-lg {
+    .sui-checkbox-content {
+      border-radius: ${props => props.theme.borderRadius.lg};
+      width: 1.25rem;
+      height: 1.25rem;
     }
 
-    &.sui-checkbox-sm {
-      .sui-checkbox-content {
-        border-radius: ${props => props.theme.borderRadius.sm};
-        width: 0.875rem;
-        height: 0.875rem;
-      }
-
-      svg {
-        width: 0.65rem;
-      }
-    }
-
-    &.sui-checkbox-lg {
-      .sui-checkbox-content {
-        border-radius: ${props => props.theme.borderRadius.lg};
-        width: 1.25rem;
-        height: 1.25rem;
-      }
-
-      svg {
-        width: 0.9375rem;
-      }
+    svg {
+      width: 0.9375rem;
     }
   }
 `
