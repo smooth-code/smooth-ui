@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/smooth-code/smooth-ui/compare/v0.0.3...v0.1.0) (2018-02-08)
+
+
+### Features
+
+* add form validation ([f6314a3](https://github.com/smooth-code/smooth-ui/commit/f6314a3))
+
+
+
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/smooth-code/smooth-ui/compare/v0.0.2...v0.0.3) (2018-02-06)
 

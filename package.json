@@ -1,14 +1,13 @@
 {
   "name": "smooth-ui",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "main": "dist/smooth-ui.cjs.js",
   "module": "dist/smooth-ui.es.js",
   "jsnext:main": "dist/smooth-ui.es.js",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build":
-      "yarn build:cp && yarn build:rollup && yarn build:lib && yarn build:docs",
+    "build": "yarn build:cp && yarn build:rollup && yarn build:lib && yarn build:docs",
     "build:cp": "shx mkdir -p build/ && shx cp {package.json,README.md} build/",
     "build:docs": "styleguidist build",
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
@@ -17,8 +16,7 @@
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "prebuild": "shx rm -rf dist/*",
-    "release":
-      "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
+    "release": "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
