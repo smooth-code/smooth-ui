@@ -5,13 +5,15 @@ import styled from 'styled-components'
 import handleRef from './internal/handleRef'
 import defaultTheme from './style/defaultTheme'
 
-const InputComponent = ({ className, size, control, ...props }) => (
+const InputComponent = ({ className, size, control, valid, ...props }) => (
   <input
     {...props}
     className={classNames(
       'sui-input',
       {
         'sui-control': control,
+        'sui-is-valid': valid === true,
+        'sui-is-invalid': valid === false,
         [`sui-input-${size}`]: size,
       },
       className,
@@ -66,6 +68,7 @@ Input.propTypes = {
   theme: PropTypes.object,
   control: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'lg']),
+  valid: PropTypes.bool,
 }
 
 Input.defaultProps = {

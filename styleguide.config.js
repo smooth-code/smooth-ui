@@ -40,6 +40,7 @@ module.exports = {
         path.resolve(__dirname, 'src/Box.js'),
         path.resolve(__dirname, 'src/Button.js'),
         path.resolve(__dirname, 'src/Checkbox.js'),
+        path.resolve(__dirname, 'src/ControlFeedBack.js'),
         path.resolve(__dirname, 'src/FormCheck.js'),
         path.resolve(__dirname, 'src/FormCheckLabel.js'),
         path.resolve(__dirname, 'src/FormGroup.js'),
