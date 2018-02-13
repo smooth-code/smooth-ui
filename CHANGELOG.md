@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/smooth-code/smooth-ui/compare/v0.1.1...v0.2.0) (2018-02-13)
+
+
+### Features
+
+* add gutter to grid ([0133098](https://github.com/smooth-code/smooth-ui/commit/0133098))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/smooth-code/smooth-ui/compare/v0.1.0...v0.1.1) (2018-02-08)
 
