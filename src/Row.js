@@ -10,6 +10,8 @@ const Row = styled(RowComponent)`
   flex-grow: 1;
   flex-wrap: wrap;
   display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
 `
 
 /** @component */

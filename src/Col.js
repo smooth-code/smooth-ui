@@ -49,13 +49,6 @@ function generateBreakPoint(breakpoint) {
   `
 }
 
-const addProp = (propName, attribute, transform = x => x) => props =>
-  typeof props[propName] !== 'undefined'
-    ? css`
-        ${attribute || propName}: ${transform(props[propName])};
-      `
-    : null
-
 const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
   <div
     className={classNames(
@@ -74,24 +67,14 @@ const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
       },
       className,
     )}
-    {...omit(props, [
-      'theme',
-      'alignItems',
-      'alignContent',
-      'alignSelf',
-      'justifyContent',
-    ])}
+    {...omit(props, ['theme'])}
   />
 )
 
 /** @component */
 const Col = styled(handleRef(ColComponent))`
-  display: flex;
-
-  ${addProp('alignItems', 'align-items')};
-  ${addProp('alignContent', 'align-content')};
-  ${addProp('alignSelf', 'align-self')};
-  ${addProp('justifyContent', 'justify-content')};
+  padding-left: 15px;
+  padding-right: 15px;
   ${props => Object.keys(props.theme.breakPoints).map(generateBreakPoint)};
 `
 
@@ -101,10 +84,6 @@ Col.propTypes = {
   md: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   lg: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   xl: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
-  alignItems: PropTypes.string,
-  alignContent: PropTypes.string,
-  alignSelf: PropTypes.string,
-  justifyContent: PropTypes.string,
 }
 
 Col.defaultProps = {

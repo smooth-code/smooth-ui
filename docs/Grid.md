@@ -4,7 +4,11 @@ Using `xs`, `sm`, `md`, `lg` and `xl` you can set size using responsive breakpoi
 
 ```js
 <Row>
-  <Col xs>1</Col>
-  <Col xs>2</Col>
+  <Col xs style={{ border: '1px solid black' }}>
+    1
+  </Col>
+  <Col xs style={{ border: '1px solid black' }}>
+    2
+  </Col>
 </Row>
 ```
