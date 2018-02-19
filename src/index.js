@@ -1,3 +1,5 @@
+import * as defaultTheme from './style/defaultTheme'
+
 export { default as Box } from './Box'
 export { default as Button } from './Button'
 export { default as Checkbox } from './Checkbox'
@@ -14,4 +16,4 @@ export { default as Row } from './Row'
 export { default as Select } from './Select'
 export { default as Switch } from './Switch'
 export { default as Textarea } from './Textarea'
-export { default as defaultTheme } from './style/defaultTheme'
+export { defaultTheme }

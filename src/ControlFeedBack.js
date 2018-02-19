@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
+import { th } from './utils'
 
-const ControlFeedbackComponent = ({ className, valid, ...props }) => (
+const ControlFeedbackComponent = ({ className, theme, valid, ...props }) => (
   <div
     className={classNames(
       'sui-control-feedback',
@@ -24,11 +25,11 @@ const ControlFeedback = styled(ControlFeedbackComponent)`
   font-size: 80%;
 
   &.sui-is-valid {
-    color: ${props => props.theme.colors.success};
+    color: ${th('success')};
   }
 
   &.sui-is-invalid {
-    color: ${props => props.theme.colors.danger};
+    color: ${th('danger')};
   }
 `
 

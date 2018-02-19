@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const LabelComponent = ({ className, ...props }) => (
+const LabelComponent = ({ className, theme, ...props }) => (
   <label className={classNames('sui-label', className)} {...props} />
 )
 

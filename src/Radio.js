@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
+import { th } from './utils'
 
-const RadioComponent = ({ className, size, ...props }) => (
+const RadioComponent = ({ className, size, theme, ...props }) => (
   <div
     className={classNames(
       'sui-radio',
@@ -46,14 +47,14 @@ const Radio = styled(RadioComponent)`
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    background-color: ${props => props.theme.colors.white};
-    border: 1px solid ${props => props.theme.colors.controlBorder};
-    transition: border-color ${props => props.theme.transition.time},
-      background-color ${props => props.theme.transition.time},
-      box-shadow ${props => props.theme.transition.time};
+    background-color: ${th('inputBgColor')};
+    border-width: ${th('inputBorderWidth')};
+    border-style: solid;
+    border-color: ${th('inputBorderColor')};
+    transition: ${th('transitionBase')};
 
     &.checked {
-      border-color: ${props => props.theme.colors.primary};
+      border-color: ${th('primary')};
 
       .sui-radio-circle {
         transform: scale(1);
@@ -61,20 +62,20 @@ const Radio = styled(RadioComponent)`
     }
 
     &.focused {
-      ${props => props.theme.mixins.controlFocus};
+      ${th('controlFocus')};
     }
 
     &.disabled {
-      background-color: ${props => props.theme.colors.disabledControlBg};
+      background-color: ${th('inputDisabledBgColor')};
     }
   }
 
   .sui-radio-circle {
     width: 0.6rem;
     height: 0.6rem;
-    transition: transform ${props => props.theme.transition.time};
+    transition: ${th('transitionBase')};
     border-radius: 50%;
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${th('primary')};
     transform: scale(0);
   }
 

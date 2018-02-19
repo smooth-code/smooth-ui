@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { transparentize } from 'polished'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
+import { th } from './utils'
 
 const renderOption = option => {
   const { label, value } =
@@ -18,16 +18,21 @@ const renderOption = option => {
 
 const SelectComponent = ({
   arrow,
+  control,
   className,
   options,
   size,
   theme,
+  valid,
   ...props
 }) => (
   <div
     className={classNames(
       'sui-select',
       {
+        'sui-control': control,
+        'sui-is-valid': valid === true,
+        'sui-is-invalid': valid === false,
         [`sui-select-${size}`]: size,
       },
       className,
@@ -67,23 +72,24 @@ const Select = styled(handleRef(SelectComponent))`
     -webkit-border-radius: 0;
 
     display: inline-block;
-    border: 1px solid ${props => props.theme.colors.controlBorder};
-    border-radius: ${props => props.theme.borderRadius.md};
-    padding: ${props => props.theme.textControlPadding.md};
-    font-size: ${props => props.theme.controlFontSize.md};
-    line-height: 1.5;
-    transition: border-color ${props => props.theme.transition.time},
-      box-shadow ${props => props.theme.transition.time};
-    color: ${props => props.theme.colors.controlText};
+    border-width: ${th('inputBorderWidth')};
+    border-color: ${th('inputBorderColor')};
+    border-style: solid;
+    border-radius: ${th('borderRadius')};
+    padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
+    font-size: ${th('fontSizeBase')};
+    line-height: ${th('lineHeightBase')};
+    transition: ${th('transitionBase')};
+    color: ${th('inputTextColor')};
     padding-right: 1.6rem;
 
     &:focus {
-      ${props => props.theme.mixins.controlFocus};
+      ${th('controlFocus')};
     }
 
     &[disabled] {
-      background-color: ${props => props.theme.colors.grayLight};
-      color: ${props => transparentize(0.5, props.theme.colors.controlText)};
+      background-color: ${th('inputDisabledBgColor')};
+      color: ${th('inputDisabledText')};
     }
   }
 
@@ -97,9 +103,9 @@ const Select = styled(handleRef(SelectComponent))`
 
   &.sui-select-sm {
     select {
-      padding: ${props => props.theme.textControlPadding.sm};
-      font-size: ${props => props.theme.controlFontSize.sm};
-      border-radius: ${props => props.theme.borderRadius.sm};
+      padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
+      font-size: ${th('fontSizeSm')};
+      border-radius: ${th('borderRadiusSm')};
       padding-right: 1.225rem;
     }
 
@@ -111,9 +117,9 @@ const Select = styled(handleRef(SelectComponent))`
 
   &.sui-select-lg {
     select {
-      padding: ${props => props.theme.textControlPadding.lg};
-      font-size: ${props => props.theme.controlFontSize.lg};
-      border-radius: ${props => props.theme.borderRadius.lg};
+      padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
+      font-size: ${th('fontSizeLg')};
+      border-radius: ${th('borderRadiusLg')};
       padding-right: 2rem;
     }
 
@@ -122,11 +128,49 @@ const Select = styled(handleRef(SelectComponent))`
       width: 0.75rem;
     }
   }
+
+  &.sui-control {
+    display: block;
+    width: 100%;
+  }
+
+  &.sui-control {
+    display: block;
+    width: 100%;
+
+    select {
+      display: block;
+      width: 100%;
+
+      &:focus {
+        border-color: ${th('controlFocusBorderColor')};
+        box-shadow: ${props => props.theme.controlFocusBoxShadow('primary')};
+      }
+    }
+
+    &.sui-is-valid select {
+      border-color: ${th('success')};
+
+      &:focus {
+        border-color: ${th('success')};
+        box-shadow: ${props => props.theme.controlFocusBoxShadow('success')};
+      }
+    }
+
+    &.sui-is-invalid select {
+      border-color: ${th('danger')};
+
+      &:focus {
+        border-color: ${th('danger')};
+        box-shadow: ${props => props.theme.controlFocusBoxShadow('danger')};
+      }
+    }
+  }
 `
 
 Select.propTypes = {
   arrow: PropTypes.bool,
-  theme: PropTypes.object,
+  control: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.string.isRequired,
@@ -145,12 +189,13 @@ Select.propTypes = {
       }).isRequired,
     ]),
   ),
+  theme: PropTypes.object,
+  valid: PropTypes.bool,
 }
 
 Select.defaultProps = {
   arrow: true,
   options: [],
-  size: PropTypes.oneOf(['sm', 'lg']),
   theme: defaultTheme,
 }
 

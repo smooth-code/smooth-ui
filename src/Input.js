@@ -3,9 +3,17 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
+import { th } from './utils'
 
-const InputComponent = ({ className, size, control, valid, ...props }) => (
+const InputComponent = ({
+  className,
+  control,
+  size,
+  theme,
+  valid,
+  ...props
+}) => (
   <input
     {...props}
     className={classNames(
@@ -23,51 +31,79 @@ const InputComponent = ({ className, size, control, valid, ...props }) => (
 
 const Input = styled(handleRef(InputComponent))`
   display: inline-block;
-  border: 1px solid ${props => props.theme.colors.controlBorder};
-  border-radius: ${props => props.theme.borderRadius.md};
-  padding: ${props => props.theme.textControlPadding.md};
-  font-size: ${props => props.theme.controlFontSize.md};
-  line-height: 1.5;
-  color: ${props => props.theme.colors.controlText};
-  transition: border-color ${props => props.theme.transition.time},
-    box-shadow ${props => props.theme.transition.time};
+  border-width: ${th('inputBorderWidth')};
+  border-color: ${th('inputBorderColor')};
+  border-style: solid;
+  border-radius: ${th('borderRadius')};
+  padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
+  font-size: ${th('fontSizeBase')};
+  line-height: ${th('inputLineHeight')};
+  color: ${th('inputTextColor')};
+  transition: ${th('transitionBase')};
+  background-color: ${th('inputBgColor')};
 
   &[type='number'] {
     padding-right: 6px;
   }
 
   &::placeholder {
-    color: ${props => props.theme.colors.placeholder};
+    color: ${th('inputPlaceholderText')};
   }
 
   &:focus {
-    ${props => props.theme.mixins.controlFocus};
+    ${th('controlFocus')};
   }
 
   &[disabled] {
-    background-color: ${props => props.theme.colors.disabledControlBg};
-    color: ${props => props.theme.colors.disabledControlText};
+    background-color: ${th('inputDisabledBgColor')};
+    color: ${th('inputDisabledText')};
   }
 
   &.sui-input-sm {
-    padding: ${props => props.theme.textControlPadding.sm};
-    font-size: ${props => props.theme.controlFontSize.sm};
-    border-radius: ${props => props.theme.borderRadius.sm};
+    padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
+    font-size: ${th('fontSizeSm')};
+    border-radius: ${th('borderRadiusSm')};
   }
 
   &.sui-input-lg {
-    padding: ${props => props.theme.textControlPadding.lg};
-    font-size: ${props => props.theme.controlFontSize.lg};
-    border-radius: ${props => props.theme.borderRadius.lg};
+    padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
+    font-size: ${th('fontSizeLg')};
+    border-radius: ${th('borderRadiusLg')};
   }
 
-  ${props => props.theme.mixins.control};
+  &.sui-control {
+    display: block;
+    width: 100%;
+
+    &:focus {
+      border-color: ${th('controlFocusBorderColor')};
+      box-shadow: ${props => props.theme.controlFocusBoxShadow('primary')};
+    }
+
+    &.sui-is-valid {
+      border-color: ${th('success')};
+
+      &:focus {
+        border-color: ${th('success')};
+        box-shadow: ${props => props.theme.controlFocusBoxShadow('success')};
+      }
+    }
+
+    &.sui-is-invalid {
+      border-color: ${th('danger')};
+
+      &:focus {
+        border-color: ${th('danger')};
+        box-shadow: ${props => props.theme.controlFocusBoxShadow('danger')};
+      }
+    }
+  }
 `
 
 Input.propTypes = {
-  theme: PropTypes.object,
   control: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'lg']),
+  theme: PropTypes.object,
   valid: PropTypes.bool,
 }
 

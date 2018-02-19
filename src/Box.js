@@ -2,8 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import omit from 'object.omit'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
 import handleRef from './internal/handleRef'
 
 const addProp = (propName, attribute, transform = x => x) => props =>
@@ -13,23 +12,21 @@ const addProp = (propName, attribute, transform = x => x) => props =>
       `
     : null
 
-const BoxComponent = ({ className, component: Component, ...props }) => (
-  <Component
-    className={classNames('sui-box', className)}
-    {...omit(props, [
-      'flex',
-      'theme',
-      'direction',
-      'wrap',
-      'alignItems',
-      'alignContent',
-      'alignSelf',
-      'justifyContent',
-      'padding',
-      'margin',
-    ])}
-  />
-)
+const BoxComponent = ({
+  className,
+  component: Component,
+  flex,
+  theme,
+  direction,
+  wrap,
+  alignItems,
+  alignContent,
+  alignSelf,
+  justifyContent,
+  padding,
+  margin,
+  ...props
+}) => <Component className={classNames('sui-box', className)} {...props} />
 
 /** @component */
 const Box = styled(handleRef(BoxComponent))`

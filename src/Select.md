@@ -55,3 +55,42 @@ Define groups in `options` props.
   ]}
 />
 ```
+
+### Control & Validation
+
+* Set `display` to "block" and `width` to "100%" using `control` prop.
+* Set validation using `valid` or `valid={false}`
+
+```js
+<div>
+  <div style={{ margin: '5px' }}>
+    <Select
+      control
+      options={[
+        { label: 'Control', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+  </div>
+  <div style={{ margin: '5px' }}>
+    <Select
+      control
+      valid
+      options={[
+        { label: 'Valid', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+  </div>
+  <div style={{ margin: '5px' }}>
+    <Select
+      control
+      valid={false}
+      options={[
+        { label: 'Invalid', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+  </div>
+</div>
+```
