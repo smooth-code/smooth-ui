@@ -47,6 +47,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0",
     "shx": "^0.2.2",
+    "standard-version": "^4.3.0",
     "styled-components": "^3.1.6",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.10.0"
