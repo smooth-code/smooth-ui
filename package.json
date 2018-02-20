@@ -1,6 +1,6 @@
 {
   "name": "smooth-ui",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/smooth-ui.cjs.js",
   "module": "dist/smooth-ui.es.js",
   "jsnext:main": "dist/smooth-ui.es.js",
