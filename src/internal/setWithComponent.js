@@ -2,7 +2,7 @@
 import React from 'react'
 
 const setWithComponent = (StyledComponent, BaseComponent) => {
-  const originalExtend = StyledComponent.extend.bind(this)
+  const originalExtend = StyledComponent.extend.bind(StyledComponent)
   Object.defineProperty(StyledComponent, 'extend', {
     get() {
       return (...args) => {
