@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
 import * as defaultTheme from './style/defaultTheme'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
 const renderOption = option => {
   const { label, value } =
@@ -84,7 +84,7 @@ const Select = styled(handleRef(SelectComponent))`
     padding-right: 1.6rem;
 
     &:focus {
-      ${th('controlFocus')};
+      ${mixin('controlFocus')};
     }
 
     &[disabled] {

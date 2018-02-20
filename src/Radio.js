@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import * as defaultTheme from './style/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
 const RadioComponent = ({ className, size, theme, ...props }) => (
   <div
@@ -62,7 +62,7 @@ const Radio = styled(RadioComponent)`
     }
 
     &.focused {
-      ${th('controlFocus')};
+      ${mixin('controlFocus')};
     }
 
     &.disabled {

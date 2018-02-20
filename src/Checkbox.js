@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import InnerSwitch from './internal/InnerSwitch'
 import * as defaultTheme from './style/defaultTheme'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
 const CheckboxComponent = ({ className, size, theme, ...props }) => (
   <div
@@ -69,7 +69,7 @@ const Checkbox = styled(CheckboxComponent)`
     }
 
     &.focused {
-      ${th('controlFocus')};
+      ${mixin('controlFocus')};
     }
 
     &.disabled {

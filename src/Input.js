@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
 import * as defaultTheme from './style/defaultTheme'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
 const InputComponent = ({
   className,
@@ -51,7 +51,7 @@ const Input = styled(handleRef(InputComponent))`
   }
 
   &:focus {
-    ${th('controlFocus')};
+    ${mixin('controlFocus')};
   }
 
   &[disabled] {

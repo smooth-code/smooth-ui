@@ -9,15 +9,17 @@ export const upTo = (breakPoint, code) => css`
     ${code};
   }
 `
-export const th = (value, modifier = x => x) => props => {
+export const th = (name, modifier = x => x) => props => {
   function run(fn) {
     const next = fn(props)
     if (typeof next === 'undefined')
-      throw new Error(`"${value}" not found in theme`)
+      throw new Error(`"${name}" not found in theme`)
     if (typeof next === 'function') return run(next)
     return next
   }
 
-  const result = run(p => p.theme[value])
+  const result = run(p => p.theme[name])
   return modifier(result)
 }
+
+export const mixin = (name, ...args) => props => props.theme[name](...args)

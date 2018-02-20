@@ -1,3 +1,36 @@
+### Variants
+
+Set sizes using `variant` prop.
+
+```js
+<div>
+  <span style={{ margin: '5px' }}>
+    <Button variant="primary">Primary</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="secondary">Secondary</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="success">Success</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="danger">Danger</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="warning">Warning</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="info">Info</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="light">Light</Button>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <Button variant="dark">Dark</Button>
+  </span>
+</div>
+```
+
 ### Sizes
 
 Set sizes using `size` prop like `"sm"` or `"lg"`.

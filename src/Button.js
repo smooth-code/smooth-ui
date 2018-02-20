@@ -1,18 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
 import * as defaultTheme from './style/defaultTheme'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
-const ButtonComponent = ({ className, size, ...props }) => (
+const variants = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'light',
+  'dark',
+]
+
+const ButtonComponent = ({ className, size, theme, variant, ...props }) => (
   <button
     {...props}
     className={classNames(
       'sui-button',
       {
         [`sui-button-${size}`]: size,
+        [`sui-button-${variant}`]: variant,
       },
       className,
     )}
@@ -26,20 +38,10 @@ const Button = styled(handleRef(ButtonComponent))`
   border-radius: ${th('borderRadius')};
   font-size: ${th('fontSizeBase')};
   line-height: ${th('lineHeightBase')};
-  background-color: ${th('btnBackgroundColor')};
   color: ${th('white')};
   border-width: ${th('btnBorderWidth')};
   cursor: pointer;
   transition: ${th('transitionBase')};
-
-  &:focus {
-    ${th('controlFocus')};
-  }
-
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    background-color: ${th('btnHoverBackgroundColor')};
-  }
 
   &.sui-button-sm {
     padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
@@ -56,15 +58,25 @@ const Button = styled(handleRef(ButtonComponent))`
   &:disabled {
     opacity: ${th('btnDisabledOpacity')};
   }
+
+  ${variants.map(
+    variant => css`
+      &.sui-button-${variant} {
+        ${mixin('btnVariant', variant)};
+      }
+    `,
+  )};
 `
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['sm', 'lg']),
   disabled: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  variant: PropTypes.oneOf(variants),
   theme: PropTypes.object,
 }
 
 Button.defaultProps = {
+  variant: 'primary',
   theme: defaultTheme,
 }
 

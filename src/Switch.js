@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import * as defaultTheme from './style/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
-import { th } from './utils'
+import { th, mixin } from './utils'
 
 const SwitchComponent = ({ className, labeled, theme, ...props }) => (
   <div
@@ -53,7 +53,7 @@ const Switch = styled(SwitchComponent)`
     transition: ${th('transitionBase')};
 
     &.focused {
-      ${th('controlFocus')};
+      ${mixin('controlFocus')};
     }
 
     &.checked {

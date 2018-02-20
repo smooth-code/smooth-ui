@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { injectGlobal, css } from 'styled-components'
-import { transparentize, lighten, modularScale, darken } from 'polished'
-import { th } from '../utils'
+import {
+  transparentize,
+  lighten,
+  modularScale,
+  darken,
+  parseToRgb,
+} from 'polished'
+import { th, mixin } from '../utils'
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -53,6 +59,9 @@ export const dark = gray800
 
 export const primaryLight = th('primary', c => lighten(0.3, c))
 export const secondaryLight = th('secondary', c => lighten(0.3, c))
+
+export const yikTextDark = '#111'
+export const yikTextLight = '#fff'
 
 // Borders
 
@@ -110,11 +119,6 @@ export const btnPaddingXLg = th('inputBtnPaddingXLg')
 export const btnLineHeightLg = th('inputBtnLineHeightLg')
 
 export const btnBorderWidth = 0
-
-export const btnBackgroundColor = th('primary')
-export const btnHoverBackgroundColor = th('btnBackgroundColor', color =>
-  darken(0.05, color),
-)
 export const btnDisabledOpacity = 0.8
 
 // Inputs
@@ -168,7 +172,27 @@ export const breakPoints = {
 
 // Mixins
 
-export const controlFocus = css`
+export const controlFocus = (baseColor = 'primary') => css`
   outline: 0;
-  box-shadow: 0 0 2px ${th('primary', color => transparentize(0.1, color))};
+  box-shadow: 0 0 2px ${th(baseColor, color => transparentize(0.1, color))};
 `
+
+export const btnVariant = baseColor => css`
+  color: ${props => props.theme.colorYik(th(baseColor)(props))};
+  background-color: ${th(baseColor)};
+
+  &:focus {
+    ${mixin('controlFocus', baseColor)};
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    background-color: ${th(baseColor, color => darken(0.05, color))};
+  }
+`
+
+export const colorYik = color => {
+  const { red: r, green: g, blue: b } = parseToRgb(color)
+  const yik = (r * 299 + g * 587 + b * 114) / 1000
+  return yik >= 150 ? th('yikTextDark') : th('yikTextLight')
+}
