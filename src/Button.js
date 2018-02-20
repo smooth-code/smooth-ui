@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
+import getWithComponent from './internal/getWithComponent'
 import * as defaultTheme from './style/defaultTheme'
 import { th, mixin } from './utils'
 
@@ -17,8 +18,15 @@ const variants = [
   'dark',
 ]
 
-const ButtonComponent = ({ className, size, theme, variant, ...props }) => (
-  <button
+const ButtonComponent = ({
+  className,
+  component: Component = 'button',
+  size,
+  theme,
+  variant,
+  ...props
+}) => (
+  <Component
     {...props}
     className={classNames(
       'sui-button',
@@ -79,6 +87,8 @@ Button.defaultProps = {
   variant: 'primary',
   theme: defaultTheme,
 }
+
+Button.withComponent = getWithComponent(Button, ButtonComponent)
 
 /** @component */
 export default Button

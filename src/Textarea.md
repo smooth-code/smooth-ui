@@ -1,3 +1,5 @@
+See [`Input`](#input).
+
 ### Sizes
 
 Set heights using `size` prop like `"sm"` or `"lg"`.

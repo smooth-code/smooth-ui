@@ -3,10 +3,12 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
+import getWithComponent from './internal/getWithComponent'
 import * as defaultTheme from './style/defaultTheme'
 import { th, mixin } from './utils'
 
 const InputComponent = ({
+  component: Component = 'input',
   className,
   control,
   size,
@@ -14,7 +16,7 @@ const InputComponent = ({
   valid,
   ...props
 }) => (
-  <input
+  <Component
     {...props}
     className={classNames(
       'sui-input',
@@ -110,6 +112,8 @@ Input.propTypes = {
 Input.defaultProps = {
   theme: defaultTheme,
 }
+
+Input.withComponent = getWithComponent(Input, InputComponent)
 
 /** @component */
 export default Input
