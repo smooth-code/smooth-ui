@@ -1,5 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import * as defaultTheme from './style/defaultTheme'
 import Input from './Input'
 
 const TextareaComponent = ({
@@ -26,6 +28,17 @@ const TextareaComponent = ({
 )
 
 const Textarea = Input.withComponent(TextareaComponent)
+
+Input.propTypes = {
+  control: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  theme: PropTypes.object,
+  valid: PropTypes.bool,
+}
+
+Input.defaultProps = {
+  theme: defaultTheme,
+}
 
 /** @component */
 export default Textarea
