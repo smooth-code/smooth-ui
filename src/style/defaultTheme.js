@@ -1,6 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { injectGlobal, css } from 'styled-components'
-import { transparentize, lighten } from 'polished'
+import {
+  transparentize,
+  lighten,
+  modularScale,
+  darken,
+  parseToRgb,
+} from 'polished'
+import { th, mixin } from '../utils'
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -15,150 +22,177 @@ injectGlobal`
 `
 /* eslint-enable no-unused-expressions */
 
-const white = '#fff'
-const gray100 = '#f8f9fa'
-const gray200 = '#e9ecef'
-const gray300 = '#dee2e6'
-const gray400 = '#ced4da'
-const gray500 = '#adb5bd'
-const gray600 = '#6c757d'
-const gray700 = '#495057'
-const gray800 = '#343a40'
-const gray900 = '#212529'
-const black = '#000'
+// Colors
 
-const blue = '#007bff'
-const indigo = '#6610f2'
-const purple = '#6f42c1'
-const pink = '#e83e8c'
-const red = '#dc3545'
-const orange = '#fd7e14'
-const yellow = '#ffc107'
-const green = '#28a745'
-const teal = '#20c997'
-const cyan = '#17a2b8'
+export const white = '#fff'
+export const gray100 = '#f8f9fa'
+export const gray200 = '#e9ecef'
+export const gray300 = '#dee2e6'
+export const gray400 = '#ced4da'
+export const gray500 = '#adb5bd'
+export const gray600 = '#6c757d'
+export const gray700 = '#495057'
+export const gray800 = '#343a40'
+export const gray900 = '#212529'
+export const black = '#000'
 
-const primary = blue
-const secondary = gray600
-const success = green
-const info = cyan
-const warning = yellow
-const danger = red
-const light = gray100
-const dark = gray800
+export const blue = '#007bff'
+export const indigo = '#6610f2'
+export const purple = '#6f42c1'
+export const pink = '#e83e8c'
+export const red = '#dc3545'
+export const brick = '#bd4932'
+export const orange = '#fd7e14'
+export const yellow = '#ffc107'
+export const green = '#28a745'
+export const teal = '#20c997'
+export const cyan = '#17a2b8'
 
-const primaryColor = '#bd4932'
-const grayLightColor = '#f6f6f6'
-const grayDarkColor = '#aaa'
-const grayDarkerColor = '#333'
+export const primary = brick
+export const secondary = gray600
+export const success = green
+export const info = cyan
+export const warning = yellow
+export const danger = red
+export const light = gray100
+export const dark = gray800
 
-export default {
-  colors: {
-    primary: primaryColor,
-    primaryLight: lighten(0.3, primaryColor),
-    danger,
-    success,
-    white,
-    gray100,
-    gray200,
-    gray300,
-    gray400,
-    gray500,
-    gray600,
-    gray700,
-    gray800,
-    gray900,
-    black,
-    grayLight: '#f6f6f6',
-    gray: '#cfcfcf',
-    grayDark: grayDarkColor,
-    grayDarker: grayDarkerColor,
-    layoutBorderColor: transparentize(0.9, primaryColor),
-    controlText: grayDarkerColor,
-    controlBorder: '#d7d7d7',
-    controlBorderFocus: '#515355',
-    disabledControl: transparentize(0.95, primaryColor),
-    disabledControlBg: grayLightColor,
-    disabledControlText: grayDarkColor,
-    placeholder: grayDarkColor,
-  },
-  borderRadius: {
-    sm: '.2rem',
-    md: '.25rem',
-    lg: '.3rem',
-  },
-  controlFontSize: {
-    sm: '0.875rem',
-    md: '1rem',
-    lg: '1.25rem',
-  },
-  textControlPadding: {
-    sm: '0.25rem 0.5rem',
-    md: '0.375rem 0.75rem',
-    lg: '0.5rem 1rem',
-  },
-  transition: {
-    time: '300ms',
-  },
-  mixins: {
-    controlFocus: css`
-      outline: 0;
-      box-shadow: 0 0 2px ${transparentize(0.1, primaryColor)};
-    `,
-    control: css`
-      &.sui-control {
-        display: block;
-        width: 100%;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: ${props => props.theme.colors.gray700};
-        background-color: ${props => props.theme.colors.white};
-        background-clip: padding-box;
-        border: 1px solid ${props => props.theme.colors.gray400};
-        border-radius: 0.25rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+export const primaryLight = th('primary', c => lighten(0.3, c))
+export const secondaryLight = th('secondary', c => lighten(0.3, c))
 
-        &:focus {
-          color: ${props => props.theme.colors.gray700};
-          background-color: ${props => props.theme.colors.white};
-          border-color: ${props => lighten(0.25, props.theme.colors.primary)};
-          outline: 0;
-          box-shadow: 0 0 0 0.2rem
-            ${props => transparentize(0.75, props.theme.colors.primary)};
-        }
+export const yikTextDark = '#111'
+export const yikTextLight = '#fff'
 
-        &.sui-is-valid {
-          border-color: ${props => props.theme.colors.success};
+// Borders
 
-          &:focus {
-            border-color: ${props => props.theme.colors.success};
-            box-shadow: 0 0 0 0.2rem
-              ${props => transparentize(0.75, props.theme.colors.success)};
-          }
-        }
+export const borderRadius = '.25rem'
+export const borderRadiusSm = '.2rem'
+export const borderRadiusLg = '.3rem'
+export const borderWidth = '1px'
 
-        &.sui-is-invalid {
-          border-color: ${props => props.theme.colors.danger};
+// Fonts
 
-          &:focus {
-            border-color: ${props => props.theme.colors.danger};
-            box-shadow: 0 0 0 0.2rem
-              ${props => transparentize(0.75, props.theme.colors.danger)};
-          }
-        }
-      }
-    `,
-  },
-  zIndexes: {
-    control: 1,
-    innerSwitch: 10,
-  },
-  breakPoints: {
-    xs: 0,
-    sm: 576,
-    md: 768,
-    lg: 992,
-    xl: 1200,
-  },
+export const fontSizeBase = '1rem'
+export const fontSizeSm = th('fontSizeBase', fontSize =>
+  modularScale(-1, fontSize),
+)
+export const fontSizeLg = th('fontSizeBase', fontSize =>
+  modularScale(1, fontSize),
+)
+
+export const fontWeightLight = 300
+export const fontWeightNormal = 400
+export const fontWeightBold = 700
+
+export const lineHeightBase = 1.5
+export const lineHeightSm = 1.5
+export const lineHeightLg = 1.5
+
+// Input + Buttons
+
+export const inputBtnPaddingY = '.375rem'
+export const inputBtnPaddingX = '.75rem'
+export const inputBtnLineHeight = th('lineHeightBase')
+
+export const inputBtnPaddingYSm = '.25rem'
+export const inputBtnPaddingXSm = '.5rem'
+export const inputBtnLineHeightSm = th('lineHeightSm')
+
+export const inputBtnPaddingYLg = '.5rem'
+export const inputBtnPaddingXLg = '1rem'
+export const inputBtnLineHeightLg = th('lineHeightLg')
+
+export const inputBtnBorderWidth = th('borderWidth')
+
+// Buttons
+
+export const btnPaddingY = th('inputBtnPaddingY')
+export const btnPaddingX = th('inputBtnPaddingX')
+export const btnLineHeight = th('inputBtnLineHeight')
+
+export const btnPaddingYSm = th('inputBtnPaddingYSm')
+export const btnPaddingXSm = th('inputBtnPaddingXSm')
+export const btnLineHeightSm = th('inputBtnLineHeightSm')
+
+export const btnPaddingYLg = th('inputBtnPaddingYLg')
+export const btnPaddingXLg = th('inputBtnPaddingXLg')
+export const btnLineHeightLg = th('inputBtnLineHeightLg')
+
+export const btnBorderWidth = 0
+export const btnDisabledOpacity = 0.8
+
+// Inputs
+
+export const inputPaddingY = th('inputBtnPaddingY')
+export const inputPaddingX = th('inputBtnPaddingX')
+export const inputLineHeight = th('inputBtnLineHeight')
+
+export const inputPaddingYSm = th('inputBtnPaddingYSm')
+export const inputPaddingXSm = th('inputBtnPaddingXSm')
+export const inputLineHeightSm = th('inputBtnLineHeightSm')
+
+export const inputPaddingYLg = th('inputBtnPaddingYLg')
+export const inputPaddingXLg = th('inputBtnPaddingXLg')
+export const inputLineHeightLg = th('inputBtnLineHeightLg')
+
+export const inputBorderWidth = th('inputBtnBorderWidth')
+export const inputBorderColor = th('gray300')
+export const inputBgColor = th('white')
+export const inputDisabledBgColor = th('gray100')
+export const inputDisabledText = th('gray600')
+export const inputPlaceholderText = th('gray600')
+export const inputTextColor = th('gray900')
+
+// Controls
+
+export const controlFocusBorderColor = th('primary', color =>
+  lighten(0.25, color),
+)
+export const controlFocusBoxShadow = color =>
+  css`0 0 0 0.2rem ${th(color, c => transparentize(0.75, c))}`
+
+// Z-indexes
+
+export const zIndexControl = 1
+export const zIndexInnerSwitch = 10
+
+// Transitions
+
+export const transitionBase = 'all .2s ease-in-out'
+
+// Breakpoints
+
+export const breakPoints = {
+  xs: 0,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+}
+
+// Mixins
+
+export const controlFocus = (baseColor = 'primary') => css`
+  outline: 0;
+  box-shadow: 0 0 2px ${th(baseColor, color => transparentize(0.1, color))};
+`
+
+export const btnVariant = baseColor => css`
+  color: ${props => props.theme.colorYik(th(baseColor)(props))};
+  background-color: ${th(baseColor)};
+
+  &:focus {
+    ${mixin('controlFocus', baseColor)};
+  }
+
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    background-color: ${th(baseColor, color => darken(0.05, color))};
+  }
+`
+
+export const colorYik = color => {
+  const { red: r, green: g, blue: b } = parseToRgb(color)
+  const yik = (r * 299 + g * 587 + b * 114) / 1000
+  return yik >= 150 ? th('yikTextDark') : th('yikTextLight')
 }

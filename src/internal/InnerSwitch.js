@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import defaultTheme from '../style/defaultTheme'
+import * as defaultTheme from '../style/defaultTheme'
+import { th } from '../utils'
 
 const InnerSwitchContainer = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ const InnerSwitchContainer = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: ${props => props.theme.zIndexes.innerSwitch};
+  z-index: ${th('zIndexInnerSwitch')};
 
   .sui-inner-switch-input {
     margin: 0;
@@ -19,7 +20,7 @@ const InnerSwitchContainer = styled.div`
     height: 100%;
     width: 100%;
     opacity: 0;
-    z-index: ${props => props.theme.zIndexes.innerSwitch};
+    z-index: ${th('zIndexInnerSwitch')};
   }
 `
 

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const FormCheckComponent = ({ className, inline, ...props }) => (
+const FormCheckComponent = ({ className, inline, theme, ...props }) => (
   <div
     className={classNames(
       'sui-form-check',

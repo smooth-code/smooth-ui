@@ -1,18 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import styled from 'styled-components'
-import { darken } from 'polished'
+import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
+import { th, mixin } from './utils'
 
-const ButtonComponent = ({ className, size, ...props }) => (
+const variants = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'light',
+  'dark',
+]
+
+const ButtonComponent = ({ className, size, theme, variant, ...props }) => (
   <button
     {...props}
     className={classNames(
       'sui-button',
       {
         [`sui-button-${size}`]: size,
+        [`sui-button-${variant}`]: variant,
       },
       className,
     )}
@@ -21,50 +33,50 @@ const ButtonComponent = ({ className, size, ...props }) => (
 
 const Button = styled(handleRef(ButtonComponent))`
   display: inline-block;
-  padding: ${props => props.theme.textControlPadding.sm};
-  z-index: ${props => props.theme.zIndexes.control};
-  border-radius: ${props => props.theme.borderRadius.md};
-  font-size: 1rem;
-  line-height: 1.5;
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.white};
-  border: 0;
+  padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
+  z-index: ${th('zIndexControl')};
+  border-radius: ${th('borderRadius')};
+  font-size: ${th('fontSizeBase')};
+  line-height: ${th('lineHeightBase')};
+  color: ${th('white')};
+  border-width: ${th('btnBorderWidth')};
   cursor: pointer;
-  transition: background-color 300ms;
+  transition: ${th('transitionBase')};
 
-  &:focus {
-    ${props => props.theme.mixins.controlFocus};
-  }
-
-  &:not(:disabled):hover,
-  &:not(:disabled):active {
-    background-color: ${props => darken(0.05, props.theme.colors.primary)};
+  &.sui-button-sm {
+    padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
+    font-size: ${th('fontSizeSm')};
+    border-radius: ${th('borderRadiusSm')};
   }
 
   &.sui-button-lg {
-    padding: ${props => props.theme.textControlPadding.lg};
-    font-size: ${props => props.theme.controlFontSize.lg};
-    border-radius: ${props => props.theme.borderRadius.lg};
-  }
-
-  &.sui-button-sm {
-    padding: ${props => props.theme.textControlPadding.sm};
-    font-size: ${props => props.theme.controlFontSize.sm};
-    border-radius: ${props => props.theme.borderRadius.sm};
+    padding: ${th('btnPaddingYLg')} ${th('btnPaddingXLg')};
+    font-size: ${th('fontSizeLg')};
+    border-radius: ${th('borderRadiusLg')};
   }
 
   &:disabled {
-    opacity: 0.8;
+    opacity: ${th('btnDisabledOpacity')};
   }
+
+  ${variants.map(
+    variant => css`
+      &.sui-button-${variant} {
+        ${mixin('btnVariant', variant)};
+      }
+    `,
+  )};
 `
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['sm', 'lg']),
   disabled: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'lg']),
+  variant: PropTypes.oneOf(variants),
   theme: PropTypes.object,
 }
 
 Button.defaultProps = {
+  variant: 'primary',
   theme: defaultTheme,
 }
 

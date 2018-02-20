@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
-const RowComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
+const RowComponent = ({ className, xs, sm, md, lg, xl, theme, ...props }) => (
   <div className={classNames('sui-row', className)} {...props} />
 )
 

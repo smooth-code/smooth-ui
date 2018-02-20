@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const FormGroupComponent = ({ className, ...props }) => (
+const FormGroupComponent = ({ className, theme, ...props }) => (
   <div className={classNames('sui-form-group', className)} {...props} />
 )
 

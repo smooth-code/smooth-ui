@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
+import { th, mixin } from './utils'
 
-const SwitchComponent = ({ className, labeled, ...props }) => (
+const SwitchComponent = ({ className, labeled, theme, ...props }) => (
   <div
     className={classNames(
       'sui-switch',
@@ -43,15 +44,16 @@ const Switch = styled(SwitchComponent)`
     width: 50px;
     height: 24px;
     border-radius: 34px;
-    background-color: ${props => props.theme.colors.grayLight};
+    background-color: ${th('gray300')};
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid ${props => props.theme.colors.controlBorder};
-    transition: background-color ${props => props.theme.transition.time},
-      border-color ${props => props.theme.transition.time};
+    border-width: ${th('inputBorderWidth')};
+    border-color: ${th('inputBorderColor')};
+    border-style: solid;
+    transition: ${th('transitionBase')};
 
     &.focused {
-      ${props => props.theme.mixins.controlFocus};
+      ${mixin('controlFocus')};
     }
 
     &.checked {
@@ -59,11 +61,11 @@ const Switch = styled(SwitchComponent)`
         transform: translateX(0);
       }
 
-      background-color: ${props => props.theme.colors.primaryLight};
+      background-color: ${th('primaryLight')};
       border-color: transparent;
 
       .sui-switch-ball {
-        background-color: ${props => props.theme.colors.primary};
+        background-color: ${th('primary')};
       }
     }
 
@@ -74,18 +76,18 @@ const Switch = styled(SwitchComponent)`
 
   .sui-switch-ball {
     flex-shrink: 0;
-    background-color: ${props => props.theme.colors.gray};
+    background-color: ${th('gray500')};
     border-radius: 50%;
     width: 18px;
     height: 18px;
-    transition: background-color ${props => props.theme.transition.time};
+    transition: ${th('transitionBase')};
   }
 
   .sui-switch-content {
     display: flex;
     align-items: center;
     height: 22px;
-    transition: transform ${props => props.theme.transition.time};
+    transition: ${th('transitionBase')};
     transform: translateX(-25px);
   }
 
@@ -98,11 +100,11 @@ const Switch = styled(SwitchComponent)`
     user-select: none;
 
     &.on {
-      color: ${props => props.theme.colors.primary};
+      color: ${th('primary')};
     }
 
     &.off {
-      color: ${props => props.theme.colors.grayDark};
+      color: ${th('gray900')};
     }
   }
 `

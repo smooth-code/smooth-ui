@@ -2,8 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import omit from 'object.omit'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
 import handleRef from './internal/handleRef'
 
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'auto']
@@ -49,7 +48,7 @@ function generateBreakPoint(breakpoint) {
   `
 }
 
-const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
+const ColComponent = ({ className, xs, sm, md, lg, xl, theme, ...props }) => (
   <div
     className={classNames(
       'sui-col',
@@ -67,7 +66,7 @@ const ColComponent = ({ className, xs, sm, md, lg, xl, ...props }) => (
       },
       className,
     )}
-    {...omit(props, ['theme'])}
+    {...props}
   />
 )
 

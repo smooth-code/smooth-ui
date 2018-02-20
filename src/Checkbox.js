@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
 import InnerSwitch from './internal/InnerSwitch'
-import defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './style/defaultTheme'
+import { th, mixin } from './utils'
 
-const CheckboxComponent = ({ className, size, ...props }) => (
+const CheckboxComponent = ({ className, size, theme, ...props }) => (
   <div
     className={classNames(
       'sui-checkbox',
@@ -43,7 +44,7 @@ const Checkbox = styled(CheckboxComponent)`
   position: relative;
   width: 1.5rem;
   height: 1.5rem;
-  z-index: ${props => props.theme.zIndexes.control};
+  z-index: ${th('zIndexControl')};
 
   .sui-checkbox-content {
     display: flex;
@@ -51,15 +52,15 @@ const Checkbox = styled(CheckboxComponent)`
     justify-content: center;
     width: 1rem;
     height: 1rem;
-    background-color: ${props => props.theme.colors.white};
-    border-radius: ${props => props.theme.borderRadius.md};
-    border: 1px solid ${props => props.theme.colors.controlBorder};
-    transition: border-color ${props => props.theme.transition.time},
-      background-color ${props => props.theme.transition.time},
-      box-shadow ${props => props.theme.transition.time};
+    background-color: ${th('inputBgColor')};
+    border-radius: ${th('borderRadius')};
+    border-style: solid;
+    border-width: ${th('inputBorderWidth')};
+    border-color: ${th('inputBorderColor')};
+    transition: ${th('transitionBase')};
 
     &.checked {
-      background-color: ${props => props.theme.colors.primary};
+      background-color: ${th('primary')};
       border-color: transparent;
 
       svg {
@@ -68,11 +69,11 @@ const Checkbox = styled(CheckboxComponent)`
     }
 
     &.focused {
-      ${props => props.theme.mixins.controlFocus};
+      ${mixin('controlFocus')};
     }
 
     &.disabled {
-      background-color: ${props => props.theme.colors.disabledControlBg};
+      background-color: ${th('inputDisabledBgColor')};
     }
   }
 
@@ -80,12 +81,12 @@ const Checkbox = styled(CheckboxComponent)`
     width: 0.75rem;
     pointer-events: none;
     transform: scale(0);
-    transition: transform ${props => props.theme.transition.time};
+    transition: ${th('transitionBase')};
   }
 
   &.sui-checkbox-sm {
     .sui-checkbox-content {
-      border-radius: ${props => props.theme.borderRadius.sm};
+      border-radius: ${th('borderRadiusSm')};
       width: 0.875rem;
       height: 0.875rem;
     }
@@ -97,7 +98,7 @@ const Checkbox = styled(CheckboxComponent)`
 
   &.sui-checkbox-lg {
     .sui-checkbox-content {
-      border-radius: ${props => props.theme.borderRadius.lg};
+      border-radius: ${th('borderRadiusLg')};
       width: 1.25rem;
       height: 1.25rem;
     }
