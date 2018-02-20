@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
-import getWithComponent from './internal/getWithComponent'
+import setWithComponent from './internal/setWithComponent'
 import * as defaultTheme from './style/defaultTheme'
 import { th, mixin } from './utils'
 
@@ -113,7 +113,7 @@ Input.defaultProps = {
   theme: defaultTheme,
 }
 
-Input.withComponent = getWithComponent(Input, InputComponent)
+setWithComponent(Input, InputComponent)
 
 /** @component */
 export default Input

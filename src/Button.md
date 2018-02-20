@@ -56,3 +56,20 @@ Disable using `disabled` prop.
 ```js
 <Button disabled>Disabled</Button>
 ```
+
+### Extend and use with other components
+
+```js
+const BorderedButton = Button.extend`
+  border: 2px solid black;
+`
+const BorderedLinkButton = BorderedButton.withComponent('a')
+;<div>
+  <span style={{ margin: '5px' }}>
+    <BorderedLinkButton variant="primary">Primary</BorderedLinkButton>
+  </span>
+  <span style={{ margin: '5px' }}>
+    <BorderedLinkButton variant="secondary">Secondary</BorderedLinkButton>
+  </span>
+</div>
+```

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
-import getWithComponent from './internal/getWithComponent'
+import setWithComponent from './internal/setWithComponent'
 import * as defaultTheme from './style/defaultTheme'
 import { th, mixin } from './utils'
 
@@ -88,7 +88,7 @@ Button.defaultProps = {
   theme: defaultTheme,
 }
 
-Button.withComponent = getWithComponent(Button, ButtonComponent)
+setWithComponent(Button, ButtonComponent)
 
 /** @component */
 export default Button
