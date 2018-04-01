@@ -17,6 +17,6 @@ export default () => (
       width="80%"
       src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png?token=AAQQPuM4Puh4DdUkTB1OufRD9oW_EOHzks5agcuiwA%3D%3D"
     />
-    v{pkg.version}
+    <div>v{pkg.version}</div>
   </div>
 )
