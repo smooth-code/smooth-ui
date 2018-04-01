@@ -1,32 +1,32 @@
 ### Variants
 
-Set sizes using `variant` prop.
+Set variants using `variant` prop.
 
 ```js
 <div>
   <span style={{ margin: '5px' }}>
-    <Alert variant="primary">Primary</Alert>
+    <Alert variant="primary">This is a primary alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="secondary">Secondary</Alert>
+    <Alert variant="secondary">This is a secondary alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="success">Success</Alert>
+    <Alert variant="success">This is a success alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="danger">Danger</Alert>
+    <Alert variant="danger">This is a danger alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="warning">Warning</Alert>
+    <Alert variant="warning">This is a warning alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="info">Info</Alert>
+    <Alert variant="info">This is a info alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="light">Light</Alert>
+    <Alert variant="light">This is a light alert—check it out!</Alert>
   </span>
   <span style={{ margin: '5px' }}>
-    <Alert variant="dark">Dark</Alert>
+    <Alert variant="dark">This is a dark alert—check it out!</Alert>
   </span>
 </div>
 ```
