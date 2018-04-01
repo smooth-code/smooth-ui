@@ -37,6 +37,7 @@ module.exports = {
     {
       name: 'Components',
       components: () => [
+        path.resolve(__dirname, 'src/Alert.js'),
         path.resolve(__dirname, 'src/Box.js'),
         path.resolve(__dirname, 'src/Button.js'),
         path.resolve(__dirname, 'src/Checkbox.js'),

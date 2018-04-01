@@ -22,4 +22,5 @@ export const th = (name, modifier = x => x) => props => {
   return modifier(result)
 }
 
-export const mixin = (name, ...args) => props => props.theme[name](...args)
+export const mixin = (name, ...args) => props =>
+  props.theme[name](props)(...args)

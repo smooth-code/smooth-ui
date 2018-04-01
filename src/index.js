@@ -1,5 +1,6 @@
 import * as defaultTheme from './style/defaultTheme'
 
+export { default as Alert } from './Alert'
 export { default as Box } from './Box'
 export { default as Button } from './Button'
 export { default as Checkbox } from './Checkbox'
