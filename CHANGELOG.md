@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/smooth-code/smooth-ui/compare/v1.2.2...v2.0.0) (2018-04-01)
+
+
+### Bug Fixes
+
+* **ControlFeedback:** fix export name ([2e7daf8](https://github.com/smooth-code/smooth-ui/commit/2e7daf8))
+
+
+### Features
+
+* **Alert:** add alerts ([ec57ee4](https://github.com/smooth-code/smooth-ui/commit/ec57ee4))
+
+
+### BREAKING CHANGES
+
+* **Alert:** Mixins are now a function that takes props and return another function.
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/smooth-code/smooth-ui/compare/v1.2.1...v1.2.2) (2018-02-20)
 
