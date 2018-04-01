@@ -17,7 +17,7 @@
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "lint": "eslint .",
-    "prebuild": "shx rm -rf dist/*",
+    "prebuild": "shx rm -rf build",
     "release": "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },
   "devDependencies": {
