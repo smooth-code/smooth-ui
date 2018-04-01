@@ -1,6 +1,6 @@
 ### Variants
 
-Set sizes using `variant` prop.
+Set variants using `variant` prop.
 
 ```js
 <div>

@@ -1,10 +1,11 @@
 import * as defaultTheme from './style/defaultTheme'
 
+export { default as Alert } from './Alert'
 export { default as Box } from './Box'
 export { default as Button } from './Button'
 export { default as Checkbox } from './Checkbox'
 export { default as Col } from './Col'
-export { default as ControlFeedBack } from './ControlFeedBack'
+export { default as ControlFeedback } from './ControlFeedback'
 export { default as FormCheck } from './FormCheck'
 export { default as FormCheckLabel } from './FormCheckLabel'
 export { default as FormGroup } from './FormGroup'

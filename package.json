@@ -13,8 +13,10 @@
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
     "build:rollup": "cross-env BABEL_ENV=rollup rollup -c",
     "build:watch": "yarn build:lib --watch",
+    "ci": "yarn lint",
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
+    "lint": "eslint .",
     "prebuild": "shx rm -rf dist/*",
     "release": "standard-version && conventional-github-releaser -p angular && yarn build && yarn deploy:docs"
   },

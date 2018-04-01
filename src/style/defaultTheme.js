@@ -6,6 +6,7 @@ import {
   modularScale,
   darken,
   parseToRgb,
+  mix,
 } from 'polished'
 import { th, mixin } from '../utils'
 
@@ -151,6 +152,16 @@ export const controlFocusBorderColor = th('primary', color =>
 export const controlFocusBoxShadow = color =>
   css`0 0 0 0.2rem ${th(color, c => transparentize(0.75, c))}`
 
+// Alerts
+
+export const alertPaddingY = '.75rem'
+export const alertPaddingX = '1.25rem'
+export const alertMarginBottom = '1rem'
+
+export const alertBgLevel = -10
+export const alertBorderLevel = -9
+export const alertColorLevel = 6
+
 // Z-indexes
 
 export const zIndexControl = 1
@@ -170,15 +181,20 @@ export const breakPoints = {
   xl: 1200,
 }
 
+// Color levels
+
+export const yiqContrastedThreshold = 150
+export const colorInterval = 0.08
+
 // Mixins
 
-export const controlFocus = (baseColor = 'primary') => css`
+export const controlFocus = props => (baseColor = 'primary') => css`
   outline: 0;
   box-shadow: 0 0 2px ${th(baseColor, color => transparentize(0.1, color))};
 `
 
-export const btnVariant = baseColor => css`
-  color: ${props => props.theme.colorYik(th(baseColor)(props))};
+export const btnVariant = props => baseColor => css`
+  color: ${mixin('colorYik', th(baseColor))};
   background-color: ${th(baseColor)};
 
   &:focus {
@@ -191,8 +207,34 @@ export const btnVariant = baseColor => css`
   }
 `
 
-export const colorYik = color => {
+export const alertVariant = props => baseColor =>
+  css`
+    color: ${mixin('colorLevel', th(baseColor), th('alertColorLevel'))};
+    background-color: ${mixin('colorLevel', th(baseColor), th('alertBgLevel'))};
+    border-color: ${mixin('colorLevel', th(baseColor), th('alertBorderLevel'))};
+
+    hr {
+      border-top-color: ${props =>
+        darken(
+          0.05,
+          mixin('colorLevel', th(baseColor), th('alertColorLevel'))(props),
+        )};
+    }
+  `
+
+export const colorLevel = props => (color, level) => {
+  color = typeof color === 'function' ? color(props) : color
+  level = typeof level === 'function' ? level(props) : level
+  const baseColor = level > 0 ? th('black')(props) : th('white')(props)
+  const absLevel = Math.abs(level)
+  return mix(absLevel * colorInterval, baseColor, color)
+}
+
+export const colorYik = props => color => {
+  color = typeof color === 'function' ? color(props) : color
   const { red: r, green: g, blue: b } = parseToRgb(color)
   const yik = (r * 299 + g * 587 + b * 114) / 1000
-  return yik >= 150 ? th('yikTextDark') : th('yikTextLight')
+  return yik >= th('yiqContrastedThreshold')(props)
+    ? th('yikTextDark')(props)
+    : th('yikTextLight')(props)
 }

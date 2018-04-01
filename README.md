@@ -3,7 +3,7 @@
 </h1>
 <p align="center" style="font-size: 1.2rem;">React Components library based on Styled Components.</p>
 
-<!-- [![Build Status][build-badge]][build] -->
+[![Build Status][build-badge]][build]
 
 <!-- [![Code Coverage][coverage-badge]][coverage] -->
 

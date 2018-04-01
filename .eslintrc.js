@@ -14,5 +14,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
 
     'no-return-assign': 'off',
+    'no-param-reassign': 'off',
+    'no-shadow': 'off',
   },
 }
