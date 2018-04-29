@@ -59,8 +59,10 @@ export const up = (name, code) => props => {
 }
 
 export const down = (name, code) => props => {
-  const value = getBreakpointMax(name, props)
-  if (value === null) return code
+  const next = getNextBreakpoint(name, props)
+  const previous = getPreviousBreakpoint(name, props)
+  const value = getBreakpointMax(previous, props)
+  if (next === null) return code
   return css`
     @media (max-width: ${value}px) {
       ${code};
@@ -82,7 +84,7 @@ export const between = (lower, upper, code) => props => {
     `
   }
   if (max === null) return up(lower, code)(props)
-  if (min === null) return down(upperPrevious, code)(props)
+  if (min === null) return down(upper, code)(props)
   return null
 }
 

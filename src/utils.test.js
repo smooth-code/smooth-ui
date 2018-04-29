@@ -130,7 +130,7 @@ describe('utils', () => {
       const wrapper = shallowWithTheme(<Dummy />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
-        media: '(max-width:29.98px)',
+        media: '(max-width:9.98px)',
       })
     })
 
