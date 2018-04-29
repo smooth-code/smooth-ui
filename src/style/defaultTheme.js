@@ -8,6 +8,7 @@ import {
   parseToRgb,
   mix,
 } from 'polished'
+import defaultBreakpoints from './defaultBreakpoints'
 import { th, mixin } from '../utils'
 
 /* eslint-disable no-unused-expressions */
@@ -173,13 +174,7 @@ export const transitionBase = 'all .2s ease-in-out'
 
 // Breakpoints
 
-export const breakPoints = {
-  xs: 0,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-}
+export const breakpoints = defaultBreakpoints
 
 // Color levels
 
