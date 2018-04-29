@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/smooth-code/smooth-ui/compare/v3.0.1...v3.0.2) (2018-04-29)
+
+
+### Bug Fixes
+
+* fix down ([a60351a](https://github.com/smooth-code/smooth-ui/commit/a60351a))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/smooth-code/smooth-ui/compare/v3.0.0...v3.0.1) (2018-04-29)
 
