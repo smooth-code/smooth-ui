@@ -14,7 +14,7 @@ function generateBreakPoint(breakpoint) {
       width: 100%;
       min-height: 1px;
 
-      @media (min-width: ${props => props.theme.breakPoints[breakpoint]}px) {
+      @media (min-width: ${props => props.theme.breakpoints[breakpoint]}px) {
         flex-basis: 0;
         flex-grow: 1;
         max-width: 100%;
@@ -37,7 +37,7 @@ function generateBreakPoint(breakpoint) {
           min-height: 1px;
 
           @media (min-width: ${props =>
-            props.theme.breakPoints[breakpoint]}px) {
+            props.theme.breakpoints[breakpoint]}px) {
               flex: 0 0 ${width};
               max-width: ${width === 'auto' ? 'none' : width};
               ${width === 'auto' ? 'width: auto;' : ''}
@@ -74,7 +74,7 @@ const ColComponent = ({ className, xs, sm, md, lg, xl, theme, ...props }) => (
 const Col = styled(handleRef(ColComponent))`
   padding-left: 15px;
   padding-right: 15px;
-  ${props => Object.keys(props.theme.breakPoints).map(generateBreakPoint)};
+  ${props => Object.keys(props.theme.breakpoints).map(generateBreakPoint)};
 `
 
 Col.propTypes = {
