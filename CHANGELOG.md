@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/smooth-code/smooth-ui/compare/v2.0.0...v3.0.0) (2018-04-29)
+
+
+### Features
+
+* add up, down and between ([883edb6](https://github.com/smooth-code/smooth-ui/commit/883edb6))
+
+
+### BREAKING CHANGES
+
+* - upTo is now up
+- rename breakPoints into breakpoints in theme
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/smooth-code/smooth-ui/compare/v1.2.2...v2.0.0) (2018-04-01)
 
