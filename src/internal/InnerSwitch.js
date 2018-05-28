@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import * as defaultTheme from '../style/defaultTheme'
+import * as defaultTheme from '../theme/defaultTheme'
 import { th } from '../utils'
 
 const InnerSwitchContainer = styled.div`

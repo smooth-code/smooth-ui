@@ -2,8 +2,10 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import handleRef from './internal/handleRef'
+import setWithComponent from './internal/setWithComponent'
+import { mixin } from './utils'
 
 const addProp = (propName, attribute, transform = x => x) => props =>
   typeof props[propName] !== 'undefined'
@@ -14,7 +16,7 @@ const addProp = (propName, attribute, transform = x => x) => props =>
 
 const BoxComponent = ({
   className,
-  component: Component,
+  component: Component = 'div',
   flex,
   theme,
   direction,
@@ -28,9 +30,10 @@ const BoxComponent = ({
   ...props
 }) => <Component className={classNames('sui-box', className)} {...props} />
 
-/** @component */
-const Box = styled(handleRef(BoxComponent))`
-  display: flex;
+const BoxRefComponent = handleRef(BoxComponent)
+
+const Box = styled(BoxRefComponent)`
+  ${mixin('base')} display: flex;
 
   ${addProp('flex', 'flex', flex => (flex === true ? 1 : flex))};
   ${addProp('direction', 'flex-direction')};
@@ -44,26 +47,27 @@ const Box = styled(handleRef(BoxComponent))`
 `
 
 Box.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  alignContent: PropTypes.string,
+  alignItems: PropTypes.string,
+  alignSelf: PropTypes.string,
+  children: PropTypes.node,
+  direction: PropTypes.string,
   flex: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
   ]),
-  direction: PropTypes.string,
-  wrap: PropTypes.string,
-  alignItems: PropTypes.string,
-  alignContent: PropTypes.string,
-  alignSelf: PropTypes.string,
   justifyContent: PropTypes.string,
-  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  wrap: PropTypes.string,
 }
 
 Box.defaultProps = {
-  component: 'div',
   theme: defaultTheme,
 }
+
+setWithComponent(Box, BoxRefComponent)
 
 /** @component */
 export default Box

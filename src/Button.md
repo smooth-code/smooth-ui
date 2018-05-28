@@ -3,31 +3,15 @@
 Set variants using `variant` prop.
 
 ```js
-<div>
-  <span style={{ margin: '5px' }}>
-    <Button variant="primary">Primary</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="secondary">Secondary</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="success">Success</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="danger">Danger</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="warning">Warning</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="info">Info</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="light">Light</Button>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <Button variant="dark">Dark</Button>
-  </span>
+<div className="block-list">
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="success">Success</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="warning">Warning</Button>
+  <Button variant="info">Info</Button>
+  <Button variant="light">Light</Button>
+  <Button variant="dark">Dark</Button>
 </div>
 ```
 
@@ -36,16 +20,14 @@ Set variants using `variant` prop.
 Set sizes using `size` prop like `"sm"` or `"lg"`.
 
 ```js
-<div>
-  <div style={{ margin: '5px' }}>
-    <Button size="sm">Small</Button>
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Button>Medium</Button>
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Button size="lg">Large</Button>
-  </div>
+<div className="block-list">
+  <Button variant="primary" size="sm">
+    Small
+  </Button>
+  <Button variant="primary">Medium</Button>
+  <Button variant="primary" size="lg">
+    Large
+  </Button>
 </div>
 ```
 
@@ -54,22 +36,7 @@ Set sizes using `size` prop like `"sm"` or `"lg"`.
 Disable using `disabled` prop.
 
 ```js
-<Button disabled>Disabled</Button>
-```
-
-### Extend and use with other components
-
-```js
-const BorderedButton = Button.extend`
-  border: 2px solid black;
-`
-const BorderedLinkButton = BorderedButton.withComponent('a')
-;<div>
-  <span style={{ margin: '5px' }}>
-    <BorderedLinkButton variant="primary">Primary</BorderedLinkButton>
-  </span>
-  <span style={{ margin: '5px' }}>
-    <BorderedLinkButton variant="secondary">Secondary</BorderedLinkButton>
-  </span>
-</div>
+<Button variant="primary" disabled>
+  Disabled
+</Button>
 ```

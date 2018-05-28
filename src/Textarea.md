@@ -5,16 +5,10 @@ See [`Input`](#input).
 Set heights using `size` prop like `"sm"` or `"lg"`.
 
 ```js
-<div>
-  <div style={{ margin: '5px' }}>
-    <Textarea size="sm" placeholder="Small" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Textarea placeholder="Medium" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Textarea size="lg" placeholder="Large" />
-  </div>
+<div className="block-list">
+  <Textarea size="sm" placeholder="Small" />
+  <Textarea placeholder="Medium" />
+  <Textarea size="lg" placeholder="Large" />
 </div>
 ```
 
@@ -32,15 +26,9 @@ Disable using `disabled` prop.
 * Set validation using `valid` or `valid={false}`
 
 ```js
-<div>
-  <div style={{ margin: '5px' }}>
-    <Textarea control placeholder="Control" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Textarea control valid placeholder="Valid control" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Textarea control valid={false} placeholder="Invalid control" />
-  </div>
+<div className="block-list">
+  <Textarea control placeholder="Control" />
+  <Textarea control valid placeholder="Valid control" />
+  <Textarea control valid={false} placeholder="Invalid control" />
 </div>
 ```

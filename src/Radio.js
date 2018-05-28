@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
-import * as defaultTheme from './style/defaultTheme'
+import handleRef from './internal/handleRef'
+import * as defaultTheme from './theme/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
 import { th, mixin } from './utils'
 
@@ -33,7 +34,10 @@ const RadioComponent = ({ className, size, theme, ...props }) => (
   </div>
 )
 
-const Radio = styled(RadioComponent)`
+const RadioRefComponent = handleRef(RadioComponent)
+
+const Radio = styled(RadioRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
@@ -105,7 +109,6 @@ const Radio = styled(RadioComponent)`
 `
 
 Radio.propTypes = {
-  theme: PropTypes.object,
   size: PropTypes.oneOf(['sm', 'lg']),
 }
 

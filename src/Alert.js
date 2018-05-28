@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
 import setWithComponent from './internal/setWithComponent'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import { th, mixin } from './utils'
 
 const variants = [
@@ -37,7 +37,10 @@ const AlertComponent = ({
   />
 )
 
-const Alert = styled(handleRef(AlertComponent))`
+const AlertRefComponent = handleRef(AlertComponent)
+
+const Alert = styled(AlertRefComponent)`
+  ${mixin('base')};
   position: relative;
   padding: ${th('alertPaddingY')} ${th('alertPaddingX')};
   margin-bottom: ${th('alertMarginBottom')};
@@ -54,16 +57,15 @@ const Alert = styled(handleRef(AlertComponent))`
 `
 
 Alert.propTypes = {
-  variant: PropTypes.oneOf(variants),
-  theme: PropTypes.object,
+  children: PropTypes.node,
+  variant: PropTypes.oneOf(variants).isRequired,
 }
 
 Alert.defaultProps = {
-  variant: 'primary',
   theme: defaultTheme,
 }
 
-setWithComponent(Alert, AlertComponent)
+setWithComponent(Alert, AlertRefComponent)
 
 /** @component */
 export default Alert

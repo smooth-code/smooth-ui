@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import { th, mixin } from './utils'
 
 const renderOption = option => {
@@ -61,7 +61,10 @@ const SelectComponent = ({
   </div>
 )
 
-const Select = styled(handleRef(SelectComponent))`
+const SelectRefComponent = handleRef(SelectComponent)
+
+const Select = styled(SelectRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   position: relative;
 
@@ -144,7 +147,7 @@ const Select = styled(handleRef(SelectComponent))`
 
       &:focus {
         border-color: ${th('controlFocusBorderColor')};
-        box-shadow: ${props => props.theme.controlFocusBoxShadow('primary')};
+        box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
       }
     }
 
@@ -153,7 +156,7 @@ const Select = styled(handleRef(SelectComponent))`
 
       &:focus {
         border-color: ${th('success')};
-        box-shadow: ${props => props.theme.controlFocusBoxShadow('success')};
+        box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
       }
     }
 
@@ -162,7 +165,7 @@ const Select = styled(handleRef(SelectComponent))`
 
       &:focus {
         border-color: ${th('danger')};
-        box-shadow: ${props => props.theme.controlFocusBoxShadow('danger')};
+        box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
       }
     }
   }
@@ -189,7 +192,6 @@ Select.propTypes = {
       }).isRequired,
     ]),
   ),
-  theme: PropTypes.object,
   valid: PropTypes.bool,
 }
 

@@ -2,9 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import handleRef from './internal/handleRef'
+import setWithComponent from './internal/setWithComponent'
+import * as defaultTheme from './theme/defaultTheme'
+import { mixin } from './utils'
 
-const FormCheckComponent = ({ className, inline, theme, ...props }) => (
-  <div
+const FormCheckComponent = ({
+  component: Component = 'div',
+  className,
+  inline,
+  theme,
+  ...props
+}) => (
+  <Component
     className={classNames(
       'sui-form-check',
       {
@@ -16,7 +26,10 @@ const FormCheckComponent = ({ className, inline, theme, ...props }) => (
   />
 )
 
-const FormCheck = styled(FormCheckComponent)`
+const FormCheckRefComponent = handleRef(FormCheckComponent)
+
+const FormCheck = styled(FormCheckRefComponent)`
+  ${mixin('base')};
   display: flex;
   align-items: center;
 
@@ -30,6 +43,12 @@ FormCheck.propTypes = {
   className: PropTypes.string,
   inline: PropTypes.bool,
 }
+
+FormCheck.defaultProps = {
+  theme: defaultTheme,
+}
+
+setWithComponent(FormCheck, FormCheckRefComponent)
 
 /** @component */
 export default FormCheck

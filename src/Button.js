@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 import handleRef from './internal/handleRef'
 import setWithComponent from './internal/setWithComponent'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import { th, mixin } from './utils'
 
 const variants = [
@@ -39,14 +39,16 @@ const ButtonComponent = ({
   />
 )
 
-const Button = styled(handleRef(ButtonComponent))`
+const ButtonRefComponent = handleRef(ButtonComponent)
+
+const Button = styled(ButtonRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
   z-index: ${th('zIndexControl')};
   border-radius: ${th('borderRadius')};
   font-size: ${th('fontSizeBase')};
   line-height: ${th('lineHeightBase')};
-  color: ${th('white')};
   border-width: ${th('btnBorderWidth')};
   cursor: pointer;
   transition: ${th('transitionBase')};
@@ -77,18 +79,17 @@ const Button = styled(handleRef(ButtonComponent))`
 `
 
 Button.propTypes = {
+  children: PropTypes.node,
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'lg']),
-  variant: PropTypes.oneOf(variants),
-  theme: PropTypes.object,
+  variant: PropTypes.oneOf(variants).isRequired,
 }
 
 Button.defaultProps = {
-  variant: 'primary',
   theme: defaultTheme,
 }
 
-setWithComponent(Button, ButtonComponent)
+setWithComponent(Button, ButtonRefComponent)
 
 /** @component */
 export default Button

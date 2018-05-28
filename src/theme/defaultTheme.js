@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { injectGlobal, css } from 'styled-components'
+import { css } from 'styled-components'
 import {
   transparentize,
   lighten,
@@ -11,18 +11,10 @@ import {
 import defaultBreakpoints from './defaultBreakpoints'
 import { th, mixin } from '../utils'
 
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  [class^='sui-'], [class*=' sui-'] {
-    box-sizing: border-box;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+// Fonts
 
-    * {
-      box-sizing: border-box;
-    }
-  }
-`
-/* eslint-enable no-unused-expressions */
+export const fontFamily =
+  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
 
 // Colors
 
@@ -150,7 +142,8 @@ export const inputTextColor = th('gray900')
 export const controlFocusBorderColor = th('primary', color =>
   lighten(0.25, color),
 )
-export const controlFocusBoxShadow = color =>
+
+export const controlFocusBoxShadow = props => color =>
   css`0 0 0 0.2rem ${th(color, c => transparentize(0.75, c))}`
 
 // Alerts
@@ -167,6 +160,8 @@ export const alertColorLevel = 6
 
 export const zIndexControl = 1
 export const zIndexInnerSwitch = 10
+export const zIndexModal = 1050
+export const zIndexModalBackdrop = 1071
 
 // Transitions
 
@@ -181,7 +176,48 @@ export const breakpoints = defaultBreakpoints
 export const yiqContrastedThreshold = 150
 export const colorInterval = 0.08
 
+// Headings
+
+export const headingsMarginBottom = '.5rem'
+export const headingsFontFamily = null
+export const headingsFontWeight = 500
+export const headingsLineHeight = 1.2
+export const headingsColor = 'inherit'
+
+export const h1FontSize = '2.5rem'
+export const h2FontSize = '2rem'
+export const h3FontSize = '1.75rem'
+export const h4FontSize = '1.5rem'
+export const h5FontSize = '1.25rem'
+export const h6FontSize = '1rem'
+
+export const display1Size = '6rem'
+export const display2Size = '5.5rem'
+export const display3Size = '4.4rem'
+export const display4Size = '3.5rem'
+
+export const display1Weight = 300
+export const display2Weight = 300
+export const display3Weight = 300
+export const display4Weight = 300
+
+export const displayLineHeight = th('headingsLineHeight')
+
+// Modals
+
+export const modalBackdropBg = th('black')
+
 // Mixins
+export const base = props => () => css`
+  box-sizing: border-box;
+  font-family: ${th('fontFamily')};
+  font-size: ${th('fontSizeBase')};
+  line-height: ${th('lineHeightBase')};
+
+  * {
+    box-sizing: border-box;
+  }
+`
 
 export const controlFocus = props => (baseColor = 'primary') => css`
   outline: 0;

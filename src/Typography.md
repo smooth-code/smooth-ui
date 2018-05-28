@@ -1,0 +1,54 @@
+### Global settings
+
+All elements of Smooth UI have defaults font settings that you can override in theme:
+
+* `fontFamilyBase`: based on a [Native font stack](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/)
+* `fontSizeBase`: 1rem
+* `lineHeightBase`: 1.5
+
+### Headings
+
+Six size of headings are available.
+
+```js
+  <Typography variant="h1">h1. Smooth heading</Typography>
+  <Typography variant="h2">h2. Smooth heading</Typography>
+  <Typography variant="h3">h3. Smooth heading</Typography>
+  <Typography variant="h4">h4. Smooth heading</Typography>
+  <Typography variant="h5">h5. Smooth heading</Typography>
+  <Typography variant="h6">h6. Smooth heading</Typography>
+```
+
+### Display headings
+
+Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a display heading: a larger, slightly more opinionated heading style.
+
+```js
+  <Typography variant="display-1">Display 1</Typography>
+  <Typography variant="display-2">Display 2</Typography>
+  <Typography variant="display-3">Display 3</Typography>
+  <Typography variant="display-4">Display 4</Typography>
+```
+
+### No margin
+
+Remove margin by passing prop `margin: false`.
+
+```js
+  <Typography variant="h1" margin={false}>h1. Smooth heading</Typography>
+  <Typography variant="h2" margin={false}>h2. Smooth heading</Typography>
+```
+
+### Use a custom component
+
+HTML component is automatically determined from variant. You can customize it using `withComponent` or `component` property.
+
+```js
+const DivAsTitle = Typography.withComponent('div')
+;<div>
+  <Typography variant="h1" component="p">
+    h1. Smooth heading
+  </Typography>
+  <DivAsTitle variant="h2">h2. Smooth heading</DivAsTitle>
+</div>
+```

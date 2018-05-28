@@ -38,4 +38,8 @@ class RadioGroup extends React.Component {
   }
 }
 
+RadioGroup.propTypes = {
+  children: PropTypes.node,
+}
+
 export default RadioGroup

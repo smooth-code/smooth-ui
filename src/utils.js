@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import defaultBreakpoints from './style/defaultBreakpoints'
+import defaultBreakpoints from './theme/defaultBreakpoints'
 
 export const getBreakpoints = props =>
   (props && props.theme && props.theme.breakpoints) || defaultBreakpoints
@@ -103,3 +103,6 @@ export const th = (name, modifier = x => x) => props => {
 
 export const mixin = (name, ...args) => props =>
   props.theme[name](props)(...args)
+
+export const resolveUnit = value =>
+  typeof value === 'number' ? `${value}px` : value

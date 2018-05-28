@@ -3,7 +3,6 @@
 Using `FormCheck` and `FormCheckLabel` you can display `Checkbox` and `Radio` with labels.
 
 ```js
-<div>
   <FormCheck>
     <Checkbox id="basicCheckbox1" />
     <FormCheckLabel htmlFor="basicCheckbox1">First</FormCheckLabel>
@@ -12,7 +11,6 @@ Using `FormCheck` and `FormCheckLabel` you can display `Checkbox` and `Radio` wi
     <Checkbox id="basicCheckbox2" />
     <FormCheckLabel htmlFor="basicCheckbox2">Second</FormCheckLabel>
   </FormCheck>
-</div>
 ```
 
 ### Inline
@@ -20,7 +18,6 @@ Using `FormCheck` and `FormCheckLabel` you can display `Checkbox` and `Radio` wi
 Set inline with `inline` props.
 
 ```js
-<div>
   <FormCheck inline>
     <Checkbox id="checkboxInline1" />
     <FormCheckLabel htmlFor="checkboxInline1">First</FormCheckLabel>
@@ -29,5 +26,4 @@ Set inline with `inline` props.
     <Checkbox id="checkboxInline2" />
     <FormCheckLabel htmlFor="checkboxInline2">Second</FormCheckLabel>
   </FormCheck>
-</div>
 ```
