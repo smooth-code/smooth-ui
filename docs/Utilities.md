@@ -22,7 +22,7 @@ Use a mixin define in the theme.
 
 ```js static
 import styled, { css } from 'styled-components'
-import { th } from 'smooth-ui'
+import { mixin } from 'smooth-ui'
 
 const Input = styled.input`
   ${mixin('controlFocus')};
@@ -60,7 +60,7 @@ Apply style before a breakpoint. This is the desktop first approach.
 
 ```js static
 import styled, { css } from 'styled-components'
-import { up } from 'smooth-ui'
+import { down } from 'smooth-ui'
 
 // 20px on desktop, 15px on mobile!
 const Description = styled.div`
