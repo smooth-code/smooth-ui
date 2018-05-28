@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/smooth-code/smooth-ui/compare/v3.0.2...v4.0.0) (2018-05-28)
+
+
+### Features
+
+* various ([7ad7b4c](https://github.com/smooth-code/smooth-ui/commit/7ad7b4c))
+
+
+### BREAKING CHANGES
+
+* Remove default variant on buttons
+* `controlFocusBoxShadow` is now a mixin
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/smooth-code/smooth-ui/compare/v3.0.1...v3.0.2) (2018-04-29)
 
