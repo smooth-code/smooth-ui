@@ -29,7 +29,7 @@ It is focused on developer experience and accessibility. With Smooth UI, it is e
 
 ## [Docs](https://smooth-ui.smooth-code.com/)
 
-**See the documentation at [styled-components.com/docs](https://smooth-ui.smooth-code.com/)** for more information about using Smooth UI!
+**See the documentation at [docs](https://smooth-ui.smooth-code.com/)** for more information about using Smooth UI!
 
 ## License
 
