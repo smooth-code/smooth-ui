@@ -15,6 +15,8 @@ const LinkButton = Button.withComponent('a')
 </LinkButton>
 ```
 
+👉 **[Checkout the interactive example on CodeSandbox](https://codesandbox.io/s/7k8o4x7lj6)**
+
 #### Dynamic approach using `component` property
 
 Every components accept a `component` property, it defines the base component used in each component.

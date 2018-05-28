@@ -44,6 +44,8 @@ const BorderedButton = Button.extend`
 ;<BorderedButton variant="primary">A button with border!</BorderedButton>
 ```
 
+👉 **[Checkout the interactive example on CodeSandbox](https://codesandbox.io/s/7k8o4x7lj6)**
+
 #### Extend components deeply
 
 Some components are more complex than a `Button`. The `Switch` for an example is a component that includes several elements: a container, a ball... All of these elements have their own classes. To extend it, just use the browser inspector, pick the class and override it 👌.
