@@ -2,8 +2,10 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import handleRef from './internal/handleRef'
+import setWithComponent from './internal/setWithComponent'
+import { mixin } from './utils'
 
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'auto']
 
@@ -48,8 +50,18 @@ function generateBreakPoint(breakpoint) {
   `
 }
 
-const ColComponent = ({ className, xs, sm, md, lg, xl, theme, ...props }) => (
-  <div
+const ColComponent = ({
+  component: Component = 'div',
+  className,
+  xs,
+  sm,
+  md,
+  lg,
+  xl,
+  theme,
+  ...props
+}) => (
+  <Component
     className={classNames(
       'sui-col',
       {
@@ -70,14 +82,18 @@ const ColComponent = ({ className, xs, sm, md, lg, xl, theme, ...props }) => (
   />
 )
 
-/** @component */
-const Col = styled(handleRef(ColComponent))`
-  padding-left: 15px;
-  padding-right: 15px;
+const ColRefComponent = handleRef(ColComponent)
+
+const Col = styled(ColRefComponent)`
+  ${mixin('base')};
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
   ${props => Object.keys(props.theme.breakpoints).map(generateBreakPoint)};
 `
 
 Col.propTypes = {
+  children: PropTypes.node,
   sm: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   xs: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
   md: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
@@ -88,6 +104,8 @@ Col.propTypes = {
 Col.defaultProps = {
   theme: defaultTheme,
 }
+
+setWithComponent(Col, ColRefComponent)
 
 /** @component */
 export default Col

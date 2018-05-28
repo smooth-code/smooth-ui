@@ -1,4 +1,4 @@
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 
 export { default as Alert } from './Alert'
 export { default as Box } from './Box'

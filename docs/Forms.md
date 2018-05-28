@@ -1,7 +1,12 @@
-`FormGroup` creates easy form layout.
+Smooth UI has no built-in form system.
+
+Smooth UI provides component to simplify the form layouting but it doesn't provide a complete form system. We recommends using [React Final Form](https://github.com/final-form/react-final-form) if you need one.
+
+### Create simple layout using `FormGroup`
+
+Using `FormGroup` component and `control` property on controls like `Input` gives you a clean form layout.
 
 ```js
-<div>
   <FormGroup>
     <Label htmlFor="form-group-input-name">Name</Label>
     <Input control id="form-group-input-name" />
@@ -10,15 +15,13 @@
     <Label htmlFor="form-group-input-firstname">Firstname</Label>
     <Input control id="form-group-input-firstname" />
   </FormGroup>
-</div>
 ```
 
 ### Validation
 
-You can set validation using `valid` props.
+You can set validation using `valid` property and `ControlFeedback`.
 
 ```js
-<div>
   <FormGroup>
     <Label htmlFor="form-group-input-valid">Name</Label>
     <Input control valid id="form-group-input-valid" />
@@ -29,5 +32,4 @@ You can set validation using `valid` props.
     <Input control valid={false} id="form-group-input-invalid" />
     <ControlFeedback valid={false}>It is required.</ControlFeedback>
   </FormGroup>
-</div>
 ```

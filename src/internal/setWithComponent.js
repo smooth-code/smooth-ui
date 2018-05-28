@@ -2,6 +2,7 @@
 import React from 'react'
 
 const setWithComponent = (StyledComponent, BaseComponent) => {
+  // Patch extend
   const originalExtend = StyledComponent.extend.bind(StyledComponent)
   Object.defineProperty(StyledComponent, 'extend', {
     get() {
@@ -13,6 +14,7 @@ const setWithComponent = (StyledComponent, BaseComponent) => {
     },
   })
 
+  // Patch withComponent
   const originalWithComponent = StyledComponent.withComponent.bind(
     StyledComponent,
   )

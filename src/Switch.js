@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
+import handleRef from './internal/handleRef'
 import { th, mixin } from './utils'
 
 const SwitchComponent = ({ className, labeled, theme, ...props }) => (
@@ -34,7 +35,10 @@ const SwitchComponent = ({ className, labeled, theme, ...props }) => (
   </div>
 )
 
-const Switch = styled(SwitchComponent)`
+const SwitchRefComponent = handleRef(SwitchComponent)
+
+const Switch = styled(SwitchRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   position: relative;
   width: 50px;
@@ -112,7 +116,6 @@ const Switch = styled(SwitchComponent)`
 Switch.propTypes = {
   /** Add ON/OFF labels. */
   labeled: PropTypes.bool,
-  theme: PropTypes.object,
 }
 
 Switch.defaultProps = {

@@ -3,7 +3,6 @@
 Set sizes using `size` prop like `"sm"` or `"lg"`.
 
 ```js
-<div>
   <FormCheck>
     <Checkbox
       size="sm"
@@ -26,7 +25,6 @@ Set sizes using `size` prop like `"sm"` or `"lg"`.
     />
     <FormCheckLabel htmlFor="sizeCheckbox3">Large</FormCheckLabel>
   </FormCheck>
-</div>
 ```
 
 ### Disabled

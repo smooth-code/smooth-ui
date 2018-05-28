@@ -2,11 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import * as defaultTheme from './style/defaultTheme'
-import { th } from './utils'
+import handleRef from './internal/handleRef'
+import setWithComponent from './internal/setWithComponent'
+import * as defaultTheme from './theme/defaultTheme'
+import { th, mixin } from './utils'
 
-const ControlFeedbackComponent = ({ className, theme, valid, ...props }) => (
-  <div
+const ControlFeedbackComponent = ({
+  component: Component = 'div',
+  className,
+  theme,
+  valid,
+  ...props
+}) => (
+  <Component
     className={classNames(
       'sui-control-feedback',
       {
@@ -19,7 +27,10 @@ const ControlFeedbackComponent = ({ className, theme, valid, ...props }) => (
   />
 )
 
-const ControlFeedback = styled(ControlFeedbackComponent)`
+const ControlFeedbackRefComponent = handleRef(ControlFeedbackComponent)
+
+const ControlFeedback = styled(ControlFeedbackRefComponent)`
+  ${mixin('base')};
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
@@ -35,13 +46,14 @@ const ControlFeedback = styled(ControlFeedbackComponent)`
 
 ControlFeedback.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
   valid: PropTypes.bool.isRequired,
 }
 
 ControlFeedback.defaultProps = {
   theme: defaultTheme,
 }
+
+setWithComponent(ControlFeedback, ControlFeedbackRefComponent)
 
 /** @component */
 export default ControlFeedback

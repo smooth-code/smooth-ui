@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import styled, { ThemeProvider } from 'styled-components'
-import defaultBreakpoints from './style/defaultBreakpoints'
+import defaultBreakpoints from './theme/defaultBreakpoints'
 import {
   getBreakpoints,
   getBreakpointsEntries,

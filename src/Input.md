@@ -3,16 +3,10 @@
 Set heights using `size` prop like `"sm"` or `"lg"`.
 
 ```js
-<div>
-  <div style={{ margin: '5px' }}>
-    <Input size="sm" placeholder="Small" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Input placeholder="Medium" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Input size="lg" placeholder="Large" />
-  </div>
+<div className="block-list">
+  <Input size="sm" placeholder="Small" />
+  <Input placeholder="Medium" />
+  <Input size="lg" placeholder="Large" />
 </div>
 ```
 
@@ -38,15 +32,9 @@ Disable using `disabled` prop.
 * Set validation using `valid` or `valid={false}`
 
 ```js
-<div>
-  <div style={{ margin: '5px' }}>
-    <Input control placeholder="Control" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Input control valid placeholder="Valid control" />
-  </div>
-  <div style={{ margin: '5px' }}>
-    <Input control valid={false} placeholder="Invalid control" />
-  </div>
+<div className="block-list">
+  <Input control placeholder="Control" />
+  <Input control valid placeholder="Valid control" />
+  <Input control valid={false} placeholder="Invalid control" />
 </div>
 ```

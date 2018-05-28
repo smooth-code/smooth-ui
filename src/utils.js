@@ -1,10 +1,10 @@
 import { css } from 'styled-components'
-import defaultBreakpoints from './style/defaultBreakpoints'
+import defaultBreakpoints from './theme/defaultBreakpoints'
 
-export const getBreakpoints = props =>
+const getBreakpoints = props =>
   (props && props.theme && props.theme.breakpoints) || defaultBreakpoints
 
-export const getBreakpointsEntries = props => {
+const getBreakpointsEntries = props => {
   const breakpoints = getBreakpoints(props)
   const entries = Object.keys(breakpoints).reduce(
     (entries, key) => [...entries, [key, breakpoints[key]]],
@@ -13,13 +13,13 @@ export const getBreakpointsEntries = props => {
   return entries.sort((a, b) => a[1] > b[1])
 }
 
-export const getNextBreakpoint = (name, props) => {
+const getNextBreakpoint = (name, props) => {
   const entries = getBreakpointsEntries(props)
   const index = entries.findIndex(([key]) => key === name)
   return index < entries.length - 1 ? entries[index + 1][0] : null
 }
 
-export const getPreviousBreakpoint = (name, props) => {
+const getPreviousBreakpoint = (name, props) => {
   const entries = getBreakpointsEntries(props)
   const index = entries.findIndex(([key]) => key === name)
   return index >= 1 ? entries[index - 1][0] : null
@@ -29,7 +29,7 @@ export const getPreviousBreakpoint = (name, props) => {
  * Minimum breakpoint width.
  * Null for the smallest breakpoint.
  */
-export const getBreakpointMin = (name, props) => {
+const getBreakpointMin = (name, props) => {
   const breakpoints = getBreakpoints(props)
   const breakPoint = breakpoints[name]
   return breakPoint !== 0 ? breakPoint : null
@@ -43,7 +43,7 @@ export const getBreakpointMin = (name, props) => {
  * Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
  * See https://bugs.webkit.org/show_bug.cgi?id=178261
  */
-export const getBreakpointMax = (name, props) => {
+const getBreakpointMax = (name, props) => {
   const next = getNextBreakpoint(name, props)
   return next ? getBreakpointMin(next, props) - 0.02 : null
 }
@@ -103,3 +103,6 @@ export const th = (name, modifier = x => x) => props => {
 
 export const mixin = (name, ...args) => props =>
   props.theme[name](props)(...args)
+
+export const resolveUnit = value =>
+  typeof value === 'number' ? `${value}px` : value

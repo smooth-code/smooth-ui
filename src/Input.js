@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import handleRef from './internal/handleRef'
 import setWithComponent from './internal/setWithComponent'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import { th, mixin } from './utils'
 
 const InputComponent = ({
@@ -31,7 +31,10 @@ const InputComponent = ({
   />
 )
 
-const Input = styled(handleRef(InputComponent))`
+const InputRefComponent = handleRef(InputComponent)
+
+const Input = styled(InputRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   border-width: ${th('inputBorderWidth')};
   border-color: ${th('inputBorderColor')};
@@ -79,7 +82,7 @@ const Input = styled(handleRef(InputComponent))`
 
     &:focus {
       border-color: ${th('controlFocusBorderColor')};
-      box-shadow: ${props => props.theme.controlFocusBoxShadow('primary')};
+      box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
     }
 
     &.sui-is-valid {
@@ -87,7 +90,7 @@ const Input = styled(handleRef(InputComponent))`
 
       &:focus {
         border-color: ${th('success')};
-        box-shadow: ${props => props.theme.controlFocusBoxShadow('success')};
+        box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
       }
     }
 
@@ -96,7 +99,7 @@ const Input = styled(handleRef(InputComponent))`
 
       &:focus {
         border-color: ${th('danger')};
-        box-shadow: ${props => props.theme.controlFocusBoxShadow('danger')};
+        box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
       }
     }
   }
@@ -113,7 +116,7 @@ Input.defaultProps = {
   theme: defaultTheme,
 }
 
-setWithComponent(Input, InputComponent)
+setWithComponent(Input, InputRefComponent)
 
 /** @component */
 export default Input

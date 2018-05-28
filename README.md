@@ -27,7 +27,15 @@ Smooth UI is an open source components library built with [React](https://reactj
 
 It is focused on developer experience and accessibility. With Smooth UI, it is easy to design beautiful websites and applications.
 
-## MIT
+## [Docs](https://smooth-ui.smooth-code.com/)
+
+**See the documentation at [styled-components.com/docs](https://smooth-ui.smooth-code.com/)** for more information about using Smooth UI!
+
+## License
+
+Licensed under the MIT License, Copyright © 2018-present Smooth Code.
+
+See [LICENSE](./LICENSE) for more information.
 
 [build-badge]: https://img.shields.io/travis/smooth-code/smooth-ui.svg?style=flat-square
 [build]: https://travis-ci.org/smooth-code/smooth-ui

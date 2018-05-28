@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
+import handleRef from './internal/handleRef'
 import InnerSwitch from './internal/InnerSwitch'
-import * as defaultTheme from './style/defaultTheme'
+import * as defaultTheme from './theme/defaultTheme'
 import { th, mixin } from './utils'
 
 const CheckboxComponent = ({ className, size, theme, ...props }) => (
@@ -39,7 +40,10 @@ const CheckboxComponent = ({ className, size, theme, ...props }) => (
   </div>
 )
 
-const Checkbox = styled(CheckboxComponent)`
+const CheckboxRefComponent = handleRef(CheckboxComponent)
+
+const Checkbox = styled(CheckboxRefComponent)`
+  ${mixin('base')};
   display: inline-block;
   position: relative;
   width: 1.5rem;
@@ -110,8 +114,11 @@ const Checkbox = styled(CheckboxComponent)`
 `
 
 Checkbox.propTypes = {
-  theme: PropTypes.object,
+  checked: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
   size: PropTypes.oneOf(['sm', 'lg']),
+  value: PropTypes.string,
 }
 
 Checkbox.defaultProps = {
