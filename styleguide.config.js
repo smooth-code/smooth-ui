@@ -24,6 +24,9 @@ module.exports = {
       sidebar: {
         width: 240,
       },
+      hasSidebar: {
+        paddingLeft: 240,
+      },
     },
     SectionHeading: {
       sectionName: {
