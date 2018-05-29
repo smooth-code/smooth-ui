@@ -9,18 +9,18 @@ const config = {
   ],
 }
 
-if (process.env.NODE_ENV === 'lib') {
+if (process.env.BABEL_ENV === 'lib') {
   module.exports = Object.assign({}, config, {
     plugins: [
       ...config.plugins,
       ['@babel/plugin-transform-modules-commonjs', { loose: true }],
     ],
   })
-} else if (process.env.NODE_ENV === 'rollup') {
-  module.exports = Object.assign({}, config, {
-    plugins: [...config.plugins, '@babel/plugin-external-helpers'],
-  })
-} else if (process.env.NODE_ENV === 'test') {
+} else if (process.env.BABEL_ENV === 'rollup') {
+  module.exports = config
+}
+
+if (process.env.NODE_ENV === 'test') {
   module.exports = Object.assign({}, config, {
     plugins: [
       ...config.plugins,
