@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.2"></a>
+## [4.1.2](https://github.com/smooth-code/smooth-ui/compare/v4.1.1...v4.1.2) (2018-05-29)
+
+
+### Bug Fixes
+
+* fix import X from 'smooth-ui/X' ([08c82d5](https://github.com/smooth-code/smooth-ui/commit/08c82d5))
+
+
+
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/smooth-code/smooth-ui/compare/v4.1.0...v4.1.1) (2018-05-29)
 
