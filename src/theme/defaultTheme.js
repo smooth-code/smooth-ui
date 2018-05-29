@@ -172,6 +172,7 @@ const safeTransitionProperties = [
   'background-color',
   'text-decoration',
   'box-shadow',
+  'transform',
 ]
 export const transitionBase = safeTransitionProperties
   .map(prop => `${prop} .2s ease-in-out`)
