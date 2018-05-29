@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/smooth-code/smooth-ui/compare/v4.0.1...v4.1.0) (2018-05-29)
+
+
+### Bug Fixes
+
+* remove "transition: all" ([5773201](https://github.com/smooth-code/smooth-ui/commit/5773201)), closes [#8](https://github.com/smooth-code/smooth-ui/issues/8)
+
+
+### Features
+
+* add Modal ([7d27a07](https://github.com/smooth-code/smooth-ui/commit/7d27a07))
+* add Toggler ([88bc002](https://github.com/smooth-code/smooth-ui/commit/88bc002))
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/smooth-code/smooth-ui/compare/v4.0.0...v4.0.1) (2018-05-28)
 
