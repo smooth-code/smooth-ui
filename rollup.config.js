@@ -11,7 +11,7 @@ const OUT_DIR = path.resolve(__dirname, 'build')
 
 const baseConfig = {
   input: `${SOURCE_DIR}/index.js`,
-  external: ['react', 'styled-components'],
+  external: Object.keys(pkg.peerDependencies),
   plugins: [babel({ exclude: '**/node_modules/**' })],
 }
 
