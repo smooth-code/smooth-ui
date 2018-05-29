@@ -106,3 +106,8 @@ export const mixin = (name, ...args) => props =>
 
 export const resolveUnit = value =>
   typeof value === 'number' ? `${value}px` : value
+
+export const calc = (value, fn) => {
+  const [, num, unit] = String(value).match(/([\d.]+)\s*(.*)/)
+  return `${fn(Number(num))}${unit || 'px'}`
+}

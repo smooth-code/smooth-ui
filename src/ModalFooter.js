@@ -2,20 +2,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
+import handleRef from './internal/handleRef'
+import setWithComponent from './internal/setWithComponent'
 import * as defaultTheme from './theme/defaultTheme'
-import { mixin } from './utils'
+import { mixin, th } from './utils'
 
-const ModalFooterComponent = ({ className, theme, ...props }) => (
-  <div className={classNames('sui-modal-footer', className)} {...props} />
+const ModalFooterComponent = ({
+  className,
+  component: Component = 'div',
+  theme,
+  ...props
+}) => (
+  <Component className={classNames('sui-modal-footer', className)} {...props} />
 )
 
-const ModalFooter = styled(ModalFooterComponent)`
+const ModalFooterRefComponent = handleRef(ModalFooterComponent)
+
+const ModalFooter = styled(ModalFooterRefComponent)`
   ${mixin('base')};
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 1rem;
-  border-top: 1px solid #e9ecef;
+  padding: ${th('modalInnerPadding')};
+  border-top: ${th('modalFooterBorderWidth')} solid
+    ${th('modalFooterBorderColor')};
 
   /* Easily place margin between footer elements */
   > :not(:first-child) {
@@ -28,13 +38,13 @@ const ModalFooter = styled(ModalFooterComponent)`
 
 ModalFooter.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  theme: PropTypes.object,
 }
 
 ModalFooter.defaultProps = {
   theme: defaultTheme,
 }
+
+setWithComponent(ModalFooter, ModalFooterRefComponent)
 
 /** @component */
 export default ModalFooter

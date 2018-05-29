@@ -6,8 +6,9 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import * as defaultTheme from './theme/defaultTheme'
 import { th } from './utils'
+import Transition from './Transition'
 
-class Portal extends React.Component {
+class ModalComponent extends React.Component {
   constructor(props) {
     super(props)
     if (!this.container && typeof document !== 'undefined') {
@@ -16,40 +17,56 @@ class Portal extends React.Component {
     }
   }
 
+  handleKeyup = ({ keyCode }) => {
+    if (keyCode === 27 /* Escape */) {
+      this.props.onClose()
+    }
+  }
+
   componentWillUnmount() {
     document.body.removeChild(this.container)
+    document.removeEventListener('keyup', this.handleKeyup)
+  }
+
+  componentDidUpdate() {
+    if (this.props.opened) {
+      document.body.style.overflow = 'hidden'
+      document.addEventListener('keyup', this.handleKeyup)
+    } else {
+      document.body.style.overflow = null
+      document.removeEventListener('keyup', this.handleKeyup)
+    }
   }
 
   render() {
+    const { className, theme, opened, onClose, children, ...props } = this.props
     if (!this.container) return null
-    return createPortal(this.props.children, this.container)
+    return createPortal(
+      <Transition ms={theme.modalTransitionDuration} toggle={this.props.opened}>
+        {({ entering, exiting }) => (
+          <div
+            role="dialog"
+            tabIndex="-1"
+            className={classNames(
+              'sui-modal',
+              {
+                'sui-modal-opened': opened || exiting || entering,
+                'sui-modal-fade-in': entering,
+                'sui-modal-fade-out': exiting,
+              },
+              className,
+            )}
+            {...props}
+          >
+            <div className="sui-modal-backdrop" onClick={onClose} />
+            {children}
+          </div>
+        )}
+      </Transition>,
+      this.container,
+    )
   }
 }
-
-const ModalComponent = ({
-  className,
-  theme,
-  opened,
-  onClose,
-  children,
-  ...props
-}) => (
-  <Portal>
-    <div
-      role="dialog"
-      tabIndex="-1"
-      className={classNames(
-        'sui-modal',
-        { 'sui-modal-opened': opened },
-        className,
-      )}
-      {...props}
-    >
-      <div className="sui-modal-backdrop" onClick={onClose} />
-      {children}
-    </div>
-  </Portal>
-)
 
 const Modal = styled(ModalComponent)`
   position: fixed;
@@ -62,13 +79,20 @@ const Modal = styled(ModalComponent)`
   overflow: hidden;
   outline: 0;
   opacity: 0;
-  transition: opacity 1000ms;
+  transition: opacity ${th('modalTransitionDuration')}ms;
 
   &.sui-modal-opened {
     display: block;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  &.sui-modal-fade-in {
     opacity: 1;
+  }
+
+  &.sui-modal-fade-out {
+    opacity: 0;
   }
 
   .sui-modal-backdrop {
@@ -84,6 +108,8 @@ const Modal = styled(ModalComponent)`
 
 Modal.propTypes = {
   children: PropTypes.node,
+  opened: PropTypes.bool,
+  onClose: PropTypes.func,
 }
 
 Modal.defaultProps = {

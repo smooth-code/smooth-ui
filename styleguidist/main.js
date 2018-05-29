@@ -4,10 +4,14 @@ import { lighten } from 'polished'
 import * as theme from '../src/theme/defaultTheme'
 
 injectGlobal`
+  body {
+    font-family: ${theme.fontFamily};
+  }
+  
   table {
     width: 100%;
   }
-  
+
   [class^='rsg--preview'], [class*=' rsg--preview'] {
     .sui-row + .sui-row {
       margin-top: 1rem;

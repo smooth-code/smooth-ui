@@ -12,6 +12,8 @@ import {
   up,
   down,
   between,
+  resolveUnit,
+  calc,
 } from './utils'
 
 describe('utils', () => {
@@ -183,6 +185,23 @@ describe('utils', () => {
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(min-width:5px) and (max-width:9.98px)',
       })
+    })
+  })
+
+  describe('#resolveUnit', () => {
+    it('should put a unit automatically on number', () => {
+      expect(resolveUnit(10)).toBe('10px')
+      expect(resolveUnit(10.5)).toBe('10.5px')
+      expect(resolveUnit('10.5px')).toBe('10.5px')
+      expect(resolveUnit('10.5rem')).toBe('10.5rem')
+    })
+  })
+
+  describe('#calc', () => {
+    it('should calc without unit', () => {
+      expect(calc(10, x => x + 1)).toBe('11px')
+      expect(calc('10px', x => x + 1)).toBe('11px')
+      expect(calc('10rem', x => x + 1)).toBe('11rem')
     })
   })
 })

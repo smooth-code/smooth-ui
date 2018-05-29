@@ -36,6 +36,8 @@ const ModalDialogExample = ModalDialog.extend`
 
 ### Live example
 
+You can toggle a modal from a `Button` using the `Toggler`.
+
 ```js
 const ModalExample = () => (
   <Toggler>
@@ -55,7 +57,96 @@ const ModalExample = () => (
               <ModalBody>Modal body</ModalBody>
               <ModalFooter>
                 <Button variant="primary">Save changes</Button>
-                <Button variant="secondary">Close</Button>
+                <Button variant="secondary" onClick={() => onToggle(false)}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </ModalDialog>
+        </Modal>
+      </div>
+    )}
+  </Toggler>
+)
+;<ModalExample />
+```
+
+### Scrolling long content
+
+When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean.
+
+```js
+const ModalExample = () => (
+  <Toggler>
+    {({ toggled, onToggle }) => (
+      <div>
+        <Button variant="primary" onClick={() => onToggle(true)}>
+          Open modal
+        </Button>
+        <Modal opened={toggled} onClose={() => onToggle(false)}>
+          <ModalDialog>
+            <ModalContent>
+              <ModalHeader>
+                <Typography variant="h5" margin={false}>
+                  Modal title
+                </Typography>
+              </ModalHeader>
+              <ModalBody>
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et.
+                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et. Donec
+                sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla.
+              </ModalBody>
+              <ModalFooter>
+                <Button variant="primary">Save changes</Button>
+                <Button variant="secondary" onClick={() => onToggle(false)}>
+                  Close
+                </Button>
               </ModalFooter>
             </ModalContent>
           </ModalDialog>

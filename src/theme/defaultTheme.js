@@ -164,8 +164,18 @@ export const zIndexModal = 1050
 export const zIndexModalBackdrop = 1071
 
 // Transitions
-
-export const transitionBase = 'all .2s ease-in-out'
+const safeTransitionProperties = [
+  'color',
+  'border-style',
+  'visibility',
+  'background',
+  'background-color',
+  'text-decoration',
+  'box-shadow',
+]
+export const transitionBase = safeTransitionProperties
+  .map(prop => `${prop} .2s ease-in-out`)
+  .join(',')
 
 // Breakpoints
 
@@ -206,6 +216,30 @@ export const displayLineHeight = th('headingsLineHeight')
 // Modals
 
 export const modalBackdropBg = th('black')
+
+export const modalInnerPadding = '1rem'
+export const modalTransitionDuration = 300 // ms
+
+export const modalDialogMargin = '0.5rem'
+export const modalDialogMarginYSmUp = '1.75rem'
+
+export const modalContentBg = th('white')
+export const modalContentBorderWidth = th('borderWidth')
+export const modalContentBorderColor = th('black', color =>
+  transparentize(0.8, color),
+)
+export const modalContentBorderRadius = th('borderRadiusLg')
+export const modalContentBoxShadowXs = css`0 .25rem .5rem ${th('black', color =>
+  transparentize(0.8, color),
+)}`
+export const modalContentBoxShadowSmUp = css`0 .5rem 1rem ${th('black', color =>
+  transparentize(0.8, color),
+)}`
+
+export const modalHeaderBorderColor = th('gray200')
+export const modalFooterBorderColor = th('modalHeaderBorderColor')
+export const modalHeaderBorderWidth = th('modalContentBorderWidth')
+export const modalFooterBorderWidth = th('modalHeaderBorderWidth')
 
 // Mixins
 export const base = props => () => css`
