@@ -164,8 +164,18 @@ export const zIndexModal = 1050
 export const zIndexModalBackdrop = 1071
 
 // Transitions
-
-export const transitionBase = 'all .2s ease-in-out'
+const safeTransitionProperties = [
+  'color',
+  'border-style',
+  'visibility',
+  'background',
+  'background-color',
+  'text-decoration',
+  'box-shadow',
+]
+export const transitionBase = safeTransitionProperties
+  .map(prop => `${prop} .2s ease-in-out`)
+  .join(',')
 
 // Breakpoints
 
