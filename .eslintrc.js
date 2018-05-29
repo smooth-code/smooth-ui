@@ -11,6 +11,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
+    'react/sort-comp': 'off',
 
     'import/prefer-default-export': 'off',
 

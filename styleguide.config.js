@@ -119,6 +119,12 @@ module.exports = {
         path.resolve(__dirname, 'src/FormCheckLabel.js'),
         path.resolve(__dirname, 'src/Input.js'),
         path.resolve(__dirname, 'src/Label.js'),
+        path.resolve(__dirname, 'src/Modal.js'),
+        path.resolve(__dirname, 'src/ModalBody.js'),
+        path.resolve(__dirname, 'src/ModalContent.js'),
+        path.resolve(__dirname, 'src/ModalDialog.js'),
+        path.resolve(__dirname, 'src/ModalFooter.js'),
+        path.resolve(__dirname, 'src/ModalHeader.js'),
         path.resolve(__dirname, 'src/Radio.js'),
         path.resolve(__dirname, 'src/RadioGroup.js'),
         path.resolve(__dirname, 'src/Select.js'),
@@ -126,6 +132,10 @@ module.exports = {
         path.resolve(__dirname, 'src/Textarea.js'),
         path.resolve(__dirname, 'src/Typography.js'),
       ],
+    },
+    {
+      name: 'Utility Components',
+      components: () => [path.resolve(__dirname, 'src/Toggler.js')],
     },
   ],
 }
