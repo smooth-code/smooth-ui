@@ -82,10 +82,11 @@ Button.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(['sm', 'lg']),
-  variant: PropTypes.oneOf(variants).isRequired,
+  variant: PropTypes.oneOf(variants),
 }
 
 Button.defaultProps = {
+  variant: 'primary',
   theme: defaultTheme,
 }
 

@@ -4,6 +4,7 @@ Set variants using `variant` prop.
 
 ```js
 <div className="block-list">
+  <Button>Default (primary)</Button>
   <Button variant="primary">Primary</Button>
   <Button variant="secondary">Secondary</Button>
   <Button variant="success">Success</Button>
@@ -12,6 +13,7 @@ Set variants using `variant` prop.
   <Button variant="info">Info</Button>
   <Button variant="light">Light</Button>
   <Button variant="dark">Dark</Button>
+  <Button variant={null}>No variant</Button>
 </div>
 ```
 
