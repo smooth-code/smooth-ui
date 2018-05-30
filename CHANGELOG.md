@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/smooth-code/smooth-ui/compare/v4.1.2...v4.2.0) (2018-05-30)
+
+
+### Features
+
+* add Button default variant (primary) ([2ccb3d8](https://github.com/smooth-code/smooth-ui/commit/2ccb3d8))
+
+
+
 <a name="4.1.2"></a>
 ## [4.1.2](https://github.com/smooth-code/smooth-ui/compare/v4.1.1...v4.1.2) (2018-05-29)
 
