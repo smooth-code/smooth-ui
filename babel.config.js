@@ -18,9 +18,7 @@ if (process.env.BABEL_ENV === 'lib') {
   })
 } else if (process.env.BABEL_ENV === 'rollup') {
   module.exports = config
-}
-
-if (process.env.NODE_ENV === 'test') {
+} else if (process.env.NODE_ENV === 'test') {
   module.exports = Object.assign({}, config, {
     plugins: [
       ...config.plugins,

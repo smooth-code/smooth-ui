@@ -75,6 +75,7 @@
     "classnames": "^2.2.5",
     "polished": "^1.9.2",
     "prop-types": "^15.6.1",
+    "react-transition-group": "^2.3.1",
     "recompact": "^3.3.0"
   },
   "peerDependencies": {
