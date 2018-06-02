@@ -24,6 +24,7 @@ const esConfig = Object.assign({}, baseConfig, {
   external: [
     ...baseConfig.external,
     ...Object.keys(pkg.dependencies),
+    'react-transition-group/Transition',
     'recompact/getDisplayName',
     'recompact/isClassComponent',
   ],
@@ -38,6 +39,7 @@ const cjsConfig = Object.assign({}, baseConfig, {
   external: [
     ...baseConfig.external,
     ...Object.keys(pkg.dependencies),
+    'react-transition-group/Transition',
     'recompact/getDisplayName',
     'recompact/isClassComponent',
   ],
