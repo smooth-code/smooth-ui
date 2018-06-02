@@ -4,9 +4,9 @@ import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import classNames from 'classnames'
+import Transition from './Transition'
 import * as defaultTheme from './theme/defaultTheme'
 import { th } from './utils'
-import Transition from './Transition'
 
 class ModalComponent extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class ModalComponent extends React.Component {
     document.removeEventListener('keyup', this.handleKeyup)
   }
 
-  componentDidUpdate() {
+  setupKeyHandling() {
     if (this.props.opened) {
       document.body.style.overflow = 'hidden'
       document.addEventListener('keyup', this.handleKeyup)
@@ -38,21 +38,31 @@ class ModalComponent extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setupKeyHandling()
+  }
+
+  componentDidUpdate() {
+    this.setupKeyHandling()
+  }
+
   render() {
     const { className, theme, opened, onClose, children, ...props } = this.props
     if (!this.container) return null
     return createPortal(
-      <Transition ms={theme.modalTransitionDuration} toggle={this.props.opened}>
-        {({ entering, exiting }) => (
+      <Transition
+        timeout={theme.modalTransitionDuration}
+        in={this.props.opened}
+      >
+        {transitionState => (
           <div
             role="dialog"
             tabIndex="-1"
             className={classNames(
               'sui-modal',
               {
-                'sui-modal-opened': opened || exiting || entering,
-                'sui-modal-fade-in': entering,
-                'sui-modal-fade-out': exiting,
+                'sui-modal-opened': opened || transitionState === 'exiting',
+                [`sui-modal-transition-${transitionState}`]: transitionState,
               },
               className,
             )}
@@ -75,23 +85,30 @@ const Modal = styled(ModalComponent)`
   bottom: 0;
   left: 0;
   z-index: ${th('zIndexModal')};
-  display: none;
+  visibility: hidden;
   overflow: hidden;
   outline: 0;
-  opacity: 0;
-  transition: opacity ${th('modalTransitionDuration')}ms;
+  transition: opacity ${th('modalTransitionDuration')}ms ease-in-out;
 
   &.sui-modal-opened {
-    display: block;
+    visibility: visible;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
-  &.sui-modal-fade-in {
+  &.sui-modal-transition-entering {
     opacity: 1;
   }
 
-  &.sui-modal-fade-out {
+  &.sui-modal-transition-entered {
+    opacity: 1;
+  }
+
+  &.sui-modal-transition-exited {
+    opacity: 0;
+  }
+
+  &.sui-modal-transition-exiting {
     opacity: 0;
   }
 
