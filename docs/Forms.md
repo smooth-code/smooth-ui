@@ -1,6 +1,8 @@
 Smooth UI has no built-in form system.
 
-Smooth UI provides component to simplify the form layouting but it doesn't provide a complete form system. We recommends using [React Final Form](https://github.com/final-form/react-final-form) if you need one.
+Smooth UI provides component to simplify the form layouting but it doesn't provide a complete form system. We recommends using [🏁 React Final Form](https://github.com/final-form/react-final-form) if you need one.
+
+👉 **[Checkout the 🏁 React Final Form example on CodeSandbox](https://codesandbox.io/s/40o45po3l4)**
 
 ### Create simple layout using `FormGroup`
 
