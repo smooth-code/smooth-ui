@@ -38,7 +38,7 @@ const SelectComponent = ({
       className,
     )}
   >
-    {arrow ? (
+    {arrow && !props.multiple ? (
       <svg className="sui-select-arrow" viewBox="0 0 10 5">
         <g fill="none" fillRule="evenodd">
           <path d="M17 14H-7v-24h24" />
@@ -84,7 +84,7 @@ const Select = styled(SelectRefComponent)`
     line-height: ${th('lineHeightBase')};
     transition: ${th('transitionBase')};
     color: ${th('inputTextColor')};
-    padding-right: 1.6rem;
+    ${props => props.arrow && !props.multiple && 'padding-right: 1.6rem;'};
 
     &:focus {
       ${mixin('controlFocus')};
@@ -109,7 +109,7 @@ const Select = styled(SelectRefComponent)`
       padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
       font-size: ${th('fontSizeSm')};
       border-radius: ${th('borderRadiusSm')};
-      padding-right: 1.225rem;
+      ${props => props.arrow && !props.multiple && 'padding-right: 1.225rem;'};
     }
 
     .sui-select-arrow {
@@ -123,7 +123,7 @@ const Select = styled(SelectRefComponent)`
       padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
       font-size: ${th('fontSizeLg')};
       border-radius: ${th('borderRadiusLg')};
-      padding-right: 2rem;
+      ${props => props.arrow && !props.multiple && 'padding-right: 2rem;'};
     }
 
     .sui-select-arrow {
