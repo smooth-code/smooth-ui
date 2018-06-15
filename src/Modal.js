@@ -119,7 +119,6 @@ const Modal = styled(ModalComponent)`
     bottom: 0;
     left: 0;
     background-color: ${th('modalBackdropBg')};
-    opacity: 0.5;
   }
 `
 
