@@ -1,7 +1,7 @@
 {
   "name": "smooth-ui",
   "description": "React Components library based on Styled Components",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "keywords": [
     "styled-components",
     "ui",

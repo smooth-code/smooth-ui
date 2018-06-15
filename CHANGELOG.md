@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/smooth-code/smooth-ui/compare/v4.2.1...v4.3.0) (2018-06-15)
+
+
+### Bug Fixes
+
+* fix peerDependencies ([d60f08d](https://github.com/smooth-code/smooth-ui/commit/d60f08d))
+* **modal:** fix modal backdrop ([#19](https://github.com/smooth-code/smooth-ui/issues/19)) ([8a00c08](https://github.com/smooth-code/smooth-ui/commit/8a00c08))
+
+
+### Features
+
+* Better support for <Select multiple> ([#15](https://github.com/smooth-code/smooth-ui/issues/15)) ([9d5b290](https://github.com/smooth-code/smooth-ui/commit/9d5b290))
+
+
+
 <a name="4.2.2"></a>
 ## [4.2.2](https://github.com/smooth-code/smooth-ui/compare/v4.2.1...v4.2.2) (2018-06-12)
 
