@@ -128,6 +128,7 @@ module.exports = {
         path.resolve(__dirname, 'src/Radio.js'),
         path.resolve(__dirname, 'src/RadioGroup.js'),
         path.resolve(__dirname, 'src/Select.js'),
+        path.resolve(__dirname, 'src/Slider.js'),
         path.resolve(__dirname, 'src/Switch.js'),
         path.resolve(__dirname, 'src/Textarea.js'),
         path.resolve(__dirname, 'src/Typography.js'),
