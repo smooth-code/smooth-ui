@@ -216,7 +216,7 @@ export const displayLineHeight = th('headingsLineHeight')
 
 // Modals
 
-export const modalBackdropBg = th('black')
+export const modalBackdropBg = 'rgba(0, 0, 0, 0.5)'
 
 export const modalInnerPadding = '1rem'
 export const modalTransitionDuration = 300 // ms
