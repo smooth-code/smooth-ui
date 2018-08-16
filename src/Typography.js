@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
 const variantTags = {
@@ -14,7 +15,7 @@ const variantTags = {
   'display-4': 'h4',
 }
 
-const Typography = createComponent(({ css, th, classNames, PropTypes }) => ({
+const Typography = createComponent(({ css, th, classNames }) => ({
   name: 'typo',
   defaultComponent: null,
   render: ({

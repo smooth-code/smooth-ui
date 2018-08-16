@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const ModalContent = createComponent(({ css, th, up, PropTypes }) => ({
+const ModalContent = createComponent(({ css, th, up }) => ({
   name: 'modal-content',
   style: css`
     position: relative;

@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const ModalHeader = createComponent(({ css, th, PropTypes }) => ({
+const ModalHeader = createComponent(({ css, th }) => ({
   name: 'modal-header',
   style: css`
     display: flex;

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import createComponent from './internal/createComponent'
 
@@ -9,7 +10,7 @@ const addProp = (propName, attribute, transform = x => x) => props =>
       `
     : null
 
-const Box = createComponent(({ PropTypes }) => ({
+const Box = createComponent(() => ({
   name: 'box',
   render: ({
     Component,

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import Transition from './Transition'
@@ -76,7 +77,7 @@ class ModalComponent extends React.Component {
   }
 }
 
-const Modal = createComponent(({ css, PropTypes }) => ({
+const Modal = createComponent(({ css }) => ({
   name: 'modal',
   InnerComponent: ModalComponent,
   style: css`

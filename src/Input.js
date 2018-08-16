@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const Input = createComponent(({ css, th, mixin, classNames, PropTypes }) => ({
+const Input = createComponent(({ css, th, mixin, classNames }) => ({
   name: 'input',
   defaultComponent: 'input',
   render: ({ Component, className, control, size, valid, ...props }) => (

@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const ModalFooter = createComponent(({ css, th, PropTypes }) => ({
+const ModalFooter = createComponent(({ css, th }) => ({
   name: 'modal-footer',
   style: css`
     display: flex;

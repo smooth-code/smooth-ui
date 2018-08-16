@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const FormCheckLabel = createComponent(({ css, th, PropTypes }) => ({
+const FormCheckLabel = createComponent(({ css, th }) => ({
   name: 'form-check-label',
   defaultComponent: 'label',
   style: css`

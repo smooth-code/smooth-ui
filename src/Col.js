@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { css } from 'styled-components'
 import createComponent from './internal/createComponent'
 
@@ -45,7 +46,7 @@ function generateBreakPoint(breakpoint) {
   `
 }
 
-const Col = createComponent(({ css, classNames, PropTypes }) => ({
+const Col = createComponent(({ css, classNames }) => ({
   name: 'col',
   render: ({ Component, className, xs, sm, md, lg, xl, ...props }) => (
     <Component

@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const Row = createComponent(({ css, resolveUnit, PropTypes }) => ({
+const Row = createComponent(({ css, resolveUnit }) => ({
   name: 'row',
   render: ({ Component, gutter, ...props }) => <Component {...props} />,
   style: css`

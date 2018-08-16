@@ -9,6 +9,52 @@ module.exports = {
       dangerousTaggedTemplateString: true,
     },
   },
+  propsParser(filePath, originalSource, resolver, handlers) {
+    const displayName = filePath.match(/\/([^/]*)\.js$/)
+    if (!displayName) {
+      throw new Error(
+        `Impossible to parse displayName from filePath: ${filePath}`,
+      )
+    }
+
+    const propTypes = originalSource.match(
+      / {2}propTypes: {\n(( {4}.+\n)+) {2}}/m,
+    )
+    if (!propTypes) {
+      // eslint-disable-next-line
+      return require('react-docgen').parse(originalSource, resolver, handlers)
+    }
+
+    const defaultProps = originalSource.match(
+      / {2}defaultProps: {\n(( {4}.+\n)+) {2}}/m,
+    )
+
+    const source = `
+      ${originalSource
+        .replace(/export default.*/, '')
+        .replace(`const ${displayName[1]}`, `const ${displayName[1]}Temp`)
+        .replace(`class ${displayName[1]}`, `class ${displayName[1]}Temp`)}
+
+      export default class ${displayName[1]} extends React.Component {
+        static propTypes = {
+          ${propTypes[1]}
+        }
+
+        ${
+          defaultProps
+            ? `static defaultProps = {
+          ${defaultProps[1]} 
+        }`
+            : ''
+        }
+
+        render() {}
+      }
+    `
+
+    // eslint-disable-next-line
+    return require('react-docgen').parse(source, resolver, handlers)
+  },
   theme: {
     color: {
       link: '#bd4932',

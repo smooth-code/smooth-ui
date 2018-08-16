@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
 const variants = [
@@ -12,7 +13,7 @@ const variants = [
   'dark',
 ]
 
-const Alert = createComponent(({ th, mixin, css, classNames, PropTypes }) => ({
+const Alert = createComponent(({ th, mixin, css, classNames }) => ({
   name: 'alert',
   render: ({ Component, className, variant, ...props }) => (
     <Component

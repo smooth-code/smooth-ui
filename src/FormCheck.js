@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const FormCheck = createComponent(({ css, classNames, PropTypes }) => ({
+const FormCheck = createComponent(({ css, classNames }) => ({
   name: 'form-check',
   render: ({ Component, className, inline, ...props }) => (
     <Component

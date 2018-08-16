@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
 const renderOption = option => {
@@ -11,7 +12,7 @@ const renderOption = option => {
   )
 }
 
-const Select = createComponent(({ css, classNames, th, mixin, PropTypes }) => ({
+const Select = createComponent(({ css, classNames, th, mixin }) => ({
   name: 'select',
   render: ({
     Component,

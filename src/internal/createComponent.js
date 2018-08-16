@@ -17,7 +17,7 @@ function createComponent(getConfig) {
     render = ({ Component, ...props }) => <Component {...props} />,
     defaultComponent = 'div',
     InnerComponent: InnerComponentFromConfig,
-  } = getConfig({ ...utils, css, classNames, PropTypes })
+  } = getConfig({ ...utils, css, classNames })
 
   const InnerComponent =
     InnerComponentFromConfig ||
@@ -42,7 +42,10 @@ function createComponent(getConfig) {
     ${style};
   `
 
-  StyledComponent.propTypes = propTypes
+  StyledComponent.propTypes = {
+    theme: PropTypes.object,
+    ...propTypes,
+  }
 
   StyledComponent.defaultProps = {
     theme: defaultTheme,

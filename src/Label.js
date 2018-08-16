@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-for */
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
-const Label = createComponent(({ css, PropTypes }) => ({
+const Label = createComponent(({ css }) => ({
   name: 'label',
   defaultComponent: 'label',
   style: css`

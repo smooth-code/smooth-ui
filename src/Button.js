@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import createComponent from './internal/createComponent'
 
 const variants = [
@@ -12,7 +13,7 @@ const variants = [
   'dark',
 ]
 
-const Button = createComponent(({ classNames, css, th, mixin, PropTypes }) => ({
+const Button = createComponent(({ classNames, css, th, mixin }) => ({
   name: 'button',
   defaultComponent: 'button',
   render: ({ className, Component, size, variant, ...props }) => (

@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import InnerSwitch from './internal/InnerSwitch'
 import createComponent from './internal/createComponent'
 
-const Switch = createComponent(({ css, mixin, th, classNames, PropTypes }) => ({
+const Switch = createComponent(({ css, mixin, th, classNames }) => ({
   name: 'switch',
   render: ({ Component, className, labeled, ...props }) => (
     <Component
