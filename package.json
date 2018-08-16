@@ -80,10 +80,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "emotion": "^9.2.6",
     "polished": "^1.9.3",
     "prop-types": "^15.6.2",
-    "react-emotion": "^9.2.6",
     "react-transition-group": "^2.4.0",
     "recompact": "^3.3.0"
   },
