@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import { createPortal } from 'react-dom'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import classNames from 'classnames'
 import Transition from './Transition'
-import * as defaultTheme from './theme/defaultTheme'
+import createComponent from './internal/createComponent'
 import { th } from './utils'
 
 class ModalComponent extends React.Component {
@@ -78,59 +76,57 @@ class ModalComponent extends React.Component {
   }
 }
 
-const Modal = styled(ModalComponent)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: ${th('zIndexModal')};
-  visibility: hidden;
-  overflow: hidden;
-  outline: 0;
-  transition: opacity ${th('modalTransitionDuration')}ms ease-in-out;
-
-  &.sui-modal-opened {
-    visibility: visible;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  &.sui-modal-transition-entering {
-    opacity: 1;
-  }
-
-  &.sui-modal-transition-entered {
-    opacity: 1;
-  }
-
-  &.sui-modal-transition-exited {
-    opacity: 0;
-  }
-
-  &.sui-modal-transition-exiting {
-    opacity: 0;
-  }
-
-  .sui-modal-backdrop {
+const Modal = createComponent(({ css, PropTypes }) => ({
+  name: 'modal',
+  InnerComponent: ModalComponent,
+  style: css`
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: ${th('modalBackdropBg')};
-  }
-`
+    z-index: ${th('zIndexModal')};
+    visibility: hidden;
+    overflow: hidden;
+    outline: 0;
+    transition: opacity ${th('modalTransitionDuration')}ms ease-in-out;
 
-Modal.propTypes = {
-  children: PropTypes.node,
-  opened: PropTypes.bool,
-  onClose: PropTypes.func,
-}
+    &.sui-modal-opened {
+      visibility: visible;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
 
-Modal.defaultProps = {
-  theme: defaultTheme,
-}
+    &.sui-modal-transition-entering {
+      opacity: 1;
+    }
 
-/** @component */
+    &.sui-modal-transition-entered {
+      opacity: 1;
+    }
+
+    &.sui-modal-transition-exited {
+      opacity: 0;
+    }
+
+    &.sui-modal-transition-exiting {
+      opacity: 0;
+    }
+
+    .sui-modal-backdrop {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: ${th('modalBackdropBg')};
+    }
+  `,
+  propTypes: {
+    children: PropTypes.node,
+    opened: PropTypes.bool,
+    onClose: PropTypes.func,
+  },
+}))
+
 export default Modal

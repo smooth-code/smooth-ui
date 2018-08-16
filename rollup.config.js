@@ -51,6 +51,7 @@ const umdConfig = Object.assign({}, baseConfig, {
     file: `${OUT_DIR}/dist/smooth-ui.js`,
     globals: {
       react: 'React',
+      'react-dom': 'ReactDom',
       'styled-components': 'styled',
     },
     format: 'umd',
@@ -69,6 +70,7 @@ const minConfig = Object.assign({}, baseConfig, {
     file: `${OUT_DIR}/dist/smooth-ui.min.js`,
     globals: {
       react: 'React',
+      'react-dom': 'ReactDom',
       'styled-components': 'styled',
     },
     format: 'umd',
