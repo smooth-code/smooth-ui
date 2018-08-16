@@ -12,6 +12,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
     'react/sort-comp': 'off',
+    'react/destructuring-assignment': 'off',
 
     'import/prefer-default-export': 'off',
 

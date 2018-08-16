@@ -45,16 +45,25 @@ const cjsConfig = Object.assign({}, baseConfig, {
   ],
 })
 
+const globals = {
+  react: 'React',
+  'react-dom': 'ReactDom',
+  'prop-types': 'PropTypes',
+  'styled-components': 'styled',
+  'react-transition-group/Transition': 'Transition',
+  polished: 'polished',
+}
+
 const umdConfig = Object.assign({}, baseConfig, {
   output: {
     name: 'smooth-ui',
     file: `${OUT_DIR}/dist/smooth-ui.js`,
-    globals: {
-      react: 'React',
-      'styled-components': 'styled',
-    },
     format: 'umd',
+    globals,
+    exports: 'named',
+    sourcemap: true,
   },
+  external: Object.keys(globals),
   plugins: [
     ...baseConfig.plugins,
     resolve({ browser: true }),
@@ -63,21 +72,13 @@ const umdConfig = Object.assign({}, baseConfig, {
   ],
 })
 
-const minConfig = Object.assign({}, baseConfig, {
+const minConfig = Object.assign({}, baseConfig, umdConfig, {
   output: {
-    name: 'smooth-ui',
+    ...umdConfig.output,
     file: `${OUT_DIR}/dist/smooth-ui.min.js`,
-    globals: {
-      react: 'React',
-      'styled-components': 'styled',
-    },
-    format: 'umd',
   },
   plugins: [
-    ...baseConfig.plugins,
-    resolve({ browser: true }),
-    commonjs(),
-    replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    ...umdConfig.plugins,
     uglify({
       compress: {
         pure_getters: true,

@@ -1,127 +1,115 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import classNames from 'classnames'
-import * as defaultTheme from './theme/defaultTheme'
 import InnerSwitch from './internal/InnerSwitch'
-import handleRef from './internal/handleRef'
-import { th, mixin } from './utils'
+import createComponent from './internal/createComponent'
 
-const SwitchComponent = ({ className, labeled, theme, ...props }) => (
-  <div
-    className={classNames(
-      'sui-switch',
-      { 'sui-switch-disabled': props.disabled },
-      className,
-    )}
-  >
-    <InnerSwitch inputType="checkbox" {...props}>
-      {({ checked, focused, disabled }) => (
-        <div
-          className={classNames('sui-switch-wrapper', {
-            checked,
-            focused,
-            disabled,
-          })}
-        >
-          <div className="sui-switch-content">
-            <span className="sui-switch-label on">{labeled ? 'ON' : ''}</span>
-            <div className="sui-switch-ball" />
-            <span className="sui-switch-label off">{labeled ? 'OFF' : ''}</span>
+const Switch = createComponent(({ css, mixin, th, classNames }) => ({
+  name: 'switch',
+  render: ({ Component, className, labeled, ...props }) => (
+    <Component
+      className={classNames(className, {
+        'sui-switch-disabled': props.disabled,
+      })}
+    >
+      <InnerSwitch inputType="checkbox" {...props}>
+        {({ checked, focused, disabled }) => (
+          <div
+            className={classNames('sui-switch-wrapper', {
+              checked,
+              focused,
+              disabled,
+            })}
+          >
+            <div className="sui-switch-content">
+              <span className="sui-switch-label on">{labeled ? 'ON' : ''}</span>
+              <div className="sui-switch-ball" />
+              <span className="sui-switch-label off">
+                {labeled ? 'OFF' : ''}
+              </span>
+            </div>
           </div>
-        </div>
-      )}
-    </InnerSwitch>
-  </div>
-)
-
-const SwitchRefComponent = handleRef(SwitchComponent)
-
-const Switch = styled(SwitchRefComponent)`
-  ${mixin('base')};
-  display: inline-block;
-  position: relative;
-  width: 50px;
-  height: 24px;
-
-  .sui-switch-wrapper {
+        )}
+      </InnerSwitch>
+    </Component>
+  ),
+  style: css`
+    display: inline-block;
+    position: relative;
     width: 50px;
     height: 24px;
-    border-radius: 34px;
-    background-color: ${th('gray300')};
-    overflow: hidden;
-    cursor: pointer;
-    border-width: ${th('inputBorderWidth')};
-    border-color: ${th('inputBorderColor')};
-    border-style: solid;
-    transition: ${th('transitionBase')};
 
-    &.focused {
-      ${mixin('controlFocus')};
-    }
+    .sui-switch-wrapper {
+      width: 50px;
+      height: 24px;
+      border-radius: 34px;
+      background-color: ${th('gray300')};
+      overflow: hidden;
+      cursor: pointer;
+      border-width: ${th('inputBorderWidth')};
+      border-color: ${th('inputBorderColor')};
+      border-style: solid;
+      transition: ${th('transitionBase')};
 
-    &.checked {
-      .sui-switch-content {
-        transform: translateX(0);
+      &.focused {
+        ${mixin('controlFocus')};
       }
 
-      background-color: ${th('primaryLight')};
-      border-color: transparent;
+      &.checked {
+        .sui-switch-content {
+          transform: translateX(0);
+        }
 
-      .sui-switch-ball {
-        background-color: ${th('primary')};
+        background-color: ${th('primaryLight')};
+        border-color: transparent;
+
+        .sui-switch-ball {
+          background-color: ${th('primary')};
+        }
+      }
+
+      &.disabled {
+        opacity: 0.5;
       }
     }
 
-    &.disabled {
-      opacity: 0.5;
-    }
-  }
-
-  .sui-switch-ball {
-    flex-shrink: 0;
-    background-color: ${th('gray500')};
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    transition: ${th('transitionBase')};
-  }
-
-  .sui-switch-content {
-    display: flex;
-    align-items: center;
-    height: 22px;
-    transition: ${th('transitionBase')};
-    transform: translateX(-25px);
-  }
-
-  .sui-switch-label {
-    flex-shrink: 0;
-    font-size: 9px;
-    font-weight: 800;
-    width: 27px;
-    text-align: center;
-    user-select: none;
-
-    &.on {
-      color: ${th('primary')};
+    .sui-switch-ball {
+      flex-shrink: 0;
+      background-color: ${th('gray500')};
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      transition: ${th('transitionBase')};
     }
 
-    &.off {
-      color: ${th('gray900')};
+    .sui-switch-content {
+      display: flex;
+      align-items: center;
+      height: 22px;
+      transition: ${th('transitionBase')};
+      transform: translateX(-25px);
     }
-  }
-`
 
-Switch.propTypes = {
-  /** Add ON/OFF labels. */
-  labeled: PropTypes.bool,
-}
+    .sui-switch-label {
+      flex-shrink: 0;
+      font-size: 9px;
+      font-weight: 800;
+      width: 27px;
+      text-align: center;
+      user-select: none;
 
-Switch.defaultProps = {
-  labeled: false,
-  theme: defaultTheme,
-}
+      &.on {
+        color: ${th('primary')};
+      }
 
-/** @component */
+      &.off {
+        color: ${th('gray900')};
+      }
+    }
+  `,
+  propTypes: {
+    /** Add ON/OFF labels. */
+    labeled: PropTypes.bool,
+  },
+}))
+
 export default Switch

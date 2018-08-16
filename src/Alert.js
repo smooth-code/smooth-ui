@@ -1,11 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import styled, { css } from 'styled-components'
-import handleRef from './internal/handleRef'
-import setWithComponent from './internal/setWithComponent'
-import * as defaultTheme from './theme/defaultTheme'
-import { th, mixin } from './utils'
+import createComponent from './internal/createComponent'
 
 const variants = [
   'primary',
@@ -18,54 +13,35 @@ const variants = [
   'dark',
 ]
 
-const AlertComponent = ({
-  className,
-  component: Component = 'div',
-  theme,
-  variant,
-  ...props
-}) => (
-  <Component
-    {...props}
-    className={classNames(
-      'sui-alert',
-      {
+const Alert = createComponent(({ th, mixin, css, classNames }) => ({
+  name: 'alert',
+  render: ({ Component, className, variant, ...props }) => (
+    <Component
+      {...props}
+      className={classNames(className, {
         [`sui-alert-${variant}`]: variant,
-      },
-      className,
-    )}
-  />
-)
+      })}
+    />
+  ),
+  style: css`
+    position: relative;
+    padding: ${th('alertPaddingY')} ${th('alertPaddingX')};
+    margin-bottom: ${th('alertMarginBottom')};
+    border: 1px solid transparent;
+    border-radius: ${th('borderRadius')};
 
-const AlertRefComponent = handleRef(AlertComponent)
+    ${variants.map(
+      variant => css`
+        &.sui-alert-${variant} {
+          ${mixin('alertVariant', variant)};
+        }
+      `,
+    )};
+  `,
+  propTypes: {
+    children: PropTypes.node,
+    variant: PropTypes.oneOf(variants).isRequired,
+  },
+}))
 
-const Alert = styled(AlertRefComponent)`
-  ${mixin('base')};
-  position: relative;
-  padding: ${th('alertPaddingY')} ${th('alertPaddingX')};
-  margin-bottom: ${th('alertMarginBottom')};
-  border: 1px solid transparent;
-  border-radius: ${th('borderRadius')};
-
-  ${variants.map(
-    variant => css`
-      &.sui-alert-${variant} {
-        ${mixin('alertVariant', variant)};
-      }
-    `,
-  )};
-`
-
-Alert.propTypes = {
-  children: PropTypes.node,
-  variant: PropTypes.oneOf(variants).isRequired,
-}
-
-Alert.defaultProps = {
-  theme: defaultTheme,
-}
-
-setWithComponent(Alert, AlertRefComponent)
-
-/** @component */
 export default Alert
