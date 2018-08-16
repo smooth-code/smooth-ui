@@ -22,7 +22,7 @@
     "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build src",
     "build:rollup": "cross-env BABEL_ENV=rollup rollup -c",
     "build:watch": "yarn build:lib --watch",
-    "ci": "yarn lint && yarn test",
+    "ci": "yarn lint && yarn test && yarn build && bundlesize",
     "deploy:docs": "firebase deploy",
     "dev": "styleguidist server",
     "lint": "eslint .",
@@ -30,6 +30,12 @@
     "release": "standard-version && conventional-github-releaser --preset angular && yarn build && yarn deploy:docs",
     "test": "jest"
   },
+  "bundlesize": [
+    {
+      "path": "./build/dist/smooth-ui.min.js",
+      "maxSize": "18 kB"
+    }
+  ],
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
     "@babel/core": "^7.0.0-rc.1",
@@ -43,6 +49,7 @@
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.5",
+    "bundlesize": "^0.17.0",
     "conventional-github-releaser": "^3.1.2",
     "cross-env": "^5.2.0",
     "enzyme": "^3.4.2",
