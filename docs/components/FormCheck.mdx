@@ -1,0 +1,61 @@
+---
+name: FormCheck
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Checkbox, FormCheck, FormCheckLabel } from '@smooth-ui'
+
+# FormCheck
+
+## Basic usage
+
+Using `FormCheck` and `FormCheckLabel` you can display `Checkbox` and `Radio` with labels.
+
+<Playground>
+  <FormCheck>
+    <Checkbox id="basicCheckbox1" />
+    <FormCheckLabel htmlFor="basicCheckbox1">First</FormCheckLabel>
+  </FormCheck>
+  <FormCheck>
+    <Checkbox id="basicCheckbox2" />
+    <FormCheckLabel htmlFor="basicCheckbox2">Second</FormCheckLabel>
+  </FormCheck>
+</Playground>
+
+## Inline
+
+Set inline with `inline` props.
+
+<Playground>
+  <FormCheck inline>
+    <Checkbox id="checkboxInline1" />
+    <FormCheckLabel htmlFor="checkboxInline1">First</FormCheckLabel>
+  </FormCheck>
+  <FormCheck inline>
+    <Checkbox id="checkboxInline2" />
+    <FormCheckLabel htmlFor="checkboxInline2">Second</FormCheckLabel>
+  </FormCheck>
+</Playground>
+
+## API
+
+### FormCheck
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    inline: PropDesc.bool,
+    ...getSystemPropDesc(FormCheck),
+  })}
+/>
+
+### FormCheckLabel
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(FormCheckLabel),
+  })}
+/>

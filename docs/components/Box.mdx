@@ -1,0 +1,39 @@
+---
+name: Box
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Box } from '@smooth-ui'
+
+# Box
+
+Box is a simple component that supports all system properties. You can do nearly everything with it!
+
+## Example
+
+<Playground>
+  <Box
+    p={10}
+    display="flex"
+    justifyContent="space-between"
+    backgroundColor="#bd4932"
+  >
+    <Box p={20} backgroundColor="white">
+      Left
+    </Box>
+    <Box p={20} backgroundColor="white">
+      Middle
+    </Box>
+    <Box p={20} backgroundColor="white">
+      Right
+    </Box>
+  </Box>
+</Playground>
+
+## API
+
+### Box
+
+<PropsTable of={PropDesc(getSystemPropDesc(Box),)} />

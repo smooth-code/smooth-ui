@@ -1,18 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import InnerSwitch from './internal/InnerSwitch'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { system } from './utils/styles'
+import { th, mixin } from './utils/system'
+import createComponent from './utils/createComponent'
+import SwitchState from './SwitchState'
 
-const Switch = createComponent(({ css, mixin, th, classNames }) => ({
+const Switch = createComponent(() => ({
   name: 'switch',
-  render: ({ Component, className, labeled, ...props }) => (
-    <Component
-      className={classNames(className, {
-        'sui-switch-disabled': props.disabled,
-      })}
-    >
-      <InnerSwitch inputType="checkbox" {...props}>
-        {({ checked, focused, disabled }) => (
+  system,
+  applySystem: null,
+  render: ({
+    Component,
+    ref,
+    className,
+    onLabel = 'ON',
+    offLabel = 'OFF',
+    labeled,
+    ...props
+  }) => (
+    <SwitchState {...props}>
+      {({ checked, focused, disabled, input }) => (
+        <Component
+          className={classNames(className, {
+            'sui-switch-disabled': disabled,
+          })}
+        >
+          <input ref={ref} type="checkbox" {...input} />
           <div
             className={classNames('sui-switch-wrapper', {
               checked,
@@ -21,16 +36,18 @@ const Switch = createComponent(({ css, mixin, th, classNames }) => ({
             })}
           >
             <div className="sui-switch-content">
-              <span className="sui-switch-label on">{labeled ? 'ON' : ''}</span>
+              <span className="sui-switch-label on">
+                {labeled ? onLabel : ''}
+              </span>
               <div className="sui-switch-ball" />
               <span className="sui-switch-label off">
-                {labeled ? 'OFF' : ''}
+                {labeled ? offLabel : ''}
               </span>
             </div>
           </div>
-        )}
-      </InnerSwitch>
-    </Component>
+        </Component>
+      )}
+    </SwitchState>
   ),
   style: css`
     display: inline-block;
@@ -49,6 +66,8 @@ const Switch = createComponent(({ css, mixin, th, classNames }) => ({
       border-color: ${th('inputBorderColor')};
       border-style: solid;
       transition: ${th('transitionBase')};
+      font-size: 9px;
+      font-weight: 800;
 
       &.focused {
         ${mixin('controlFocus')};
@@ -91,8 +110,6 @@ const Switch = createComponent(({ css, mixin, th, classNames }) => ({
 
     .sui-switch-label {
       flex-shrink: 0;
-      font-size: 9px;
-      font-weight: 800;
       width: 27px;
       text-align: center;
       user-select: none;
@@ -105,10 +122,18 @@ const Switch = createComponent(({ css, mixin, th, classNames }) => ({
         color: ${th('gray900')};
       }
     }
+
+    &&& .sui-switch-wrapper {
+      ${system};
+    }
   `,
   propTypes: {
-    /** Add ON/OFF labels. */
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
     labeled: PropTypes.bool,
+    onLabel: PropTypes.string,
+    offLabel: PropTypes.string,
+    onChange: PropTypes.func,
   },
 }))
 

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import { css } from './styled-engine'
+import createComponent from './utils/createComponent'
 
-const FormGroup = createComponent(({ css }) => ({
+const FormGroup = createComponent(() => ({
   name: 'form-group',
   style: css`
     margin-bottom: 1rem;

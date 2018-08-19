@@ -23,9 +23,9 @@
 npm install smooth-ui
 ```
 
-Smooth UI is an open source components library built with [React](https://reactjs.org/) and [Styled Components](https://www.styled-components.com).
+Smooth UI is a style system / UI library for [React](https://reactjs.org/). It works with [Styled Components 💅](https://www.styled-components.com) or [Emotion 👩‍🎤](https://emotion.sh/).
 
-It is focused on developer experience and accessibility. With Smooth UI, it is easy to design beautiful websites and applications.
+It is focused on developer experience, productivity. You can focus on what you want to build instead of on how to build it.
 
 ## [Docs](https://smooth-ui.smooth-code.com/)
 
@@ -53,5 +53,5 @@ See [LICENSE](./LICENSE) for more information.
 [github-star]: https://github.com/smooth-code/smooth-ui/stargazers
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20Smooth%20UI!%20https://github.com/smooth-code/smooth-ui%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/smooth-code/smooth-ui.svg?style=social
-[size-badge]: http://img.badgesize.io/https://unpkg.com/smooth-ui/dist/smooth-ui.min.js?compression=gzip&style=flat-square
+[size-badge]: http://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js?compression=gzip&style=flat-square
 [build-min]: https://unpkg.com/smooth-ui/dist/smooth-ui.min.js

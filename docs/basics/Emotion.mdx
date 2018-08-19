@@ -1,0 +1,42 @@
+---
+name: Usage with Emotion
+menu: 1. Basics
+order: 5
+---
+
+# Emotion
+
+By default Smooth UI uses [styled-components](http://styled-components.com/), but you can also use [emotion](https://emotion.sh/).
+
+### Installation
+
+Install `@smooth-ui/core-emotion`, `react-emotion` and `emotion-theming` from npm:
+
+`npm install @smooth-ui/core-emotion react-emotion emotion-theming`
+
+### Usage
+
+Import components from `@smooth-ui/core-emotion`.
+
+```js
+import { Button } from '@smooth-ui/core-emotion'
+
+const App = () => (
+  <Button variant="primary">Hello world!</Button>
+)
+
+export default App
+```
+
+## Global normalize (recommended)
+
+Even if it is not required, is recommended to apply a global normalize before using Smooth UI.
+
+```js
+import { injectGlobal } from 'react-emotion'
+import { globalStyle } from '@smooth-ui/core-sc'
+
+injectGlobal`${globalStyle}`
+```
+
+If you don't want to use a global normalize, at least add `* { box-sizing: border-box; }`.

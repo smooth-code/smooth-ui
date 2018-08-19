@@ -1,5 +1,5 @@
 node_modules/
 build/
-styleguide/
 package.json
 CHANGELOG.json
+.docz/

@@ -1,0 +1,56 @@
+---
+name: Switch
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { PropDesc, getSystemPropDesc, BlockList } from '@docs/utils'
+import { Switch, FormCheck, FormCheckLabel } from '@smooth-ui'
+
+# Switch
+
+## Basic
+
+A basic switch, it works exactly like a `Checkbox`.
+
+<Playground>
+  <Switch />
+</Playground>
+
+## With labels
+
+Add labels using `labeled` props. Set custom labels using `labelOn` and `labelOff`.
+
+<Playground>
+  <BlockList>
+    <Switch labeled />
+    <Switch labeled onLabel="I" offLabel="O" />
+  </BlockList>
+</Playground>
+
+## Disabled
+
+Disable using `disabled` props.
+
+<Playground>
+  <FormCheck>
+    <Switch id="switchExample1" disabled />
+    <FormCheckLabel htmlFor="switchExample1">Switch it</FormCheckLabel>
+  </FormCheck>
+</Playground>
+
+## API
+
+### Switch
+
+<PropsTable
+  of={PropDesc({
+    checked: PropDesc.bool,
+    disabled: PropDesc.bool,
+    labeled: PropDesc.bool.desc('Add ON/OFF labels'),
+    onLabel: PropDesc.string.defaultTo('ON'),
+    offLabel: PropDesc.string.defaultTo('OFF'),
+    onChange: PropDesc.func,
+    ...getSystemPropDesc(Switch),
+  })}
+/>

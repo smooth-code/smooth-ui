@@ -1,19 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { th, mixin } from './utils/system'
+import createComponent from './utils/createComponent'
 
-const variants = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'light',
-  'dark',
-]
-
-const Alert = createComponent(({ th, mixin, css, classNames }) => ({
+const Alert = createComponent(() => ({
   name: 'alert',
   render: ({ Component, className, variant, ...props }) => (
     <Component
@@ -23,24 +14,25 @@ const Alert = createComponent(({ th, mixin, css, classNames }) => ({
       })}
     />
   ),
-  style: css`
-    position: relative;
-    padding: ${th('alertPaddingY')} ${th('alertPaddingX')};
-    margin-bottom: ${th('alertMarginBottom')};
-    border: 1px solid transparent;
-    border-radius: ${th('borderRadius')};
-
-    ${variants.map(
-      variant => css`
-        &.sui-alert-${variant} {
-          ${mixin('alertVariant', variant)};
-        }
-      `,
-    )};
-  `,
+  style: p => ({
+    position: 'relative',
+    padding: `${th('alertPaddingY')(p)} ${th('alertPaddingX')(p)}`,
+    marginBottom: th('alertMarginBottom')(p),
+    border: '1px solid transparent',
+    borderRadius: th('borderRadius')(p),
+    ...th('alertVariants', variants =>
+      variants.reduce((obj, variant) => {
+        obj[`&.sui-alert-${variant}`] = mixin('alertVariant', variant)(p)
+        return obj
+      }, {}),
+    )(p),
+  }),
   propTypes: {
     children: PropTypes.node,
-    variant: PropTypes.oneOf(variants).isRequired,
+    variant: PropTypes.string,
+  },
+  defaultProps: {
+    variant: 'primary',
   },
 }))
 

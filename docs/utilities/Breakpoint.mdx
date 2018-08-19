@@ -1,0 +1,34 @@
+---
+name: Breakpoint
+menu: 4. Utilities
+---
+
+import { PropsTable, Playground } from 'docz'
+import { PropDesc } from '@docs/utils'
+import { Button, Breakpoint } from '@smooth-ui'
+
+# Breakpoint
+
+Breakpoint is an utility to show or hide a block relatively to a breakpoint. 
+
+<Playground>
+  <Breakpoint down="md">
+    <Button variant="primary">Button displayed down to md</Button>
+  </Breakpoint>
+  <Breakpoint up="md">
+    <Button variant="secondary">Button displayed up to md</Button>
+  </Breakpoint>
+</Playground>
+
+## API
+
+### Toggler
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.func.isRequired,
+    down: PropDesc.string,
+    up: PropDesc.string,
+  })}
+/>
+

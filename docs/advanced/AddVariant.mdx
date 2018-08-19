@@ -1,0 +1,48 @@
+---
+name: Add variants
+menu: 2. Advanced
+---
+
+import { Playground } from 'docz'
+import { theme as defaultTheme, ThemeProvider, Button } from '@smooth-ui'
+
+# Add variants
+
+Components like `Button` or `Alert` implements some `variants` based on colors.
+
+Variants are defined in theme, so you can add, remove or completely change variants. If you are not confortable with Smooth UI theming, please read [theming guide](/docs-basics-theming) first.
+
+## What is a variant?
+
+A variant is an array of strings defined in theme, for an example `alertVariants` for `Alert` and `btnVariants` for `Button`.
+
+Each string of this array must be a property of your theme, most of the time it represent a color.
+
+## Example for Button
+
+`Button` variants are defined using `btnVariants` that inherits from `colorVariants`. In our example, we will just add a new `Button` variant.
+
+<Playground>
+  {() => {
+    const theme = Object.assign({}, defaultTheme, {
+      violet: '#EE82EE',
+      btnVariants: [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
+        'violet',
+      ]
+    })
+
+    return (
+      <ThemeProvider theme={theme}>
+        <Button variant="violet">Violet button 😎</Button>
+      </ThemeProvider>
+    )
+  }}
+</Playground>

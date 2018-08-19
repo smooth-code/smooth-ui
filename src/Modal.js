@@ -3,9 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
+import { css, withTheme } from './styled-engine'
+import { th } from './utils/system'
 import Transition from './Transition'
-import createComponent from './internal/createComponent'
-import { th } from './utils'
+import createComponent from './utils/createComponent'
 
 class ModalComponent extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class ModalComponent extends React.Component {
     if (!this.container) return null
     return createPortal(
       <Transition
-        timeout={theme.modalTransitionDuration}
+        timeout={theme ? theme.modalTransitionDuration : 300}
         in={this.props.opened}
       >
         {transitionState => (
@@ -77,9 +78,11 @@ class ModalComponent extends React.Component {
   }
 }
 
-const Modal = createComponent(({ css }) => ({
+const ModalComponentWithTheme = withTheme(ModalComponent)
+
+const Modal = createComponent(() => ({
   name: 'modal',
-  InnerComponent: ModalComponent,
+  InnerComponent: ModalComponentWithTheme,
   style: css`
     position: fixed;
     top: 0;

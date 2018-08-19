@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import { css } from './styled-engine'
+import { th, calc } from './utils/system'
+import { up } from './utils/breakpoints'
+import createComponent from './utils/createComponent'
 
-const ModalDialog = createComponent(({ css, th, calc, up }) => ({
+const ModalDialog = createComponent(() => ({
   name: 'modal-dialog',
   render: ({ Component, ...props }) => <Component role="document" {...props} />,
   style: css`
