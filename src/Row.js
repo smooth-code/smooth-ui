@@ -20,6 +20,9 @@ const Row = createComponent(({ css, resolveUnit }) => ({
   propTypes: {
     children: PropTypes.node,
   },
+  defaultProps: {
+    gutter: 15,
+  },
 }))
 
 export default Row
