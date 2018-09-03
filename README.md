@@ -20,7 +20,13 @@
 <!-- [![Tweet][twitter-badge]][twitter] -->
 
 ```sh
-npm install smooth-ui
+npm install @smooth-ui/core-sc styled-components
+```
+
+or
+
+```sh
+npm install @smooth-ui/core-em react-emotion emotion-theming
 ```
 
 Smooth UI is a style system / UI library for [React](https://reactjs.org/). It works with [Styled Components 💅](https://www.styled-components.com) or [Emotion 👩‍🎤](https://emotion.sh/).
@@ -54,4 +60,4 @@ See [LICENSE](./LICENSE) for more information.
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20Smooth%20UI!%20https://github.com/smooth-code/smooth-ui%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/smooth-code/smooth-ui.svg?style=social
 [size-badge]: http://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js?compression=gzip&style=flat-square
-[build-min]: https://unpkg.com/smooth-ui/@smooth-ui/core-sc/dist/smooth-ui.min.js
+[build-min]: https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js
