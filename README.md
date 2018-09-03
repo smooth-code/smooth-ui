@@ -41,9 +41,9 @@ See [LICENSE](./LICENSE) for more information.
 [build]: https://travis-ci.org/smooth-code/smooth-ui
 [coverage-badge]: https://img.shields.io/codecov/c/github/smooth-code/smooth-ui.svg?style=flat-square
 [coverage]: https://codecov.io/github/smooth-code/smooth-ui
-[version-badge]: https://img.shields.io/npm/v/smooth-ui.svg?style=flat-square
-[package]: https://www.npmjs.com/package/smooth-ui
-[license-badge]: https://img.shields.io/npm/l/smooth-ui.svg?style=flat-square
+[version-badge]: https://img.shields.io/npm/v/@smooth-ui/core-sc.svg?style=flat-square
+[package]: https://www.npmjs.com/package/@smooth-ui/core-sc
+[license-badge]: https://img.shields.io/npm/l/@smooth-ui/core-sc.svg?style=flat-square
 [license]: https://github.com/smooth-code/smooth-ui/blob/master/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
@@ -54,4 +54,4 @@ See [LICENSE](./LICENSE) for more information.
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20Smooth%20UI!%20https://github.com/smooth-code/smooth-ui%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/smooth-code/smooth-ui.svg?style=social
 [size-badge]: http://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js?compression=gzip&style=flat-square
-[build-min]: https://unpkg.com/smooth-ui/dist/smooth-ui.min.js
+[build-min]: https://unpkg.com/smooth-ui/@smooth-ui/core-sc/dist/smooth-ui.min.js
