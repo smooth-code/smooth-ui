@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import { css } from './styled-engine'
+import { th } from './utils/system'
+import { up } from './utils/breakpoints'
+import createComponent from './utils/createComponent'
 
-const ModalContent = createComponent(({ css, th, up }) => ({
+const ModalContent = createComponent(() => ({
   name: 'modal-content',
   style: css`
     position: relative;

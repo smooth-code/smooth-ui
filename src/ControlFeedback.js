@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th } from './utils/system'
+import createComponent from './utils/createComponent'
 
-const ControlFeedback = createComponent(({ css, classNames, th }) => ({
+const ControlFeedback = createComponent(() => ({
   name: 'control-feedback',
   render: ({ Component, className, valid, ...props }) => (
     <Component

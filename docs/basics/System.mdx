@@ -1,0 +1,256 @@
+---
+name: System
+menu: 1. Basics
+order: 4
+---
+
+import { Playground } from 'docz'
+import { Box } from '@smooth-ui'
+
+# System
+
+Smooth UI has a powerful style system, a lot utilities are available on all components.
+
+<Playground>
+  <Box
+    backgroundColor="primary"
+    width={{ sm: 1, md: 0.5 }}
+    height={100}
+    mx="auto"
+    p={2}
+  />
+</Playground>
+
+The above example create a red `div` with:
+  - A background with color "primary"
+  - A width of `100%` on mobile, `50%` on desktop
+  - A height of `100px`
+  - A padding of `16px`
+  - A `marginLeft` and a `marginRight` of `50%`
+
+## Utilities
+
+### Space
+
+The space utility converts shorthand margin and padding props to margin and padding CSS declarations.
+
+- Numbers from 0-4 (or the length of `theme.spaces`) are converted to values on the spacing scale.
+- Negative values can be used for negative margins.
+- Numbers greater than the length of the theme.space array are converted to raw pixel values.
+- String values are passed as raw CSS values.
+- And object values are converted into responsive values.
+
+Margin and padding props follow a shorthand syntax for specifying direction.
+
+- `m`: margin
+- `mt`: margin-top
+- `mr`: margin-right
+- `mb`: margin-bottom
+- `ml`: margin-left
+- `mx`: margin-left and margin-right
+- `my`: margin-top and margin-bottom
+- `p`: padding
+- `pt`: padding-top
+- `pr`: padding-right
+- `pb`: padding-bottom
+- `pl`: padding-left
+- `px`: padding-left and padding-right
+- `py`: padding-top and padding-bottom
+
+```js
+// sets margin value of `theme.spaces[2]`
+<Box m={2} />
+
+// sets margin value of `-1 * theme.spaces[2]`
+<Box m={-2} />
+
+// sets a margin value of `16px` since it's greater than `theme.space.length`
+<Box m={16} />
+
+// sets margin `"auto"`
+<Box m="auto" />
+
+// sets margin `8px` on all viewports and `16px` from the `lg` breakpoint and up
+<Box m={{ sm: 1, lg: 2 }} />
+```
+
+### Dimensions
+
+Dimensions utilities parses a component's prop and converts it into a CSS width declaration.
+
+- Numbers from 0-1 are converted to percentage widths.
+- Numbers greater than 1 are converted to pixel values.
+- String values are passed as raw CSS values.
+- And objects are converted to responsive width styles.
+
+Available dimensions utilities:
+
+- `width`
+- `height`
+- `maxWidth`
+- `maxHeight`
+- `minWidth`
+- `minHeight`
+
+Example using `width`:
+
+```js
+// examples
+
+// width `50%`
+<Box width={0.5} />
+
+// width `256px`
+<Box width={256} />
+
+// width `'2em'`
+<Box width="2em" />
+
+// width `100%` on all viewports and `50%` from the "md" breakpoint and up
+<Box width={{ sm: 1, md: 0.5 }} />
+```
+
+### Typography
+
+Available typography utilities:
+
+- `fontFamily`
+- `fontSize`
+- `lineHeight`
+- `fontWeight`
+- `textAlign`
+- `letterSpacing`
+- `color`
+
+### Flexboxes
+
+Available typography utilities:
+
+- `display`
+- `alignItems`
+- `alignContent`
+- `justifyContent`
+- `flexWrap`
+- `flexBasis`
+- `flexDirection`
+- `flex`
+- `justifySelf`
+- `alignSelf`
+- `order`
+
+### Backgrounds
+
+Available background utilities:
+
+- `background`
+- `backgroundColor`
+- `backgroundImage`
+- `backgroundSize`
+- `backgroundPosition`
+- `backgroundRepeat`
+
+### Positions
+
+Available position utilities:
+
+- `position`
+- `zIndex`
+- `top`
+- `right`
+- `bottom`
+- `left`
+
+### Borders
+
+Available border utilities:
+
+- `border`
+- `borderTop`
+- `borderRight`
+- `borderBottom`
+- `borderLeft`
+- `borderColor`
+- `borderRadius`
+- `boxShadow`
+
+### Basics
+
+Available basic utilies:
+
+- `opacity`
+- `overflow`
+
+## Variants 
+
+Some utilities uses a variant defined in theme, a variant can be either an array or an object.
+
+### Space
+
+Space utilities uses `theme.spaces` as variant.
+
+```js
+// Default value of spaces
+export const spaces = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72]
+```
+
+It means you can use `m={2}` and it will be automatically transformed to `16px` (default unit is px).
+
+### Colors
+
+Color utilities (`color`, `backgroundColor`, ...) uses `theme.colors` as variant.
+
+```js
+// Default value of colors
+export const colors = {
+  primary: '#bd4932',
+  secondary: '#6c757d',
+  success: '#28a745',
+  info: '#17a2b8',
+  warning: '#ffc107',
+  danger: '#dc3545',
+  light: '#f8f9fa',
+  dark: '#343a40',
+}
+```
+
+It means you can use `color="primary"` and it will be automatically transformed to `#bd4932`.
+
+### All variants
+
+- `fontFamily` : `fonts`
+- `fontSize` : `fontSizes`
+- `lineHeight` : `lineHeights`
+- `fontWeight` : `fontWeights`
+- `letterSpacing` : `letterSpacings`
+- `color` : `colors`
+- `width` : `widths`
+- `height` : `heights`
+- `maxWidth` : `widths`
+- `maxHeight` : `heights`
+- `minWidth` : `widths`
+- `minHeight` : `heights`
+- `backgroundColor` : `colors`
+- `zIndex` : `zIndexes`
+- `border` : `borders`
+- `borderTop` : `borders`
+- `borderRight` : `borders`
+- `borderBottom` : `borders`
+- `borderLeft` : `borders`
+- `borderColor` : `colors`
+- `borderRadius` : `radii`
+- `boxShadow` : `shadows`
+
+## Responsive
+
+All utilities supports responsive and use breakpoints defined in theme.
+
+```js
+// 10px on all devices
+// 8px on devices ≥768px 
+// 50% on devices ≥992px
+<Box m={{ xs: 10, md: 1, lg: '50%' }} />
+
+// `primary` color on all devices
+// `secondary` color on devices ≥992px
+<Box color={{ xs: 'primary', lg: 'secondary' }} />
+```

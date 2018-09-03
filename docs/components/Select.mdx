@@ -1,0 +1,111 @@
+---
+name: Select
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Select } from '@smooth-ui'
+
+# Select
+
+## Sizes
+
+Set heights using `size` prop like `"sm"` or `"lg"`.
+
+<Playground>
+  <BlockList>
+    <Select size="sm" placeholder="Small" options={['One', 'Two']} />
+    <Select placeholder="Medium" options={['Yes', 'No', 'Maybe']} />
+    <Select size="lg" placeholder="Large" options={['Amazing', 'Great']} />
+  </BlockList>
+</Playground>
+
+## Disabled
+
+Disable using `disabled` prop.
+
+<Playground>
+  <Select disabled placeholder="Disabled" options={['Disabled']} />
+</Playground>
+
+## Custom labels
+
+Specify custom labels by passing an object to `options`.
+
+<Playground>
+  <Select
+    options={[{ label: 'One', value: 'one' }, { label: 'Two', value: 'two' }]}
+  />
+</Playground>
+
+## Groups
+
+Define groups in `options` props.
+
+<Playground>
+  <Select
+    options={[
+      {
+        label: 'Group 1',
+        options: [{ label: 'One', value: 'one' }, { label: 'Two', value: 'two' }],
+      },
+      {
+        label: 'Group 2',
+        options: [
+          { label: 'Three', value: 'three' },
+          { label: 'Four', value: 'four' },
+        ],
+      },
+    ]}
+  />
+</Playground>
+
+## Control & Validation
+
+* Set `display` to "block" and `width` to "100%" using `control` prop.
+* Set validation using `valid` or `valid={false}`
+
+<Playground>
+  <BlockList>
+    <Select
+      control
+      options={[
+        { label: 'Control', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+    <Select
+      control
+      valid
+      options={[
+        { label: 'Valid', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+    <Select
+      control
+      valid={false}
+      options={[
+        { label: 'Invalid', value: 'one' },
+        { label: 'Two', value: 'two' },
+      ]}
+    />
+  </BlockList>
+</Playground>
+
+## API
+
+### Select
+
+<PropsTable
+  of={PropDesc({
+    arrow: PropDesc.bool,
+    children: PropDesc.node,
+    control: PropDesc.bool,
+    options: PropDesc.array,
+    size: PropDesc.oneOf(['sm', 'lg']),
+    valid: PropDesc.bool,
+    ...getSystemPropDesc(Select),
+  })}
+/>

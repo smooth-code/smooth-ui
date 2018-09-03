@@ -1,0 +1,56 @@
+---
+name: Theming
+menu: 1. Basics
+order: 3
+---
+
+import { Playground } from 'docz'
+import { Button, Switch } from '@smooth-ui'
+
+# Theming
+
+Smooth UI has a powerful theming feature. It uses [Styled Components theming feature](https://www.styled-components.com/docs/advanced#theming) or [emotion-theming](https://emotion.sh/docs/theming) under the hood. You can customize nearly everything using theme!
+
+## Create a custom theme
+
+The recommended way to create a custom theme is to create a file named `theme.js` that exports all `@smooth-ui/core-*/theme` and overrides only the needed parts.
+
+```js
+// theme.js
+import { theme } from '@smooth-ui/core-sc'
+
+export default {
+  ...theme,
+  primary: 'blue',
+}
+```
+
+## Use your theme in your application
+
+Smooth UI exposes a `ThemeProvider` that accepts a `theme` property. You must setup your provider before any Smooth UI component.
+
+```js
+import React from 'react'
+import { render } from 'react-dom'
+import { ThemeProvider } from '@smooth-ui/core-sc'
+import theme from './theme'
+import App from './App'
+
+render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root'),
+)
+```
+
+## Default theme
+
+You can find all theme values in [the default theme](https://github.com/smooth-code/smooth-ui/blob/master/src/theme.js).
+
+Two ways to import theme in your code:
+
+```js
+import { theme } from '@smooth-ui/core-sc'
+import theme from '@smooth-ui/core-sc/theme'
+```

@@ -1,0 +1,90 @@
+---
+name: Extend Styles
+menu: 2. Advanced
+---
+
+import { Playground } from 'docz'
+import { Button, Switch } from '@smooth-ui'
+
+# Extend Styles
+
+Using Smooth UI, you have three choices to extend the style of a component.
+
+## Override defaults in theme
+
+To extend style, the cleanest way is probably to use the theming feature of Smooth UI. It permits you to change global settings that will impact all components.
+
+Example of changes possible using theme:
+
+- Modify `primary` color
+- Modify breakpoints
+- Modify form control margins
+- Modify the focus glow on controls
+- ...
+
+See [theming documentation](/docs-basics-theming) to learn how to use it.
+
+## Local override using props
+
+Smooth UI exposes a lot of utilities on all components. You can customize nearly everything using props. See [System documentation](/docs-basics-system) to view all available utilities.
+
+<Playground>
+  <Button p={20} fontSize={20} border="2px solid black">
+    A customized button
+  </Button>
+</Playground>
+
+## Local override using style
+
+Inline styles are still a good approach for a lot of use-cases. It can be used for very specific changes that don't need media queries or auto-prefixer. All components supports inline style using `style` property.
+
+An example of inline style to change the `padding` of a button.
+
+```js
+<Button variant="primary" style={{ padding: 20 }}>
+  Button with big padding
+</Button>
+```
+
+## Local extend using .extend
+
+Every Smooth UI components expose a method `.extend`. You can use it to override any CSS property of the original component. It creates a new component and doesn't affect other components.
+
+An example of a `BorderedButton` extended from a `Button`:
+
+<Playground>
+  {() => {
+    const BorderedButton = Button.extend`
+      border: 2px solid black;
+
+      &:hover {
+        border-color: blue;
+      }
+    `
+    return (
+      <BorderedButton variant="primary">
+        A button with border !
+      </BorderedButton>
+    )
+  }}
+</Playground>
+
+👉 **[Checkout the interactive example on CodeSandbox](https://codesandbox.io/s/7k8o4x7lj6)**
+
+## Extend components deeply
+
+Some components are more complex than a `Button`. The `Switch` for an example is a component that includes several elements: a container, a ball... All of these elements have their own classes. To extend it, just use the browser inspector, pick the class and override it 👌.
+
+An example of a custom `Switch` with a black ball 🎱.
+
+<Playground>
+  {() => {
+    const BlackBallSwitch = Switch.extend`
+      .sui-switch-ball {
+        background-color: black !important;
+      }
+    `
+
+    return <BlackBallSwitch />
+  }}
+</Playground>

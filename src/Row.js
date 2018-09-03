@@ -1,24 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import { px, prop } from './utils/system'
+import createComponent from './utils/createComponent'
 
-const Row = createComponent(({ css, resolveUnit }) => ({
+const Row = createComponent(() => ({
   name: 'row',
-  render: ({ Component, gutter, ...props }) => <Component {...props} />,
-  style: css`
-    flex-grow: 1;
-    flex-wrap: wrap;
-    display: flex;
-    margin-right: -${props => resolveUnit(props.gutter)};
-    margin-left: -${props => resolveUnit(props.gutter)};
-
-    > .sui-col {
-      padding-left: ${props => resolveUnit(props.gutter)};
-      padding-right: ${props => resolveUnit(props.gutter)};
+  injectTheme: true,
+  render: ({
+    Component,
+    gutter,
+    className,
+    justifyContent,
+    theme,
+    ...props
+  }) => <Component className={className} {...props} />,
+  style: p => {
+    const gutter = px(prop('gutter', 'gridGutter')(p))
+    return {
+      flexGrow: 1,
+      flexWrap: 'wrap',
+      display: 'flex',
+      marginLeft: `-${gutter}`,
+      marginRight: `-${gutter}`,
     }
-  `,
+  },
   propTypes: {
     children: PropTypes.node,
+    gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   },
   defaultProps: {
     gutter: 15,

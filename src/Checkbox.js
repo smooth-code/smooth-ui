@@ -1,19 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import InnerSwitch from './internal/InnerSwitch'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
+import {
+  dimensions,
+  space,
+  flexboxes,
+  basics,
+  backgrounds,
+  positions,
+  borders,
+} from './utils/styles'
+import composeStyles from './utils/composeStyles'
+import SwitchState from './SwitchState'
+import createComponent from './utils/createComponent'
 
-const Checkbox = createComponent(({ css, mixin, th, classNames }) => ({
+const containerSystem = composeStyles(
+  basics,
+  dimensions,
+  space,
+  flexboxes,
+  positions,
+)
+
+const contentSystem = composeStyles(dimensions, backgrounds, borders)
+
+const Checkbox = createComponent(() => ({
   name: 'checkbox',
-  render: ({ Component, className, size, ...props }) => (
-    <Component
-      className={classNames(className, {
-        'sui-checkbox-disabled': props.disabled,
-        [`sui-checkbox-${size}`]: size,
-      })}
-    >
-      <InnerSwitch inputType="checkbox" {...props}>
-        {({ checked, focused, disabled }) => (
+  system: composeStyles(containerSystem, contentSystem),
+  applySystem: null,
+  render: ({ Component, ref, className, size, ...props }) => (
+    <SwitchState {...props}>
+      {({ checked, focused, disabled, input }) => (
+        <Component
+          className={classNames(className, {
+            'sui-checkbox-disabled': props.disabled,
+            [`sui-checkbox-${size}`]: size,
+          })}
+        >
+          <input ref={ref} type="checkbox" {...input} />
           <div
             className={classNames('sui-checkbox-content', {
               checked,
@@ -29,12 +55,14 @@ const Checkbox = createComponent(({ css, mixin, th, classNames }) => ({
               />
             </svg>
           </div>
-        )}
-      </InnerSwitch>
-    </Component>
+        </Component>
+      )}
+    </SwitchState>
   ),
   style: css`
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     width: 1.5rem;
     height: 1.5rem;
@@ -72,7 +100,7 @@ const Checkbox = createComponent(({ css, mixin, th, classNames }) => ({
     }
 
     svg {
-      width: 0.75rem;
+      width: 80%;
       pointer-events: none;
       transform: scale(0);
       transition: ${th('transitionBase')};
@@ -84,10 +112,6 @@ const Checkbox = createComponent(({ css, mixin, th, classNames }) => ({
         width: 0.875rem;
         height: 0.875rem;
       }
-
-      svg {
-        width: 0.65rem;
-      }
     }
 
     &.sui-checkbox-lg {
@@ -96,9 +120,13 @@ const Checkbox = createComponent(({ css, mixin, th, classNames }) => ({
         width: 1.25rem;
         height: 1.25rem;
       }
+    }
 
-      svg {
-        width: 0.9375rem;
+    &&& {
+      ${containerSystem};
+
+      .sui-checkbox-content {
+        ${contentSystem};
       }
     }
   `,

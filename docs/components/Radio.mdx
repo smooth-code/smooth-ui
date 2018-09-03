@@ -1,0 +1,69 @@
+---
+name: Radio
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Radio, RadioGroup, FormCheck, FormCheckLabel } from '@smooth-ui'
+
+# Radio
+
+## Sizes
+
+Set sizes using `size` prop like `"sm"` or `"lg"`.
+
+<Playground>
+  <RadioGroup>
+    <FormCheck>
+      <Radio size="sm" id="sizeRadio1" name="sizeRadios" value="option1" />
+      <FormCheckLabel htmlFor="sizeRadio1">Small</FormCheckLabel>
+    </FormCheck>
+    <FormCheck>
+      <Radio id="sizeRadio2" name="sizeRadios" value="option2" />
+      <FormCheckLabel htmlFor="sizeRadio2">Medium</FormCheckLabel>
+    </FormCheck>
+    <FormCheck>
+      <Radio size="lg" id="sizeRadio3" name="sizeRadios" value="option3" />
+      <FormCheckLabel htmlFor="sizeRadio3">Large</FormCheckLabel>
+    </FormCheck>
+  </RadioGroup>
+</Playground>
+
+## Disabled
+
+Disable using `disabled` prop.
+
+<Playground>
+  <FormCheck>
+    <Radio disabled id="disabledRadio1" name="disabledRadios" value="option1" />
+    <FormCheckLabel htmlFor="disabledRadio1">Disabled</FormCheckLabel>
+  </FormCheck>
+</Playground>
+
+## RadioGroup
+
+In most of case you don't need a `RadioGroup`. It is only necessary if you use [uncontrolled radio buttons](https://reactjs.org/docs/uncontrolled-components.html). All moderns like [Final Form](https://github.com/final-form/react-final-form) or [Formik](https://github.com/jaredpalmer/formik) uses controlled components, so `RadioGroup` is not required. 
+
+## API
+
+### Radio
+
+<PropsTable
+  of={PropDesc({
+    checked: PropDesc.bool,
+    disabled: PropDesc.bool,
+    onChange: PropDesc.func,
+    size: PropDesc.oneOf(['sm', 'lg']),
+    value: PropDesc.string,
+    ...getSystemPropDesc(Radio),
+  })}
+/>
+
+### RadioGroup
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+  })}
+/>

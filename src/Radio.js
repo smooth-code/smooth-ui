@@ -1,34 +1,63 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import InnerSwitch from './internal/InnerSwitch'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
+import {
+  dimensions,
+  space,
+  flexboxes,
+  basics,
+  backgrounds,
+  positions,
+  borders,
+} from './utils/styles'
+import composeStyles from './utils/composeStyles'
+import SwitchState from './SwitchState'
+import createComponent from './utils/createComponent'
 
-const ModalHeader = createComponent(({ css, th, mixin, classNames }) => ({
+const containerSystem = composeStyles(
+  basics,
+  dimensions,
+  space,
+  flexboxes,
+  positions,
+)
+
+const contentSystem = composeStyles(dimensions, backgrounds, borders)
+
+const ModalHeader = createComponent(() => ({
   name: 'radio',
-  render: ({ Component, className, size, ...props }) => (
-    <Component
-      className={classNames(className, {
-        'sui-radio-disabled': props.disabled,
-        [`sui-radio-${size}`]: size,
-      })}
-    >
-      <InnerSwitch inputType="radio" {...props}>
-        {({ focused, checked, disabled }) => (
+  system: composeStyles(containerSystem, contentSystem),
+  applySystem: null,
+  render: ({ Component, ref, className, size, ...props }) => (
+    <SwitchState {...props}>
+      {({ checked, focused, disabled, input }) => (
+        <Component
+          className={classNames(className, {
+            'sui-radio-disabled': disabled,
+            [`sui-radio-${size}`]: size,
+          })}
+        >
+          <input ref={ref} type="radio" {...input} />
           <div
             className={classNames('sui-radio-content', {
-              focused,
               checked,
+              focused,
               disabled,
             })}
           >
             <div className="sui-radio-circle" />
           </div>
-        )}
-      </InnerSwitch>
-    </Component>
+        </Component>
+      )}
+    </SwitchState>
   ),
   style: css`
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     width: 1.5rem;
     height: 1.5rem;
     position: relative;
@@ -65,8 +94,8 @@ const ModalHeader = createComponent(({ css, th, mixin, classNames }) => ({
     }
 
     .sui-radio-circle {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 10px;
+      height: 10px;
       transition: ${th('transitionBase')};
       border-radius: 50%;
       background-color: ${th('primary')};
@@ -80,8 +109,8 @@ const ModalHeader = createComponent(({ css, th, mixin, classNames }) => ({
       }
 
       .sui-radio-circle {
-        width: 0.525rem;
-        height: 0.525rem;
+        width: 8px;
+        height: 8px;
       }
     }
 
@@ -92,13 +121,25 @@ const ModalHeader = createComponent(({ css, th, mixin, classNames }) => ({
       }
 
       .sui-radio-circle {
-        width: 0.75rem;
-        height: 0.75rem;
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &&& {
+      ${containerSystem};
+
+      .sui-radio-content {
+        ${contentSystem};
       }
     }
   `,
   propTypes: {
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func,
     size: PropTypes.oneOf(['sm', 'lg']),
+    value: PropTypes.string,
   },
 }))
 

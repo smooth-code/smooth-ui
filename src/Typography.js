@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th } from './utils/system'
+import createComponent from './utils/createComponent'
 
 const variantTags = {
   h1: 'h1',
@@ -15,16 +18,10 @@ const variantTags = {
   'display-4': 'h4',
 }
 
-const Typography = createComponent(({ css, th, classNames }) => ({
+const Typography = createComponent(() => ({
   name: 'typo',
   defaultComponent: null,
-  render: ({
-    className,
-    Component: BaseComponent,
-    margin,
-    variant,
-    ...props
-  }) => {
+  render: ({ className, Component: BaseComponent, variant, ...props }) => {
     const Component = BaseComponent || variantTags[variant] || 'span'
     return (
       <Component
@@ -53,8 +50,6 @@ const Typography = createComponent(({ css, th, classNames }) => ({
         'headingsFontFamily',
         font => (font ? `font-family: ${font};` : null),
       )};
-
-      ${props => props.margin === false && 'margin-bottom: 0;'};
     }
 
     &.sui-typo-h1 {
@@ -107,7 +102,6 @@ const Typography = createComponent(({ css, th, classNames }) => ({
   `,
   propTypes: {
     children: PropTypes.node,
-    margin: PropTypes.bool,
     variant: PropTypes.oneOf([
       'h1',
       'h2',
@@ -120,9 +114,6 @@ const Typography = createComponent(({ css, th, classNames }) => ({
       'display-3',
       'display-4',
     ]),
-  },
-  defaultProps: {
-    margin: true,
   },
 }))
 

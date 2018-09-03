@@ -1,0 +1,217 @@
+---
+name: Modal
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalDialog,
+  ModalHeader,
+  ModalFooter,
+  Typography,
+  Button,
+  Toggler,
+} from '@smooth-ui'
+import { ModalDialogExample } from './Modal'
+
+# Modal
+
+Below is a static modal example (meaning its `position` and `display` have been overridden). Included are the modal header, modal body (required for `padding`), and modal footer (optional).
+
+<Playground>
+  <ModalDialogExample>
+    <ModalContent>
+      <ModalHeader>
+        <Typography variant="h5" m={0}>
+          Modal title
+        </Typography>
+      </ModalHeader>
+      <ModalBody>Modal body</ModalBody>
+      <ModalFooter>
+        <Button variant="primary">Save changes</Button>
+        <Button variant="secondary">Close</Button>
+      </ModalFooter>
+    </ModalContent>
+  </ModalDialogExample>
+</Playground>
+
+## Live example
+
+You can toggle a modal from a `Button` using the `Toggler`.
+
+<Playground>
+  <Toggler>
+    {({ toggled, onToggle }) => (
+      <div>
+        <Button variant="primary" onClick={() => onToggle(true)}>
+          Open modal
+        </Button>
+        <Modal opened={toggled} onClose={() => onToggle(false)}>
+          <ModalDialog>
+            <ModalContent>
+              <ModalHeader>
+                <Typography variant="h5" m={0}>
+                  Modal title
+                </Typography>
+              </ModalHeader>
+              <ModalBody>Modal body</ModalBody>
+              <ModalFooter>
+                <Button variant="primary">Save changes</Button>
+                <Button variant="secondary" onClick={() => onToggle(false)}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </ModalDialog>
+        </Modal>
+      </div>
+    )}
+  </Toggler>
+</Playground>
+
+## Scrolling long content
+
+When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean.
+
+<Playground>
+  <Toggler>
+    {({ toggled, onToggle }) => (
+      <div>
+        <Button variant="primary" onClick={() => onToggle(true)}>
+          Open modal
+        </Button>
+        <Modal opened={toggled} onClose={() => onToggle(false)}>
+          <ModalDialog>
+            <ModalContent>
+              <ModalHeader>
+                <Typography variant="h5" m={0}>
+                  Modal title
+                </Typography>
+              </ModalHeader>
+              <ModalBody>
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et.
+                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et. Donec
+                sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla. Cras mattis consectetur purus sit amet fermentum.
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor. Aenean lacinia bibendum nulla sed consectetur.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
+                fringilla.
+              </ModalBody>
+              <ModalFooter>
+                <Button variant="primary">Save changes</Button>
+                <Button variant="secondary" onClick={() => onToggle(false)}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </ModalDialog>
+        </Modal>
+      </div>
+    )}
+  </Toggler>
+</Playground>
+
+## API
+
+### Modal
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    onClose: PropDesc.func,
+    opened: PropDesc.bool,
+    ...getSystemPropDesc(Modal),
+  })}
+/>
+
+
+### ModalBody
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalBody),
+  })}
+/>
+
+### ModalContent
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalContent),
+  })}
+/>
+
+### ModalDialog
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalDialog),
+  })}
+/>
+
+### ModalFooter
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalFooter),
+  })}
+/>
+
+### ModalHeader
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalHeader),
+  })}
+/>

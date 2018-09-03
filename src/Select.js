@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
+import createComponent from './utils/createComponent'
 
 const renderOption = option => {
   const { label, value } =
@@ -12,7 +15,7 @@ const renderOption = option => {
   )
 }
 
-const Select = createComponent(({ css, classNames, th, mixin }) => ({
+const Select = createComponent(() => ({
   name: 'select',
   render: ({
     Component,
@@ -162,7 +165,15 @@ const Select = createComponent(({ css, classNames, th, mixin }) => ({
     }
   `,
   propTypes: {
+    arrow: PropTypes.bool,
+    control: PropTypes.bool,
+    options: PropTypes.array,
+    size: PropTypes.oneOf(['sm', 'lg']),
+    valid: PropTypes.bool,
     children: PropTypes.node,
+  },
+  defaultProps: {
+    arrow: true,
   },
 }))
 

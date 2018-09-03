@@ -1,0 +1,64 @@
+---
+name: Input
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Input } from '@smooth-ui'
+
+# Input
+
+## Sizes
+
+Set heights using `size` prop like `"sm"` or `"lg"`.
+
+<Playground>
+  <BlockList>
+    <Input size="sm" placeholder="Small" />
+    <Input placeholder="Medium" />
+    <Input size="lg" placeholder="Large" />
+  </BlockList>
+</Playground>
+
+## Types
+
+All HTML5 types are supported, `"number"` is adapted.
+
+<Playground>
+  <Input type="number" placeholder="100" />
+</Playground>
+
+## Disabled
+
+Disable using `disabled` prop.
+
+<Playground>
+  <Input disabled placeholder="Disabled" />
+</Playground>
+
+## Control & Validation
+
+* Set `display` to "block" and `width` to "100%" using `control` prop.
+* Set validation using `valid` or `valid={false}`
+
+<Playground>
+  <BlockList>
+    <Input control placeholder="Control" />
+    <Input control valid placeholder="Valid control" />
+    <Input control valid={false} placeholder="Invalid control" />
+  </BlockList>
+</Playground>
+
+## API
+
+### Input
+
+<PropsTable
+  of={PropDesc({
+    control: PropDesc.bool,
+    size: PropDesc.oneOf(['sm', 'lg']),
+    valid: PropDesc.bool,
+    ...getSystemPropDesc(Input)
+  })}
+/>

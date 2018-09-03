@@ -1,0 +1,70 @@
+---
+name: Button
+menu: 3. Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, themeProp, getSystemPropDesc } from '@docs/utils'
+import { Button } from '@smooth-ui'
+
+# Button
+
+## Variants
+
+Set variants using `variant` prop.
+
+<Playground>
+  <BlockList>
+    <Button>Default (primary)</Button>
+    <Button variant="primary">Primary</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="success">Success</Button>
+    <Button variant="danger">Danger</Button>
+    <Button variant="warning">Warning</Button>
+    <Button variant="info">Info</Button>
+    <Button variant="light">Light</Button>
+    <Button variant="dark">Dark</Button>
+    <Button variant={null}>No variant</Button>
+  </BlockList>
+</Playground>
+
+## Sizes
+
+Set sizes using `size` prop like `"sm"` or `"lg"`.
+
+<Playground>
+  <BlockList>
+    <Button variant="primary" size="sm">
+      Small
+    </Button>
+    <Button variant="primary">Medium</Button>
+    <Button variant="primary" size="lg">
+      Large
+    </Button>
+  </BlockList>
+</Playground>
+
+
+## Disabled
+
+Disable using `disabled` prop.
+
+<Playground>
+  <Button variant="primary" disabled>
+    Disabled
+  </Button>
+</Playground>
+
+## API
+
+### Button
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    disabled: PropDesc.bool,
+    size: PropDesc.oneOf(['sm', 'lg']),
+    variant: PropDesc.oneOf(themeProp('btnVariants')).defaultTo('primary'),
+    ...getSystemPropDesc(Button),
+  })}
+/>

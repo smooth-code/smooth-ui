@@ -1,19 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
+import createComponent from './utils/createComponent'
 
-const variants = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'light',
-  'dark',
-]
-
-const Button = createComponent(({ classNames, css, th, mixin }) => ({
+const Button = createComponent(() => ({
   name: 'button',
   defaultComponent: 'button',
   render: ({ className, Component, size, variant, ...props }) => (
@@ -36,6 +28,9 @@ const Button = createComponent(({ classNames, css, th, mixin }) => ({
     cursor: pointer;
     transition: ${th('transitionBase')};
 
+    /* When used as link */
+    text-decoration: none;
+
     &.sui-button-sm {
       padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
       font-size: ${th('fontSizeSm')};
@@ -52,19 +47,21 @@ const Button = createComponent(({ classNames, css, th, mixin }) => ({
       opacity: ${th('btnDisabledOpacity')};
     }
 
-    ${variants.map(
-      variant => css`
-        &.sui-button-${variant} {
-          ${mixin('btnVariant', variant)};
-        }
-      `,
+    ${th('btnVariants', variants =>
+      variants.map(
+        variant => css`
+          &.sui-button-${variant} {
+            ${mixin('btnVariant', variant)};
+          }
+        `,
+      ),
     )};
   `,
   propTypes: {
     children: PropTypes.node,
     disabled: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'lg']),
-    variant: PropTypes.oneOf(variants),
+    variant: PropTypes.string,
   },
   defaultProps: {
     variant: 'primary',

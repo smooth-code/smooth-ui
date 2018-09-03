@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { css } from './styled-engine'
+import createComponent from './utils/createComponent'
 
-const FormCheck = createComponent(({ css, classNames }) => ({
+const FormCheck = createComponent(() => ({
   name: 'form-check',
   render: ({ Component, className, inline, ...props }) => (
     <Component

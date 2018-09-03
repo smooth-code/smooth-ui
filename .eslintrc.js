@@ -13,11 +13,13 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/sort-comp': 'off',
     'react/destructuring-assignment': 'off',
+    'react/forbid-foreign-prop-types': 'off',
 
     'import/prefer-default-export': 'off',
 
     'no-return-assign': 'off',
     'no-param-reassign': 'off',
     'no-shadow': 'off',
+    'default-case': 'off',
   },
 }

@@ -1,54 +1,114 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'styled-components'
-import createComponent from './internal/createComponent'
+import classNames from 'classnames'
+import { mediaMinWidth } from './utils/breakpoints'
+import { is } from './utils/misc'
+import { prop, px } from './utils/system'
+import createComponent from './utils/createComponent'
 
-const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'auto']
+function getBreakPointStyle(breakpoint, width, gridSizes) {
+  const common = {
+    position: 'relative',
+    width: '100%',
+    minHeight: '1px',
+  }
 
-function generateBreakPoint(breakpoint) {
-  return css`
-    &.sui-col-${breakpoint} {
-      position: relative;
-      width: 100%;
-      min-height: 1px;
+  const mediaQuery = mediaMinWidth(width)
+  const media = style => (width === 0 ? style : { [mediaQuery]: style })
 
-      @media (min-width: ${props => props.theme.breakpoints[breakpoint]}px) {
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-      }
+  const grow = {
+    [`&.sui-col-${breakpoint}`]: {
+      ...common,
+      ...media({
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      }),
+    },
+  }
+
+  const sizes = gridSizes.reduce((obj, size) => {
+    const auto = size === 'auto'
+    const width = auto
+      ? 'auto'
+      : `${Math.round((size / 12) * 10 ** 6) / 10 ** 4}%`
+
+    if (size) {
+      Object.assign(obj, {
+        [`&.sui-col-${breakpoint}-${size}`]: {
+          ...common,
+          ...media({
+            flex: `0 0 ${width}`,
+            maxWidth: auto ? 'none' : width,
+            ...(auto ? { width: 'auto' } : null),
+          }),
+        },
+      })
     }
 
-    ${GRID_SIZES.map(size => {
-      if (typeof size === 'boolean') return null
+    if (size !== 'auto') {
+      Object.assign(obj, {
+        [`&.sui-col-o${breakpoint}-${size}`]: {
+          ...common,
+          ...media({
+            marginLeft: width,
+          }),
+        },
+      })
+    }
 
-      // Only keep 6 significant numbers.
-      const width =
-        size !== 'auto'
-          ? `${Math.round((size / 12) * 10 ** 6) / 10 ** 4}%`
-          : 'auto'
+    return obj
+  }, {})
 
-      return css`
-        &.sui-col-${breakpoint}-${size} {
-          position: relative;
-          width: 100%;
-          min-height: 1px;
-
-          @media (min-width: ${props =>
-            props.theme.breakpoints[breakpoint]}px) {
-              flex: 0 0 ${width};
-              max-width: ${width === 'auto' ? 'none' : width};
-              ${width === 'auto' ? 'width: auto;' : ''}
-            }
-        }
-      `
-    })};
-  `
+  return {
+    ...grow,
+    ...sizes,
+  }
 }
 
-const Col = createComponent(({ css, classNames }) => ({
+const getStyleFromTheme = theme => {
+  const gridSizes = [
+    true,
+    0,
+    'auto',
+    ...Array.from({ length: theme.gridColumns }, (_, index) => index + 1),
+  ]
+  return {
+    flexBasis: 0,
+    flexGrow: 1,
+    maxWidth: '100%',
+    ...Object.keys(theme.breakpoints).reduce(
+      (obj, breakpoint) =>
+        Object.assign(
+          obj,
+          getBreakPointStyle(
+            breakpoint,
+            theme.breakpoints[breakpoint],
+            gridSizes,
+          ),
+        ),
+      {},
+    ),
+  }
+}
+
+const Col = createComponent(() => ({
   name: 'col',
-  render: ({ Component, className, xs, sm, md, lg, xl, ...props }) => (
+  render: ({
+    Component,
+    className,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+    oxs,
+    osm,
+    omd,
+    olg,
+    oxl,
+    ...props
+  }) => (
     <Component
       className={classNames(className, {
         'sui-col-xs': xs === true,
@@ -61,24 +121,32 @@ const Col = createComponent(({ css, classNames }) => ({
         [`sui-col-lg-${String(lg)}`]: lg && lg !== true,
         'sui-col-xl': xl === true,
         [`sui-col-xl-${String(xl)}`]: xl && xl !== true,
+        [`sui-col-oxs-${String(oxs)}`]: is(oxs),
+        [`sui-col-osm-${String(osm)}`]: is(osm),
+        [`sui-col-omd-${String(omd)}`]: is(omd),
+        [`sui-col-olg-${String(olg)}`]: is(olg),
+        [`sui-col-oxl-${String(oxl)}`]: is(oxl),
       })}
       {...props}
     />
   ),
-  style: css`
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-    ${props => Object.keys(props.theme.breakpoints).map(generateBreakPoint)};
-  `,
+  style: p => {
+    const gutter = px(prop('gutter', 'gridGutter')(p))
+    return {
+      paddingLeft: gutter,
+      paddingRight: gutter,
+      ...getStyleFromTheme(p.theme),
+    }
+  },
   propTypes: {
     children: PropTypes.node,
-    sm: PropTypes.oneOfType([
+    gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    xs: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
       PropTypes.number,
     ]),
-    xs: PropTypes.oneOfType([
+    sm: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,
       PropTypes.number,
@@ -98,7 +166,17 @@ const Col = createComponent(({ css, classNames }) => ({
       PropTypes.string,
       PropTypes.number,
     ]),
+    oxs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    osm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    omd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    olg: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    oxl: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   },
+}))
+
+Col.Split = createComponent(() => ({
+  name: 'col-split',
+  style: () => ({ width: '100% !important' }),
 }))
 
 export default Col

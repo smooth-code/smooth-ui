@@ -7,41 +7,42 @@ import { uglify } from 'rollup-plugin-uglify'
 import pkg from './package.json'
 
 const SOURCE_DIR = path.resolve(__dirname, 'src')
-const OUT_DIR = path.resolve(__dirname, 'build')
+const BUILD_DIR = path.resolve(__dirname, 'build', process.env.STYLED_ENGINE)
+const DIST_DIR = path.resolve(BUILD_DIR, 'dist')
 
 const baseConfig = {
   input: `${SOURCE_DIR}/index.js`,
-  external: Object.keys(pkg.peerDependencies),
+  external: [
+    ...Object.keys(pkg.peerDependencies),
+    ...Object.keys(pkg.enginePeerDependencies.emotion),
+    ...Object.keys(pkg.enginePeerDependencies['styled-components']),
+  ],
   plugins: [babel({ exclude: '**/node_modules/**' })],
 }
 
 const esConfig = Object.assign({}, baseConfig, {
   output: {
-    name: 'smooth-ui',
-    file: `${OUT_DIR}/dist/smooth-ui.es.js`,
+    name: 'smoothUi',
+    file: `${DIST_DIR}/smooth-ui.es.js`,
     format: 'es',
   },
   external: [
     ...baseConfig.external,
     ...Object.keys(pkg.dependencies),
     'react-transition-group/Transition',
-    'recompact/getDisplayName',
-    'recompact/isClassComponent',
   ],
 })
 
 const cjsConfig = Object.assign({}, baseConfig, {
   output: {
-    name: 'smooth-ui',
-    file: `${OUT_DIR}/dist/smooth-ui.cjs.js`,
+    name: 'smoothUi',
+    file: `${DIST_DIR}/smooth-ui.cjs.js`,
     format: 'cjs',
   },
   external: [
     ...baseConfig.external,
     ...Object.keys(pkg.dependencies),
     'react-transition-group/Transition',
-    'recompact/getDisplayName',
-    'recompact/isClassComponent',
   ],
 })
 
@@ -50,14 +51,16 @@ const globals = {
   'react-dom': 'ReactDom',
   'prop-types': 'PropTypes',
   'styled-components': 'styled',
+  'react-emotion': 'reactEmotion',
+  'emotion-theming': 'emotionTheming',
   'react-transition-group/Transition': 'Transition',
   polished: 'polished',
 }
 
 const umdConfig = Object.assign({}, baseConfig, {
   output: {
-    name: 'smooth-ui',
-    file: `${OUT_DIR}/dist/smooth-ui.js`,
+    name: 'smoothUi',
+    file: `${DIST_DIR}/smooth-ui.js`,
     format: 'umd',
     globals,
     exports: 'named',
@@ -75,7 +78,7 @@ const umdConfig = Object.assign({}, baseConfig, {
 const minConfig = Object.assign({}, baseConfig, umdConfig, {
   output: {
     ...umdConfig.output,
-    file: `${OUT_DIR}/dist/smooth-ui.min.js`,
+    file: `${DIST_DIR}/smooth-ui.min.js`,
   },
   plugins: [
     ...umdConfig.plugins,
