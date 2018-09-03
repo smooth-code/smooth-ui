@@ -3,7 +3,7 @@ const pkg = require('../package.json')
 const { STYLED_ENGINE } = process.env
 
 const packageNames = {
-  emotion: '@smooth-ui/core-emotion',
+  emotion: '@smooth-ui/core-em',
   'styled-components': '@smooth-ui/core-sc',
 }
 
