@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.3.2"></a>
+## [4.3.2](https://github.com/smooth-code/smooth-ui/compare/v4.3.1...v4.3.2) (2018-09-03)
+
+
+### Bug Fixes
+
+* **Row:** fix default gutter ([d97b267](https://github.com/smooth-code/smooth-ui/commit/d97b267))
+
+
+
 <a name="4.3.1"></a>
 ## [4.3.1](https://github.com/smooth-code/smooth-ui/compare/v4.3.0...v4.3.1) (2018-08-16)
 
