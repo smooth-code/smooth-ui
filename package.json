@@ -16,7 +16,6 @@
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:packages && yarn build:docs",
     "build:packages": "cross-env STYLED_ENGINE=emotion yarn build:package && cross-env STYLED_ENGINE=styled-components yarn build:package",
     "build:package": "yarn build:cp && yarn build:rollup && yarn build:lib",
     "build:cp": "shx mkdir -p build/$STYLED_ENGINE && shx cp README.md build/$STYLED_ENGINE && node scripts/pkg.js > build/$STYLED_ENGINE/package.json",
@@ -25,11 +24,10 @@
     "build:rollup": "cross-env BABEL_ENV=rollup rollup -c",
     "build:watch": "yarn build:lib --watch",
     "ci": "yarn lint && yarn test && yarn build:packages && bundlesize",
-    "deploy:docs": "firebase deploy",
     "dev": "docz dev",
     "lint": "eslint .",
     "prebuild": "shx rm -rf build",
-    "release": "standard-version && conventional-github-releaser --preset angular && yarn build && yarn deploy:docs",
+    "release": "standard-version && conventional-github-releaser --preset angular && yarn build:packages",
     "test": "jest"
   },
   "bundlesize": [
