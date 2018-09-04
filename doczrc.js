@@ -26,5 +26,10 @@ export default {
       primary: '#bd4932',
       link: '#bd4932',
     },
+    logo: {
+      src:
+        'https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png',
+      width: 200,
+    },
   },
 }
