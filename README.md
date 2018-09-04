@@ -1,5 +1,7 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png?token=AAQQPuM4Puh4DdUkTB1OufRD9oW_EOHzks5agcuiwA%3D%3D" alt="smooth-ui" title="smooth-ui" width="300">
+  <a target="_blank" href="https://smooth-ui.smooth-code.com">
+    <img src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png?token=AAQQPuM4Puh4DdUkTB1OufRD9oW_EOHzks5agcuiwA%3D%3D" alt="smooth-ui" title="smooth-ui" width="300">
+  </a>
 </h1>
 <p align="center" style="font-size: 1.2rem;">Modern React UI library. Code less, do more.</p>
 
