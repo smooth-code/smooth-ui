@@ -61,5 +61,5 @@ See [LICENSE](./LICENSE) for more information.
 [github-star]: https://github.com/smooth-code/smooth-ui/stargazers
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20Smooth%20UI!%20https://github.com/smooth-code/smooth-ui%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/smooth-code/smooth-ui.svg?style=social
-[size-badge]: http://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js?compression=gzip&style=flat-square
+[size-badge]: https://img.shields.io/badge/gzip%20size-13.9%20kB-44cc11.svg?style=flat-square
 [build-min]: https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js
