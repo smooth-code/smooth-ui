@@ -28,7 +28,7 @@ export default {
     },
     logo: {
       src:
-        'https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png',
+        'https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo-horizontal.png',
       width: 200,
     },
   },
