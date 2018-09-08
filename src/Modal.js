@@ -47,7 +47,15 @@ class ModalComponent extends React.Component {
   }
 
   render() {
-    const { className, theme, opened, onClose, children, ...props } = this.props
+    const {
+      className,
+      baseRef,
+      theme,
+      opened,
+      onClose,
+      children,
+      ...props
+    } = this.props
     if (!this.container) return null
     return createPortal(
       <Transition
@@ -66,6 +74,7 @@ class ModalComponent extends React.Component {
               },
               className,
             )}
+            ref={baseRef}
             {...props}
           >
             <div className="sui-modal-backdrop" onClick={onClose} />
