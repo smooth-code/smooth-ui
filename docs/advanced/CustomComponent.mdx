@@ -12,14 +12,14 @@ Sometimes you may want to use a component but the resulting HTML tag is not the 
 
 You can do it using two approaches.
 
-## Use "component" property
+## Use "as" property
 
-Every components accepts a `component` property, it defines the base component used in each component.
+Every components accepts a `as` property, it defines the base component used in each component.
 
 An example of an `Alert` that uses `span` as a component.
 
 <Playground>
-  <Alert component="span" variant="primary">
+  <Alert as="span" variant="primary">
     A span alert
   </Alert>
 </Playground>
