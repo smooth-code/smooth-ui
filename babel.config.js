@@ -5,7 +5,7 @@ const getStyledEnginePlugins = () => {
     case 'emotion':
       return ['babel-plugin-emotion']
     case 'styled-components':
-      return []
+      return ['babel-plugin-styled-components']
     default:
       return []
   }
@@ -29,6 +29,7 @@ const config = {
         ],
       },
     ],
+    'babel-plugin-annotate-pure-calls',
     '@babel/plugin-proposal-object-rest-spread',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],
