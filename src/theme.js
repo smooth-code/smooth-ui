@@ -257,6 +257,18 @@ export const zIndexModal = 1050
 export const zIndexModalBackdrop = 1071
 
 // Transitions
+export const transitionEnabled = true
+export const transition = p => value =>
+  p.theme.transitionEnabled
+    ? css`
+        transition: ${value};
+
+        @media screen and (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      `
+    : ''
+
 const safeTransitionProperties = [
   'color',
   'border-style',
@@ -267,9 +279,11 @@ const safeTransitionProperties = [
   'box-shadow',
   'transform',
 ]
-export const transitionBase = safeTransitionProperties
-  .map(prop => `${prop} .2s ease-in-out`)
-  .join(',')
+
+export const transitionBase = mixin(
+  'transition',
+  safeTransitionProperties.map(prop => `${prop} .2s ease-in-out`).join(','),
+)
 
 // Breakpoints
 

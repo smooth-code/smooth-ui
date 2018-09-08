@@ -29,7 +29,7 @@ const Input = createComponent(() => ({
     font-size: ${th('fontSizeBase')};
     line-height: ${th('inputLineHeight')};
     color: ${th('inputTextColor')};
-    transition: ${th('transitionBase')};
+    ${th('transitionBase')};
     background-color: ${th('inputBgColor')};
 
     &[type='number'] {

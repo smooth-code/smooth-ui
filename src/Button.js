@@ -26,7 +26,7 @@ const Button = createComponent(() => ({
     line-height: ${th('lineHeightBase')};
     border-width: ${th('btnBorderWidth')};
     cursor: pointer;
-    transition: ${th('transitionBase')};
+    ${th('transitionBase')};
 
     /* When used as link */
     text-decoration: none;

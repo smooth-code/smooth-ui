@@ -79,7 +79,7 @@ const Checkbox = createComponent(() => ({
       border-style: solid;
       border-width: ${th('inputBorderWidth')};
       border-color: ${th('inputBorderColor')};
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
 
       &.checked {
         background-color: ${th('primary')};
@@ -103,7 +103,7 @@ const Checkbox = createComponent(() => ({
       width: 80%;
       pointer-events: none;
       transform: scale(0);
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
     }
 
     &.sui-checkbox-sm {

@@ -75,7 +75,7 @@ const Select = createComponent(() => ({
       padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
       font-size: ${th('fontSizeBase')};
       line-height: ${th('lineHeightBase')};
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
       color: ${th('inputTextColor')};
       ${props => props.arrow && !props.multiple && 'padding-right: 1.6rem;'};
 
