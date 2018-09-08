@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import { css, withTheme } from './styled-engine'
-import { th } from './utils/system'
+import { th, mixin } from './utils/system'
 import Transition from './Transition'
 import createComponent from './utils/createComponent'
 
@@ -102,7 +102,10 @@ const Modal = createComponent(() => ({
     visibility: hidden;
     overflow: hidden;
     outline: 0;
-    transition: opacity ${th('modalTransitionDuration')}ms ease-in-out;
+    ${mixin(
+      'transition',
+      css`opacity ${th('modalTransitionDuration')}ms ease-in-out`,
+    )};
 
     &.sui-modal-opened {
       visibility: visible;

@@ -65,7 +65,7 @@ const Switch = createComponent(() => ({
       border-width: ${th('inputBorderWidth')};
       border-color: ${th('inputBorderColor')};
       border-style: solid;
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
       font-size: 9px;
       font-weight: 800;
 
@@ -97,14 +97,14 @@ const Switch = createComponent(() => ({
       border-radius: 50%;
       width: 18px;
       height: 18px;
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
     }
 
     .sui-switch-content {
       display: flex;
       align-items: center;
       height: 22px;
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
       transform: translateX(-25px);
     }
 

@@ -74,7 +74,7 @@ const ModalHeader = createComponent(() => ({
       border-width: ${th('inputBorderWidth')};
       border-style: solid;
       border-color: ${th('inputBorderColor')};
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
 
       &.checked {
         border-color: ${th('primary')};
@@ -96,7 +96,7 @@ const ModalHeader = createComponent(() => ({
     .sui-radio-circle {
       width: 10px;
       height: 10px;
-      transition: ${th('transitionBase')};
+      ${th('transitionBase')};
       border-radius: 50%;
       background-color: ${th('primary')};
       transform: scale(0);
