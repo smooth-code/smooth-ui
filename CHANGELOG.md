@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/smooth-code/smooth-ui/compare/v5.0.0...v5.1.0) (2018-09-08)
+
+
+### Bug Fixes
+
+* **emotion:** fix `.extend` behaviour using emotion ([0eaad36](https://github.com/smooth-code/smooth-ui/commit/0eaad36)), closes [#29](https://github.com/smooth-code/smooth-ui/issues/29)
+* **Modal:** fix warning about ref ([563354c](https://github.com/smooth-code/smooth-ui/commit/563354c))
+
+
+### Features
+
+* deprecate "component" in favor of "as" ([c065d09](https://github.com/smooth-code/smooth-ui/commit/c065d09)), closes [#33](https://github.com/smooth-code/smooth-ui/issues/33)
+* **a11y:** support "prefers-reduce-motion" ([a76d417](https://github.com/smooth-code/smooth-ui/commit/a76d417)), closes [#39](https://github.com/smooth-code/smooth-ui/issues/39)
+
+
+### Performance Improvements
+
+* add "sideEffects: false" in package.json ([f9acb75](https://github.com/smooth-code/smooth-ui/commit/f9acb75))
+
+
+
 <a name="4.3.2"></a>
 ## [4.3.2](https://github.com/smooth-code/smooth-ui/compare/v4.3.1...v4.3.2) (2018-09-03)
 
