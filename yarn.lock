@@ -1560,6 +1560,10 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-annotate-pure-calls@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-annotate-pure-calls/-/babel-plugin-annotate-pure-calls-0.3.0.tgz#7f0ec500432506a94ff878d6425dce9d043f6902"
+
 babel-plugin-emotion@^9.2.8:
   version "9.2.8"
   resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-9.2.8.tgz#4df55ef10625c391f25b031f7e3006abac359e09"
@@ -1603,6 +1607,12 @@ babel-plugin-react-docgen@^2.0.0:
   dependencies:
     lodash "^4.17.10"
     react-docgen "^3.0.0-rc.1"
+
+babel-plugin-styled-components@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.6.4.tgz#24677e5b37a85b04aed855a5f81f1c7bfec77784"
+  dependencies:
+    lodash "^4.17.10"
 
 babel-plugin-syntax-dynamic-import@^6.18.0:
   version "6.18.0"
