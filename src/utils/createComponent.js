@@ -34,11 +34,21 @@ function createComponent(getConfig) {
       render() {
         const {
           className,
-          component: Component = defaultComponent,
+          as,
+          component,
           theme,
           baseRef,
           ...props
         } = this.props
+
+        const Component = as || component || defaultComponent
+
+        if (component && process.env.NODE_ENV !== 'production') {
+          // eslint-disable-next-line no-console
+          console.warn(
+            'Smooth UI: "component" prop is deprecated and will be removed in v6, please use "as" instead.',
+          )
+        }
 
         const renderProps = {
           ref: baseRef,

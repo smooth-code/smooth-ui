@@ -30,9 +30,7 @@ export const patchStyledAPI = (StyledComponent, BaseComponent) => {
     StyledComponent,
   )
   StyledComponent.withComponent = component => {
-    const CustomComponent = props => (
-      <BaseComponent component={component} {...props} />
-    )
+    const CustomComponent = props => <BaseComponent as={component} {...props} />
     const NewStyledComponent = originalWithComponent(CustomComponent)
     patchStyledAPI(NewStyledComponent, BaseComponent)
     return NewStyledComponent
