@@ -1,0 +1,107 @@
+---
+name: Utilities
+menu: 1. Basics
+order: 6
+---
+
+import { Playground } from 'docz'
+
+# Utilities
+
+Smooth UI exposes several utilities to simplify the styling of components.
+
+## Styling utilities
+
+### styled
+
+`styled` is exported from `react-emotion` if you use `@smooth-ui/core-em` or from `styled-components` if you use `@smooth-ui/core-sc`.
+
+```js
+import { styled } from '@smooth-ui/core-sc'
+
+const Box = styled.div`
+  width: 200px;
+  height: 100px;
+`
+```
+
+### css
+
+`css` offers the same experience as [`styled-components` css utility](https://www.styled-components.com/docs/api#css). It means that props interpolations are supported even if you `@smooth-ui/core-em`.
+
+```js
+import { styled, css } from '@smooth-ui/core-sc'
+
+const bordered = css`
+  border: 1px solid ${p => p.borderColor};
+`
+
+const Box = styled.div`
+  width: 200px;
+  height: 100px;
+  ${bordered}
+`
+```
+
+### th
+
+`th` lets you get a property from the theme, you can also apply a modifier.
+
+```js
+import { styled, th } from '@smooth-ui/core-sc'
+
+const RedBox = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: ${th('primary')};
+  border: 1px solid ${th('primary', color => darken(0.2, color))};
+`
+```
+
+### prop
+
+`prop` lets you get a property from props, you can also specify a theme default.
+
+```js
+import { styled, th } from '@smooth-ui/core-sc'
+
+const RedBox = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: ${prop('bgColor', 'primary')};
+`
+```
+
+### unit, px
+
+`unit` automatically adds unit.
+
+```js
+import { unit, px } from '@smooth-ui/core-sc'
+
+unit('px')(10) // 10px
+unit('em')(10) // 10em
+unit('em')('20px') // 20px
+
+// `px` is similar to `unit('px')`
+px(10) // 10px
+```
+
+## Responsive utilities
+
+### up, down, between
+
+`up`, `down` and `between` let you apply style relative to breakpoints.
+
+
+```js
+import { styled, css, up } from '@smooth-ui/core-sc'
+
+const RedBox = styled.div`
+  width: 200px;
+  height: 200px;
+  ${up('md', css`
+    height: 300px;
+  `)}
+`
+```
