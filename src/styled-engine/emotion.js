@@ -53,7 +53,11 @@ export const patchStyledAPI = (StyledComponent, BaseComponent) => {
   Object.defineProperty(StyledComponent, 'extend', {
     get() {
       return (...args) => {
-        const NewStyledComponent = styled(StyledComponent)(...args)
+        const NewStyledComponent = styled(StyledComponent)`
+          &&& {
+            ${css(...args)};
+          }
+        `
         patchStyledAPI(NewStyledComponent, StyledComponent)
         return NewStyledComponent
       }
