@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import styled, {
   css,
@@ -7,6 +6,7 @@ import styled, {
   ThemeProvider,
 } from 'styled-components'
 
+export default styled
 export { css, withTheme, injectGlobal, ThemeProvider }
 
 export const patchStyledAPI = (StyledComponent, BaseComponent) => {
@@ -36,5 +36,3 @@ export const patchStyledAPI = (StyledComponent, BaseComponent) => {
     return NewStyledComponent
   }
 }
-
-export default styled

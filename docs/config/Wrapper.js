@@ -1,8 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies, no-unused-expressions */
+/* eslint-disable no-unused-expressions */
 import React from 'react'
 import { transparentize } from 'polished'
 import { ThemeProvider } from 'emotion-theming'
-import { theme, injectGlobal, globalStyle } from '@smooth-ui'
+import { theme, injectGlobal, globalStyle } from '@smooth-ui/core-sc'
 
 injectGlobal`
   ${globalStyle()}

@@ -11,7 +11,7 @@ const getStyledEnginePlugins = () => {
   }
 }
 
-const config = {
+let config = {
   presets: [
     ['@babel/preset-env', { loose: true, modules: false }],
     '@babel/preset-react',
@@ -35,22 +35,13 @@ const config = {
   ],
 }
 
-if (process.env.BABEL_ENV === 'lib') {
-  module.exports = Object.assign({}, config, {
+if (process.env.NODE_ENV === 'test') {
+  config = Object.assign({}, config, {
     plugins: [
       ...config.plugins,
       ['@babel/plugin-transform-modules-commonjs', { loose: true }],
     ],
   })
-} else if (process.env.BABEL_ENV === 'rollup') {
-  module.exports = config
-} else if (process.env.NODE_ENV === 'test') {
-  module.exports = Object.assign({}, config, {
-    plugins: [
-      ...config.plugins,
-      ['@babel/plugin-transform-modules-commonjs', { loose: true }],
-    ],
-  })
-} else {
-  module.exports = config
 }
+
+module.exports = config

@@ -16,6 +16,7 @@ module.exports = {
     'react/forbid-foreign-prop-types': 'off',
 
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
 
     'no-return-assign': 'off',
     'no-param-reassign': 'off',

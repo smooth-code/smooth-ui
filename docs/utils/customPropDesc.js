@@ -1,5 +1,5 @@
+import { styles } from '@smooth-ui/core-sc'
 import PropDesc from './PropDesc'
-import { styles } from '@smooth-ui'
 
 const systemProps = styles.system.meta.props
 

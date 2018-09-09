@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import * as path from 'path'
 import externalLinks from 'remark-external-links'
 
 const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
-    '@smooth-ui': path.resolve(__dirname, 'src'),
+    '@smooth-ui': path.resolve(__dirname, 'packages'),
     '@docs': path.resolve(__dirname, 'docs'),
   })
 

@@ -1,0 +1,37 @@
+{
+  "name": "@smooth-ui/core-em",
+  "description": "Modern React UI Library",
+  "version": "5.1.1",
+  "keywords": [
+    "emotion",
+    "react-emotion",
+    "ui",
+    "ui-components",
+    "react",
+    "material-ui",
+    "bootstrap"
+  ],
+  "sideEffects": false,
+  "main": "dist/smooth-ui-core-em.cjs.js",
+  "module": "dist/smooth-ui-core-em.es.js",
+  "jsnext:main": "dist/smooth-ui-core-em.es.js",
+  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env STYLED_ENGINE=emotion BABEL_ENV=rollup rollup -c",
+    "prebuild": "shx rm -rf dist",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "polished": "^2.0.3",
+    "prop-types": "^15.6.2",
+    "react-transition-group": "^2.4.0"
+  },
+  "peerDependencies": {
+    "emotion-theming": "^9.0.0",
+    "react-emotion": "^9.0.0",
+    "react": ">=16.3.0",
+    "react-dom": ">=16.3.0"
+  }
+}
