@@ -23,7 +23,7 @@ const Button = createComponent(() => ({
     z-index: ${th('zIndexControl')};
     border-radius: ${th('borderRadius')};
     font-size: ${th('fontSizeBase')};
-    line-height: ${th('lineHeightBase')};
+    line-height: ${th('btnLineHeight')};
     border-width: ${th('btnBorderWidth')};
     cursor: pointer;
     ${th('transitionBase')};
@@ -35,12 +35,14 @@ const Button = createComponent(() => ({
       padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
       font-size: ${th('fontSizeSm')};
       border-radius: ${th('borderRadiusSm')};
+      line-height: ${th('btnLineHeightSm')};
     }
 
     &.sui-button-lg {
       padding: ${th('btnPaddingYLg')} ${th('btnPaddingXLg')};
       font-size: ${th('fontSizeLg')};
       border-radius: ${th('borderRadiusLg')};
+      line-height: ${th('btnLineHeightLg')};
     }
 
     &:disabled {
