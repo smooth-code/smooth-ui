@@ -5,7 +5,7 @@ const getStyledEnginePlugins = () => {
     case 'emotion':
       return ['babel-plugin-emotion']
     case 'styled-components':
-      return ['babel-plugin-styled-components']
+      return [['babel-plugin-styled-components', { displayName: false }]]
     default:
       return []
   }
