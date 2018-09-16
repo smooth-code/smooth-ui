@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import styled, { css as emotionCss, injectGlobal } from 'react-emotion'
 import {
@@ -8,6 +7,7 @@ import {
   ThemeProvider,
 } from 'emotion-theming'
 
+export default styled
 export { injectGlobal, ThemeProvider }
 
 export const withTheme = Component => {
@@ -77,5 +77,3 @@ export const patchStyledAPI = (StyledComponent, BaseComponent) => {
     return NewStyledComponent
   }
 }
-
-export default styled

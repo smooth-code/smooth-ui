@@ -1,49 +1,30 @@
 {
-  "name": "smooth-ui",
-  "description": "React Components library based on Styled Components",
-  "version": "5.1.1",
-  "keywords": [
-    "styled-components",
-    "ui",
-    "ui-components",
-    "react",
-    "material-ui",
-    "bootstrap"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "sideEffects": false,
-  "main": "dist/smooth-ui.cjs.js",
-  "module": "dist/smooth-ui.es.js",
-  "jsnext:main": "dist/smooth-ui.es.js",
-  "author": "Greg Bergé <berge.greg@gmail.com>",
-  "license": "MIT",
   "scripts": {
-    "build:packages": "cross-env STYLED_ENGINE=emotion yarn build:package && cross-env STYLED_ENGINE=styled-components yarn build:package",
-    "build:package": "yarn build:cp && yarn build:rollup && yarn build:lib",
-    "build:cp": "shx mkdir -p build/$STYLED_ENGINE && shx cp README.md build/$STYLED_ENGINE && node scripts/pkg.js > build/$STYLED_ENGINE/package.json",
-    "build:docs": "docz build && cp _redirects .docz/dist",
-    "build:lib": "cross-env BABEL_ENV=lib babel --out-dir build/$STYLED_ENGINE src",
-    "build:rollup": "cross-env BABEL_ENV=rollup rollup -c",
-    "build:watch": "yarn build:lib --watch",
-    "ci": "yarn lint && yarn test && yarn build:packages && bundlesize",
+    "build": "lerna run build",
+    "build:docs": "yarn build && docz build && cp _redirects .docz/dist",
+    "ci": "yarn lint && yarn test && yarn build && bundlesize",
     "dev": "docz dev",
     "lint": "eslint .",
-    "prebuild": "shx rm -rf build",
-    "release": "standard-version && conventional-github-releaser --preset angular && yarn build:packages",
+    "release": "lerna publish --conventional-commits && conventional-github-releaser --preset angular",
     "test": "jest"
   },
   "bundlesize": [
     {
-      "path": "./build/emotion/dist/smooth-ui.min.js",
+      "path": "./packages/core-em/dist/smooth-ui-core-em.min.js",
       "maxSize": "18 kB"
     },
     {
-      "path": "./build/styled-components/dist/smooth-ui.min.js",
+      "path": "./packages/core-sc/dist/smooth-ui-core-sc.min.js",
       "maxSize": "18 kB"
     }
   ],
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.0.1",
     "@babel/plugin-external-helpers": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
@@ -52,64 +33,51 @@
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.4.2",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-annotate-pure-calls": "^0.3.0",
-    "babel-plugin-emotion": "^9.2.8",
-    "babel-plugin-styled-components": "^1.6.4",
+    "babel-plugin-emotion": "^9.2.9",
+    "babel-plugin-styled-components": "^1.7.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "bundlesize": "^0.17.0",
     "conventional-github-releaser": "^3.1.2",
     "cross-env": "^5.2.0",
-    "docz": "^0.11.1",
-    "emotion": "^9.2.8",
-    "emotion-theming": "^9.2.6",
+    "docz": "^0.11.2",
+    "emotion": "^9.2.9",
+    "emotion-theming": "^9.2.9",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^5.5.0",
+    "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "favicons-webpack-plugin": "^0.0.9",
-    "jest": "^23.5.0",
-    "jest-styled-components": "^6.1.1",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-emotion": "^9.2.8",
-    "react-test-renderer": "^16.5.0",
+    "jest": "^23.6.0",
+    "jest-styled-components": "^6.2.0",
+    "lerna": "^3.4.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-emotion": "^9.2.9",
+    "react-test-renderer": "^16.5.1",
     "remark-external-links": "^3.0.0",
-    "rollup": "^0.65.2",
+    "rollup": "^0.66.0",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^5.0.2",
+    "rollup-plugin-uglify": "^6.0.0",
     "shx": "^0.3.2",
     "standard-version": "^4.4.0",
-    "styled-components": "^3.4.5",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "webpack": "^4.17.2"
+    "styled-components": "^3.4.6",
+    "uglifyjs-webpack-plugin": "^2.0.0",
+    "webpack": "^4.19.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "polished": "^2.0.3",
     "prop-types": "^15.6.2",
     "react-transition-group": "^2.4.0"
-  },
-  "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
-  },
-  "enginePeerDependencies": {
-    "emotion": {
-      "emotion": "^9.0.0",
-      "emotion-theming": "^9.0.0",
-      "react-emotion": "^9.0.0"
-    },
-    "styled-components": {
-      "styled-components": "^3.0.0"
-    }
   }
 }

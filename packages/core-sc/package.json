@@ -1,0 +1,35 @@
+{
+  "name": "@smooth-ui/core-sc",
+  "description": "Modern React UI Library",
+  "version": "5.1.1",
+  "keywords": [
+    "styled-components",
+    "ui",
+    "ui-components",
+    "react",
+    "material-ui",
+    "bootstrap"
+  ],
+  "sideEffects": false,
+  "main": "dist/smooth-ui-core-sc.cjs.js",
+  "module": "dist/smooth-ui-core-sc.es.js",
+  "jsnext:main": "dist/smooth-ui-core-sc.es.js",
+  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env STYLED_ENGINE=styled-components BABEL_ENV=rollup rollup -c",
+    "prebuild": "shx rm -rf dist",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "polished": "^2.0.3",
+    "prop-types": "^15.6.2",
+    "react-transition-group": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0",
+    "react-dom": ">=16.3.0",
+    "styled-components": "^3.0.0"
+  }
+}
