@@ -13,8 +13,8 @@ const Breakpoint = createComponent(() => ({
   `,
   propTypes: {
     children: PropTypes.node,
-    up: PropTypes.oneOf(['xs', 'md', 'lg', 'xl']),
-    down: PropTypes.oneOf(['xs', 'md', 'lg', 'xl']),
+    up: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    down: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   },
 }))
 
