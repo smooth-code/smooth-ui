@@ -54,7 +54,7 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
       format: 'umd',
       globals,
       exports: 'named',
-      sourcemap: true,
+      sourcemap: false,
     },
     external: Object.keys(globals),
     plugins: [...baseConfig.plugins, resolve({ browser: true }), commonjs()],
