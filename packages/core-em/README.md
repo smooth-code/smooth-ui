@@ -11,12 +11,6 @@
 [![Small size][size-badge]][build-min]
 
 ```sh
-npm install @smooth-ui/core-sc styled-components
-```
-
-or
-
-```sh
 npm install @smooth-ui/core-em react-emotion emotion-theming
 ```
 
