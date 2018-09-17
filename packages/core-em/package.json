@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-em",
   "description": "Modern React UI Library",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "keywords": [
     "emotion",
     "react-emotion",
@@ -30,8 +30,8 @@
   },
   "peerDependencies": {
     "emotion-theming": "^9.0.0",
-    "react-emotion": "^9.0.0",
     "react": ">=16.3.0",
-    "react-dom": ">=16.3.0"
+    "react-dom": ">=16.3.0",
+    "react-emotion": "^9.0.0"
   }
 }

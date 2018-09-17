@@ -1,6 +1,26 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="5.1.2"></a>
+## [5.1.2](https://github.com/smooth-code/smooth-ui/compare/v5.1.1...v5.1.2) (2018-09-17)
+
+
+### Bug Fixes
+
+* **Breakpoint:** add missing "sm" breakpoint in PropTypes ([#47](https://github.com/smooth-code/smooth-ui/issues/47)) ([4cbeee0](https://github.com/smooth-code/smooth-ui/commit/4cbeee0))
+* **button:** use theme line-height ([#46](https://github.com/smooth-code/smooth-ui/issues/46)) ([c815158](https://github.com/smooth-code/smooth-ui/commit/c815158))
+* **Grid:** fix Row gutter, default to 8px instead of 16px ([#49](https://github.com/smooth-code/smooth-ui/issues/49)) ([d4fb2cd](https://github.com/smooth-code/smooth-ui/commit/d4fb2cd))
+
+
+### Features
+
+* **Modal:** add persistent option to modal ([#48](https://github.com/smooth-code/smooth-ui/issues/48)) ([eef5b6e](https://github.com/smooth-code/smooth-ui/commit/eef5b6e))
+
+
+
+
 
 <a name="5.1.1"></a>
 ## [5.1.1](https://github.com/smooth-code/smooth-ui/compare/v5.1.0...v5.1.1) (2018-09-08)
