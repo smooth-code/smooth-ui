@@ -16,7 +16,7 @@ import {
   Button,
   Toggler,
 } from '@smooth-ui/core-sc'
-import { ModalDialogExample } from './Modal'
+import { ModalDialogExample, Counter } from './Modal'
 
 # Modal
 
@@ -157,6 +157,54 @@ When modals become too long for the user’s viewport or device, they scroll ind
   </Toggler>
 </Playground>
 
+## Persistent
+
+Set `persistent` to `true` to keep the modal mounted even if closed.
+
+<Playground>
+  <BlockList>
+    <Toggler>
+      {({ toggled, onToggle }) => (
+        <div>
+          <Button variant="primary" onClick={() => onToggle(true)}>
+            Open non-persistent
+          </Button>
+          <Modal persistent={false} opened={toggled} onClose={() => onToggle(false)}>
+            <ModalDialog>
+              <ModalContent>
+                <ModalBody>
+                  Counter is resetted each time you open it <br />
+                  <Counter />
+                </ModalBody>
+              </ModalContent>
+            </ModalDialog>
+          </Modal>
+        </div>
+      )}
+    </Toggler>
+    <Toggler>
+      {({ toggled, onToggle }) => (
+        <div>
+          <Button variant="primary" onClick={() => onToggle(true)}>
+            Open persistent modal (default)
+          </Button>
+          <Modal opened={toggled} onClose={() => onToggle(false)}>
+            <ModalDialog>
+              <ModalContent>
+                <ModalBody>
+                  Counter continue in background <br />
+                  <Counter />
+                </ModalBody>
+              </ModalContent>
+            </ModalDialog>
+          </Modal>
+        </div>
+      )}
+    </Toggler>
+  </BlockList>
+</Playground>
+
+
 ## API
 
 ### Modal
@@ -166,6 +214,7 @@ When modals become too long for the user’s viewport or device, they scroll ind
     children: PropDesc.node,
     onClose: PropDesc.func,
     opened: PropDesc.bool,
+    persistent: PropDesc.bool.defaultTo(true).desc('Set "persistent" to `true` to keep modal mounted when closed'),
     ...getSystemPropDesc(Modal),
   })}
 />

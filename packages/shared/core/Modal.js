@@ -54,6 +54,7 @@ class ModalComponent extends React.Component {
       opened,
       onClose,
       children,
+      persistent,
       ...props
     } = this.props
     if (!this.container) return null
@@ -62,25 +63,35 @@ class ModalComponent extends React.Component {
         timeout={theme ? theme.modalTransitionDuration : 300}
         in={this.props.opened}
       >
-        {transitionState => (
-          <div
-            role="dialog"
-            tabIndex="-1"
-            className={classNames(
-              'sui-modal',
-              {
-                'sui-modal-opened': opened || transitionState === 'exiting',
-                [`sui-modal-transition-${transitionState}`]: transitionState,
-              },
-              className,
-            )}
-            ref={baseRef}
-            {...props}
-          >
-            <div className="sui-modal-backdrop" onClick={onClose} />
-            {children}
-          </div>
-        )}
+        {transitionState => {
+          const visible =
+            opened ||
+            transitionState === 'entered' ||
+            transitionState === 'exiting' ||
+            transitionState === 'entering'
+          const mounted = persistent || visible
+          return (
+            <div
+              role="dialog"
+              tabIndex="-1"
+              className={classNames(
+                'sui-modal',
+                {
+                  'sui-modal-opened': visible,
+                  [`sui-modal-transition-${transitionState}`]: transitionState,
+                },
+                className,
+              )}
+              ref={baseRef}
+              {...props}
+            >
+              {mounted && (
+                <div className="sui-modal-backdrop" onClick={onClose} />
+              )}
+              {mounted && children}
+            </div>
+          )
+        }}
       </Transition>,
       this.container,
     )
@@ -141,7 +152,11 @@ const Modal = createComponent(() => ({
   propTypes: {
     children: PropTypes.node,
     opened: PropTypes.bool,
+    persistent: PropTypes.bool,
     onClose: PropTypes.func,
+  },
+  defaultProps: {
+    persistent: true,
   },
 }))
 

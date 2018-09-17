@@ -6,6 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "build:docs": "yarn build && docz build && cp _redirects .docz/dist",
+    "build:watch": "WATCH_MODE=true lerna run --parallel build -- --watch",
     "ci": "yarn lint && yarn test && yarn build && bundlesize",
     "dev": "docz dev",
     "lint": "eslint .",

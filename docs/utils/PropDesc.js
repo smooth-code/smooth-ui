@@ -8,7 +8,8 @@ const createType = typeDesc => {
     },
     defaultTo: {
       get() {
-        return value => createType({ ...typeDesc, defaultValue: { value } })
+        return value =>
+          createType({ ...typeDesc, defaultValue: { value: String(value) } })
       },
     },
     desc: {
