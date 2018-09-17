@@ -79,5 +79,9 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
     ],
   })
 
+  if (process.env.WATCH_MODE) {
+    return [esConfig]
+  }
+
   return [esConfig, cjsConfig, umdConfig, minConfig]
 }
