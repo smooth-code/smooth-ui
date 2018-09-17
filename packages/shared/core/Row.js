@@ -28,9 +28,6 @@ const Row = createComponent(() => ({
     children: PropTypes.node,
     gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   },
-  defaultProps: {
-    gutter: 15,
-  },
 }))
 
 export default Row

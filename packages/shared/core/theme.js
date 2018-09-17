@@ -209,7 +209,7 @@ export const controlFocusBoxShadow = p => color =>
 // Grid
 
 export const gridColumns = 12
-export const gridGutter = 16
+export const gridGutter = 8
 
 export const gridMaxWidths = {
   sm: '540px',
