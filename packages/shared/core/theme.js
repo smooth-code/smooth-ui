@@ -42,14 +42,14 @@ export const green = '#28a745'
 export const teal = '#20c997'
 export const cyan = '#17a2b8'
 
-export const primary = brick
-export const secondary = gray600
-export const success = green
-export const info = cyan
-export const warning = yellow
-export const danger = red
-export const light = gray100
-export const dark = gray800
+export const primary = th('brick')
+export const secondary = th('gray600')
+export const success = th('green')
+export const info = th('cyan')
+export const warning = th('yellow')
+export const danger = th('red')
+export const light = th('gray100')
+export const dark = th('gray800')
 
 export const primaryLight = th('primary', c => lighten(0.3, c))
 export const secondaryLight = th('secondary', c => lighten(0.3, c))
