@@ -21,6 +21,9 @@
     "prebuild": "shx rm -rf dist",
     "prepublishOnly": "yarn build"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "classnames": "^2.2.6",
     "polished": "^2.0.3",

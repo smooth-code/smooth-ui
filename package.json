@@ -10,7 +10,7 @@
     "ci": "yarn lint && yarn test && yarn build && bundlesize",
     "dev": "docz dev",
     "lint": "eslint .",
-    "release": "lerna publish --force-publish $(conventional-recommended-bump --preset angular) && conventional-github-releaser --preset angular",
+    "release": "lerna publish --conventional-commits --force-publish=* && conventional-github-releaser --preset angular",
     "test": "jest"
   },
   "bundlesize": [
