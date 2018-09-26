@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.3"></a>
+## [5.1.3](https://github.com/smooth-code/smooth-ui/compare/v5.1.2...v5.1.3) (2018-09-26)
+
+
+### Bug Fixes
+
+* **theme:** Use th() instead of const color ([#50](https://github.com/smooth-code/smooth-ui/issues/50)) ([bdb1f0d](https://github.com/smooth-code/smooth-ui/commit/bdb1f0d))
+
+
+
+
+
 <a name="5.1.2"></a>
 ## [5.1.2](https://github.com/smooth-code/smooth-ui/compare/v5.1.1...v5.1.2) (2018-09-17)
 
