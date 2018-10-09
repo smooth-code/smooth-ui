@@ -37,7 +37,7 @@ Even if it is not required, is recommended to apply a global normalize before us
 import { injectGlobal } from 'styled-components'
 import { globalStyle } from '@smooth-ui/core-sc'
 
-injectGlobal`${globalStyle}`
+injectGlobal`${globalStyle()}`
 ```
 
 If you don't want to use a global normalize, at least add `* { box-sizing: border-box; }`.
