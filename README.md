@@ -40,5 +40,5 @@ See [LICENSE](./LICENSE) for more information.
 [package]: https://www.npmjs.com/package/@smooth-ui/core-sc
 [license-badge]: https://img.shields.io/npm/l/@smooth-ui/core-sc.svg?style=flat-square
 [license]: https://github.com/smooth-code/smooth-ui/blob/master/LICENSE
-[size-badge]: https://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js?compression=gzip&style=flat-square
+[size-badge]: https://img.badgesize.io/https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui-core-sc.min.js?compression=gzip&style=flat-square
 [build-min]: https://unpkg.com/@smooth-ui/core-sc/dist/smooth-ui.min.js
