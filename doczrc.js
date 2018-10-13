@@ -19,6 +19,14 @@ export default {
   mdPlugins: [externalLinks.default],
   modifyBundlerConfig,
   wrapper: 'docs/config/Wrapper.js',
+  menu: [
+    'Home',
+    'Getting Started',
+    'Basics',
+    'Advanced',
+    'Components',
+    'Utilities',
+  ],
   themeConfig: {
     repository: 'https://github.com/smooth-code/smooth-ui',
     colors: {
