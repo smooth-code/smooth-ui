@@ -26,9 +26,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "polished": "^2.0.3",
+    "polished": "^2.2.0",
     "prop-types": "^15.6.2",
-    "react-transition-group": "^2.4.0"
+    "react-transition-group": "^2.5.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
