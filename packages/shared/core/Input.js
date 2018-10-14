@@ -1,32 +1,74 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { css } from './styled-engine'
 import { th, mixin } from './utils/system'
 import createComponent from './utils/createComponent'
 
+const sizeStyle = {
+  sm: css`
+    padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
+    font-size: ${th('fontSizeSm')};
+    border-radius: ${th('borderRadiusSm')};
+  `,
+  md: css`
+    padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
+    font-size: ${th('fontSizeBase')};
+    border-radius: ${th('borderRadius')};
+  `,
+  lg: css`
+    padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
+    font-size: ${th('fontSizeLg')};
+    border-radius: ${th('borderRadiusLg')};
+  `,
+}
+
+const validStyle = css`
+  border-color: ${th('success')};
+
+  &:focus {
+    border-color: ${th('success')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
+  }
+`
+
+const invalidStyle = css`
+  border-color: ${th('danger')};
+
+  &:focus {
+    border-color: ${th('danger')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
+  }
+`
+
+const controlStyle = css`
+  display: block;
+  width: 100%;
+
+  &:focus {
+    border-color: ${th('controlFocusBorderColor')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
+  }
+
+  ${p => {
+    switch (p.valid) {
+      case true:
+        return validStyle
+      case false:
+        return invalidStyle
+      default:
+        return null
+    }
+  }};
+`
+
 const Input = createComponent(() => ({
   name: 'input',
   defaultComponent: 'input',
-  render: ({ Component, className, control, size, valid, ...props }) => (
-    <Component
-      {...props}
-      className={classNames(className, {
-        'sui-control': control,
-        'sui-is-valid': valid === true,
-        'sui-is-invalid': valid === false,
-        [`sui-input-${size}`]: size,
-      })}
-    />
-  ),
+  omitProps: ['control', 'size', 'valid'],
   style: css`
     display: inline-block;
     border-width: ${th('inputBorderWidth')};
     border-color: ${th('inputBorderColor')};
     border-style: solid;
-    border-radius: ${th('borderRadius')};
-    padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
-    font-size: ${th('fontSizeBase')};
     line-height: ${th('inputLineHeight')};
     color: ${th('inputTextColor')};
     ${th('transitionBase')};
@@ -44,55 +86,21 @@ const Input = createComponent(() => ({
       ${mixin('controlFocus')};
     }
 
-    &[disabled] {
+    &:disabled {
       background-color: ${th('inputDisabledBgColor')};
       color: ${th('inputDisabledText')};
     }
 
-    &.sui-input-sm {
-      padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
-      font-size: ${th('fontSizeSm')};
-      border-radius: ${th('borderRadiusSm')};
-    }
-
-    &.sui-input-lg {
-      padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
-      font-size: ${th('fontSizeLg')};
-      border-radius: ${th('borderRadiusLg')};
-    }
-
-    &.sui-control {
-      display: block;
-      width: 100%;
-
-      &:focus {
-        border-color: ${th('controlFocusBorderColor')};
-        box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
-      }
-
-      &.sui-is-valid {
-        border-color: ${th('success')};
-
-        &:focus {
-          border-color: ${th('success')};
-          box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
-        }
-      }
-
-      &.sui-is-invalid {
-        border-color: ${th('danger')};
-
-        &:focus {
-          border-color: ${th('danger')};
-          box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
-        }
-      }
-    }
+    ${p => p.size && sizeStyle[p.size]};
+    ${p => p.control && controlStyle};
   `,
   propTypes: {
     control: PropTypes.bool,
-    size: PropTypes.oneOf(['sm', 'lg']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     valid: PropTypes.bool,
+  },
+  defaultProps: {
+    size: 'md',
   },
 }))
 

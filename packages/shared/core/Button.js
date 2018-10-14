@@ -1,22 +1,33 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { css } from './styled-engine'
 import { th, mixin } from './utils/system'
 import createComponent from './utils/createComponent'
 
+const sizeStyle = {
+  sm: css`
+    padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
+    font-size: ${th('fontSizeSm')};
+    border-radius: ${th('borderRadiusSm')};
+    line-height: ${th('btnLineHeightSm')};
+  `,
+  md: css`
+    padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
+    font-size: ${th('fontSizeBase')};
+    border-radius: ${th('borderRadius')};
+    line-height: ${th('btnLineHeight')};
+  `,
+  lg: css`
+    padding: ${th('btnPaddingYLg')} ${th('btnPaddingXLg')};
+    font-size: ${th('fontSizeLg')};
+    border-radius: ${th('borderRadiusLg')};
+    line-height: ${th('btnLineHeightLg')};
+  `,
+}
+
 const Button = createComponent(() => ({
   name: 'button',
   defaultComponent: 'button',
-  render: ({ className, Component, size, variant, ...props }) => (
-    <Component
-      {...props}
-      className={classNames(className, {
-        [`sui-button-${size}`]: size,
-        [`sui-button-${variant}`]: variant,
-      })}
-    />
-  ),
+  omitProps: ['size', 'variant'],
   style: css`
     display: inline-block;
     padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
@@ -26,46 +37,27 @@ const Button = createComponent(() => ({
     line-height: ${th('btnLineHeight')};
     border-width: ${th('btnBorderWidth')};
     cursor: pointer;
+
     ${th('transitionBase')};
 
     /* When used as link */
     text-decoration: none;
 
-    &.sui-button-sm {
-      padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
-      font-size: ${th('fontSizeSm')};
-      border-radius: ${th('borderRadiusSm')};
-      line-height: ${th('btnLineHeightSm')};
-    }
-
-    &.sui-button-lg {
-      padding: ${th('btnPaddingYLg')} ${th('btnPaddingXLg')};
-      font-size: ${th('fontSizeLg')};
-      border-radius: ${th('borderRadiusLg')};
-      line-height: ${th('btnLineHeightLg')};
-    }
-
     &:disabled {
       opacity: ${th('btnDisabledOpacity')};
     }
 
-    ${th('btnVariants', variants =>
-      variants.map(
-        variant => css`
-          &.sui-button-${variant} {
-            ${mixin('btnVariant', variant)};
-          }
-        `,
-      ),
-    )};
+    ${p => p.size && sizeStyle[p.size]};
+    ${p => p.variant && mixin('btnVariant', p.variant)(p)};
   `,
   propTypes: {
     children: PropTypes.node,
     disabled: PropTypes.bool,
-    size: PropTypes.oneOf(['sm', 'lg']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     variant: PropTypes.string,
   },
   defaultProps: {
+    size: 'md',
     variant: 'primary',
   },
 }))

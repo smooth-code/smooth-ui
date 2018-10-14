@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from './styled-engine'
 import { px, prop } from './utils/system'
 import createComponent from './utils/createComponent'
 
@@ -16,13 +17,13 @@ const Row = createComponent(() => ({
   }) => <Component className={className} {...props} />,
   style: p => {
     const gutter = px(prop('gutter', 'gridGutter')(p))
-    return {
-      flexGrow: 1,
-      flexWrap: 'wrap',
-      display: 'flex',
-      marginLeft: `-${gutter}`,
-      marginRight: `-${gutter}`,
-    }
+    return css`
+      flex-grow: 1;
+      flex-wrap: wrap;
+      display: flex;
+      margin-left: -${gutter};
+      margin-right: -${gutter};
+    `
   },
   propTypes: {
     children: PropTypes.node,

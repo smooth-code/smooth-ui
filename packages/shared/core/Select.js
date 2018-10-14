@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { css } from './styled-engine'
 import { th, mixin } from './utils/system'
 import createComponent from './utils/createComponent'
@@ -15,6 +14,96 @@ const renderOption = option => {
   )
 }
 
+const sizeStyle = {
+  sm: css`
+    select {
+      padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
+      font-size: ${th('fontSizeSm')};
+      border-radius: ${th('borderRadiusSm')};
+      ${p => p.arrow && !p.multiple && 'padding-right: 1.225rem;'};
+    }
+
+    .sui-select-arrow {
+      right: 0.35rem;
+      width: 0.525rem;
+    }
+  `,
+  md: css`
+    select {
+      padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
+      font-size: ${th('fontSizeBase')};
+      ${p => p.arrow && !p.multiple && 'padding-right: 1.6rem;'};
+      border-radius: ${th('borderRadius')};
+    }
+
+    .sui-select-arrow {
+      right: 0.5rem;
+      width: 0.6rem;
+    }
+  `,
+  lg: css`
+    select {
+      padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
+      font-size: ${th('fontSizeLg')};
+      border-radius: ${th('borderRadiusLg')};
+      ${p => p.arrow && !p.multiple && 'padding-right: 2rem;'};
+    }
+
+    .sui-select-arrow {
+      right: 0.625rem;
+      width: 0.75rem;
+    }
+  `,
+}
+
+const validStyle = css`
+  select {
+    border-color: ${th('success')};
+
+    &:focus {
+      border-color: ${th('success')};
+      box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
+    }
+  }
+`
+
+const invalidStyle = css`
+  select {
+    border-color: ${th('danger')};
+
+    &:focus {
+      border-color: ${th('danger')};
+      box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
+    }
+  }
+`
+
+const controlStyle = css`
+  display: block;
+  width: 100%;
+
+  select {
+    display: block;
+    width: 100%;
+
+    &:focus {
+      border-color: ${th('controlFocusBorderColor')};
+      box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
+    }
+  }
+
+  ${p => {
+    switch (p.valid) {
+      case true:
+        return validStyle
+      case false:
+        return invalidStyle
+      default:
+        return null
+    }
+  }};
+`
+
 const Select = createComponent(() => ({
   name: 'select',
   render: ({
@@ -27,14 +116,7 @@ const Select = createComponent(() => ({
     valid,
     ...props
   }) => (
-    <Component
-      className={classNames(className, {
-        'sui-control': control,
-        'sui-is-valid': valid === true,
-        'sui-is-invalid': valid === false,
-        [`sui-select-${size}`]: size,
-      })}
-    >
+    <Component className={className}>
       {arrow && !props.multiple ? (
         <svg className="sui-select-arrow" viewBox="0 0 10 5">
           <g fill="none" fillRule="evenodd">
@@ -63,6 +145,7 @@ const Select = createComponent(() => ({
 
     select {
       /* Disable appearance */
+      appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
       -webkit-border-radius: 0;
@@ -71,19 +154,15 @@ const Select = createComponent(() => ({
       border-width: ${th('inputBorderWidth')};
       border-color: ${th('inputBorderColor')};
       border-style: solid;
-      border-radius: ${th('borderRadius')};
-      padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
-      font-size: ${th('fontSizeBase')};
       line-height: ${th('lineHeightBase')};
       ${th('transitionBase')};
       color: ${th('inputTextColor')};
-      ${props => props.arrow && !props.multiple && 'padding-right: 1.6rem;'};
 
       &:focus {
         ${mixin('controlFocus')};
       }
 
-      &[disabled] {
+      &:disabled {
         background-color: ${th('inputDisabledBgColor')};
         color: ${th('inputDisabledText')};
       }
@@ -92,88 +171,23 @@ const Select = createComponent(() => ({
     .sui-select-arrow {
       position: absolute;
       top: 50%;
-      right: 0.5rem;
-      width: 0.6rem;
       pointer-events: none;
     }
 
-    &.sui-select-sm {
-      select {
-        padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
-        font-size: ${th('fontSizeSm')};
-        border-radius: ${th('borderRadiusSm')};
-        ${props =>
-          props.arrow && !props.multiple && 'padding-right: 1.225rem;'};
-      }
-
-      .sui-select-arrow {
-        right: 0.35rem;
-        width: 0.525rem;
-      }
-    }
-
-    &.sui-select-lg {
-      select {
-        padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
-        font-size: ${th('fontSizeLg')};
-        border-radius: ${th('borderRadiusLg')};
-        ${props => props.arrow && !props.multiple && 'padding-right: 2rem;'};
-      }
-
-      .sui-select-arrow {
-        right: 0.625rem;
-        width: 0.75rem;
-      }
-    }
-
-    &.sui-control {
-      display: block;
-      width: 100%;
-    }
-
-    &.sui-control {
-      display: block;
-      width: 100%;
-
-      select {
-        display: block;
-        width: 100%;
-
-        &:focus {
-          border-color: ${th('controlFocusBorderColor')};
-          box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
-        }
-      }
-
-      &.sui-is-valid select {
-        border-color: ${th('success')};
-
-        &:focus {
-          border-color: ${th('success')};
-          box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
-        }
-      }
-
-      &.sui-is-invalid select {
-        border-color: ${th('danger')};
-
-        &:focus {
-          border-color: ${th('danger')};
-          box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
-        }
-      }
-    }
+    ${p => p.size && sizeStyle[p.size]};
+    ${p => p.control && controlStyle};
   `,
   propTypes: {
     arrow: PropTypes.bool,
     control: PropTypes.bool,
     options: PropTypes.array,
-    size: PropTypes.oneOf(['sm', 'lg']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     valid: PropTypes.bool,
     children: PropTypes.node,
   },
   defaultProps: {
     arrow: true,
+    size: 'md',
   },
 }))
 

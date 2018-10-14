@@ -14,7 +14,7 @@ Toggler is a render-props component that provide a toggle behaviour.
 <Playground>
   <Toggler>
     {({ toggled, onToggle }) => (
-      <Button variant="primary" onClick={onToggle}>
+      <Button onClick={onToggle}>
         {toggled ? 'ON' : 'OFF'}
       </Button>
     )}
@@ -29,10 +29,10 @@ Toggler is a render-props component that provide a toggle behaviour.
       <div className="block-list">
         <div>{toggled ? '🌞' : '🌛'}</div>
         <div>
-          <Button variant="primary" size="sm" onClick={() => onToggle(false)}>
+          <Button size="sm" onClick={() => onToggle(false)}>
             Night
           </Button>{' '}
-          <Button variant="primary" size="sm" onClick={() => onToggle(true)}>
+          <Button size="sm" onClick={() => onToggle(true)}>
             Day
           </Button>
         </div>
@@ -48,7 +48,7 @@ You can define the default `toggled` value using `defaultToggled` property.
 <Playground>
   <Toggler defaultToggled>
     {({ toggled, onToggle }) => (
-      <Button variant="primary" onClick={onToggle}>
+      <Button onClick={onToggle}>
         {toggled ? 'ON' : 'OFF'}
       </Button>
     )}
@@ -62,7 +62,7 @@ You can listen when the element is toggled using `onToggle` property.
 <Playground>
   <Toggler onToggle={toggled => console.log('Toggled', toggled)}>
     {({ toggled, onToggle }) => (
-      <Button variant="primary" onClick={onToggle}>
+      <Button onClick={onToggle}>
         {toggled ? 'ON' : 'OFF'}
       </Button>
     )}

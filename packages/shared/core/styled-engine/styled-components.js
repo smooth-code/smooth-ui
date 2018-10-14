@@ -15,7 +15,7 @@ export const patchStyledAPI = (StyledComponent, BaseComponent) => {
     get() {
       return (...args) => {
         const NewStyledComponent = styled(StyledComponent)`
-          &&& {
+          && {
             ${css(...args)};
           }
         `

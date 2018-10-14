@@ -24,21 +24,21 @@ Set variants using `variant` prop.
     <Button variant="info">Info</Button>
     <Button variant="light">Light</Button>
     <Button variant="dark">Dark</Button>
-    <Button variant={null}>No variant</Button>
+    <Button>No variant</Button>
   </BlockList>
 </Playground>
 
 ## Sizes
 
-Set sizes using `size` prop like `"sm"` or `"lg"`.
+Set sizes using `size` prop like `"sm"`, `"md"` or `"lg"`.
 
 <Playground>
   <BlockList>
-    <Button variant="primary" size="sm">
+    <Button size="sm">
       Small
     </Button>
-    <Button variant="primary">Medium</Button>
-    <Button variant="primary" size="lg">
+    <Button size="md">Medium</Button>
+    <Button size="lg">
       Large
     </Button>
   </BlockList>
@@ -64,7 +64,7 @@ Disable using `disabled` prop.
     children: PropDesc.node,
     disabled: PropDesc.bool,
     size: PropDesc.oneOf(['sm', 'lg']),
-    variant: PropDesc.oneOf(themeProp('btnVariants')).defaultTo('primary'),
+    variant: PropDesc.oneOf(themeProp('colorVariants')).defaultTo('primary'),
     ...getSystemPropDesc(Button),
   })}
 />

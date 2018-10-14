@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
-import classNames from 'classnames'
 import { css, withTheme } from './styled-engine'
 import { th, mixin } from './utils/system'
 import Transition from './Transition'
@@ -48,7 +47,7 @@ class ModalComponent extends React.Component {
 
   render() {
     const {
-      className,
+      className: propClassName,
       baseRef,
       theme,
       opened,
@@ -70,18 +69,16 @@ class ModalComponent extends React.Component {
             transitionState === 'exiting' ||
             transitionState === 'entering'
           const mounted = persistent || visible
+          let className = 'sui-modal'
+          if (visible) className += ' sui-modal-opened'
+          if (transitionState)
+            className += ` sui-modal-transition-${transitionState}`
+          if (propClassName) className += ` ${propClassName}`
           return (
             <div
               role="dialog"
               tabIndex="-1"
-              className={classNames(
-                'sui-modal',
-                {
-                  'sui-modal-opened': visible,
-                  [`sui-modal-transition-${transitionState}`]: transitionState,
-                },
-                className,
-              )}
+              className={className}
               ref={baseRef}
               {...props}
             >
