@@ -34,7 +34,7 @@ Licensed under the MIT License, Copyright © 2018-present Smooth Code.
 
 See [LICENSE](./LICENSE) for more information.
 
-[build-badge]: https://img.shields.io/travis/smooth-code/smooth-ui.svg?style=flat-square
+[build-badge]: https://img.shields.io/travis/smooth-code/smooth-ui/master.svg?style=flat-square
 [build]: https://travis-ci.org/smooth-code/smooth-ui
 [version-badge]: https://img.shields.io/npm/v/@smooth-ui/core-sc.svg?style=flat-square
 [package]: https://www.npmjs.com/package/@smooth-ui/core-sc
