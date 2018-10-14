@@ -1,7 +1,6 @@
 /* eslint-disable react/forbid-foreign-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import styled, { patchStyledAPI, withTheme } from '../styled-engine'
 import * as theme from '../theme'
 import { omit } from './misc'
@@ -17,7 +16,7 @@ function createComponent(getConfig) {
     render = ({ Component, ...props }) => <Component {...props} />,
     defaultComponent = 'div',
     system = allSystem,
-    applySystem = system => props => ({ '&&&&': system(props) }),
+    applySystem = system => props => system(props),
     injectTheme,
     InnerComponent: InnerComponentFromConfig,
   } = getConfig()
@@ -28,6 +27,7 @@ function createComponent(getConfig) {
     ...omitProps,
   ]
 
+  const baseClassName = `sui-${name}`
   let InnerComponent =
     InnerComponentFromConfig ||
     class Component extends React.PureComponent {
@@ -53,7 +53,9 @@ function createComponent(getConfig) {
         const renderProps = {
           ref: baseRef,
           Component,
-          className: classNames(`sui-${name}`, className),
+          className: className
+            ? `${baseClassName} ${className}`
+            : baseClassName,
           ...omit(props, omittedProps),
         }
 

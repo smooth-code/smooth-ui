@@ -31,7 +31,7 @@ Set variants using `variant` prop.
 <PropsTable
   of={PropDesc({
     children: PropDesc.node,
-    variant: PropDesc.oneOf(themeProp('alertVariants')).defaultTo('primary'),
+    variant: PropDesc.oneOf(themeProp('colorVariants')).defaultTo('primary'),
     ...getSystemPropDesc(Alert),
   })}
 />

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { css } from './styled-engine'
 import { th, mixin } from './utils/system'
 import {
@@ -15,6 +14,45 @@ import {
 import composeStyles from './utils/composeStyles'
 import SwitchState from './SwitchState'
 import createComponent from './utils/createComponent'
+
+const sizeStyle = {
+  sm: css`
+    .sui-checkbox-content {
+      border-radius: ${th('borderRadiusSm')};
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    .sui-checkbox-check {
+      width: 8px;
+      height: 8px;
+    }
+  `,
+  md: css`
+    .sui-checkbox-content {
+      border-radius: ${th('borderRadius')};
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .sui-checkbox-check {
+      width: 10px;
+      height: 10px;
+    }
+  `,
+  lg: css`
+    .sui-checkbox-content {
+      border-radius: ${th('borderRadiusLg')};
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .sui-checkbox-check {
+      width: 12px;
+      height: 12px;
+    }
+  `,
+}
 
 const containerSystem = composeStyles(
   basics,
@@ -32,26 +70,14 @@ const Checkbox = createComponent(() => ({
   applySystem: null,
   render: ({ Component, ref, className, size, ...props }) => (
     <SwitchState {...props}>
-      {({ checked, focused, disabled, input }) => (
-        <Component
-          className={classNames(className, {
-            'sui-checkbox-disabled': props.disabled,
-            [`sui-checkbox-${size}`]: size,
-          })}
-        >
+      {({ input }) => (
+        <Component className={className}>
           <input ref={ref} type="checkbox" {...input} />
-          <div
-            className={classNames('sui-checkbox-content', {
-              checked,
-              focused,
-              disabled,
-            })}
-          >
-            <svg viewBox="0 0 10 8">
+          <div className="sui-checkbox-content">
+            <svg className="sui-checkbox-check" viewBox="0 0 512 512">
               <path
-                d="M3.7 7.3L.3 4l1-.8 2.4 2.3 5-4.8 1 1"
-                fill="#fff"
-                fillRule="evenodd"
+                fill="currentColor"
+                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
               />
             </svg>
           </div>
@@ -68,6 +94,14 @@ const Checkbox = createComponent(() => ({
     height: 1.5rem;
     z-index: ${th('zIndexControl')};
 
+    .sui-checkbox-check {
+      pointer-events: none;
+      transform: scale(0);
+      transform-origin: center;
+      color: ${th('white')};
+      ${th('transitionBase')};
+    }
+
     .sui-checkbox-content {
       display: flex;
       align-items: center;
@@ -80,62 +114,42 @@ const Checkbox = createComponent(() => ({
       border-width: ${th('inputBorderWidth')};
       border-color: ${th('inputBorderColor')};
       ${th('transitionBase')};
+    }
 
-      &.checked {
-        background-color: ${th('primary')};
-        border-color: transparent;
+    input:checked + .sui-checkbox-content {
+      background-color: ${th('primary')};
+      border-color: transparent;
 
-        svg {
-          transform: scale(1);
-        }
-      }
-
-      &.focused {
-        ${mixin('controlFocus')};
-      }
-
-      &.disabled {
-        background-color: ${th('inputDisabledBgColor')};
+      svg {
+        transform: scale(1);
       }
     }
 
-    svg {
-      width: 80%;
-      pointer-events: none;
-      transform: scale(0);
-      ${th('transitionBase')};
+    input:focused + .sui-checkbox-content {
+      ${mixin('controlFocus')};
     }
 
-    &.sui-checkbox-sm {
-      .sui-checkbox-content {
-        border-radius: ${th('borderRadiusSm')};
-        width: 0.875rem;
-        height: 0.875rem;
-      }
+    input:disabled + .sui-checkbox-content {
+      background-color: ${th('inputDisabledBgColor')};
     }
 
-    &.sui-checkbox-lg {
-      .sui-checkbox-content {
-        border-radius: ${th('borderRadiusLg')};
-        width: 1.25rem;
-        height: 1.25rem;
-      }
-    }
+    ${p => sizeStyle[p.size]};
 
-    &&& {
-      ${containerSystem};
+    ${containerSystem};
 
-      .sui-checkbox-content {
-        ${contentSystem};
-      }
+    .sui-checkbox-content {
+      ${contentSystem};
     }
   `,
   propTypes: {
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    size: PropTypes.oneOf(['sm', 'lg']),
+    size: PropTypes.oneOf(['sm', 'md', 'lg']),
     value: PropTypes.string,
+  },
+  defaultProps: {
+    size: 'md',
   },
 }))
 

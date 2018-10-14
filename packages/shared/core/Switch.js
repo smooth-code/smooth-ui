@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { css } from './styled-engine'
 import { system } from './utils/styles'
 import { th, mixin } from './utils/system'
@@ -21,26 +20,16 @@ const Switch = createComponent(() => ({
     ...props
   }) => (
     <SwitchState {...props}>
-      {({ checked, focused, disabled, input }) => (
-        <Component
-          className={classNames(className, {
-            'sui-switch-disabled': disabled,
-          })}
-        >
+      {({ input }) => (
+        <Component className={className}>
           <input ref={ref} type="checkbox" {...input} />
-          <div
-            className={classNames('sui-switch-wrapper', {
-              checked,
-              focused,
-              disabled,
-            })}
-          >
+          <div className="sui-switch-wrapper">
             <div className="sui-switch-content">
-              <span className="sui-switch-label on">
+              <span className="sui-switch-label sui-switch-label-on">
                 {labeled ? onLabel : ''}
               </span>
               <div className="sui-switch-ball" />
-              <span className="sui-switch-label off">
+              <span className="sui-switch-label sui-switch-label-off">
                 {labeled ? offLabel : ''}
               </span>
             </div>
@@ -68,27 +57,27 @@ const Switch = createComponent(() => ({
       ${th('transitionBase')};
       font-size: 9px;
       font-weight: 800;
+    }
 
-      &.focused {
-        ${mixin('controlFocus')};
+    input:focused + .sui-switch-wrapper {
+      ${mixin('controlFocus')};
+    }
+
+    input:checked + .sui-switch-wrapper {
+      background-color: ${th('primaryLight')};
+      border-color: transparent;
+
+      .sui-switch-content {
+        transform: translateX(0);
       }
 
-      &.checked {
-        .sui-switch-content {
-          transform: translateX(0);
-        }
-
-        background-color: ${th('primaryLight')};
-        border-color: transparent;
-
-        .sui-switch-ball {
-          background-color: ${th('primary')};
-        }
+      .sui-switch-ball {
+        background-color: ${th('primary')};
       }
+    }
 
-      &.disabled {
-        opacity: 0.5;
-      }
+    input:disabled + .sui-switch-wrapper {
+      opacity: 0.5;
     }
 
     .sui-switch-ball {
@@ -114,16 +103,16 @@ const Switch = createComponent(() => ({
       text-align: center;
       user-select: none;
 
-      &.on {
+      &.sui-switch-label-on {
         color: ${th('primary')};
       }
 
-      &.off {
+      &.sui-switch-label-off {
         color: ${th('gray900')};
       }
     }
 
-    &&& .sui-switch-wrapper {
+    .sui-switch-wrapper {
       ${system};
     }
   `,

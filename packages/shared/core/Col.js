@@ -1,143 +1,104 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { mediaMinWidth } from './utils/breakpoints'
-import { is } from './utils/misc'
 import { prop, px } from './utils/system'
 import createComponent from './utils/createComponent'
 
-function getBreakPointStyle(breakpoint, width, gridSizes) {
-  const common = {
-    position: 'relative',
-    width: '100%',
-    minHeight: '1px',
-  }
+const common = {
+  position: 'relative',
+  width: '100%',
+  minHeight: '1px',
+}
 
+function isValidSize(size) {
+  return size || size === 0
+}
+
+function getSizeWidth(size, nbColumns) {
+  return `${Math.round((size / nbColumns) * 10 ** 6) / 10 ** 4}%`
+}
+
+function getOffsetStyle(offsetSize, nbColumns) {
+  if (isValidSize(offsetSize)) {
+    const marginLeft = getSizeWidth(offsetSize, nbColumns)
+    return { marginLeft }
+  }
+  return null
+}
+
+function getBreakPointStyle(breakpoint, width, props) {
+  const size = props[breakpoint]
+  if (!isValidSize(size)) return null
+
+  const nbColumns = props.theme.gridColumns
   const mediaQuery = mediaMinWidth(width)
   const media = style => (width === 0 ? style : { [mediaQuery]: style })
 
-  const grow = {
-    [`&.sui-col-${breakpoint}`]: {
+  if (size === true) {
+    return {
       ...common,
       ...media({
         flexBasis: 0,
         flexGrow: 1,
         maxWidth: '100%',
       }),
-    },
+    }
   }
 
-  const sizes = gridSizes.reduce((obj, size) => {
-    const auto = size === 'auto'
-    const width = auto
-      ? 'auto'
-      : `${Math.round((size / 12) * 10 ** 6) / 10 ** 4}%`
-
-    if (size) {
-      Object.assign(obj, {
-        [`&.sui-col-${breakpoint}-${size}`]: {
-          ...common,
-          ...media({
-            flex: `0 0 ${width}`,
-            maxWidth: auto ? 'none' : width,
-            ...(auto ? { width: 'auto' } : null),
-          }),
-        },
-      })
+  if (size === 'auto') {
+    return {
+      ...common,
+      ...media({
+        flex: `0 0 auto`,
+        maxWidth: 'none',
+        width: 'auto',
+      }),
     }
+  }
 
-    if (size !== 'auto') {
-      Object.assign(obj, {
-        [`&.sui-col-o${breakpoint}-${size}`]: {
-          ...common,
-          ...media({
-            marginLeft: width,
-          }),
-        },
-      })
-    }
-
-    return obj
-  }, {})
+  const sizeWidth = getSizeWidth(size, nbColumns)
 
   return {
-    ...grow,
-    ...sizes,
+    ...common,
+    ...media({
+      flex: `0 0 ${sizeWidth}`,
+      maxWidth: sizeWidth,
+      ...getOffsetStyle(props[`o${breakpoint}`], nbColumns),
+    }),
   }
 }
 
-const getStyleFromTheme = theme => {
-  const gridSizes = [
-    true,
-    0,
-    'auto',
-    ...Array.from({ length: theme.gridColumns }, (_, index) => index + 1),
-  ]
-  return {
+const getStyleFromProps = props => {
+  const gutter = px(prop('gutter', 'gridGutter')(props))
+  const breakpointsKeys = Object.keys(props.theme.breakpoints)
+  const style = {
+    paddingLeft: gutter,
+    paddingRight: gutter,
     flexBasis: 0,
     flexGrow: 1,
     maxWidth: '100%',
-    ...Object.keys(theme.breakpoints).reduce(
-      (obj, breakpoint) =>
-        Object.assign(
-          obj,
-          getBreakPointStyle(
-            breakpoint,
-            theme.breakpoints[breakpoint],
-            gridSizes,
-          ),
-        ),
-      {},
-    ),
   }
+
+  let index = -1
+  // eslint-disable-next-line no-plusplus
+  while (++index < breakpointsKeys.length) {
+    const breakpoint = breakpointsKeys[index]
+    Object.assign(
+      style,
+      getBreakPointStyle(
+        breakpoint,
+        props.theme.breakpoints[breakpoint],
+        props,
+      ),
+    )
+  }
+
+  return style
 }
 
 const Col = createComponent(() => ({
   name: 'col',
-  render: ({
-    Component,
-    className,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    oxs,
-    osm,
-    omd,
-    olg,
-    oxl,
-    ...props
-  }) => (
-    <Component
-      className={classNames(className, {
-        'sui-col-xs': xs === true,
-        [`sui-col-xs-${String(xs)}`]: xs && xs !== true,
-        'sui-col-sm': sm === true,
-        [`sui-col-sm-${String(sm)}`]: sm && sm !== true,
-        'sui-col-md': md === true,
-        [`sui-col-md-${String(md)}`]: md && md !== true,
-        'sui-col-lg': lg === true,
-        [`sui-col-lg-${String(lg)}`]: lg && lg !== true,
-        'sui-col-xl': xl === true,
-        [`sui-col-xl-${String(xl)}`]: xl && xl !== true,
-        [`sui-col-oxs-${String(oxs)}`]: is(oxs),
-        [`sui-col-osm-${String(osm)}`]: is(osm),
-        [`sui-col-omd-${String(omd)}`]: is(omd),
-        [`sui-col-olg-${String(olg)}`]: is(olg),
-        [`sui-col-oxl-${String(oxl)}`]: is(oxl),
-      })}
-      {...props}
-    />
-  ),
-  style: p => {
-    const gutter = px(prop('gutter', 'gridGutter')(p))
-    return {
-      paddingLeft: gutter,
-      paddingRight: gutter,
-      ...getStyleFromTheme(p.theme),
-    }
-  },
+  omitProps: ['xs', 'sm', 'md', 'lg', 'xl', 'oxs', 'osm', 'omd', 'olg', 'oxl'],
+  style: getStyleFromProps,
   propTypes: {
     children: PropTypes.node,
     gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

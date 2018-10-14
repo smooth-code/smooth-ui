@@ -158,8 +158,6 @@ export const inputBtnBorderWidth = th('borderWidth')
 
 // Buttons
 
-export const btnVariants = th('colorVariants')
-
 export const btnPaddingY = th('inputBtnPaddingY')
 export const btnPaddingX = th('inputBtnPaddingX')
 export const btnLineHeight = th('inputBtnLineHeight')
@@ -219,8 +217,6 @@ export const gridMaxWidths = {
 }
 
 // Alerts
-
-export const alertVariants = th('colorVariants')
 
 export const alertPaddingY = '.75rem'
 export const alertPaddingX = '1.25rem'
