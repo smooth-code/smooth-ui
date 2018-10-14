@@ -48,7 +48,8 @@ class ModalComponent extends React.Component {
   render() {
     const {
       className: propClassName,
-      baseRef,
+      forwardedRef,
+      forwardedAs,
       theme,
       opened,
       onClose,
@@ -79,7 +80,7 @@ class ModalComponent extends React.Component {
               role="dialog"
               tabIndex="-1"
               className={className}
-              ref={baseRef}
+              ref={forwardedRef}
               {...props}
             >
               {mounted && (

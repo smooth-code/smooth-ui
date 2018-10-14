@@ -34,10 +34,8 @@ export default App
 Even if it is not required, is recommended to apply a global normalize before using Smooth UI.
 
 ```js
-import { injectGlobal } from 'styled-components'
-import { globalStyle } from '@smooth-ui/core-sc'
-
-injectGlobal`${globalStyle()}`
+import { globalStyle, createGlobalStyle } from '@smooth-ui/core-sc'
+const GlobalStyle = createGlobalStyle`${globalStyle()}`
 ```
 
 If you don't want to use a global normalize, at least add `* { box-sizing: border-box; }`.

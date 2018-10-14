@@ -31,6 +31,7 @@
     "react-transition-group": "^2.5.0"
   },
   "peerDependencies": {
+    "emotion": "^9.0.0",
     "emotion-theming": "^9.0.0",
     "react": ">=16.3.0",
     "react-dom": ">=16.3.0",
