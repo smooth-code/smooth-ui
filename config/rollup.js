@@ -41,6 +41,7 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
     polished: 'polished',
     'prop-types': 'PropTypes',
     'emotion-theming': 'emotionTheming',
+    emotion: 'emotion',
     react: 'React',
     'react-dom': 'ReactDom',
     'react-emotion': 'reactEmotion',
