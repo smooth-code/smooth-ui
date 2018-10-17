@@ -24,18 +24,22 @@ export const withTheme = Component => {
   return SafeWithTheme
 }
 
-const css = (parts, ...args) => {
-  if (
-    typeof parts === 'function' ||
-    args.some(arg => typeof arg === 'function')
-  ) {
+const isInterpolation = func => {
+  if (typeof func !== 'function') return false
+  // eslint-disable-next-line no-underscore-dangle
+  if (func.__emotion_styles) return false
+  return true
+}
+
+const css = (...args) => {
+  if (args.some(arg => isInterpolation(arg))) {
     return props => {
       if (!props) {
         throw new Error('Wrong usage of `css` function')
       }
 
       const transform = arg => {
-        if (typeof arg === 'function') {
+        if (isInterpolation(arg)) {
           return transform(arg(props))
         }
 
@@ -47,13 +51,11 @@ const css = (parts, ...args) => {
       }
 
       const transformedArgs = transform(args)
-      const transformedParts =
-        typeof parts === 'function' ? transform(parts) : parts
-      return emotionCss(transformedParts, ...transformedArgs)
+      return emotionCss(...transformedArgs)
     }
   }
 
-  return emotionCss(parts, ...args)
+  return emotionCss(...args)
 }
 
 function patchStyledComponent(StyledComponent) {

@@ -1,6 +1,8 @@
 const { STYLED_ENGINE = 'styled-components' } = process.env
 
 const getStyledEnginePlugins = () => {
+  if (process.env.NODE_ENV === 'test') return []
+
   switch (STYLED_ENGINE) {
     case 'emotion':
       return ['babel-plugin-emotion']
