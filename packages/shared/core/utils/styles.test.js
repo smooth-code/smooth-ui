@@ -1,14 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import styled, { ThemeProvider } from 'styled-components'
+import { mount } from 'enzyme'
+import styled from 'styled-components'
 import * as styles from './styles'
-
-const shallowWithTheme = (tree, theme = {}) => {
-  const context = shallow(<ThemeProvider theme={theme} />)
-    .instance()
-    .getChildContext()
-  return shallow(tree, { context })
-}
 
 describe('styles', () => {
   describe.each([
@@ -421,7 +414,7 @@ describe('styles', () => {
     it('should support basic value', () => {
       config.expectations.forEach(([value, expected]) => {
         const props = { [name]: value }
-        const wrapper = shallowWithTheme(<Dummy {...props} />, config.theme)
+        const wrapper = mount(<Dummy theme={config.theme} {...props} />)
         expect(wrapper).toHaveStyleRule(config.styleRule, String(expected))
       })
     })
@@ -429,7 +422,7 @@ describe('styles', () => {
     it('should support breakpoints value', () => {
       config.expectations.forEach(([value, expected]) => {
         const props = { [name]: { md: value } }
-        const wrapper = shallowWithTheme(<Dummy {...props} />, config.theme)
+        const wrapper = mount(<Dummy theme={config.theme} {...props} />)
         expect(wrapper).toHaveStyleRule(config.styleRule, String(expected), {
           media: '(min-width:768px)',
         })
