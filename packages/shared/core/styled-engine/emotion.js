@@ -1,14 +1,12 @@
 import React from 'react'
-import styled, { css as emotionCss, injectGlobal } from 'react-emotion'
+import { css as emotionCss, injectGlobal } from 'emotion'
+import emotionStyled from 'react-emotion'
 import {
   withTheme as emotionWithTheme,
-  channel,
-  contextTypes,
   ThemeProvider,
+  contextTypes,
+  channel,
 } from 'emotion-theming'
-
-export default styled
-export { injectGlobal, ThemeProvider }
 
 export const withTheme = Component => {
   const WithThemeComponent = emotionWithTheme(Component)
@@ -26,54 +24,56 @@ export const withTheme = Component => {
   return SafeWithTheme
 }
 
-export const css = (parts, ...args) => props => {
+const css = (parts, ...args) => props => {
   if (!props) {
-    throw new Error('Problem in css func')
+    throw new Error('Wrong usage of `css` function')
   }
 
-  const transformArg = arg => {
+  const transform = arg => {
     if (typeof arg === 'function') {
-      return transformArg(arg(props))
+      return transform(arg(props))
     }
 
     if (Array.isArray(arg)) {
-      return arg.map(transformArg)
+      return arg.map(transform)
     }
 
     return arg
   }
 
-  const mappedArgs = transformArg(args)
-
-  return emotionCss(parts, ...mappedArgs)
+  const transformedArgs = transform(args)
+  return emotionCss(parts, ...transformedArgs)
 }
 
-export const patchStyledAPI = (StyledComponent, BaseComponent) => {
-  // Patch extend
-  Object.defineProperty(StyledComponent, 'extend', {
-    get() {
-      return (...args) => {
-        const NewStyledComponent = styled(StyledComponent)`
-          && {
-            ${css(...args)};
-          }
-        `
-        patchStyledAPI(NewStyledComponent, StyledComponent)
-        return NewStyledComponent
-      }
-    },
-  })
-
-  // Patch withComponent
-  const originalWithComponent = StyledComponent.withComponent.bind(
-    StyledComponent,
-  )
+function patchStyledComponent(StyledComponent) {
+  const { withComponent } = StyledComponent
   StyledComponent.withComponent = component => {
-    const NewStyledComponent = originalWithComponent(props => (
-      <BaseComponent as={component} {...props} />
-    ))
-
-    patchStyledAPI(NewStyledComponent, BaseComponent)
-    return NewStyledComponent
+    // eslint-disable-next-line no-underscore-dangle
+    const BaseComponent = StyledComponent.__emotion_base
+    return Object.assign(
+      patchStyledComponent(
+        withComponent(props => <BaseComponent as={component} {...props} />),
+      ),
+      StyledComponent,
+    )
   }
+
+  return StyledComponent
 }
+
+function wrapCreateStyledComponent(createStyledComponent) {
+  const wrappedCreateStyledComponent = (...args) => {
+    const StyledComponent = createStyledComponent(...args)
+    return patchStyledComponent(StyledComponent)
+  }
+  return wrappedCreateStyledComponent
+}
+
+function wrapStyled(styled) {
+  return component => wrapCreateStyledComponent(styled(component))
+}
+
+const styled = wrapStyled(emotionStyled)
+
+export default styled
+export { css, injectGlobal, ThemeProvider }

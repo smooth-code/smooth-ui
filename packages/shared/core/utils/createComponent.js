@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-foreign-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { patchStyledAPI, withTheme } from '../styled-engine'
+import styled, { withTheme } from '../styled-engine'
 import * as theme from '../theme'
 import { omit } from './misc'
 import { system as allSystem } from './styles'
@@ -34,24 +34,17 @@ function createComponent(getConfig) {
       render() {
         const {
           className,
+          forwardedAs,
           as,
-          component,
           theme,
-          baseRef,
+          forwardedRef,
           ...props
         } = this.props
 
-        const Component = as || component || defaultComponent
-
-        if (component && process.env.NODE_ENV !== 'production') {
-          // eslint-disable-next-line no-console
-          console.warn(
-            'Smooth UI: "component" prop is deprecated and will be removed in v6, please use "as" instead.',
-          )
-        }
+        const Component = forwardedAs || as || defaultComponent
 
         const renderProps = {
-          ref: baseRef,
+          ref: forwardedRef,
           Component,
           className: className
             ? `${baseClassName} ${className}`
@@ -71,7 +64,7 @@ function createComponent(getConfig) {
   InnerComponent.displayName = `sui-${name}`
 
   function forwardRef(props, ref) {
-    return <InnerComponent {...props} baseRef={ref} />
+    return <InnerComponent {...props} forwardedRef={ref} />
   }
   forwardRef.displayName = InnerComponent.displayName
 
@@ -93,8 +86,6 @@ function createComponent(getConfig) {
     theme,
     ...defaultProps,
   }
-
-  patchStyledAPI(StyledComponent, RefComponent)
 
   return StyledComponent
 }

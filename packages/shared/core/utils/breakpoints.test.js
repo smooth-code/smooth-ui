@@ -1,6 +1,6 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import styled, { ThemeProvider } from 'styled-components'
+import { mount } from 'enzyme'
+import styled from 'styled-components'
 import {
   DEFAULT_BREAKPOINTS,
   getBreakpoints,
@@ -16,7 +16,6 @@ import {
 
 describe('breakpoints utils', () => {
   let props
-  let shallowWithTheme
 
   beforeEach(() => {
     props = {
@@ -28,13 +27,6 @@ describe('breakpoints utils', () => {
           lg: 30,
         },
       },
-    }
-
-    shallowWithTheme = (tree, theme = props.theme) => {
-      const context = shallow(<ThemeProvider theme={theme} />)
-        .instance()
-        .getChildContext()
-      return shallow(tree, { context })
     }
   })
 
@@ -110,7 +102,7 @@ describe('breakpoints utils', () => {
         ${up('lg', { color: 'yellow' })};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(min-width:10px)',
@@ -126,7 +118,7 @@ describe('breakpoints utils', () => {
         ${up('xs', 'color: red')};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'red')
     })
   })
@@ -139,7 +131,7 @@ describe('breakpoints utils', () => {
         ${down('sm', { color: 'yellow' })};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(max-width:9.98px)',
@@ -155,7 +147,7 @@ describe('breakpoints utils', () => {
         ${down('lg', 'color: red')};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'red')
     })
   })
@@ -168,7 +160,7 @@ describe('breakpoints utils', () => {
         ${between('xs', 'sm', { background: 'yellow' })};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(max-width:4.98px)',
@@ -184,7 +176,7 @@ describe('breakpoints utils', () => {
         ${between('md', 'lg', 'color: red')};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(min-width:10px)',
@@ -197,7 +189,7 @@ describe('breakpoints utils', () => {
         ${between('sm', 'md', 'color: red')};
       `
 
-      const wrapper = shallowWithTheme(<Dummy />)
+      const wrapper = mount(<Dummy {...props} />)
       expect(wrapper).toHaveStyleRule('color', 'blue')
       expect(wrapper).toHaveStyleRule('color', 'red', {
         media: '(min-width:5px) and (max-width:9.98px)',

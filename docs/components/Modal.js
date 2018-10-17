@@ -1,7 +1,7 @@
 import React from 'react'
-import { ModalDialog } from '@smooth-ui/core-sc'
+import { styled, ModalDialog } from '@smooth-ui/core-sc'
 
-export const ModalDialogExample = ModalDialog.extend`
+export const ModalDialogExample = styled(ModalDialog)`
   left: auto;
   margin-right: auto;
   margin-left: auto;

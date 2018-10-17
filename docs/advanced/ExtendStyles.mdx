@@ -4,7 +4,7 @@ menu: Advanced
 ---
 
 import { Playground } from 'docz'
-import { Button, Switch } from '@smooth-ui/core-sc'
+import { Button, Switch, styled } from '@smooth-ui/core-sc'
 
 # Extend Styles
 
@@ -46,15 +46,17 @@ An example of inline style to change the `padding` of a button.
 </Button>
 ```
 
-## Local extend using .extend
+## Local extend using styled
 
-Every Smooth UI components expose a method `.extend`. You can use it to override any CSS property of the original component. It creates a new component and doesn't affect other components.
+You can override any CSS property of the original component using `styled`. It creates a new component and doesn't affect other components.
 
 An example of a `BorderedButton` extended from a `Button`:
 
 <Playground>
   {() => {
-    const BorderedButton = Button.extend`
+    // import { styled } from '@smooth-ui/core-sc'
+
+    const BorderedButton = styled(Button)`
       border: 2px solid black;
 
       &:hover {
@@ -80,7 +82,9 @@ An example of a custom `Switch` with a black ball 🎱.
 
 <Playground>
   {() => {
-    const BlackBallSwitch = Switch.extend`
+    // import { styled } from '@smooth-ui/core-sc'
+    
+    const BlackBallSwitch = styled(Switch)`
       .sui-switch-ball {
         background-color: black !important;
       }

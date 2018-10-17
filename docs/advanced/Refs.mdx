@@ -8,7 +8,9 @@ import { Input, styled } from '@smooth-ui/core-sc'
 
 # Refs
 
-Passing a `innerRef` prop to a Smooth UI component will give you the ref of the DOM node.
+Passing a `ref` prop to a Smooth UI component will give you the ref of the DOM node.
+
+> Be careful, if you use emotion or styled-components v4, you have to use "innerRef" instead of "ref".
 
 <Playground>
   {() => {
@@ -21,7 +23,7 @@ Passing a `innerRef` prop to a Smooth UI component will give you the ref of the 
       render() {
         return (
           <Input
-            innerRef={this.inputRef}
+            ref={this.inputRef}
             placeholder="Hover to focus!"
             onMouseEnter={() => {
               this.inputRef.current.focus()
