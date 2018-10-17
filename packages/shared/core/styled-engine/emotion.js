@@ -24,25 +24,36 @@ export const withTheme = Component => {
   return SafeWithTheme
 }
 
-const css = (parts, ...args) => props => {
-  if (!props) {
-    throw new Error('Wrong usage of `css` function')
+const css = (parts, ...args) => {
+  if (
+    typeof parts === 'function' ||
+    args.some(arg => typeof arg === 'function')
+  ) {
+    return props => {
+      if (!props) {
+        throw new Error('Wrong usage of `css` function')
+      }
+
+      const transform = arg => {
+        if (typeof arg === 'function') {
+          return transform(arg(props))
+        }
+
+        if (Array.isArray(arg)) {
+          return arg.map(transform)
+        }
+
+        return arg
+      }
+
+      const transformedArgs = transform(args)
+      const transformedParts =
+        typeof parts === 'function' ? transform(parts) : parts
+      return emotionCss(transformedParts, ...transformedArgs)
+    }
   }
 
-  const transform = arg => {
-    if (typeof arg === 'function') {
-      return transform(arg(props))
-    }
-
-    if (Array.isArray(arg)) {
-      return arg.map(transform)
-    }
-
-    return arg
-  }
-
-  const transformedArgs = transform(args)
-  return emotionCss(parts, ...transformedArgs)
+  return emotionCss(parts, ...args)
 }
 
 function patchStyledComponent(StyledComponent) {
