@@ -9,15 +9,29 @@ import { Select } from '@smooth-ui/core-sc'
 
 # Select
 
+```js
+import { Select } from '@smooth-ui/core-sc'
+```
+
 ## Sizes
 
 Set sizes using `size` prop like `"sm"`, `"md"` or `"lg"`.
 
 <Playground>
   <BlockList>
-    <Select size="sm" placeholder="Small" options={['One', 'Two']} />
-    <Select size="md" placeholder="Medium" options={['Yes', 'No', 'Maybe']} />
-    <Select size="lg" placeholder="Large" options={['Amazing', 'Great']} />
+    <Select size="sm" placeholder="Small">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+    </Select>
+    <Select size="md" placeholder="Medium">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="maybe">Maybe</option>
+    </Select>
+    <Select size="lg" placeholder="Large">
+      <option value="amazing">Amazing</option>
+      <option value="great">Great</option>
+    </Select>
   </BlockList>
 </Playground>
 
@@ -26,39 +40,24 @@ Set sizes using `size` prop like `"sm"`, `"md"` or `"lg"`.
 Disable using `disabled` prop.
 
 <Playground>
-  <Select disabled placeholder="Disabled" options={['Disabled']} />
-</Playground>
-
-## Custom labels
-
-Specify custom labels by passing an object to `options`.
-
-<Playground>
-  <Select
-    options={[{ label: 'One', value: 'one' }, { label: 'Two', value: 'two' }]}
-  />
+  <Select disabled placeholder="Disabled">
+    <option>Disabled</option>
+  </Select>
 </Playground>
 
 ## Groups
 
-Define groups in `options` props.
-
 <Playground>
-  <Select
-    options={[
-      {
-        label: 'Group 1',
-        options: [{ label: 'One', value: 'one' }, { label: 'Two', value: 'two' }],
-      },
-      {
-        label: 'Group 2',
-        options: [
-          { label: 'Three', value: 'three' },
-          { label: 'Four', value: 'four' },
-        ],
-      },
-    ]}
-  />
+  <Select>
+    <optgroup label="Group 1">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+    </optgroup>
+    <optgroup label="Group 2">
+      <option value="three">Three</option>
+      <option value="four">Four</option>
+    </optgroup>
+  </Select>
 </Playground>
 
 ## Control & Validation
@@ -68,29 +67,18 @@ Define groups in `options` props.
 
 <Playground>
   <BlockList>
-    <Select
-      control
-      options={[
-        { label: 'Control', value: 'one' },
-        { label: 'Two', value: 'two' },
-      ]}
-    />
-    <Select
-      control
-      valid
-      options={[
-        { label: 'Valid', value: 'one' },
-        { label: 'Two', value: 'two' },
-      ]}
-    />
-    <Select
-      control
-      valid={false}
-      options={[
-        { label: 'Invalid', value: 'one' },
-        { label: 'Two', value: 'two' },
-      ]}
-    />
+    <Select control>
+      <option>Control</option>
+      <option>Other</option>
+    </Select>
+    <Select control valid>
+      <option>Valid</option>
+      <option>Other</option>
+    </Select>
+    <Select control valid={false}>
+      <option>Invalid</option>
+      <option>Other</option>
+    </Select>
   </BlockList>
 </Playground>
 
@@ -103,7 +91,6 @@ Define groups in `options` props.
     arrow: PropDesc.bool,
     children: PropDesc.node,
     control: PropDesc.bool,
-    options: PropDesc.array,
     size: PropDesc.oneOf(['sm', 'lg']),
     valid: PropDesc.bool,
     ...getSystemPropDesc(Select),
