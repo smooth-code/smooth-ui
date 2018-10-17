@@ -1,5 +1,5 @@
 import React from 'react'
-import { css as emotionCss, injectGlobal } from 'emotion'
+import { css as emotionCss, injectGlobal, keyframes, cx } from 'emotion'
 import emotionStyled from 'react-emotion'
 import {
   withTheme as emotionWithTheme,
@@ -76,4 +76,4 @@ function wrapStyled(styled) {
 const styled = wrapStyled(emotionStyled)
 
 export default styled
-export { css, injectGlobal, ThemeProvider }
+export { css, injectGlobal, ThemeProvider, keyframes, cx }
