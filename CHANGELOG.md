@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/smooth-code/smooth-ui/compare/v6.0.0...v6.0.1) (2018-10-17)
+
+
+### Bug Fixes
+
+* **emotion:** fix css function ([9d61910](https://github.com/smooth-code/smooth-ui/commit/9d61910))
+
+
+
+
+
 # [6.0.0](https://github.com/smooth-code/smooth-ui/compare/v5.1.3...v6.0.0) (2018-10-17)
 
 
