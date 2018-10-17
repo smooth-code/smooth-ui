@@ -60,12 +60,15 @@ const css = (...args) => {
 
 function patchStyledComponent(StyledComponent) {
   const { withComponent } = StyledComponent
-  StyledComponent.withComponent = component => {
+  StyledComponent.withComponent = (component, options) => {
     // eslint-disable-next-line no-underscore-dangle
     const BaseComponent = StyledComponent.__emotion_base
     return Object.assign(
       patchStyledComponent(
-        withComponent(props => <BaseComponent as={component} {...props} />),
+        withComponent(
+          props => <BaseComponent as={component} {...props} />,
+          options,
+        ),
       ),
       StyledComponent,
     )
@@ -83,7 +86,8 @@ function wrapCreateStyledComponent(createStyledComponent) {
 }
 
 function wrapStyled(styled) {
-  return component => wrapCreateStyledComponent(styled(component))
+  return (component, options) =>
+    wrapCreateStyledComponent(styled(component, options))
 }
 
 const styled = wrapStyled(emotionStyled)
