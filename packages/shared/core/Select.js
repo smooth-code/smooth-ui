@@ -114,31 +114,41 @@ const Select = createComponent(() => ({
     options,
     size,
     valid,
+    children,
     ...props
-  }) => (
-    <Component className={className}>
-      {arrow && !props.multiple ? (
-        <svg className="sui-select-arrow" viewBox="0 0 10 5">
-          <g fill="none" fillRule="evenodd">
-            <path d="M17 14H-7v-24h24" />
-            <path fill="currentColor" opacity={0.5} d="M0 0l5 5 5-5" />
-          </g>
-        </svg>
-      ) : null}
-      <select {...props}>
-        {options.map(
-          node =>
-            node.options ? (
-              <optgroup key={node.label} label={node.label}>
-                {node.options.map(renderOption)}
-              </optgroup>
-            ) : (
-              renderOption(node)
-            ),
-        )}
-      </select>
-    </Component>
-  ),
+  }) => {
+    if (options) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'Smooth UI: `options` prop of "Select" is deprecated and will be removed in v7, use <option> instead.',
+      )
+    }
+    return (
+      <Component className={className}>
+        {arrow && !props.multiple ? (
+          <svg className="sui-select-arrow" viewBox="0 0 10 5">
+            <g fill="none" fillRule="evenodd">
+              <path d="M17 14H-7v-24h24" />
+              <path fill="currentColor" opacity={0.5} d="M0 0l5 5 5-5" />
+            </g>
+          </svg>
+        ) : null}
+        <select {...props}>
+          {children ||
+            options.map(
+              node =>
+                node.options ? (
+                  <optgroup key={node.label} label={node.label}>
+                    {node.options.map(renderOption)}
+                  </optgroup>
+                ) : (
+                  renderOption(node)
+                ),
+            )}
+        </select>
+      </Component>
+    )
+  },
   style: css`
     display: inline-block;
     position: relative;
