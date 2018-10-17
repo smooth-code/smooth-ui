@@ -48,6 +48,7 @@ const string = type('string')
 const number = type('number')
 const bool = type('boolean')
 const func = type('function')
+const object = type('object')
 const array = type('array')
 const shape = types =>
   type('shape', {
@@ -69,5 +70,6 @@ PropDesc.array = array
 PropDesc.oneOf = oneOf
 PropDesc.oneOfType = oneOfType
 PropDesc.shape = shape
+PropDesc.object = object
 
 export default PropDesc

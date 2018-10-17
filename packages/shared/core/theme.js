@@ -274,6 +274,7 @@ const safeTransitionProperties = [
   'text-decoration',
   'box-shadow',
   'transform',
+  'opacity',
 ]
 
 export const transitionBase = mixin(

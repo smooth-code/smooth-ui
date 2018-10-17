@@ -30,7 +30,7 @@ function createComponent(getConfig) {
   const baseClassName = `sui-${name}`
   let InnerComponent =
     InnerComponentFromConfig ||
-    class Component extends React.PureComponent {
+    class Component extends React.Component {
       render() {
         const {
           className,
