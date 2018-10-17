@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/smooth-code/smooth-ui/compare/v5.1.3...v6.0.0) (2018-10-17)
+
+
+### Features
+
+* expose cx & keyframes from emotion ([c226981](https://github.com/smooth-code/smooth-ui/commit/c226981))
+* flatten style & remove classNames ([34dd3fc](https://github.com/smooth-code/smooth-ui/commit/34dd3fc))
+* select now accepts children instead of options ([1a26480](https://github.com/smooth-code/smooth-ui/commit/1a26480)), closes [#60](https://github.com/smooth-code/smooth-ui/issues/60)
+* support styled-components v4 ([b25675a](https://github.com/smooth-code/smooth-ui/commit/b25675a))
+
+
+### BREAKING CHANGES
+
+* - styled-components v4 is required
+- `.extend` has been removed, please use `styled()` instead
+- `component` prop has been removed, please use `as` instead
+* A lot of classes have been removed.
+
+Introduced a new default size "md".
+
+
+
+
+
 <a name="5.1.3"></a>
 ## [5.1.3](https://github.com/smooth-code/smooth-ui/compare/v5.1.2...v5.1.3) (2018-09-26)
 
