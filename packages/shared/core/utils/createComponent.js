@@ -16,7 +16,7 @@ function createComponent(getConfig) {
     render = ({ Component, ...props }) => <Component {...props} />,
     defaultComponent = 'div',
     system = allSystem,
-    applySystem = system => props => system(props),
+    applySystem = system => props => ({ '&&': system(props) }),
     injectTheme,
     InnerComponent: InnerComponentFromConfig,
   } = getConfig()
