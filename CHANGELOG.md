@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/smooth-code/smooth-ui/compare/v6.0.1...v6.0.2) (2018-10-17)
+
+
+### Bug Fixes
+
+* correctly apply system ([49e975d](https://github.com/smooth-code/smooth-ui/commit/49e975d))
+* **emotion:** fix css & styled function with babel-plugin-emotion ([a214b18](https://github.com/smooth-code/smooth-ui/commit/a214b18))
+* **emotion:** fix css function ([29448df](https://github.com/smooth-code/smooth-ui/commit/29448df))
+
+
+
+
+
 ## [6.0.1](https://github.com/smooth-code/smooth-ui/compare/v6.0.0...v6.0.1) (2018-10-17)
 
 
