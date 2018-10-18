@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/smooth-code/smooth-ui/compare/v6.0.2...v7.0.0) (2018-10-18)
+
+
+### Features
+
+* make modals accessible ([#65](https://github.com/smooth-code/smooth-ui/issues/65)) ([e37c708](https://github.com/smooth-code/smooth-ui/commit/e37c708)), closes [#31](https://github.com/smooth-code/smooth-ui/issues/31) [#26](https://github.com/smooth-code/smooth-ui/issues/26) [#25](https://github.com/smooth-code/smooth-ui/issues/25)
+
+
+### BREAKING CHANGES
+
+* "persistent" prop has been removed from Modal, Modal are now
+non-persistent.
+
+"sui-modal-backdrop" has been removed, it is now "sui-modal".
+
+
+
+
+
 ## [6.0.2](https://github.com/smooth-code/smooth-ui/compare/v6.0.1...v6.0.2) (2018-10-17)
 
 **Note:** Version bump only for package @smooth-ui/core-sc
