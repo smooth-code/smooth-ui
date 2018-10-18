@@ -26,6 +26,7 @@
     "access": "public"
   },
   "dependencies": {
+    "focus-trap": "^3.0.0",
     "polished": "^2.2.0",
     "prop-types": "^15.6.2",
     "react-transition-group": "^2.5.0"

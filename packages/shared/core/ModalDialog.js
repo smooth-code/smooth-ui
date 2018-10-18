@@ -7,7 +7,9 @@ import createComponent from './utils/createComponent'
 
 const ModalDialog = createComponent(() => ({
   name: 'modal-dialog',
-  render: ({ Component, ...props }) => <Component role="document" {...props} />,
+  render: ({ Component, ...props }) => (
+    <Component role="dialog" aria-modal="true" {...props} />
+  ),
   style: css`
     position: relative;
     width: auto;

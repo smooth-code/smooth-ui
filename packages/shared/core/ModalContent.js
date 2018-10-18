@@ -1,11 +1,31 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
 import { th } from './utils/system'
 import { up } from './utils/breakpoints'
+import ModalContext from './ModalContext'
 import createComponent from './utils/createComponent'
+import { wrapEvent } from './utils/dom'
+
+const stopPropagation = event => event.stopPropagation()
 
 const ModalContent = createComponent(() => ({
   name: 'modal-content',
+  render: ({ Component, ref, onClick, ...props }) => (
+    <ModalContext.Consumer>
+      {modalContext => (
+        <Component
+          tabIndex="-1"
+          ref={node => {
+            if (modalContext) modalContext.contentRef.current = node
+            if (ref) ref(node)
+          }}
+          onClick={wrapEvent(onClick, stopPropagation)}
+          {...props}
+        />
+      )}
+    </ModalContext.Consumer>
+  ),
   style: css`
     position: relative;
     display: flex;

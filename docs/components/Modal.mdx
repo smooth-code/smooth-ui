@@ -7,6 +7,7 @@ import { PropsTable, Playground } from 'docz'
 import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
 import {
   Modal,
+  ModalCloseButton,
   ModalBody,
   ModalContent,
   ModalDialog,
@@ -25,6 +26,7 @@ Below is a static modal example (meaning its `position` and `display` have been 
 <Playground>
   <ModalDialogExample>
     <ModalContent>
+      <ModalCloseButton />
       <ModalHeader>
         <Typography variant="h5" m={0}>
           Modal title
@@ -53,6 +55,7 @@ You can toggle a modal from a `Button` using the `Toggler`.
         <Modal opened={toggled} onClose={() => onToggle(false)}>
           <ModalDialog>
             <ModalContent>
+              <ModalCloseButton />
               <ModalHeader>
                 <Typography variant="h5" m={0}>
                   Modal title
@@ -71,6 +74,57 @@ You can toggle a modal from a `Button` using the `Toggler`.
       </div>
     )}
   </Toggler>
+</Playground>
+
+## Initial focus
+
+Modal will focus the first focusable node by default, but you can specify a custom one using `initialFocusRef`.
+
+In this example, the close button in `ModalFooter` will be focused instead of the `ModalCloseButton`. 
+
+<Playground>
+  {() => {
+    class App extends React.Component {
+      constructor(props) {
+        super(props)
+        this.buttonRef = React.createRef()
+        this.state = { showDialog: false }
+        this.open = () => this.setState({ showDialog: true })
+        this.close = () => this.setState({ showDialog: false })
+      }
+
+      render() { 
+        return (
+          <div>
+            <Button variant="primary" onClick={this.open}>
+              Open modal
+            </Button>
+            <Modal opened={this.state.showDialog} initialFocusRef={this.buttonRef} onClose={this.close}>
+              <ModalDialog>
+                <ModalContent>
+                  <ModalCloseButton />
+                  <ModalHeader>
+                    <Typography variant="h5" m={0}>
+                      Modal title
+                    </Typography>
+                  </ModalHeader>
+                  <ModalBody>Modal body</ModalBody>
+                  <ModalFooter>
+                    <Button variant="primary">Save changes</Button>
+                    <Button ref={this.buttonRef} variant="secondary" onClick={this.close}>
+                      Close
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </ModalDialog>
+            </Modal>
+          </div>
+        )
+      }
+    }
+
+    return <App />
+  }}
 </Playground>
 
 ## Scrolling long content
@@ -157,53 +211,6 @@ When modals become too long for the user’s viewport or device, they scroll ind
   </Toggler>
 </Playground>
 
-## Persistent
-
-Set `persistent` to `true` to keep the modal mounted even if closed.
-
-<Playground>
-  <BlockList>
-    <Toggler>
-      {({ toggled, onToggle }) => (
-        <div>
-          <Button variant="primary" onClick={() => onToggle(true)}>
-            Open non-persistent
-          </Button>
-          <Modal persistent={false} opened={toggled} onClose={() => onToggle(false)}>
-            <ModalDialog>
-              <ModalContent>
-                <ModalBody>
-                  Counter is resetted each time you open it <br />
-                  <Counter />
-                </ModalBody>
-              </ModalContent>
-            </ModalDialog>
-          </Modal>
-        </div>
-      )}
-    </Toggler>
-    <Toggler>
-      {({ toggled, onToggle }) => (
-        <div>
-          <Button variant="primary" onClick={() => onToggle(true)}>
-            Open persistent modal (default)
-          </Button>
-          <Modal opened={toggled} onClose={() => onToggle(false)}>
-            <ModalDialog>
-              <ModalContent>
-                <ModalBody>
-                  Counter continue in background <br />
-                  <Counter />
-                </ModalBody>
-              </ModalContent>
-            </ModalDialog>
-          </Modal>
-        </div>
-      )}
-    </Toggler>
-  </BlockList>
-</Playground>
-
 
 ## API
 
@@ -214,7 +221,7 @@ Set `persistent` to `true` to keep the modal mounted even if closed.
     children: PropDesc.node,
     onClose: PropDesc.func,
     opened: PropDesc.bool,
-    persistent: PropDesc.bool.defaultTo(true).desc('Set "persistent" to `true` to keep modal mounted when closed'),
+    initialFocusRef: PropDesc.object,
     ...getSystemPropDesc(Modal),
   })}
 />
@@ -264,3 +271,13 @@ Set `persistent` to `true` to keep the modal mounted even if closed.
     ...getSystemPropDesc(ModalHeader),
   })}
 />
+
+### ModalCloseButton
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    ...getSystemPropDesc(ModalCloseButton),
+  })}
+/>
+
