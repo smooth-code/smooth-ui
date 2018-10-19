@@ -72,9 +72,9 @@
     "rollup-plugin-uglify": "^6.0.0",
     "shx": "^0.3.2",
     "standard-version": "^4.4.0",
-    "styled-components": "^4.0.0",
+    "styled-components": "^4.0.2",
     "uglifyjs-webpack-plugin": "^2.0.0",
-    "webpack": "^4.19.0"
+    "webpack": "^4.21.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
