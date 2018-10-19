@@ -63,14 +63,14 @@ function patchStyledComponent(StyledComponent) {
   StyledComponent.withComponent = (component, options) => {
     // eslint-disable-next-line no-underscore-dangle
     const BaseComponent = StyledComponent.__emotion_base
-    return Object.assign(
-      patchStyledComponent(
+    return patchStyledComponent(
+      Object.assign(
         withComponent(
           props => <BaseComponent as={component} {...props} />,
           options,
         ),
+        StyledComponent,
       ),
-      StyledComponent,
     )
   }
 
