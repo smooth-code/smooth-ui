@@ -3,5 +3,5 @@ import { wrapStyled } from './util'
 
 const styled = wrapStyled(scStyled)
 
-export default styled
 export * from 'styled-components'
+export default styled
