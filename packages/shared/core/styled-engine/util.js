@@ -5,28 +5,26 @@ function patchStyledComponent(StyledComponent) {
   if (!StyledComponent.target.__smoothUIComponent) {
     return StyledComponent
   }
-  const {
-    render,
-    withComponent,
-    defaultProps,
-    propTypes,
-    componentStyle,
-  } = StyledComponent
+
+  const { render, withComponent: baseWithComponent } = StyledComponent
+
   StyledComponent.withComponent = (component, ...args) => {
+    const { defaultProps, propTypes } = StyledComponent
     const Target = StyledComponent.target
     const NewTarget = props => <Target as={component} {...props} />
     // eslint-disable-next-line no-underscore-dangle
     NewTarget.__smoothUIComponent = true
     return patchStyledComponent(
-      Object.assign(withComponent(NewTarget, ...args), {
+      Object.assign(baseWithComponent(NewTarget, ...args), {
         defaultProps,
         propTypes,
-        componentStyle,
       }),
     )
   }
+
   StyledComponent.render = ({ as, ...props }, ref) =>
     render({ forwardedAs: as, ...props }, ref)
+
   return StyledComponent
 }
 
