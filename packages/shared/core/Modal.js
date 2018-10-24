@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import PropTypes from 'prop-types'
-import createFocusTrap from 'focus-trap'
+import FocusLock from 'react-focus-lock'
 import { css, withTheme } from './styled-engine'
 import { th, mixin } from './utils/system'
 import Transition from './Transition'
@@ -51,20 +51,16 @@ class ModalComponent extends React.Component {
 
   handleDialogRef = dialogNode => {
     if (dialogNode) {
-      const { initialFocusRef } = this.props
       this.disposeAriaHider = createAriaHider(dialogNode)
-      this.trap = createFocusTrap(dialogNode, {
-        initialFocus: initialFocusRef
-          ? () => initialFocusRef.current
-          : undefined,
-        fallbackFocus: this.contentRef.current,
-        escapeDeactivates: false,
-        clickOutsideDeactivates: false,
-      })
-      this.trap.activate()
     } else {
-      this.trap.deactivate()
       this.disposeAriaHider()
+    }
+  }
+
+  onFocusLockActivation = () => {
+    const { initialFocusRef } = this.props
+    if (initialFocusRef && initialFocusRef.current) {
+      initialFocusRef.current.focus()
     }
   }
 
@@ -92,31 +88,33 @@ class ModalComponent extends React.Component {
           if (status === 'exited') return null
           return (
             <Portal>
-              <div
-                className={cx(
-                  'sui-modal',
-                  `sui-modal-transition-${status}`,
-                  className,
-                )}
-                ref={this.handleDialogRef}
-                onClick={wrapEvent(onClick, event => {
-                  event.stopPropagation()
-                  onClose()
-                })}
-                onKeyDown={wrapEvent(onKeyDown, event => {
-                  if (event.key === 'Escape') {
+              <FocusLock returnFocus onActivation={this.onFocusLockActivation}>
+                <div
+                  className={cx(
+                    'sui-modal',
+                    `sui-modal-transition-${status}`,
+                    className,
+                  )}
+                  ref={this.handleDialogRef}
+                  onClick={wrapEvent(onClick, event => {
                     event.stopPropagation()
                     onClose()
-                  }
-                })}
-                {...props}
-              >
-                <ModalContext.Provider
-                  value={{ contentRef: this.contentRef, onClose }}
+                  })}
+                  onKeyDown={wrapEvent(onKeyDown, event => {
+                    if (event.key === 'Escape') {
+                      event.stopPropagation()
+                      onClose()
+                    }
+                  })}
+                  {...props}
                 >
-                  {children}
-                </ModalContext.Provider>
-              </div>
+                  <ModalContext.Provider
+                    value={{ contentRef: this.contentRef, onClose }}
+                  >
+                    {children}
+                  </ModalContext.Provider>
+                </div>
+              </FocusLock>
             </Portal>
           )
         }}
