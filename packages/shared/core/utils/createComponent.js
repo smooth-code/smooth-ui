@@ -71,6 +71,9 @@ function createComponent(getConfig) {
   const RefComponent = React.forwardRef(forwardRef)
   RefComponent.displayName = InnerComponent.displayName
 
+  // eslint-disable-next-line no-underscore-dangle
+  RefComponent.__smoothUIComponent = true
+
   const StyledComponent = styled(RefComponent)`
     ${style};
     ${applySystem && applySystem(system)};

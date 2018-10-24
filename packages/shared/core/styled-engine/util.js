@@ -1,9 +1,30 @@
-function patchStyledComponent(StyledComponent, defaultAs) {
-  const { render } = StyledComponent
-  StyledComponent.withComponent = component =>
-    patchStyledComponent({ ...StyledComponent }, component)
-  StyledComponent.render = ({ as = defaultAs, ...props }, ref) =>
+/* eslint-disable no-underscore-dangle */
+import React from 'react'
+
+function patchStyledComponent(StyledComponent) {
+  if (!StyledComponent.target.__smoothUIComponent) {
+    return StyledComponent
+  }
+
+  const { render, withComponent: baseWithComponent } = StyledComponent
+
+  StyledComponent.withComponent = (component, ...args) => {
+    const { defaultProps, propTypes } = StyledComponent
+    const Target = StyledComponent.target
+    const NewTarget = props => <Target as={component} {...props} />
+    // eslint-disable-next-line no-underscore-dangle
+    NewTarget.__smoothUIComponent = true
+    return patchStyledComponent(
+      Object.assign(baseWithComponent(NewTarget, ...args), {
+        defaultProps,
+        propTypes,
+      }),
+    )
+  }
+
+  StyledComponent.render = ({ as, ...props }, ref) =>
     render({ forwardedAs: as, ...props }, ref)
+
   return StyledComponent
 }
 
@@ -21,5 +42,7 @@ function wrapCreateStyledComponent(createStyledComponent) {
 }
 
 export function wrapStyled(styled) {
-  return component => wrapCreateStyledComponent(styled(component))
+  const newStyled = component => wrapCreateStyledComponent(styled(component))
+  Object.assign(newStyled, styled)
+  return newStyled
 }
