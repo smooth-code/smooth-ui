@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.3](https://github.com/smooth-code/smooth-ui/compare/v7.0.2...v7.0.3) (2018-10-24)
+
+
+### Bug Fixes
+
+* **modals:** replace focus-trap by focus-lock ([#69](https://github.com/smooth-code/smooth-ui/issues/69)) ([77872db](https://github.com/smooth-code/smooth-ui/commit/77872db))
+* **sc:** fix withComponent + styled behaviour ([f8e45cc](https://github.com/smooth-code/smooth-ui/commit/f8e45cc))
+
+
+
+
+
 ## [7.0.2](https://github.com/smooth-code/smooth-ui/compare/v7.0.1...v7.0.2) (2018-10-23)
 
 
