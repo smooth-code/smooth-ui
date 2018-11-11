@@ -14,7 +14,13 @@ function patchStyledComponent(StyledComponent) {
     // eslint-disable-next-line no-underscore-dangle
     NewTarget.__smoothUIComponent = true
     return patchStyledComponent(
-      Object.assign(baseWithComponent(NewTarget, ...args), StyledComponent),
+      Object.assign(baseWithComponent(NewTarget, ...args), {
+        defaultProps: StyledComponent.defaultProps,
+        propTypes: StyledComponent.propTypes,
+        displayName: StyledComponent.displayName,
+        componentStyle: StyledComponent.componentStyle,
+        styledComponentId: StyledComponent.styledComponentId,
+      }),
     )
   }
 
