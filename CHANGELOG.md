@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.5](https://github.com/smooth-code/smooth-ui/compare/v7.0.4...v7.0.5) (2018-11-11)
+
+
+### Bug Fixes
+
+* **sc:** fix withComponent ([a1d8cf4](https://github.com/smooth-code/smooth-ui/commit/a1d8cf4))
+
+
+
+
+
 ## [7.0.4](https://github.com/smooth-code/smooth-ui/compare/v7.0.3...v7.0.4) (2018-11-01)
 
 
