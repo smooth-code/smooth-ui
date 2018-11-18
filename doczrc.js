@@ -26,6 +26,7 @@ export default {
     'Advanced',
     'Components',
     'Utilities',
+    'Compatibility'
   ],
   themeConfig: {
     repository: 'https://github.com/smooth-code/smooth-ui',
