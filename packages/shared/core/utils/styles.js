@@ -42,6 +42,10 @@ export const textAlign = style({
   prop: 'textAlign',
 })
 
+export const textTransform = style({
+  prop: 'textTransform',
+})
+
 export const letterSpacing = style({
   prop: 'letterSpacing',
   variants: 'letterSpacings',
@@ -59,6 +63,7 @@ export const typography = composeStyles(
   lineHeight,
   fontWeight,
   textAlign,
+  textTransform,
   letterSpacing,
   color,
 )
