@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
+import copy from 'rollup-plugin-cpy'
 import { uglify } from 'rollup-plugin-uglify'
 
 // eslint-disable-next-line
@@ -11,10 +12,20 @@ const babelConfig = require('../../.babelrc')
 export const getRollupConfig = ({ pkg, pwd, buildName }) => {
   const SOURCE_DIR = path.resolve(pwd, 'src')
   const DIST_DIR = path.resolve(pwd, 'dist')
+  const CORE_DIR = path.resolve(pwd, '../shared/core');
 
   const baseConfig = {
     input: `${SOURCE_DIR}/index.js`,
-    plugins: [babel({ exclude: '**/node_modules/**', ...babelConfig })],
+    plugins: [
+      babel({
+        "exclude": "**/node_modules/**",
+        ...babelConfig
+      }),
+      copy({
+        "files": `${CORE_DIR}/*.d.ts`,
+        "dest": DIST_DIR
+      })
+    ],
   }
 
   const esConfig = Object.assign({}, baseConfig, {

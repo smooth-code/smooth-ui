@@ -14,6 +14,7 @@
   "main": "dist/smooth-ui-core-sc.cjs.js",
   "module": "dist/smooth-ui-core-sc.es.js",
   "jsnext:main": "dist/smooth-ui-core-sc.es.js",
+  "types": "dist/index.d.ts",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -34,5 +35,8 @@
     "react": ">=16.3.0",
     "react-dom": ">=16.3.0",
     "styled-components": "^4.0.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-cpy": "^1.1.0"
   }
 }

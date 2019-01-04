@@ -66,6 +66,7 @@
     "remark-external-links": "^3.0.0",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-cpy": "^1.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.1.0",
