@@ -35,8 +35,5 @@
     "react": ">=16.3.0",
     "react-dom": ">=16.3.0",
     "styled-components": "^4.0.0"
-  },
-  "devDependencies": {
-    "rollup-plugin-cpy": "^1.1.0"
   }
 }
