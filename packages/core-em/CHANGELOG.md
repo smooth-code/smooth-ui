@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/smooth-code/smooth-ui/compare/v7.0.5...v7.1.0) (2019-01-07)
+
+
+### Features
+
+* add TypeScript definitions ([#87](https://github.com/smooth-code/smooth-ui/issues/87)) ([ab8c033](https://github.com/smooth-code/smooth-ui/commit/ab8c033))
+
+
+
+
+
 ## [7.0.5](https://github.com/smooth-code/smooth-ui/compare/v7.0.4...v7.0.5) (2018-11-11)
 
 **Note:** Version bump only for package @smooth-ui/core-em
