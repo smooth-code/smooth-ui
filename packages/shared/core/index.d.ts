@@ -1,6 +1,8 @@
 /// <reference types="react" />
 
 import * as React from 'react'
+import * as styledComponents from 'styled-components'
+
 
 interface InputType {
   checked?: boolean
@@ -22,6 +24,7 @@ declare type OptionalThemeProp =
     }
 
 interface BasicsProps {
+  onClick?: (e) => void
   opacity?: OptionalThemeProp
   overflow?: OptionalThemeProp
 }
@@ -47,11 +50,12 @@ interface MarginProps {
 }
 
 interface BorderProps {
+  border?: OptionalThemeProp
   borderTop?: OptionalThemeProp
   borderRight?: OptionalThemeProp
   borderBottom?: OptionalThemeProp
   borderLeft?: OptionalThemeProp
-  bordeColor?: OptionalThemeProp
+  borderColor?: OptionalThemeProp
   borderRadius?: OptionalThemeProp
   boxShadow?: OptionalThemeProp
 }
@@ -88,7 +92,7 @@ interface FlexProps {
   order?: OptionalThemeProp
 }
 
-interface BorderProps {
+interface BackgroundProps {
   background?: OptionalThemeProp
   backgroundColor?: OptionalThemeProp
   backgroundImage?: OptionalThemeProp
@@ -112,8 +116,8 @@ interface TogglerRenderProps {
 }
 interface TogglerProps {
   children: (props: TogglerRenderProps) => React.ReactNode
-  defaultToggled: boolean
-  onToggle: (value: boolean) => void
+  defaultToggled?: boolean
+  onToggle?: (value: boolean) => void
 }
 
 export const Toggler: React.FunctionComponent<TogglerProps>
@@ -138,7 +142,8 @@ export interface BoxProps
     BorderProps,
     FlexProps,
     FontProps,
-    DimensionsProps {
+    DimensionsProps,
+    BackgroundProps {
   as?: string | React.ComponentType
 }
 
@@ -266,12 +271,12 @@ export interface ColProps extends BoxProps {
 
 export const Col: React.FunctionComponent<ColProps>
 
-export interface ControllFeedbackProps {
+export interface ControlFeedbackProps {
   valid: boolean
   children?: React.ReactNode
 }
 
-export const ControllFeedback: React.FunctionComponent<ControllFeedbackProps>
+export const ControlFeedback: React.FunctionComponent<ControlFeedbackProps>
 
 export interface SelectProps
   extends Omit<React.HTMLProps<HTMLSelectElement>, BoxProps & { size: any }>,
@@ -614,7 +619,7 @@ export const px: ReturnType<typeof unit>
 interface styleArg {
   prop: string
   cssProperty: string
-  trasform: Function
+  transform: Function
   variants: Array<string>
 }
 
@@ -626,7 +631,7 @@ export const composeStyles: (
 
 export const globalStyle: (customTheme: ThemeType) => Array<string>
 
-export interface ModalProps {
+export interface ModalProps extends BoxProps {
   children?: React.ReactNode
   opened?: boolean
   onClose?: () => void
@@ -716,17 +721,19 @@ export const mediaBetweenWidth: (
   max: string | number,
 ) => string
 
-export const up: (name: string | number, code: string) => (props: Object) => any
+export type ResponsiveUtilityStyles = string | styledComponents.FlattenSimpleInterpolation
+
+export const up: (name: string | number, code: ResponsiveUtilityStyles) => (props: Object) => any
 
 export const down: (
   name: string | number,
-  code: string,
+  code: ResponsiveUtilityStyles,
 ) => (props: Object) => any
 
 export const between: (
   lower: string | number,
   upper: string | number,
-  code: string,
+  code: ResponsiveUtilityStyles,
 ) => (props: Object) => any
 
 export interface StyleResult extends ReturnType<typeof style> {}
