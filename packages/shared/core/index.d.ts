@@ -22,6 +22,7 @@ declare type OptionalThemeProp =
     }
 
 interface BasicsProps {
+  onClick?: (e) => void
   opacity?: OptionalThemeProp
   overflow?: OptionalThemeProp
 }
