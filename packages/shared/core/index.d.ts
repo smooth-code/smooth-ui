@@ -627,7 +627,7 @@ export const composeStyles: (
 
 export const globalStyle: (customTheme: ThemeType) => Array<string>
 
-export interface ModalProps {
+export interface ModalProps extends BoxProps {
   children?: React.ReactNode
   opened?: boolean
   onClose?: () => void
