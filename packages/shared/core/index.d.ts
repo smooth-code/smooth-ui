@@ -719,19 +719,19 @@ export const mediaBetweenWidth: (
   max: string | number,
 ) => string
 
-export type ResponsiveUtilitiesStyles = string | styledComponents.FlattenSimpleInterpolation
+export type ResponsiveUtilityStyles = string | styledComponents.FlattenSimpleInterpolation
 
-export const up: (name: string | number, code: ResponsiveUtilitiesStyles) => (props: Object) => any
+export const up: (name: string | number, code: ResponsiveUtilityStyles) => (props: Object) => any
 
 export const down: (
   name: string | number,
-  code: ResponsiveUtilitiesStyles,
+  code: ResponsiveUtilityStyles,
 ) => (props: Object) => any
 
 export const between: (
   lower: string | number,
   upper: string | number,
-  code: ResponsiveUtilitiesStyles,
+  code: ResponsiveUtilityStyles,
 ) => (props: Object) => any
 
 export interface StyleResult extends ReturnType<typeof style> {}
