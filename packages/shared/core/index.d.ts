@@ -1,6 +1,8 @@
 /// <reference types="react" />
 
 import * as React from 'react'
+import * as styledComponents from 'styled-components'
+
 
 interface InputType {
   checked?: boolean
@@ -717,17 +719,19 @@ export const mediaBetweenWidth: (
   max: string | number,
 ) => string
 
-export const up: (name: string | number, code: string) => (props: Object) => any
+export type ResponsiveUtilitiesStyles = string | styledComponents.FlattenSimpleInterpolation
+
+export const up: (name: string | number, code: ResponsiveUtilitiesStyles) => (props: Object) => any
 
 export const down: (
   name: string | number,
-  code: string,
+  code: ResponsiveUtilitiesStyles,
 ) => (props: Object) => any
 
 export const between: (
   lower: string | number,
   upper: string | number,
-  code: string,
+  code: ResponsiveUtilitiesStyles,
 ) => (props: Object) => any
 
 export interface StyleResult extends ReturnType<typeof style> {}
