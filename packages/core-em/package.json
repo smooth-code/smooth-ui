@@ -27,10 +27,10 @@
     "access": "public"
   },
   "dependencies": {
-    "polished": "^2.3.0",
+    "polished": "^2.3.3",
     "prop-types": "^15.6.2",
-    "react-focus-lock": "^1.16.0",
-    "react-transition-group": "^2.5.0"
+    "react-focus-lock": "^1.17.6",
+    "react-transition-group": "^2.5.2"
   },
   "peerDependencies": {
     "emotion": "^9.0.0",
