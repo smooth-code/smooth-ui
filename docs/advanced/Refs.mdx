@@ -10,8 +10,6 @@ import { Input, styled } from '@smooth-ui/core-sc'
 
 Passing a `ref` prop to a Smooth UI component will give you the ref of the DOM node.
 
-> Be careful, if you use emotion or styled-components v3, you have to use "innerRef" instead of "ref".
-
 <Playground>
   {() => {
     class Form extends React.Component {
@@ -34,5 +32,7 @@ Passing a `ref` prop to a Smooth UI component will give you the ref of the DOM n
     }
 
     return <Form />
-  }}
+
+}}
+
 </Playground>

@@ -4,7 +4,6 @@
   "version": "7.1.1",
   "keywords": [
     "emotion",
-    "react-emotion",
     "ui",
     "ui-components",
     "react",
@@ -27,16 +26,17 @@
     "access": "public"
   },
   "dependencies": {
+    "@smooth-ui/system": "^7.1.1",
     "polished": "^2.3.3",
     "prop-types": "^15.6.2",
     "react-focus-lock": "^1.17.6",
-    "react-transition-group": "^2.5.2"
+    "react-transition-group": "^2.5.3"
   },
   "peerDependencies": {
-    "emotion": "^9.0.0",
-    "emotion-theming": "^9.0.0",
+    "@emotion/core": "^10.0.0",
+    "@emotion/styled": "^10.0.0",
+    "emotion-theming": "^10.0.0",
     "react": ">=16.3.0",
-    "react-dom": ">=16.3.0",
-    "react-emotion": "^9.0.0"
+    "react-dom": ">=16.3.0"
   }
 }

@@ -7,7 +7,7 @@ import { Button } from '@smooth-ui/core-sc'
 
 # Getting Started
 
-## Installation 
+## Installation
 
 Install `@smooth-ui/core-sc` and `styled-components` from npm:
 
@@ -22,20 +22,9 @@ You can use components in your React app:
 ```js
 import { Button } from '@smooth-ui/core-sc'
 
-const App = () => (
-  <Button variant="primary">Hello world!</Button>
-)
+const App = () => <Button variant="primary">Hello world!</Button>
 
 export default App
 ```
 
-## Global normalize (recommended)
-
-Even if it is not required, is recommended to apply a global normalize before using Smooth UI.
-
-```js
-import { globalStyle, createGlobalStyle } from '@smooth-ui/core-sc'
-const GlobalStyle = createGlobalStyle`${globalStyle()}`
-```
-
-If you don't want to use a global normalize, at least add `* { box-sizing: border-box; }`.
+> Including `Normalize` is strongly recommended, see [guide](/docs-basics-normalize)].

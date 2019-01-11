@@ -80,7 +80,7 @@ You can toggle a modal from a `Button` using the `Toggler`.
 
 Modal will focus the first focusable node by default, but you can specify a custom one using `initialFocusRef`.
 
-In this example, the close button in `ModalFooter` will be focused instead of the `ModalCloseButton`. 
+In this example, the close button in `ModalFooter` will be focused instead of the `ModalCloseButton`.
 
 <Playground>
   {() => {
@@ -93,7 +93,7 @@ In this example, the close button in `ModalFooter` will be focused instead of th
         this.close = () => this.setState({ showDialog: false })
       }
 
-      render() { 
+      render() {
         return (
           <div>
             <Button variant="primary" onClick={this.open}>
@@ -124,7 +124,9 @@ In this example, the close button in `ModalFooter` will be focused instead of th
     }
 
     return <App />
-  }}
+
+}}
+
 </Playground>
 
 ## Scrolling long content
@@ -211,7 +213,6 @@ When modals become too long for the user’s viewport or device, they scroll ind
   </Toggler>
 </Playground>
 
-
 ## API
 
 ### Modal
@@ -225,7 +226,6 @@ When modals become too long for the user’s viewport or device, they scroll ind
     ...getSystemPropDesc(Modal),
   })}
 />
-
 
 ### ModalBody
 
@@ -280,4 +280,3 @@ When modals become too long for the user’s viewport or device, they scroll ind
     ...getSystemPropDesc(ModalCloseButton),
   })}
 />
-

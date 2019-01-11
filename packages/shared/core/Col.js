@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { mediaMinWidth } from './utils/breakpoints'
-import { prop, px } from './utils/system'
+import { prop, px, th } from './utils/system'
 import createComponent from './utils/createComponent'
 
 const common = {
@@ -29,7 +29,7 @@ function getBreakPointStyle(breakpoint, width, props) {
   const size = props[breakpoint]
   if (!isValidSize(size)) return null
 
-  const nbColumns = props.theme.gridColumns
+  const nbColumns = th('gridColumns')(props)
   const mediaQuery = mediaMinWidth(width)
   const media = style => (width === 0 ? style : { [mediaQuery]: style })
 
@@ -69,8 +69,10 @@ function getBreakPointStyle(breakpoint, width, props) {
 
 const getStyleFromProps = props => {
   const gutter = px(prop('gutter', 'gridGutter')(props))
-  const breakpointsKeys = Object.keys(props.theme.breakpoints)
+  const breakpoints = th('breakpoints')(props)
+  const breakpointsKeys = Object.keys(breakpoints)
   const style = {
+    boxSizing: 'border-box',
     paddingLeft: gutter,
     paddingRight: gutter,
     flexBasis: 0,
@@ -84,11 +86,7 @@ const getStyleFromProps = props => {
     const breakpoint = breakpointsKeys[index]
     Object.assign(
       style,
-      getBreakPointStyle(
-        breakpoint,
-        props.theme.breakpoints[breakpoint],
-        props,
-      ),
+      getBreakPointStyle(breakpoint, breakpoints[breakpoint], props),
     )
   }
 

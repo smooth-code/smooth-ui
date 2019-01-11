@@ -135,15 +135,14 @@ const Select = createComponent(() => ({
         ) : null}
         <select {...props}>
           {children ||
-            options.map(
-              node =>
-                node.options ? (
-                  <optgroup key={node.label} label={node.label}>
-                    {node.options.map(renderOption)}
-                  </optgroup>
-                ) : (
-                  renderOption(node)
-                ),
+            options.map(node =>
+              node.options ? (
+                <optgroup key={node.label} label={node.label}>
+                  {node.options.map(renderOption)}
+                </optgroup>
+              ) : (
+                renderOption(node)
+              ),
             )}
         </select>
       </Component>

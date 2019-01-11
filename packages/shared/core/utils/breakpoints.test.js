@@ -20,6 +20,7 @@ describe('breakpoints utils', () => {
   beforeEach(() => {
     props = {
       theme: {
+        __smoothUI: true,
         breakpoints: {
           xs: 0,
           sm: 5,

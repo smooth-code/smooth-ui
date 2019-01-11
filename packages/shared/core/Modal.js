@@ -68,7 +68,7 @@ class ModalComponent extends React.Component {
     const {
       className,
       forwardedRef,
-      forwardedAs,
+      uiAs,
       theme,
       opened,
       onClose,

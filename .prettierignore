@@ -1,5 +1,5 @@
 node_modules/
 dist/
 package.json
-CHANGELOG.json
+CHANGELOG.md
 .docz/

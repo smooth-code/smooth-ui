@@ -1,28 +1,18 @@
 import React from 'react'
-import { css as emotionCss, injectGlobal, keyframes, cx } from 'emotion'
-import emotionStyled from 'react-emotion'
-import {
-  withTheme as emotionWithTheme,
-  ThemeProvider,
-  contextTypes,
-  channel,
-} from 'emotion-theming'
+import { css as emoCss, Global } from '@emotion/core'
+import { withTheme } from 'emotion-theming'
 
-export const withTheme = Component => {
-  const WithThemeComponent = emotionWithTheme(Component)
-
-  // eslint-disable-next-line react/prefer-stateless-function
-  class SafeWithTheme extends React.Component {
-    static contextTypes = contextTypes
-
-    render() {
-      if (!this.context[channel]) return <Component {...this.props} />
-      return <WithThemeComponent {...this.props} />
-    }
-  }
-
-  return SafeWithTheme
-}
+export { default as styled } from '@emotion/styled'
+export {
+  keyframes,
+  ClassNames,
+  Global,
+  jsx,
+  withEmotionCache,
+  CacheProvider,
+  ThemeContext,
+} from '@emotion/core'
+export { ThemeProvider, withTheme } from 'emotion-theming'
 
 const isInterpolation = func => {
   if (typeof func !== 'function') return false
@@ -31,7 +21,7 @@ const isInterpolation = func => {
   return true
 }
 
-const css = (...args) => {
+export const css = (strings, ...args) => {
   if (args.some(arg => isInterpolation(arg))) {
     return props => {
       if (!props) {
@@ -51,46 +41,20 @@ const css = (...args) => {
       }
 
       const transformedArgs = transform(args)
-      return emotionCss(...transformedArgs)
+      return emoCss(strings, ...transformedArgs)
     }
   }
 
-  return emotionCss(...args)
+  return emoCss(strings, ...args)
 }
 
-function patchStyledComponent(StyledComponent) {
-  const { withComponent } = StyledComponent
-  StyledComponent.withComponent = (component, options) => {
-    // eslint-disable-next-line no-underscore-dangle
-    const BaseComponent = StyledComponent.__emotion_base
-    return patchStyledComponent(
-      Object.assign(
-        withComponent(
-          props => <BaseComponent as={component} {...props} />,
-          options,
-        ),
-        StyledComponent,
-      ),
-    )
+export const createGlobalStyle = (...args) => {
+  const GlobalStyle = props => {
+    const cssResult = css(...args)
+    const styles =
+      typeof cssResult === 'function' ? cssResult(props) : cssResult
+    return <Global styles={styles} />
   }
 
-  return StyledComponent
+  return withTheme(GlobalStyle)
 }
-
-function wrapCreateStyledComponent(createStyledComponent) {
-  const wrappedCreateStyledComponent = (...args) => {
-    const StyledComponent = createStyledComponent(...args)
-    return patchStyledComponent(StyledComponent)
-  }
-  return wrappedCreateStyledComponent
-}
-
-function wrapStyled(styled) {
-  return (component, options) =>
-    wrapCreateStyledComponent(styled(component, options))
-}
-
-const styled = wrapStyled(emotionStyled)
-
-export default styled
-export { css, injectGlobal, ThemeProvider, keyframes, cx }

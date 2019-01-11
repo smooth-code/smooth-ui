@@ -18,9 +18,11 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': 'off',
 
+    'no-plusplus': 'off',
     'no-return-assign': 'off',
     'no-param-reassign': 'off',
     'no-shadow': 'off',
     'default-case': 'off',
+    'no-underscore-dangle': ['off', { allow: ['__smoothUI', '__scTheme'] }],
   },
 }

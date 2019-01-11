@@ -39,8 +39,8 @@ Disable using `disabled` prop.
 
 ## Control & Validation
 
-* Set `display` to "block" and `width` to "100%" using `control` prop.
-* Set validation using `valid` or `valid={false}`
+- Set `display` to "block" and `width` to "100%" using `control` prop.
+- Set validation using `valid` or `valid={false}`
 
 <Playground>
   <BlockList>
@@ -59,6 +59,6 @@ Disable using `disabled` prop.
     control: PropDesc.bool,
     size: PropDesc.oneOf(['sm', 'lg']),
     valid: PropDesc.bool,
-    ...getSystemPropDesc(Input)
+    ...getSystemPropDesc(Input),
   })}
 />

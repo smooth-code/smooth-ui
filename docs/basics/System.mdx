@@ -9,7 +9,7 @@ import { Box } from '@smooth-ui/core-sc'
 
 # System
 
-Smooth UI has a powerful style system, a lot of utilities are available on all components.
+Smooth UI has a powerful style system that gives you a real styling power using component props:
 
 <Playground>
   <Box
@@ -22,11 +22,12 @@ Smooth UI has a powerful style system, a lot of utilities are available on all c
 </Playground>
 
 The above example create a red `div` with:
-  - A background with color "primary"
-  - A width of `100%` on mobile, `50%` on desktop
-  - A height of `100px`
-  - A padding of `16px`
-  - A `marginLeft` and a `marginRight` of `50%`
+
+- A background with color "primary"
+- A width of `100%` on mobile, `50%` on desktop
+- A height of `100px`
+- A padding of `16px`
+- A `marginLeft` and a `marginRight` of `50%`
 
 ## Utilities
 
@@ -180,7 +181,7 @@ Available basic utilities:
 - `opacity`
 - `overflow`
 
-## Variants 
+## Variants
 
 Some utilities use a variant defined in theme, a variant can be either an array or an object.
 
@@ -246,7 +247,7 @@ All utilities support responsive and use breakpoints defined in the theme.
 
 ```js
 // 10px on all devices
-// 8px on devices ≥768px 
+// 8px on devices ≥768px
 // 50% on devices ≥992px
 <Box m={{ xs: 10, md: 1, lg: '50%' }} />
 

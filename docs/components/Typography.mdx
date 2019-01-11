@@ -58,10 +58,10 @@ HTML component is automatically determined from variant. You can customize it us
   }}
 </Playground>
 
-### Using `as` property
+### Using `uiAs` property
 
 <Playground>
-  <Typography variant="h4" as="div">
+  <Typography variant="h4" uiAs="div">
     div displayed as h4
   </Typography>
 </Playground>
@@ -85,6 +85,6 @@ HTML component is automatically determined from variant. You can customize it us
       'display-3',
       'display-4',
     ]),
-    ...getSystemPropDesc(Typography)
+    ...getSystemPropDesc(Typography),
   })}
 />

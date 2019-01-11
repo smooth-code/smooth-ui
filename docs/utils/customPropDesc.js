@@ -1,7 +1,5 @@
-import { styles } from '@smooth-ui/core-sc'
+import { system } from '@smooth-ui/system'
 import PropDesc from './PropDesc'
-
-const systemProps = styles.system.meta.props
 
 const getSystemDesc = () =>
   PropDesc.oneOfType([
@@ -18,7 +16,7 @@ const getSystemDesc = () =>
 
 export const getSystemPropDesc = Component =>
   Object.keys(Component.propTypes).reduce((obj, prop) => {
-    if (systemProps.includes(prop)) {
+    if (system.meta.props.includes(prop)) {
       obj[prop] = getSystemDesc()
     }
     return obj

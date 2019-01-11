@@ -27,7 +27,7 @@ Please provide a minimal repository on GitHub.
 
 Issues without a reproduction link are likely to stall.
 
-## Run `npx envinfo --system --binaries --npmPackages @smooth-ui/core-sc,@smooth-ui/core-em,styled-components,emotion,react-emotion --markdown --clipboard`
+## Run `npx envinfo --system --binaries --npmPackages @smooth-ui/core-sc,@smooth-ui/core-em,styled-components,@emotion/core,@emotion/styled,emotion-theming --markdown --clipboard`
 
 Paste the results here:
 

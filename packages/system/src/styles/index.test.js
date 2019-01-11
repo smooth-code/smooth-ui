@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import styled from 'styled-components'
-import * as styles from './styles'
+import * as styles from './index'
 
 describe('styles', () => {
   describe.each([
