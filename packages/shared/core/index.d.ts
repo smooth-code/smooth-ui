@@ -50,11 +50,12 @@ interface MarginProps {
 }
 
 interface BorderProps {
+  border?: OptionalThemeProp
   borderTop?: OptionalThemeProp
   borderRight?: OptionalThemeProp
   borderBottom?: OptionalThemeProp
   borderLeft?: OptionalThemeProp
-  bordeColor?: OptionalThemeProp
+  borderColor?: OptionalThemeProp
   borderRadius?: OptionalThemeProp
   boxShadow?: OptionalThemeProp
 }
@@ -91,7 +92,7 @@ interface FlexProps {
   order?: OptionalThemeProp
 }
 
-interface BorderProps {
+interface BackgroundProps {
   background?: OptionalThemeProp
   backgroundColor?: OptionalThemeProp
   backgroundImage?: OptionalThemeProp
@@ -141,7 +142,8 @@ export interface BoxProps
     BorderProps,
     FlexProps,
     FontProps,
-    DimensionsProps {
+    DimensionsProps,
+    BackgroundProps {
   as?: string | React.ComponentType
 }
 
