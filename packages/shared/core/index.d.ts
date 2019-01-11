@@ -22,6 +22,7 @@ declare type OptionalThemeProp =
     }
 
 interface BasicsProps {
+  onClick?: (e) => void
   opacity?: OptionalThemeProp
   overflow?: OptionalThemeProp
 }
@@ -112,8 +113,8 @@ interface TogglerRenderProps {
 }
 interface TogglerProps {
   children: (props: TogglerRenderProps) => React.ReactNode
-  defaultToggled: boolean
-  onToggle: (value: boolean) => void
+  defaultToggled?: boolean
+  onToggle?: (value: boolean) => void
 }
 
 export const Toggler: React.FunctionComponent<TogglerProps>
