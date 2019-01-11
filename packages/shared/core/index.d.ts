@@ -271,12 +271,12 @@ export interface ColProps extends BoxProps {
 
 export const Col: React.FunctionComponent<ColProps>
 
-export interface ControllFeedbackProps {
+export interface ControlFeedbackProps {
   valid: boolean
   children?: React.ReactNode
 }
 
-export const ControllFeedback: React.FunctionComponent<ControllFeedbackProps>
+export const ControlFeedback: React.FunctionComponent<ControlFeedbackProps>
 
 export interface SelectProps
   extends Omit<React.HTMLProps<HTMLSelectElement>, BoxProps & { size: any }>,
@@ -619,7 +619,7 @@ export const px: ReturnType<typeof unit>
 interface styleArg {
   prop: string
   cssProperty: string
-  trasform: Function
+  transform: Function
   variants: Array<string>
 }
 
