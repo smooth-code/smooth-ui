@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/smooth-code/smooth-ui/compare/v7.1.0...v7.1.1) (2019-01-11)
+
+
+### Bug Fixes
+
+* update TS definitions  ([#90](https://github.com/smooth-code/smooth-ui/issues/90)) ([2dfe3b6](https://github.com/smooth-code/smooth-ui/commit/2dfe3b6))
+
+
+
+
+
 # [7.1.0](https://github.com/smooth-code/smooth-ui/compare/v7.0.5...v7.1.0) (2019-01-07)
 
 
