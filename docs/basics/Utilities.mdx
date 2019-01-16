@@ -1,7 +1,7 @@
 ---
 name: Utilities
 menu: Basics
-order: 6
+order: 70
 ---
 
 import { Playground } from 'docz'
@@ -14,7 +14,7 @@ Smooth UI exposes several utilities to simplify the styling of components.
 
 ### styled
 
-`styled` is exported from `react-emotion` if you use `@smooth-ui/core-em` or from `styled-components` if you use `@smooth-ui/core-sc`.
+`styled` is exported from `@emotion/styled` if you use `@smooth-ui/core-sc` or from `styled-components` if you use `@smooth-ui/core-em`.
 
 ```js
 import { styled } from '@smooth-ui/core-sc'
@@ -27,7 +27,7 @@ const Box = styled.div`
 
 ### css
 
-`css` offers the same experience as [`styled-components` css utility](https://www.styled-components.com/docs/api#css). It means that props interpolations are supported even if you `@smooth-ui/core-em`.
+`css` offers the same experience as [`styled-components` css utility](https://www.styled-components.com/docs/api#css). It means that props interpolations are supported even if you use `@smooth-ui/core-sc`.
 
 ```js
 import { styled, css } from '@smooth-ui/core-sc'
@@ -93,15 +93,17 @@ px(10) // 10px
 
 `up`, `down` and `between` let you apply style relative to breakpoints.
 
-
 ```js
 import { styled, css, up } from '@smooth-ui/core-sc'
 
 const RedBox = styled.div`
   width: 200px;
   height: 200px;
-  ${up('md', css`
-    height: 300px;
-  `)}
+  ${up(
+    'md',
+    css`
+      height: 300px;
+    `,
+  )}
 `
 ```

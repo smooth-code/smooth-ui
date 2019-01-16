@@ -3,7 +3,6 @@
 import * as React from 'react'
 import * as styledComponents from 'styled-components'
 
-
 interface InputType {
   checked?: boolean
   onChange?: (e) => void
@@ -721,9 +720,14 @@ export const mediaBetweenWidth: (
   max: string | number,
 ) => string
 
-export type ResponsiveUtilityStyles = string | styledComponents.FlattenSimpleInterpolation
+export type ResponsiveUtilityStyles =
+  | string
+  | styledComponents.FlattenSimpleInterpolation
 
-export const up: (name: string | number, code: ResponsiveUtilityStyles) => (props: Object) => any
+export const up: (
+  name: string | number,
+  code: ResponsiveUtilityStyles,
+) => (props: Object) => any
 
 export const down: (
   name: string | number,
@@ -735,129 +739,3 @@ export const between: (
   upper: string | number,
   code: ResponsiveUtilityStyles,
 ) => (props: Object) => any
-
-export interface StyleResult extends ReturnType<typeof style> {}
-
-export interface ComposeStylesResult extends ReturnType<typeof composeStyles> {}
-
-// Basic
-
-export const opacity: StyleResult
-
-export const overflow: StyleResult
-
-export const basics: ComposeStylesResult
-
-// Typography
-
-export const fontFamily: StyleResult
-
-export const fontSize: StyleResult
-
-export const lineHeight: StyleResult
-
-export const fontWeight: StyleResult
-
-export const textAlign: StyleResult
-
-export const letterSpacing: StyleResult
-
-export const color: StyleResult
-
-export const typography: ComposeStylesResult
-
-// Dimensions
-
-export const width: StyleResult
-
-export const height: StyleResult
-
-export const maxWidth: StyleResult
-
-export const maxHeight: StyleResult
-
-export const minWidth: StyleResult
-
-export const minHeight: StyleResult
-
-export const dimensions: ComposeStylesResult
-
-// Flexbox
-
-export const display: StyleResult
-
-export const alignItems: StyleResult
-
-export const alignContent: StyleResult
-
-export const justifyContent: StyleResult
-
-export const flexWrap: StyleResult
-
-export const flexBasis: StyleResult
-
-export const flexDirection: StyleResult
-
-export const flex: StyleResult
-
-export const justifySelf: StyleResult
-
-export const alignSelf: StyleResult
-
-export const order: StyleResult
-
-export const flexboxes: ComposeStylesResult
-
-// Background
-
-export const background: StyleResult
-
-export const backgroundColor: StyleResult
-
-export const backgroundImage: StyleResult
-
-export const backgroundSize: StyleResult
-
-export const backgroundPosition: StyleResult
-
-export const backgroundRepeat: StyleResult
-
-export const backgrounds: ComposeStylesResult
-
-// Position
-
-export const position: StyleResult
-
-export const zIndex: StyleResult
-
-export const top: StyleResult
-
-export const right: StyleResult
-
-export const bottom: StyleResult
-
-export const left: StyleResult
-
-export const positions: ComposeStylesResult
-
-// Border
-
-export const border: StyleResult
-
-export const borderTop: StyleResult
-
-export const borderRight: StyleResult
-
-export const borderBottom: StyleResult
-
-export const borderLeft: StyleResult
-
-export const borderColor: StyleResult
-
-export const borderRadius: StyleResult
-
-export const boxShadow: StyleResult
-
-export const borders: ComposeStylesResult
-
-export const system: ComposeStylesResult

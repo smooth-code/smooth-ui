@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
 import {
   dimensions,
   space,
@@ -10,8 +8,10 @@ import {
   backgrounds,
   positions,
   borders,
-} from './utils/styles'
-import composeStyles from './utils/composeStyles'
+  compose,
+} from '@smooth-ui/system'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
 import SwitchState from './SwitchState'
 import createComponent from './utils/createComponent'
 
@@ -51,7 +51,7 @@ const sizeStyle = {
   `,
 }
 
-const containerSystem = composeStyles(
+const containerSystem = compose(
   basics,
   dimensions,
   space,
@@ -59,11 +59,20 @@ const containerSystem = composeStyles(
   positions,
 )
 
-const contentSystem = composeStyles(dimensions, backgrounds, borders)
+const contentSystem = compose(
+  dimensions,
+  backgrounds,
+  borders,
+)
+
+const system = compose(
+  containerSystem,
+  contentSystem,
+)
 
 const ModalHeader = createComponent(() => ({
   name: 'radio',
-  system: composeStyles(containerSystem, contentSystem),
+  system,
   applySystem: null,
   render: ({ Component, ref, className, size, ...props }) => (
     <SwitchState {...props}>
@@ -124,10 +133,10 @@ const ModalHeader = createComponent(() => ({
 
     ${p => p.size && sizeStyle[p.size]};
 
-    ${containerSystem};
+    ${containerSystem.props};
 
     .sui-radio-content {
-      ${contentSystem};
+      ${contentSystem.props};
     }
   `,
   propTypes: {

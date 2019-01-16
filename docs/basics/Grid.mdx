@@ -1,7 +1,7 @@
 ---
 name: Grid
 menu: Basics
-order: 1
+order: 50
 ---
 
 import { Playground } from 'docz'
@@ -27,20 +27,16 @@ The above example creates three equal-width columns on small, medium, large, and
 
 ## Grid component
 
-`Grid` component is a layout element, it is required to use grid system.  Choose from a responsive, fixed-width container (meaning its `max-width` changes at each breakpoint) or fluid-width (meaning it’s `100%` wide all the time).
+`Grid` component is a layout element, it is required to use grid system. Choose from a responsive, fixed-width container (meaning its `max-width` changes at each breakpoint) or fluid-width (meaning it’s `100%` wide all the time).
 
 <Playground>
-  <Grid>
-    This is a fixed grid
-  </Grid>
+  <Grid>This is a fixed grid</Grid>
 </Playground>
 
 Use `fluid` prop for a full width container, spanning the entire width of the viewport.
 
 <Playground>
-  <Grid fluid>
-    This is a fluid grid
-  </Grid>
+  <Grid fluid>This is a fluid grid</Grid>
 </Playground>
 
 ## Breakpoints
@@ -50,25 +46,30 @@ This table resume all available breakpoints in grid.
 <table style={{ width: '100%' }}>
   <thead>
     <tr>
-      <th></th>
+      <th />
       <th>
-        Extra small<br/>
+        Extra small
+        <br />
         <small>{'<576px'}</small>
       </th>
       <th>
-        Small<br/>
+        Small
+        <br />
         <small>≥576px</small>
       </th>
       <th>
-        Medium<br/>
+        Medium
+        <br />
         <small>≥768px</small>
       </th>
       <th>
-        Large<br/>
+        Large
+        <br />
         <small>≥992px</small>
       </th>
       <th>
-        Extra large<br/>
+        Extra large
+        <br />
         <small>≥1200px</small>
       </th>
     </tr>
@@ -84,11 +85,21 @@ This table resume all available breakpoints in grid.
     </tr>
     <tr>
       <th>Prop</th>
-      <td><code>xs</code></td>
-      <td><code>sm</code></td>
-      <td><code>md</code></td>
-      <td><code>lg</code></td>
-      <td><code>xl</code></td>
+      <td>
+        <code>xs</code>
+      </td>
+      <td>
+        <code>sm</code>
+      </td>
+      <td>
+        <code>md</code>
+      </td>
+      <td>
+        <code>lg</code>
+      </td>
+      <td>
+        <code>xl</code>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -233,12 +244,8 @@ Don’t want your columns to simply stack in some grid tiers? Use a combination 
     </Row>
     {/* Columns are always 50% wide, on mobile and desktop */}
     <Row>
-      <Col xs={6}>
-        {`xs={6}`}
-      </Col>
-      <Col xs={6}>
-        {`xs={6}`}
-      </Col>
+      <Col xs={6}>{`xs={6}`}</Col>
+      <Col xs={6}>{`xs={6}`}</Col>
     </Row>
   </Grid>
 </Playground>
@@ -252,37 +259,19 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 <Playground className="example-row-flex-cols">
   <Grid>
     <Row alignItems="flex-start">
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
     </Row>
     <Row alignItems="center">
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
     </Row>
     <Row alignItems="flex-end">
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
-      <Col>
-        One of three columns
-      </Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
+      <Col>One of three columns</Col>
     </Row>
   </Grid>
 </Playground>
@@ -292,44 +281,24 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 <Playground>
   <Grid>
     <Row justifyContent="flex-start">
-      <Col xs={4}>
-        One of two columns
-      </Col>
-      <Col xs={4}>
-        One of two columns
-      </Col>
+      <Col xs={4}>One of two columns</Col>
+      <Col xs={4}>One of two columns</Col>
     </Row>
     <Row justifyContent="center">
-      <Col xs={4}>
-        One of two columns
-      </Col>
-      <Col xs={4}>
-        One of two columns
-      </Col>
+      <Col xs={4}>One of two columns</Col>
+      <Col xs={4}>One of two columns</Col>
     </Row>
     <Row justifyContent="flex-end">
-      <Col xs={4}>
-        One of two columns
-      </Col>
-      <Col xs={4}>
-        One of two columns
-      </Col>
+      <Col xs={4}>One of two columns</Col>
+      <Col xs={4}>One of two columns</Col>
     </Row>
     <Row justifyContent="space-around">
-      <Col xs={4}>
-        One of two columns
-      </Col>
-      <Col xs={4}>
-        One of two columns
-      </Col>
+      <Col xs={4}>One of two columns</Col>
+      <Col xs={4}>One of two columns</Col>
     </Row>
     <Row justifyContent="space-between">
-      <Col xs={4}>
-        One of two columns
-      </Col>
-      <Col xs={4}>
-        One of two columns
-      </Col>
+      <Col xs={4}>One of two columns</Col>
+      <Col xs={4}>One of two columns</Col>
     </Row>
   </Grid>
 </Playground>
@@ -392,8 +361,17 @@ If more than 12 columns are placed within a single row, each group of extra colu
 <Playground>
   <Row>
     <Col xs={9}>{`xs={9}`}</Col>
-    <Col xs={4}>{`xs={4}`}<br />Since 9 + 4 = 13 &gt; 12, this 4-column-wide gets wrapped onto a new line as one contiguous unit.</Col>
-    <Col xs={6}>{`xs={6}`}<br />Subsequent columns continue along the new line.</Col>
+    <Col xs={4}>
+      {`xs={4}`}
+      <br />
+      Since 9 + 4 = 13 &gt; 12, this 4-column-wide gets wrapped onto a new line
+      as one contiguous unit.
+    </Col>
+    <Col xs={6}>
+      {`xs={6}`}
+      <br />
+      Subsequent columns continue along the new line.
+    </Col>
   </Row>
 </Playground>
 
@@ -411,6 +389,7 @@ Breaking columns to a new line in flexbox requires a small hack: add an element 
 
     <Col xs={6} sm={3}>{`xs={6} sm={3}`}</Col>
     <Col xs={6} sm={3}>{`xs={6} sm={3}`}</Col>
+
   </Row>
 </Playground>
 
@@ -426,6 +405,7 @@ You may also apply this break at specific breakpoints with our responsive displa
 
     <Col xs={6} sm={4}>{`xs={6} sm={4}`}</Col>
     <Col xs={6} sm={4}>{`xs={6} sm={4}`}</Col>
+
   </Row>
 </Playground>
 
@@ -438,15 +418,9 @@ Use `order` prop for controlling the visual order of your content. Like all util
 <Playground>
   <Grid>
     <Row>
-      <Col>
-        First, but unordered
-      </Col>
-      <Col order={2}>
-        Second, but last
-      </Col>
-      <Col order={1}>
-        Third, but first
-      </Col>
+      <Col>First, but unordered</Col>
+      <Col order={2}>Second, but last</Col>
+      <Col order={1}>Third, but first</Col>
     </Row>
   </Grid>
 </Playground>
@@ -457,7 +431,7 @@ You can offset grid columns in two ways: our responsive offset props and our mar
 
 #### Offset props
 
-Move columns to the right using offset props (`oxs`, `osm`...). These props increase the left margin of a column by * columns. For example, `omd={4}` moves `Col` over four columns.
+Move columns to the right using offset props (`oxs`, `osm`...). These props increase the left margin of a column by \* columns. For example, `omd={4}` moves `Col` over four columns.
 
 <Playground>
   <Row>
@@ -469,7 +443,9 @@ Move columns to the right using offset props (`oxs`, `osm`...). These props incr
     <Col md={3} omd={3}>{`md={3} omd={3}`}</Col>
   </Row>
   <Row>
-    <Col md={6} omd={3}>.{`md={6} omd={3}`}</Col>
+    <Col md={6} omd={3}>
+      .{`md={6} omd={3}`}
+    </Col>
   </Row>
 </Playground>
 
@@ -544,13 +520,13 @@ export const breakpoints = {
   // Large screen / desktop
   lg: '992px',
   // Extra large screen / wide desktop
-  xl: '1200px'
+  xl: '1200px',
 }
 
 export const gridMaxWidths = {
   sm: '540px',
   md: '720px',
   lg: '960px',
-  xl: '1140px'
+  xl: '1140px',
 }
 ```

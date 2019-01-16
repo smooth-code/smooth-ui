@@ -4,7 +4,7 @@ menu: Advanced
 ---
 
 import { Playground } from 'docz'
-import { Button, Alert } from '@smooth-ui/core-sc'
+import { Button, Alert, uiAs } from '@smooth-ui/core-sc'
 
 # Custom component
 
@@ -12,32 +12,29 @@ Sometimes you may want to use a component but the resulting HTML tag is not the 
 
 You can do it using two approaches.
 
-## Use "as" property
+## Use "uiAs" property
 
-Every components accepts a `as` property, it defines the base component used in each component.
+Every components accepts a `uiAs` property, it defines the base component used in each component.
 
 An example of an `Alert` that uses `span` as a component.
 
 <Playground>
-  <Alert as="span" variant="primary">
+  <Alert uiAs="span" variant="primary">
     A span alert
   </Alert>
 </Playground>
 
-## Use "withComponent"
+## Use "uiAs" helper
 
-Styled Components has a magic method called [`.withComponent`](https://www.styled-components.com/docs/api#withcomponent), it gives you the opportunity to keep style and swap the component. All Smooth UI components exposes the same method, this way you can easily create a new component from another without losing the style.
+`uiAs` creates a new component with a predefined base component.
 
 An example of `Button` that will use `a` instead of `button`.
 
 <Playground>
   {() => {
-    const LinkButton = Button.withComponent('a')
-    return (
-      <LinkButton href="#">
-        A button as a link
-      </LinkButton>
-    )
+    // import { uiAs } from '@smooth-ui/core-sc'
+    const LinkButton = uiAs(Button, 'a')
+    return <LinkButton href="#">A button as a link</LinkButton>
   }}
 </Playground>
 

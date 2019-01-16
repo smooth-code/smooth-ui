@@ -1,4 +1,5 @@
 import { css } from '../styled-engine'
+import { lazyTh } from './system'
 
 export const DEFAULT_BREAKPOINTS = {
   xs: 0,
@@ -8,8 +9,8 @@ export const DEFAULT_BREAKPOINTS = {
   xl: 1200,
 }
 
-export const getBreakpoints = props =>
-  (props && props.theme && props.theme.breakpoints) || DEFAULT_BREAKPOINTS
+export const getBreakpoints = p =>
+  lazyTh('breakpoints')(p) || DEFAULT_BREAKPOINTS
 
 export const getBreakpointsEntries = props => {
   const breakpoints = getBreakpoints(props)

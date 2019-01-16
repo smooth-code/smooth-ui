@@ -1,10 +1,10 @@
 /* eslint-disable react/forbid-foreign-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { withTheme } from '../styled-engine'
+import { system as fullSystem } from '@smooth-ui/system'
+import { styled, withTheme } from '../styled-engine'
 import * as theme from '../theme'
 import { omit } from './misc'
-import { system as allSystem } from './styles'
 
 function createComponent(getConfig) {
   const {
@@ -15,8 +15,8 @@ function createComponent(getConfig) {
     propTypes = {},
     render = ({ Component, ...props }) => <Component {...props} />,
     defaultComponent = 'div',
-    system = allSystem,
-    applySystem = system => props => ({ '&&': system(props) }),
+    system = fullSystem,
+    applySystem = system => props => ({ '&&': system.props(props) }),
     injectTheme,
     InnerComponent: InnerComponentFromConfig,
   } = getConfig()
@@ -34,14 +34,14 @@ function createComponent(getConfig) {
       render() {
         const {
           className,
-          forwardedAs,
-          as,
+          uiAs,
           theme,
+          __scTheme,
           forwardedRef,
           ...props
         } = this.props
 
-        const Component = forwardedAs || as || defaultComponent
+        const Component = uiAs || defaultComponent
 
         const renderProps = {
           ref: forwardedRef,
@@ -53,7 +53,7 @@ function createComponent(getConfig) {
         }
 
         if (injectTheme) {
-          renderProps.theme = theme
+          renderProps.theme = theme || __scTheme
         }
 
         return render(renderProps)
@@ -81,12 +81,21 @@ function createComponent(getConfig) {
 
   StyledComponent.propTypes = {
     theme: PropTypes.object,
-    ...(system ? system.propTypes : {}),
+    ...(system
+      ? system.meta.props.reduce((obj, prop) => {
+          obj[prop] = PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+            PropTypes.object,
+          ])
+          return obj
+        }, {})
+      : {}),
     ...propTypes,
   }
 
   StyledComponent.defaultProps = {
-    theme,
+    __scTheme: theme,
     ...defaultProps,
   }
 

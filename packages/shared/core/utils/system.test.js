@@ -1,4 +1,4 @@
-import { th, unit, style, px, prop, mixin, calc } from './system'
+import { th, unit, px, prop, mixin, calc } from './system'
 
 describe('system utils', () => {
   let props
@@ -6,6 +6,7 @@ describe('system utils', () => {
   beforeEach(() => {
     props = {
       theme: {
+        __smoothUI: true,
         red: 'red',
         primary: th('red'),
         secondary: 'blue',
@@ -47,71 +48,6 @@ describe('system utils', () => {
     })
   })
 
-  describe('#style', () => {
-    it('should support string', () => {
-      expect(style({ prop: 'width' })({ width: '10px' })).toEqual({
-        width: '10px',
-      })
-    })
-
-    it('should support number', () => {
-      expect(style({ prop: 'width' })({ width: 10 })).toEqual({
-        width: 10,
-      })
-    })
-
-    it('should support breakpoints', () => {
-      expect(
-        style({ prop: 'width' })({
-          width: { xs: '10px', md: '20px', lg: '30px' },
-        }),
-      ).toEqual({
-        '@media (min-width: 768px)': { width: '20px' },
-        '@media (min-width: 992px)': { width: '30px' },
-        width: '10px',
-      })
-    })
-
-    it('should support custom transform', () => {
-      const width = style({
-        prop: 'width',
-        transform: x => (x <= 1 ? `${x * 100}%` : `${x}px`),
-      })
-      expect(width({ width: 1 })).toEqual({ width: '100%' })
-      expect(width({ width: { xs: 0.5, md: 20 } })).toEqual({
-        '@media (min-width: 768px)': { width: '20px' },
-        width: '50%',
-      })
-    })
-
-    it('should support variants', () => {
-      const color = style({ prop: 'color', variants: 'colors' })
-      const width = style({ prop: 'width', variants: 'widths' })
-
-      const theme = {
-        colors: { red: '#ff0000', green: '#3b873f' },
-        widths: [0, '8px', '16px'],
-      }
-
-      expect(color({ color: 'red', theme })).toEqual({
-        color: '#ff0000',
-      })
-      expect(color({ color: { lg: 'red' }, theme })).toEqual({
-        '@media (min-width: 992px)': { color: '#ff0000' },
-      })
-      expect(width({ width: 1, theme })).toEqual({
-        width: '8px',
-      })
-      expect(width({ width: { lg: 1 }, theme })).toEqual({
-        '@media (min-width: 992px)': { width: '8px' },
-      })
-    })
-
-    it('should expose meta', () => {
-      expect(style({ prop: 'width' }).meta.props).toEqual(['width'])
-    })
-  })
-
   describe('#prop', () => {
     it('should use prop if available', () => {
       const getMargin = prop('margin', 'defaultMargin')
@@ -119,7 +55,7 @@ describe('system utils', () => {
     })
 
     it('should default to theme', () => {
-      const theme = { defaultMargin: '10px' }
+      const theme = { __smoothUI: true, defaultMargin: '10px' }
       const getMargin = prop('margin', 'defaultMargin')
       expect(getMargin({ theme })).toBe('10px')
     })
@@ -128,6 +64,7 @@ describe('system utils', () => {
   describe('#mixin', () => {
     it('should call mixin defined theme', () => {
       const theme = {
+        __smoothUI: true,
         borderRadius: props => defaultRadius => ({
           borderRadius: props.radius || defaultRadius,
         }),

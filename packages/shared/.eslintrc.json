@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "import/no-unresolved": ["error", { "ignore": ["@smooth-ui/system"] }]
+  }
+}

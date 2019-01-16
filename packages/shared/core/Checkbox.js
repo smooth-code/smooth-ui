@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
 import {
   dimensions,
   space,
@@ -10,8 +8,10 @@ import {
   backgrounds,
   positions,
   borders,
-} from './utils/styles'
-import composeStyles from './utils/composeStyles'
+  compose,
+} from '@smooth-ui/system'
+import { css } from './styled-engine'
+import { th, mixin } from './utils/system'
 import SwitchState from './SwitchState'
 import createComponent from './utils/createComponent'
 
@@ -54,7 +54,7 @@ const sizeStyle = {
   `,
 }
 
-const containerSystem = composeStyles(
+const containerSystem = compose(
   basics,
   dimensions,
   space,
@@ -62,11 +62,20 @@ const containerSystem = composeStyles(
   positions,
 )
 
-const contentSystem = composeStyles(dimensions, backgrounds, borders)
+const contentSystem = compose(
+  dimensions,
+  backgrounds,
+  borders,
+)
+
+const system = compose(
+  containerSystem,
+  contentSystem,
+)
 
 const Checkbox = createComponent(() => ({
   name: 'checkbox',
-  system: composeStyles(containerSystem, contentSystem),
+  system,
   applySystem: null,
   render: ({ Component, ref, className, size, ...props }) => (
     <SwitchState {...props}>
@@ -135,10 +144,10 @@ const Checkbox = createComponent(() => ({
 
     ${p => sizeStyle[p.size]};
 
-    ${containerSystem};
+    ${containerSystem.props};
 
     .sui-checkbox-content {
-      ${contentSystem};
+      ${contentSystem.props};
     }
   `,
   propTypes: {

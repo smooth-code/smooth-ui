@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react'
 import { transparentize } from 'polished'
-import { ThemeProvider } from 'emotion-theming'
-import { theme, th, createGlobalStyle, globalStyle } from '@smooth-ui/core-sc'
+import {
+  theme,
+  th,
+  createGlobalStyle,
+  Normalize,
+  ThemeProvider,
+} from '@smooth-ui/core-sc'
 
 const GlobalStyle = createGlobalStyle`
-  ${globalStyle()}
-
   .sui-row + .sui-row {
     margin-top: 1rem;
   }
@@ -27,7 +30,8 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = ({ children }) => (
   <ThemeProvider theme={{ ...theme }}>
     <>
-      <GlobalStyle theme={{ ...theme }} />
+      <Normalize />
+      <GlobalStyle />
       {children}
     </>
   </ThemeProvider>

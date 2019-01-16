@@ -6,25 +6,30 @@ import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-cpy'
 import { uglify } from 'rollup-plugin-uglify'
 
-// eslint-disable-next-line
-const babelConfig = require('../../.babelrc')
-
-export const getRollupConfig = ({ pkg, pwd, buildName }) => {
+export const getRollupConfig = ({
+  pkg,
+  pwd,
+  buildName,
+  name,
+  copyTypeScriptDefs,
+}) => {
   const SOURCE_DIR = path.resolve(pwd, 'src')
   const DIST_DIR = path.resolve(pwd, 'dist')
-  const CORE_DIR = path.resolve(pwd, '../shared/core');
+  const CORE_DIR = path.resolve(pwd, '../shared/core')
 
   const baseConfig = {
     input: `${SOURCE_DIR}/index.js`,
     plugins: [
       babel({
-        "exclude": "**/node_modules/**",
-        ...babelConfig
+        exclude: 'node_modules/**',
+        configFile: path.join(pwd, '../../babel.config.js'),
       }),
-      copy({
-        "files": `${CORE_DIR}/*.d.ts`,
-        "dest": DIST_DIR
-      })
+      copyTypeScriptDefs
+        ? copy({
+            files: `${CORE_DIR}/*.d.ts`,
+            dest: DIST_DIR,
+          })
+        : null,
     ],
   }
 
@@ -34,8 +39,8 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
       format: 'es',
     },
     external: [
-      ...Object.keys(pkg.peerDependencies),
-      ...Object.keys(pkg.dependencies),
+      ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.dependencies || {}),
       'react-transition-group/Transition',
     ],
   })
@@ -52,16 +57,16 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
     polished: 'polished',
     'prop-types': 'PropTypes',
     'emotion-theming': 'emotionTheming',
-    emotion: 'emotion',
+    '@emotion/core': 'emotion',
+    '@emotion/styled': 'styled',
     react: 'React',
     'react-dom': 'ReactDom',
-    'react-emotion': 'reactEmotion',
     'styled-components': 'styled',
   }
 
   const umdConfig = Object.assign({}, baseConfig, {
     output: {
-      name: 'smoothUI',
+      name,
       file: `${DIST_DIR}/${buildName}.js`,
       format: 'umd',
       globals,
@@ -92,7 +97,7 @@ export const getRollupConfig = ({ pkg, pwd, buildName }) => {
   })
 
   if (process.env.WATCH_MODE) {
-    return [esConfig]
+    return [esConfig, cjsConfig]
   }
 
   return [esConfig, cjsConfig, umdConfig, minConfig]

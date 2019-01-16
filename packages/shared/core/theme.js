@@ -11,6 +11,8 @@ import { css } from './styled-engine'
 import { DEFAULT_BREAKPOINTS } from './utils/breakpoints'
 import { th, mixin } from './utils/system'
 
+export const __smoothUI = true
+
 // Fonts
 
 export const fontFamily =
@@ -232,17 +234,17 @@ export const alertVariant = p => baseColorTheme => {
   const alertBgLevel = th('alertBgLevel')(p)
   const alertBorderLevel = th('alertBorderLevel')(p)
 
-  return {
-    color: mixin('colorLevel', baseColor, alertColorLevel)(p),
-    backgroundColor: mixin('colorLevel', baseColor, alertBgLevel)(p),
-    borderColor: mixin('colorLevel', baseColor, alertBorderLevel)(p),
-    hr: {
-      borderTopColor: darken(
+  return css`
+    color: ${mixin('colorLevel', baseColor, alertColorLevel)(p)};
+    background-color: ${mixin('colorLevel', baseColor, alertBgLevel)(p)};
+    border-color: ${mixin('colorLevel', baseColor, alertBorderLevel)(p)};
+    hr {
+      border-top-color: ${darken(
         0.05,
         mixin('colorLevel', baseColor, alertColorLevel)(p),
-      ),
-    },
-  }
+      )};
+    }
+  `
 }
 
 // Z-indexes
@@ -255,7 +257,7 @@ export const zIndexModalBackdrop = 1071
 // Transitions
 export const transitionEnabled = true
 export const transition = p => value =>
-  p.theme.transitionEnabled
+  th('transitionEnabled')(p)
     ? css`
         transition: ${value};
 

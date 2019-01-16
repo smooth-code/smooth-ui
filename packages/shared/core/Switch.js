@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { system } from '@smooth-ui/system'
 import { css } from './styled-engine'
-import { system } from './utils/styles'
 import { th, mixin } from './utils/system'
 import createComponent from './utils/createComponent'
 import SwitchState from './SwitchState'

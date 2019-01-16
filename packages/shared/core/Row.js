@@ -18,6 +18,7 @@ const Row = createComponent(() => ({
   style: p => {
     const gutter = px(prop('gutter', 'gridGutter')(p))
     return css`
+      box-sizing: border-box;
       flex-grow: 1;
       flex-wrap: wrap;
       display: flex;
