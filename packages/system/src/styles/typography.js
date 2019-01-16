@@ -36,6 +36,10 @@ export const color = style({
   themeKey: 'colors',
 })
 
+export const textTransform = style({
+  prop: 'textTransform',
+})
+
 export const typography = compose(
   fontFamily,
   fontSize,
@@ -44,4 +48,5 @@ export const typography = compose(
   textAlign,
   letterSpacing,
   color,
+  textTransform,
 )
