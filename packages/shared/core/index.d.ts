@@ -305,10 +305,10 @@ export interface TextareaProps
   extends Omit<React.HTMLProps<HTMLTextAreaElement>, { size: any }> {
   control?: boolean
   size?: 'sm' | 'lg'
-  valid?: true
+  valid?: boolean
 }
 
-export const TextArea: React.FunctionComponent<TextareaProps>
+export const Textarea: React.FunctionComponent<TextareaProps>
 
 export interface TypographyProps extends BoxProps {
   children?: React.ReactNode
