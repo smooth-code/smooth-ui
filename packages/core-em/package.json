@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-em",
   "description": "Modern React UI Library",
-  "version": "7.1.1",
+  "version": "8.0.0",
   "keywords": [
     "emotion",
     "ui",
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smooth-ui/system": "^7.1.1",
+    "@smooth-ui/system": "^8.0.0",
     "polished": "^2.3.3",
     "prop-types": "^15.6.2",
     "react-focus-lock": "^1.17.6",
