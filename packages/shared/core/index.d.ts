@@ -3,6 +3,17 @@
 import * as React from 'react'
 import * as styledComponents from 'styled-components'
 
+export type DefaultColors = 'primary'
+| 'secondary'
+| 'success'
+| 'danger'
+| 'warning'
+| 'info'
+| 'light'
+| 'dark'
+
+export type Sizes = "sm" | "md" | "lg"
+
 interface InputType {
   checked?: boolean
   onChange?: (e) => void
@@ -22,8 +33,7 @@ declare type OptionalThemeProp =
       xl?: string | number
     }
 
-interface BasicsProps {
-  onClick?: (e) => void
+interface BasicsProps<P = Element> extends React.DOMAttributes<P> {
   opacity?: OptionalThemeProp
   overflow?: OptionalThemeProp
 }
@@ -64,8 +74,10 @@ interface FontProps {
   fontSize?: OptionalThemeProp
   lineHeight?: OptionalThemeProp
   fontWeight?: OptionalThemeProp
+  textAlign?: OptionalThemeProp
   letterSpacing?: OptionalThemeProp
   color?: OptionalThemeProp
+  textTransform?: OptionalThemeProp
 }
 
 interface DimensionsProps {
@@ -149,59 +161,46 @@ export interface BoxProps
 type Omit<T, K> = Pick<T, Exclude<keyof T, keyof K>>
 
 export type OmitBoxProps<T> = Omit<T, BoxProps>
+type OmitFontProps<T> = Omit<T,FontProps>
+
 
 export const Box: React.FunctionComponent<BoxProps>
 
 export interface ButtonProps extends BoxProps {
   children?: React.ReactNode
-  size?: 'sm' | 'lg'
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
+  disabled?: boolean
+  size?: Sizes
+  variant?: DefaultColors
 }
 
 export const Button: React.FunctionComponent<ButtonProps>
 
 export interface AlertProps extends BoxProps {
   children: React.ReactNode
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
+  variant?: DefaultColors
 }
 
 export const Alert: React.FunctionComponent<AlertProps>
 
-export interface CheckboxProps extends BoxProps {
-  checked: boolean
-  disabled: boolean
-  size: 'sm' | 'lg'
-  value: string
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
+export interface CheckboxProps extends OmitFontProps<BoxProps> {
+  checked?: boolean
+  disabled?: boolean
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void
+  size?: Sizes
+  value?: string
 }
 
 export const Checkbox: React.FunctionComponent<CheckboxProps>
 
 export interface FormCheckProps extends BoxProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   inline?: boolean
 }
 
 export const FormCheck: React.FunctionComponent<FormCheckProps>
 
 export const FormCheckLabel: React.FunctionComponent<
-  React.HTMLProps<HTMLLabelElement>
+ BoxProps & React.HTMLProps<HTMLLabelElement>
 >
 
 export interface FormGroupProps extends BoxProps {
@@ -220,9 +219,9 @@ export const Grid: React.FunctionComponent<GridProps>
 
 export interface InputProps
   extends BoxProps,
-    Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: any }> {
+    Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: Size }> {
   control?: boolean
-  size?: 'sm' | 'lg'
+  size?: Sizes
   valid?: boolean
 }
 
@@ -238,9 +237,11 @@ export const Label: React.FunctionComponent<LabelProps>
 
 export interface RadioProps
   extends Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: any }>,
-    BoxProps {
-  size?: 'sm' | 'lg'
+  OmitFontProps<BoxProps> {
   checked?: boolean
+  disabled?:boolean
+  size?: Sizes
+  value?: string
 }
 
 export const Radio: React.FunctionComponent<RadioProps>
@@ -280,11 +281,11 @@ export const ControlFeedback: React.FunctionComponent<ControlFeedbackProps>
 export interface SelectProps
   extends Omit<React.HTMLProps<HTMLSelectElement>, BoxProps & { size: any }>,
     BoxProps {
-  size?: 'sm' | 'md' | 'lg'
-  arrow: boolean
-  control?: boolean
-  valid?: boolean
+  arrow?: boolean
   children?: React.ReactNode
+  control?: boolean
+  size?: Sizes
+  valid?: boolean
 }
 
 export const Select: React.FunctionComponent<SelectProps>
@@ -295,7 +296,6 @@ export interface SwitchProps extends BoxProps {
   labeled?: boolean
   onLabel?: string
   offLabel: string
-  onChange: (e) => void
 }
 
 export const Switch: React.FunctionComponent<SwitchProps>
@@ -303,7 +303,7 @@ export const Switch: React.FunctionComponent<SwitchProps>
 export interface TextareaProps
   extends Omit<React.HTMLProps<HTMLTextAreaElement>, { size: any }> {
   control?: boolean
-  size?: 'sm' | 'lg'
+  size?: Sizes
   valid?: boolean
 }
 
@@ -326,10 +326,12 @@ export interface TypographyProps extends BoxProps {
 
 export const Typography: React.FunctionComponent<TypographyProps>
 
+export type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export interface BreakpointProps {
   children?: React.ReactNode
-  up?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  down?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  up?: Breakpoints
+  down?: Breakpoints
 }
 
 export const Breakpoint: React.FunctionComponent<BreakpointProps>
@@ -373,6 +375,7 @@ export interface ThemeType {
     primaryLight: (props: Object) => string
     secondaryLight: (props: Object) => string
   }
+
   colorVariants: [
     'primary',
     'secondary',
@@ -628,12 +631,12 @@ export const composeStyles: (
   ...funcs: Array<(props: Object) => string>
 ) => ((props: Object) => Object)
 
-export const Normalize: styledComponents.GlobalStyleComponent
+export const Normalize: styledComponents.GlobalStyleComponent<{__scTheme?: ThemeType},ThemeType>
 
 export interface ModalProps extends BoxProps {
   children?: React.ReactNode
-  opened?: boolean
   onClose?: () => void
+  opened?: boolean
   initialFocusRef?: Object
 }
 
