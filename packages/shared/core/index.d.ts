@@ -163,7 +163,6 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, keyof K>>
 export type OmitBoxProps<T> = Omit<T, BoxProps>
 type OmitFontProps<T> = Omit<T,FontProps>
 
-
 export const Box: React.FunctionComponent<BoxProps>
 
 export interface ButtonProps extends BoxProps {
@@ -219,7 +218,7 @@ export const Grid: React.FunctionComponent<GridProps>
 
 export interface InputProps
   extends BoxProps,
-    Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: Size }> {
+    Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: any }> {
   control?: boolean
   size?: Sizes
   valid?: boolean
