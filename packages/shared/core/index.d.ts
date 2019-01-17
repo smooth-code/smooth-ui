@@ -628,7 +628,7 @@ export const composeStyles: (
   ...funcs: Array<(props: Object) => string>
 ) => ((props: Object) => Object)
 
-export const globalStyle: (customTheme: ThemeType) => Array<string>
+export const Normalize: styledComponents.GlobalStyleComponent
 
 export interface ModalProps extends BoxProps {
   children?: React.ReactNode
