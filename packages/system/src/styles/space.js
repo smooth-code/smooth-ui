@@ -3,12 +3,12 @@ import { num, negative } from '../util'
 
 const DEFAULT_SPACING = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72]
 
-function transform(n, variants = DEFAULT_SPACING) {
-  if (!num(n)) {
-    return variants[n] || n
+function transform(transformedValue, { rawValue, variants = DEFAULT_SPACING }) {
+  if (!num(rawValue)) {
+    return variants[rawValue] || rawValue
   }
-  const abs = Math.abs(n)
-  const neg = negative(n)
+  const abs = Math.abs(rawValue)
+  const neg = negative(rawValue)
   const value = variants[abs] || abs
   if (!num(value)) {
     return neg ? `-${value}` : value

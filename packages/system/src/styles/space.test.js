@@ -2,6 +2,7 @@ import { space } from './space'
 
 describe('space', () => {
   it('should support m', () => {
+    expect(space.props({ m: 1 })).toEqual({ margin: 8 })
     expect(space.props({ m: 2 })).toEqual({ margin: 16 })
     expect(space.props({ m: -2 })).toEqual({ margin: -16 })
     expect(space.props({ m: 10 })).toEqual({ margin: 10 })
