@@ -1,5 +1,5 @@
 import { minBreakpoint, minWidth, DEFAULT_BREAKPOINTS } from './media'
-import { is, num, string, obj, identity, merge, get, func } from './util'
+import { is, num, string, obj, merge, get, func } from './util'
 
 function callOrReturn(fn, arg) {
   if (!func(fn)) return fn
@@ -28,7 +28,12 @@ function styleFromValue(cssProperties, value, theme, themeKey, transform) {
   if (string(computedValue) || num(computedValue)) {
     const style = {}
     for (let i = 0; i < cssProperties.length; i++) {
-      style[cssProperties[i]] = transform(computedValue, variants)
+      style[cssProperties[i]] = transform
+        ? transform(computedValue, {
+            rawValue: value,
+            variants,
+          })
+        : computedValue
     }
     return style
   }
@@ -112,7 +117,7 @@ export function style({
   prop,
   cssProperties,
   themeKey = null,
-  transform = identity,
+  transform = null,
 }) {
   function getStyle(attrs, theme) {
     const value = attrs[prop]

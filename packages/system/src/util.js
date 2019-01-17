@@ -5,7 +5,6 @@ export const num = n => typeof n === 'number' && !Number.isNaN(n)
 export const string = n => typeof n === 'string' && n !== ''
 export const obj = n => typeof n === 'object' && n !== null
 export const func = n => typeof n === 'function'
-export const identity = n => n
 export const negative = n => n < 0
 
 export const get = (obj, path) =>
