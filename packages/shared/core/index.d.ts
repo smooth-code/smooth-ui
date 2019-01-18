@@ -605,7 +605,7 @@ export const mixin: (
 
 export const prop: (
   name: string,
-  themeFallback: string,
+  themeFallback?: string,
 ) => (props: Object) => string
 
 export const calc: (
