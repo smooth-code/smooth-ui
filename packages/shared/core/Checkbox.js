@@ -54,6 +54,48 @@ const sizeStyle = {
   `,
 }
 
+const validStyle = css`
+  input + .sui-checkbox-content,
+  input:checked + .sui-checkbox-content {
+    border-color: ${th('success')};
+  }
+
+  input:focus + .sui-checkbox-content {
+    border-color: ${th('success')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
+  }
+`
+
+const invalidStyle = css`
+  input + .sui-checkbox-content,
+  input:checked + .sui-checkbox-content {
+    border-color: ${th('danger')};
+  }
+
+  input:focus + .sui-checkbox-content {
+    border-color: ${th('danger')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
+  }
+`
+
+const controlStyle = css`
+  input:focus + .sui-checkbox-content {
+    border-color: ${th('controlFocusBorderColor')};
+    box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
+  }
+
+  ${p => {
+    switch (p.valid) {
+      case true:
+        return validStyle
+      case false:
+        return invalidStyle
+      default:
+        return null
+    }
+  }};
+`
+
 const containerSystem = compose(
   basics,
   dimensions,
@@ -75,6 +117,7 @@ const system = compose(
 
 const Checkbox = createComponent(() => ({
   name: 'checkbox',
+  omitProps: ['control', 'valid'],
   system,
   applySystem: null,
   render: ({ Component, ref, className, size, ...props }) => (
@@ -134,7 +177,7 @@ const Checkbox = createComponent(() => ({
       }
     }
 
-    input:focused + .sui-checkbox-content {
+    input:focus + .sui-checkbox-content {
       ${mixin('controlFocus')};
     }
 
@@ -143,6 +186,7 @@ const Checkbox = createComponent(() => ({
     }
 
     ${p => sizeStyle[p.size]};
+    ${p => p.control && controlStyle};
 
     ${containerSystem.props};
 
@@ -152,9 +196,11 @@ const Checkbox = createComponent(() => ({
   `,
   propTypes: {
     checked: PropTypes.bool,
+    control: PropTypes.bool,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
+    valid: PropTypes.bool,
     value: PropTypes.string,
   },
   defaultProps: {
