@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/smooth-code/smooth-ui/compare/v8.0.1...v8.1.0) (2019-01-22)
+
+
+### Bug Fixes
+
+* **modal:** prevent injecting __scTheme in DOM props ([2dad70f](https://github.com/smooth-code/smooth-ui/commit/2dad70f)), closes [#99](https://github.com/smooth-code/smooth-ui/issues/99)
+
+
+### Features
+
+* add control option to Checkbox ([#102](https://github.com/smooth-code/smooth-ui/issues/102)) ([f26186c](https://github.com/smooth-code/smooth-ui/commit/f26186c))
+* add scroll-lock to modals, fixes [#25](https://github.com/smooth-code/smooth-ui/issues/25) ([#103](https://github.com/smooth-code/smooth-ui/issues/103)) ([23f35dd](https://github.com/smooth-code/smooth-ui/commit/23f35dd))
+
+
+
+
+
 ## [8.0.1](https://github.com/smooth-code/smooth-ui/compare/v8.0.0...v8.0.1) (2019-01-17)
 
 

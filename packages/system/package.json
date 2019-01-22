@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/system",
   "description": "Modern style system for styled-components & emotion.",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "keywords": [
     "emotion",
     "styled-components",

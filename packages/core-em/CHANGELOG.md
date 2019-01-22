@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/smooth-code/smooth-ui/compare/v8.0.1...v8.1.0) (2019-01-22)
+
+
+### Features
+
+* add scroll-lock to modals, fixes [#25](https://github.com/smooth-code/smooth-ui/issues/25) ([#103](https://github.com/smooth-code/smooth-ui/issues/103)) ([23f35dd](https://github.com/smooth-code/smooth-ui/commit/23f35dd))
+
+
+
+
+
 ## [8.0.1](https://github.com/smooth-code/smooth-ui/compare/v8.0.0...v8.0.1) (2019-01-17)
 
 **Note:** Version bump only for package @smooth-ui/core-em
