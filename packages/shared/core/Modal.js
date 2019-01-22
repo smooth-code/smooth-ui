@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FocusLock from 'react-focus-lock'
+import { RemoveScroll } from 'react-remove-scroll';
 import { css, withTheme } from './styled-engine'
 import { th, mixin } from './utils/system'
 import Transition from './Transition'
@@ -89,31 +90,33 @@ class ModalComponent extends React.Component {
           return (
             <Portal>
               <FocusLock returnFocus onActivation={this.onFocusLockActivation}>
-                <div
-                  className={cx(
-                    'sui-modal',
-                    `sui-modal-transition-${status}`,
-                    className,
-                  )}
-                  ref={this.handleDialogRef}
-                  onClick={wrapEvent(onClick, event => {
-                    event.stopPropagation()
-                    onClose()
-                  })}
-                  onKeyDown={wrapEvent(onKeyDown, event => {
-                    if (event.key === 'Escape') {
+                <RemoveScroll forwardProps>
+                  <div
+                    className={cx(
+                      'sui-modal',
+                      `sui-modal-transition-${status}`,
+                      className,
+                    )}
+                    ref={this.handleDialogRef}
+                    onClick={wrapEvent(onClick, event => {
                       event.stopPropagation()
                       onClose()
-                    }
-                  })}
-                  {...props}
-                >
-                  <ModalContext.Provider
-                    value={{ contentRef: this.contentRef, onClose }}
+                    })}
+                    onKeyDown={wrapEvent(onKeyDown, event => {
+                      if (event.key === 'Escape') {
+                        event.stopPropagation()
+                        onClose()
+                      }
+                    })}
+                    {...props}
                   >
-                    {children}
-                  </ModalContext.Provider>
-                </div>
+                    <ModalContext.Provider
+                      value={{ contentRef: this.contentRef, onClose }}
+                    >
+                      {children}
+                    </ModalContext.Provider>
+                  </div>
+                </RemoveScroll>
               </FocusLock>
             </Portal>
           )
