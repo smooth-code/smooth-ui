@@ -17,7 +17,7 @@
   "bundlesize": [
     {
       "path": "./packages/core-em/dist/smooth-ui-core-em.min.js",
-      "maxSize": "20 kB"
+      "maxSize": "21 kB"
     },
     {
       "path": "./packages/core-sc/dist/smooth-ui-core-sc.min.js",
