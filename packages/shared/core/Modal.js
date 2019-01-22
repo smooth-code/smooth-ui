@@ -77,6 +77,7 @@ class ModalComponent extends React.Component {
       onClick,
       onKeyDown,
       initialFocusRef,
+      __scTheme,
       ...props
     } = this.props
     return (

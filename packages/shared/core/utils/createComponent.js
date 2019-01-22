@@ -23,6 +23,7 @@ function createComponent(getConfig) {
 
   const omittedProps = [
     'theme',
+    '__scTheme',
     ...(system ? system.meta.props : {}),
     ...omitProps,
   ]
