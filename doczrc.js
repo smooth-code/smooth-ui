@@ -14,6 +14,7 @@ export default {
   title: 'Smooth UI',
   description: 'Modern UI library for React',
   repository: 'https://github.com/smooth-code/smooth-ui',
+  indexHtml: 'docs/index.html',
   ordering: 'ascending',
   propsParser: false,
   mdPlugins: [externalLinks.default],
