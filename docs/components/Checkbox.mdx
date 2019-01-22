@@ -18,20 +18,20 @@ Set sizes using `size` prop like `"sm"`, `"md"` or `"lg"`.
     <Checkbox
       size="sm"
       id="sizeCheckbox1"
-      name="sizeCheckboxs"
+      name="sizeCheckboxes"
       value="option1"
     />
     <FormCheckLabel htmlFor="sizeCheckbox1">Small</FormCheckLabel>
   </FormCheck>
   <FormCheck>
-    <Checkbox id="sizeCheckbox2" name="sizeCheckboxs" value="option2" />
+    <Checkbox id="sizeCheckbox2" name="sizeCheckboxes" value="option2" />
     <FormCheckLabel htmlFor="sizeCheckbox2">Medium</FormCheckLabel>
   </FormCheck>
   <FormCheck>
     <Checkbox
       size="lg"
       id="sizeCheckbox3"
-      name="sizeCheckboxs"
+      name="sizeCheckboxes"
       value="option3"
     />
     <FormCheckLabel htmlFor="sizeCheckbox3">Large</FormCheckLabel>
@@ -54,6 +54,43 @@ Disable using `disabled` prop.
   </FormCheck>
 </Playground>
 
+## Control & Validation
+
+* Set `display` to "block" and `width` to "100%" using `control` prop.
+* Set validation using `valid` or `valid={false}`
+
+<Playground>
+  <FormCheck>
+    <Checkbox
+      id="controlCheckbox1"
+      name="controlCheckboxes"
+      value="option1"
+      control
+    />
+    <FormCheckLabel htmlFor="controlCheckbox1">Control</FormCheckLabel>
+  </FormCheck>
+  <FormCheck>
+    <Checkbox
+      id="controlCheckbox2"
+      name="controlCheckboxes"
+      value="option2"
+      control
+      valid
+    />
+    <FormCheckLabel htmlFor="controlCheckbox2">Valid Control</FormCheckLabel>
+  </FormCheck>
+  <FormCheck>
+    <Checkbox
+      id="controlCheckbox3"
+      name="controlCheckboxes"
+      value="option3"
+      control
+      valid={false}
+    />
+    <FormCheckLabel htmlFor="controlCheckbox3">Invalid Control</FormCheckLabel>
+  </FormCheck>
+</Playground>
+
 ## API
 
 ### Checkbox
@@ -61,9 +98,11 @@ Disable using `disabled` prop.
 <PropsTable
   of={PropDesc({
     checked: PropDesc.bool,
+    control: PropDesc.bool,
     disabled: PropDesc.bool,
     onChange: PropDesc.func,
     size: PropDesc.oneOf(['sm', 'lg']),
+    valid: PropDesc.bool,
     value: PropDesc.string,
     ...getSystemPropDesc(Checkbox),
   })}
