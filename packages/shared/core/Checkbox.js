@@ -78,22 +78,24 @@ const invalidStyle = css`
   }
 `
 
-const controlStyle = css`
+const getValidStyle = valid => {
+  switch (valid) {
+    case true:
+      return validStyle
+    case false:
+      return invalidStyle
+    default:
+      return null
+  }
+}
+
+const controlStyle = p => css`
   input:focus + .sui-checkbox-content {
     border-color: ${th('controlFocusBorderColor')};
     box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
   }
 
-  ${p => {
-    switch (p.valid) {
-      case true:
-        return validStyle
-      case false:
-        return invalidStyle
-      default:
-        return null
-    }
-  }};
+  ${getValidStyle(p)};
 `
 
 const containerSystem = compose(
@@ -137,7 +139,7 @@ const Checkbox = createComponent(() => ({
       )}
     </SwitchState>
   ),
-  style: css`
+  style: p => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -185,8 +187,8 @@ const Checkbox = createComponent(() => ({
       background-color: ${th('inputDisabledBgColor')};
     }
 
-    ${p => sizeStyle[p.size]};
-    ${p => p.control && controlStyle};
+    ${sizeStyle[p.size]};
+    ${p.control && controlStyle(p)};
 
     ${containerSystem.props};
 

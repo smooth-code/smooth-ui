@@ -26,7 +26,7 @@ const ModalCloseButton = createComponent(() => ({
       )}
     </ModalContext.Consumer>
   ),
-  style: css`
+  style: () => css`
     position: absolute;
     cursor: pointer;
     top: 0.2rem;

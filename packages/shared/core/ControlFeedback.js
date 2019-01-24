@@ -6,11 +6,11 @@ import createComponent from './utils/createComponent'
 const ControlFeedback = createComponent(() => ({
   name: 'control-feedback',
   omitProps: ['valid'],
-  style: css`
+  style: p => css`
     width: 100%;
     margin-top: 0.25rem;
     font-size: 80%;
-    color: ${p => (p.valid ? th('success')(p) : th('danger')(p))};
+    color: ${p.valid ? th('success')(p) : th('danger')(p)};
   `,
   propTypes: {
     children: PropTypes.node,

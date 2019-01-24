@@ -86,7 +86,7 @@ const ModalHeader = createComponent(() => ({
       )}
     </SwitchState>
   ),
-  style: css`
+  style: p => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -131,7 +131,7 @@ const ModalHeader = createComponent(() => ({
       transform: scale(0);
     }
 
-    ${p => p.size && sizeStyle[p.size]};
+    ${p.size && sizeStyle[p.size]};
 
     ${containerSystem.props};
 

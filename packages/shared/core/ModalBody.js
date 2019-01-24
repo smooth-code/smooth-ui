@@ -5,7 +5,7 @@ import createComponent from './utils/createComponent'
 
 const ModalBody = createComponent(() => ({
   name: 'modal-body',
-  style: css`
+  style: () => css`
     position: relative;
     /* Enable "flex-grow: 1" so that the body take up as much space as possible */
     /* when should there be a fixed height on ModalDialog. */

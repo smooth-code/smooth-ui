@@ -28,7 +28,7 @@ const Button = createComponent(() => ({
   name: 'button',
   defaultComponent: 'button',
   omitProps: ['size', 'variant'],
-  style: css`
+  style: p => css`
     display: inline-block;
     padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
     z-index: ${th('zIndexControl')};
@@ -47,8 +47,8 @@ const Button = createComponent(() => ({
       opacity: ${th('btnDisabledOpacity')};
     }
 
-    ${p => p.size && sizeStyle[p.size]};
-    ${p => p.variant && mixin('btnVariant', p.variant)(p)};
+    ${p.size && sizeStyle[p.size]};
+    ${p.variant && mixin('btnVariant', p.variant)(p)};
   `,
   propTypes: {
     children: PropTypes.node,

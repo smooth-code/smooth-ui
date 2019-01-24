@@ -39,7 +39,18 @@ const invalidStyle = css`
   }
 `
 
-const controlStyle = css`
+const getValidStyle = valid => {
+  switch (valid) {
+    case true:
+      return validStyle
+    case false:
+      return invalidStyle
+    default:
+      return null
+  }
+}
+
+const controlStyle = p => css`
   display: block;
   width: 100%;
 
@@ -48,23 +59,14 @@ const controlStyle = css`
     box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
   }
 
-  ${p => {
-    switch (p.valid) {
-      case true:
-        return validStyle
-      case false:
-        return invalidStyle
-      default:
-        return null
-    }
-  }};
+  ${getValidStyle(p.valid)};
 `
 
 const Input = createComponent(() => ({
   name: 'input',
   defaultComponent: 'input',
   omitProps: ['control', 'size', 'valid'],
-  style: css`
+  style: p => css`
     display: inline-block;
     border-width: ${th('inputBorderWidth')};
     border-color: ${th('inputBorderColor')};
@@ -91,8 +93,8 @@ const Input = createComponent(() => ({
       color: ${th('inputDisabledText')};
     }
 
-    ${p => p.size && sizeStyle[p.size]};
-    ${p => p.control && controlStyle};
+    ${p.size && sizeStyle[p.size]};
+    ${p.control && controlStyle(p)};
   `,
   propTypes: {
     control: PropTypes.bool,

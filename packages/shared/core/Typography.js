@@ -84,8 +84,8 @@ const Typography = createComponent(() => ({
     const Component = BaseComponent || variantTags[variant] || 'span'
     return <Component className={className} {...props} />
   },
-  style: css`
-    ${p => p.variant && variantStyle[p.variant]};
+  style: p => css`
+    ${p.variant && variantStyle[p.variant]};
   `,
   propTypes: {
     children: PropTypes.node,

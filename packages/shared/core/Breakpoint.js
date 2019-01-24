@@ -6,10 +6,10 @@ import createComponent from './utils/createComponent'
 const Breakpoint = createComponent(() => ({
   name: 'breakpoint',
   omitProps: ['up', 'down'],
-  style: css`
+  style: p => css`
     display: none;
-    ${p => p.up && up(p.up, 'display: block;')};
-    ${p => p.down && down(p.down, 'display: block;')};
+    ${p.up && up(p.up, 'display: block;')};
+    ${p.down && down(p.down, 'display: block;')};
   `,
   propTypes: {
     children: PropTypes.node,

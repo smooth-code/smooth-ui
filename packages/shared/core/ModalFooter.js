@@ -5,7 +5,7 @@ import createComponent from './utils/createComponent'
 
 const ModalFooter = createComponent(() => ({
   name: 'modal-footer',
-  style: css`
+  style: () => css`
     display: flex;
     align-items: center;
     justify-content: flex-end;

@@ -10,7 +10,7 @@ const ModalDialog = createComponent(() => ({
   render: ({ Component, ...props }) => (
     <Component role="dialog" aria-modal="true" {...props} />
   ),
-  style: css`
+  style: () => css`
     position: relative;
     width: auto;
     margin: ${th('modalDialogMargin')};
