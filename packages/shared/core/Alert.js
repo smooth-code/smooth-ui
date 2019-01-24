@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  borderRadius,
+  alertPaddingY,
+  alertPaddingX,
+  alertMarginBottom,
+  alertVariant,
+} from './theming/index'
+import createComponent from './createComponent'
 
 const Alert = createComponent(() => ({
   name: 'alert',
   omitProps: ['variant'],
   style: p => css`
     position: relative;
-    padding: ${th('alertPaddingY')} ${th('alertPaddingX')};
-    margin-bottom: ${th('alertMarginBottom')};
+    padding: ${alertPaddingY(p)} ${alertPaddingX(p)};
+    margin-bottom: ${alertMarginBottom(p)};
     border: 1px solid transparent;
-    border-radius: ${th('borderRadius')};
-    ${p.variant && mixin('alertVariant', p.variant)(p)};
+    border-radius: ${borderRadius(p)};
+    ${p.variant && alertVariant(p.variant)(p)};
   `,
   propTypes: {
     children: PropTypes.node,

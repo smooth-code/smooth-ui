@@ -13,15 +13,14 @@ Smooth UI has a powerful theming feature. It uses [Styled Components theming fea
 
 ## Create a custom theme
 
-The recommended way to create a custom theme is to create a file named `theme.js` that exports all `@smooth-ui/core-*/theme` and overrides only the needed parts.
+The recommended way to create a custom theme is to create a file named `theme.js`, you can add your custom values and override existing ones.
 
 ```js
 // theme.js
-import { theme } from '@smooth-ui/core-sc'
 
 export default {
-  ...theme,
   primary: 'blue',
+  myNewColor: '#000',
 }
 ```
 
@@ -46,11 +45,35 @@ render(
 
 ## Default theme
 
-You can find all theme values in [the default theme](https://github.com/smooth-code/smooth-ui/blob/master/packages/shared/core/theme.js).
+You can find all theme values in [theming section](https://github.com/smooth-code/smooth-ui/blob/master/packages/shared/core/theming/).
 
-Two ways to import theme in your code:
+The whole theme is exported under `theme` named export:
 
 ```js
 import { theme } from '@smooth-ui/core-sc'
-import theme from '@smooth-ui/core-sc/theme'
+```
+
+## Use theme property
+
+You can use `th` utility to use a theme property in your code:
+
+```js
+import { styled, th } from '@smooth-ui/core-sc'
+
+const RedBox = styled.div`
+  background-color: ${th('primary')};
+`
+```
+
+But you can also use it to create a reference in your theme:
+
+```js
+// theme.js
+import { th } from '@smooth-ui/core-sc'
+
+export default {
+  blue: '#00bdff',
+  // primary is now a reference to `blue`
+  primary: th('blue'),
+}
 ```

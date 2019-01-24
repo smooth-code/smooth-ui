@@ -1,13 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th } from './utils/system'
-import { up } from './utils/breakpoints'
+import {
+  up,
+  modalContentBg,
+  modalContentBorderWidth,
+  modalContentBorderColor,
+  modalContentBorderRadius,
+  modalContentBoxShadowXs,
+  modalContentBoxShadowSmUp,
+} from './theming/index'
 import ModalContext from './ModalContext'
-import createComponent from './utils/createComponent'
-import { wrapEvent } from './utils/dom'
-
-const stopPropagation = event => event.stopPropagation()
+import createComponent from './createComponent'
+import { wrapEvent, stopPropagation } from './utils/dom'
 
 const ModalContent = createComponent(() => ({
   name: 'modal-content',
@@ -26,7 +31,7 @@ const ModalContent = createComponent(() => ({
       )}
     </ModalContext.Consumer>
   ),
-  style: () => css`
+  style: p => css`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -34,21 +39,17 @@ const ModalContent = createComponent(() => ({
     width: 100%;
     /* Counteract the pointer-events: none; in the ModalDialog */
     pointer-events: auto;
-    background-color: ${th('modalContentBg')};
+    background-color: ${modalContentBg(p)};
     background-clip: padding-box;
-    border: ${th('modalContentBorderWidth')} solid
-      ${th('modalContentBorderColor')};
-    border-radius: ${th('modalContentBorderRadius')};
-    ${th('modalContentBoxShadowXs')};
+    border-style: solid;
+    border-width: ${modalContentBorderWidth(p)};
+    border-color: ${modalContentBorderColor(p)};
+    border-radius: ${modalContentBorderRadius(p)};
+    ${modalContentBoxShadowXs(p)};
     /* Remove focus outline from opened modal */
     outline: 0;
 
-    ${up(
-      'sm',
-      css`
-        ${th('modalContentBoxShadowSmUp')};
-      `,
-    )};
+    ${up('sm', modalContentBoxShadowSmUp(p))};
   `,
   propTypes: {
     children: PropTypes.node,

@@ -1,4 +1,4 @@
-import createComponent from './utils/createComponent'
+import createComponent from './createComponent'
 
 const Box = createComponent(() => ({ name: 'box' }))
 

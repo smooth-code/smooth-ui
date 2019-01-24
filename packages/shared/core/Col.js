@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
-import { mediaMinWidth } from './utils/breakpoints'
-import { prop, px, th } from './utils/system'
-import createComponent from './utils/createComponent'
+import { css } from './styled-engine'
+import { gridGutter, gridColumns, breakpoints } from './theming/index'
+import { px, mediaMinWidth } from './utils/index'
+import createComponent from './createComponent'
 
 const common = {
   position: 'relative',
@@ -25,11 +26,11 @@ function getOffsetStyle(offsetSize, nbColumns) {
   return null
 }
 
-function getBreakPointStyle(breakpoint, width, props) {
-  const size = props[breakpoint]
+function getBreakPointStyle(breakpoint, width, p) {
+  const size = p[breakpoint]
   if (!isValidSize(size)) return null
 
-  const nbColumns = th('gridColumns')(props)
+  const nbColumns = gridColumns(p)
   const mediaQuery = mediaMinWidth(width)
   const media = style => (width === 0 ? style : { [mediaQuery]: style })
 
@@ -62,15 +63,16 @@ function getBreakPointStyle(breakpoint, width, props) {
     ...media({
       flex: `0 0 ${sizeWidth}`,
       maxWidth: sizeWidth,
-      ...getOffsetStyle(props[`o${breakpoint}`], nbColumns),
+      ...getOffsetStyle(p[`o${breakpoint}`], nbColumns),
     }),
   }
 }
 
-const getStyleFromProps = props => {
-  const gutter = px(prop('gutter', 'gridGutter')(props))
-  const breakpoints = th('breakpoints')(props)
-  const breakpointsKeys = Object.keys(breakpoints)
+function getStyleFromProps(p) {
+  const { gutter: rawGutter = gridGutter(p) } = p
+  const gutter = px(rawGutter)
+  const bk = breakpoints(p)
+  const breakpointsKeys = Object.keys(bk)
   const style = {
     boxSizing: 'border-box',
     paddingLeft: gutter,
@@ -84,10 +86,7 @@ const getStyleFromProps = props => {
   // eslint-disable-next-line no-plusplus
   while (++index < breakpointsKeys.length) {
     const breakpoint = breakpointsKeys[index]
-    Object.assign(
-      style,
-      getBreakPointStyle(breakpoint, breakpoints[breakpoint], props),
-    )
+    Object.assign(style, getBreakPointStyle(breakpoint, bk[breakpoint], p))
   }
 
   return style
@@ -133,9 +132,15 @@ const Col = createComponent(() => ({
   },
 }))
 
-Col.Split = createComponent(() => ({
+const Split = createComponent(() => ({
   name: 'col-split',
-  style: () => ({ width: '100% !important' }),
+  style: () =>
+    css`
+      width: 100% !important;
+    `,
 }))
+
+/* #__PURE__ */
+Object.defineProperty(Col, 'Split', { value: Split })
 
 export default Col

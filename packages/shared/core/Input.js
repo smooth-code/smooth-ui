@@ -1,53 +1,70 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  inputPaddingY,
+  inputPaddingX,
+  inputLineHeight,
+  inputPaddingYSm,
+  inputPaddingXSm,
+  inputLineHeightSm,
+  inputPaddingYLg,
+  inputPaddingXLg,
+  inputLineHeightLg,
+  inputBorderWidth,
+  inputBorderColor,
+  inputBgColor,
+  inputDisabledBgColor,
+  inputDisabledText,
+  inputPlaceholderText,
+  inputTextColor,
+  fontSizeSm,
+  borderRadiusSm,
+  fontSizeBase,
+  borderRadius,
+  fontSizeLg,
+  borderRadiusLg,
+  success,
+  danger,
+  controlFocus,
+  transitionBase,
+  primary,
+  baseFocus,
+} from './theming/index'
+import createComponent from './createComponent'
 
 const sizeStyle = {
-  sm: css`
-    padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
-    font-size: ${th('fontSizeSm')};
-    border-radius: ${th('borderRadiusSm')};
+  sm: p => css`
+    padding: ${inputPaddingYSm(p)} ${inputPaddingXSm(p)};
+    font-size: ${fontSizeSm(p)};
+    line-height: ${inputLineHeightSm(p)};
+    border-radius: ${borderRadiusSm(p)};
   `,
-  md: css`
-    padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
-    font-size: ${th('fontSizeBase')};
-    border-radius: ${th('borderRadius')};
+  md: p => css`
+    padding: ${inputPaddingY(p)} ${inputPaddingX(p)};
+    font-size: ${fontSizeBase(p)};
+    line-height: ${inputLineHeight(p)};
+    border-radius: ${borderRadius(p)};
   `,
-  lg: css`
-    padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
-    font-size: ${th('fontSizeLg')};
-    border-radius: ${th('borderRadiusLg')};
+  lg: p => css`
+    padding: ${inputPaddingYLg(p)} ${inputPaddingXLg(p)};
+    font-size: ${fontSizeLg(p)};
+    line-height: ${inputLineHeightLg(p)};
+    border-radius: ${borderRadiusLg(p)};
   `,
 }
 
-const validStyle = css`
-  border-color: ${th('success')};
+const validStyle = p => {
+  const { valid } = p
+  if (valid !== true && valid !== false) return null
+  const color = valid ? success(p) : danger(p)
+  return css`
+    border-color: ${color};
 
-  &:focus {
-    border-color: ${th('success')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
-  }
-`
-
-const invalidStyle = css`
-  border-color: ${th('danger')};
-
-  &:focus {
-    border-color: ${th('danger')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
-  }
-`
-
-const getValidStyle = valid => {
-  switch (valid) {
-    case true:
-      return validStyle
-    case false:
-      return invalidStyle
-    default:
-      return null
-  }
+    &:focus {
+      border-color: ${color};
+      ${controlFocus(color)(p)}
+    }
+  `
 }
 
 const controlStyle = p => css`
@@ -55,11 +72,10 @@ const controlStyle = p => css`
   width: 100%;
 
   &:focus {
-    border-color: ${th('controlFocusBorderColor')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
+    ${controlFocus(primary(p))(p)}
   }
 
-  ${getValidStyle(p.valid)};
+  ${validStyle(p)};
 `
 
 const Input = createComponent(() => ({
@@ -68,32 +84,32 @@ const Input = createComponent(() => ({
   omitProps: ['control', 'size', 'valid'],
   style: p => css`
     display: inline-block;
-    border-width: ${th('inputBorderWidth')};
-    border-color: ${th('inputBorderColor')};
+    border-width: ${inputBorderWidth(p)};
+    border-color: ${inputBorderColor(p)};
     border-style: solid;
-    line-height: ${th('inputLineHeight')};
-    color: ${th('inputTextColor')};
-    ${th('transitionBase')};
-    background-color: ${th('inputBgColor')};
+    line-height: ${inputLineHeight(p)};
+    color: ${inputTextColor(p)};
+    ${transitionBase(p)};
+    background-color: ${inputBgColor(p)};
 
     &[type='number'] {
       padding-right: 6px;
     }
 
     &::placeholder {
-      color: ${th('inputPlaceholderText')};
+      color: ${inputPlaceholderText(p)};
     }
 
     &:focus {
-      ${mixin('controlFocus')};
+      ${baseFocus(primary(p))(p)}
     }
 
     &:disabled {
-      background-color: ${th('inputDisabledBgColor')};
-      color: ${th('inputDisabledText')};
+      background-color: ${inputDisabledBgColor(p)};
+      color: ${inputDisabledText(p)};
     }
 
-    ${p.size && sizeStyle[p.size]};
+    ${p.size && sizeStyle[p.size] && sizeStyle[p.size](p)};
     ${p.control && controlStyle(p)};
   `,
   propTypes: {

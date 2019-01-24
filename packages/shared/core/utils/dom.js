@@ -6,3 +6,5 @@ export const wrapEvent = (handler, cb) => event => {
     cb(event)
   }
 }
+
+export const stopPropagation = event => event.stopPropagation()

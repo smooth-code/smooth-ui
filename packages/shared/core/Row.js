@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { px, prop } from './utils/system'
-import createComponent from './utils/createComponent'
+import { gridGutter } from './theming/index'
+import { px } from './utils/index'
+import createComponent from './createComponent'
 
 const Row = createComponent(() => ({
   name: 'row',
   omitProps: ['gutter'],
   style: p => {
-    const gutter = px(prop('gutter', 'gridGutter')(p))
+    const { gutter: rawGutter = gridGutter(p) } = p
+    const gutter = px(rawGutter)
     return css`
       box-sizing: border-box;
       flex-grow: 1;

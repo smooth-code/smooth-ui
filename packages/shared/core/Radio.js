@@ -10,10 +10,21 @@ import {
   borders,
   compose,
 } from '@smooth-ui/system'
+import {
+  primary,
+  transitionBase,
+  inputBgColor,
+  inputBorderWidth,
+  inputBorderColor,
+  inputDisabledBgColor,
+  baseFocus,
+  controlFocus,
+  success,
+  danger,
+} from './theming/index'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
 import SwitchState from './SwitchState'
-import createComponent from './utils/createComponent'
+import createComponent from './createComponent'
 
 const sizeStyle = {
   sm: css`
@@ -51,6 +62,36 @@ const sizeStyle = {
   `,
 }
 
+const validStyle = p => {
+  const { valid } = p
+  if (valid !== true && valid !== false) return null
+  const color = valid ? success(p) : danger(p)
+  return css`
+    input + .sui-radio-content,
+    input:checked + .sui-radio-content {
+      border-color: ${color};
+    }
+
+    input:checked + .sui-radio-content .sui-radio-circle {
+      background-color: ${color};
+    }
+
+    input:focus + .sui-radio-content {
+      border-color: ${color};
+      ${controlFocus(color)(p)}
+    }
+  `
+}
+
+const controlStyle = p =>
+  css`
+    input:focus + .sui-radio-content {
+      ${controlFocus(primary(p))(p)}
+    }
+
+    ${validStyle(p)};
+  `
+
 const containerSystem = compose(
   basics,
   dimensions,
@@ -70,11 +111,11 @@ const system = compose(
   contentSystem,
 )
 
-const ModalHeader = createComponent(() => ({
+const Radio = createComponent(() => ({
   name: 'radio',
   system,
   applySystem: null,
-  render: ({ Component, ref, className, size, ...props }) => (
+  render: ({ Component, ref, className, size, control, valid, ...props }) => (
     <SwitchState {...props}>
       {({ input }) => (
         <Component className={className}>
@@ -101,33 +142,33 @@ const ModalHeader = createComponent(() => ({
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background-color: ${th('inputBgColor')};
-      border-width: ${th('inputBorderWidth')};
+      background-color: ${inputBgColor(p)};
+      border-width: ${inputBorderWidth(p)};
       border-style: solid;
-      border-color: ${th('inputBorderColor')};
-      ${th('transitionBase')};
+      border-color: ${inputBorderColor(p)};
+      ${transitionBase(p)};
     }
 
     input:checked + .sui-radio-content {
-      border-color: ${th('primary')};
+      border-color: ${primary(p)};
 
       .sui-radio-circle {
         transform: scale(1);
       }
     }
 
-    input:focused + .sui-radio-content {
-      ${mixin('controlFocus')};
+    input:focus + .sui-radio-content {
+      ${baseFocus(primary(p))(p)};
     }
 
     input:disabled + .sui-radio-content {
-      background-color: ${th('inputDisabledBgColor')};
+      background-color: ${inputDisabledBgColor(p)};
     }
 
     .sui-radio-circle {
-      ${th('transitionBase')};
+      ${transitionBase(p)};
       border-radius: 50%;
-      background-color: ${th('primary')};
+      background-color: ${primary(p)};
       transform: scale(0);
     }
 
@@ -138,12 +179,16 @@ const ModalHeader = createComponent(() => ({
     .sui-radio-content {
       ${contentSystem.props};
     }
+
+    ${p.control && controlStyle(p)};
   `,
   propTypes: {
+    control: PropTypes.bool,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
+    valid: PropTypes.bool,
     value: PropTypes.string,
   },
   defaultProps: {
@@ -151,4 +196,4 @@ const ModalHeader = createComponent(() => ({
   },
 }))
 
-export default ModalHeader
+export default Radio

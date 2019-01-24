@@ -10,15 +10,31 @@ import {
   borders,
   compose,
 } from '@smooth-ui/system'
+import {
+  zIndexControl,
+  borderRadiusSm,
+  borderRadius,
+  borderRadiusLg,
+  success,
+  danger,
+  white,
+  primary,
+  transitionBase,
+  inputBgColor,
+  inputBorderWidth,
+  inputBorderColor,
+  inputDisabledBgColor,
+  controlFocus,
+  baseFocus,
+} from './theming/index'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
 import SwitchState from './SwitchState'
-import createComponent from './utils/createComponent'
+import createComponent from './createComponent'
 
 const sizeStyle = {
-  sm: css`
+  sm: p => css`
     .sui-checkbox-content {
-      border-radius: ${th('borderRadiusSm')};
+      border-radius: ${borderRadiusSm(p)};
       width: 0.875rem;
       height: 0.875rem;
     }
@@ -28,9 +44,9 @@ const sizeStyle = {
       height: 8px;
     }
   `,
-  md: css`
+  md: p => css`
     .sui-checkbox-content {
-      border-radius: ${th('borderRadius')};
+      border-radius: ${borderRadius(p)};
       width: 1rem;
       height: 1rem;
     }
@@ -40,9 +56,9 @@ const sizeStyle = {
       height: 10px;
     }
   `,
-  lg: css`
+  lg: p => css`
     .sui-checkbox-content {
-      border-radius: ${th('borderRadiusLg')};
+      border-radius: ${borderRadiusLg(p)};
       width: 1.25rem;
       height: 1.25rem;
     }
@@ -54,49 +70,35 @@ const sizeStyle = {
   `,
 }
 
-const validStyle = css`
-  input + .sui-checkbox-content,
-  input:checked + .sui-checkbox-content {
-    border-color: ${th('success')};
-  }
+const validStyle = p => {
+  const { valid } = p
+  if (valid !== true && valid !== false) return null
+  const color = valid ? success(p) : danger(p)
+  return css`
+    input + .sui-checkbox-content,
+    input:checked + .sui-checkbox-content {
+      border-color: ${color};
+    }
 
-  input:focus + .sui-checkbox-content {
-    border-color: ${th('success')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'success')};
-  }
-`
+    input:checked + .sui-checkbox-content {
+      background-color: ${color};
+    }
 
-const invalidStyle = css`
-  input + .sui-checkbox-content,
-  input:checked + .sui-checkbox-content {
-    border-color: ${th('danger')};
-  }
-
-  input:focus + .sui-checkbox-content {
-    border-color: ${th('danger')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'danger')};
-  }
-`
-
-const getValidStyle = valid => {
-  switch (valid) {
-    case true:
-      return validStyle
-    case false:
-      return invalidStyle
-    default:
-      return null
-  }
+    input:focus + .sui-checkbox-content {
+      border-color: ${color};
+      ${controlFocus(color)(p)}
+    }
+  `
 }
 
-const controlStyle = p => css`
-  input:focus + .sui-checkbox-content {
-    border-color: ${th('controlFocusBorderColor')};
-    box-shadow: ${mixin('controlFocusBoxShadow', 'primary')};
-  }
+const controlStyle = p =>
+  css`
+    input:focus + .sui-checkbox-content {
+      ${controlFocus(primary(p))(p)}
+    }
 
-  ${getValidStyle(p)};
-`
+    ${validStyle(p)};
+  `
 
 const containerSystem = compose(
   basics,
@@ -146,14 +148,14 @@ const Checkbox = createComponent(() => ({
     position: relative;
     width: 1.5rem;
     height: 1.5rem;
-    z-index: ${th('zIndexControl')};
+    z-index: ${zIndexControl(p)};
 
     .sui-checkbox-check {
       pointer-events: none;
       transform: scale(0);
       transform-origin: center;
-      color: ${th('white')};
-      ${th('transitionBase')};
+      color: ${white(p)};
+      ${transitionBase(p)};
     }
 
     .sui-checkbox-content {
@@ -162,16 +164,16 @@ const Checkbox = createComponent(() => ({
       justify-content: center;
       width: 1rem;
       height: 1rem;
-      background-color: ${th('inputBgColor')};
-      border-radius: ${th('borderRadius')};
+      background-color: ${inputBgColor(p)};
+      border-radius: ${borderRadius(p)};
       border-style: solid;
-      border-width: ${th('inputBorderWidth')};
-      border-color: ${th('inputBorderColor')};
-      ${th('transitionBase')};
+      border-width: ${inputBorderWidth(p)};
+      border-color: ${inputBorderColor(p)};
+      ${transitionBase(p)};
     }
 
     input:checked + .sui-checkbox-content {
-      background-color: ${th('primary')};
+      background-color: ${primary(p)};
       border-color: transparent;
 
       svg {
@@ -180,14 +182,14 @@ const Checkbox = createComponent(() => ({
     }
 
     input:focus + .sui-checkbox-content {
-      ${mixin('controlFocus')};
+      ${baseFocus(primary(p))(p)};
     }
 
     input:disabled + .sui-checkbox-content {
-      background-color: ${th('inputDisabledBgColor')};
+      background-color: ${inputDisabledBgColor(p)};
     }
 
-    ${sizeStyle[p.size]};
+    ${sizeStyle[p.size] && sizeStyle[p.size] && sizeStyle[p.size](p)};
     ${p.control && controlStyle(p)};
 
     ${containerSystem.props};

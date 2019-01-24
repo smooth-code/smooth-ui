@@ -1,10 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { th, mixin } from './utils/system'
 import { css } from './styled-engine'
-import ModalContext from './ModalContext'
-import createComponent from './utils/createComponent'
+import {
+  borderRadius,
+  transitionBase,
+  baseFocus,
+  primary,
+} from './theming/index'
 import { wrapEvent } from './utils/dom'
+import createComponent from './createComponent'
+import ModalContext from './ModalContext'
 
 const ModalCloseButton = createComponent(() => ({
   name: 'modal-close-button',
@@ -26,7 +31,7 @@ const ModalCloseButton = createComponent(() => ({
       )}
     </ModalContext.Consumer>
   ),
-  style: () => css`
+  style: p => css`
     position: absolute;
     cursor: pointer;
     top: 0.2rem;
@@ -39,13 +44,13 @@ const ModalCloseButton = createComponent(() => ({
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
-    border-radius: ${th('borderRadius')};
+    border-radius: ${borderRadius(p)};
     opacity: 0.5;
-    ${th('transitionBase')};
+    ${transitionBase(p)};
 
     &:focus {
       opacity: 1;
-      ${mixin('controlFocus')};
+      ${baseFocus(primary(p))(p)};
     }
 
     &:hover {

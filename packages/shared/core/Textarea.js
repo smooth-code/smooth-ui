@@ -1,7 +1,9 @@
 import Input from './Input'
 
-const Textarea = Input.withComponent('textarea')
+function createTextarea() {
+  const Textarea = Input.withComponent('textarea')
+  Textarea.propTypes = Input.propTypes
+  return Textarea
+}
 
-Textarea.propTypes = Input.propTypes
-
-export default Textarea
+export default createTextarea()

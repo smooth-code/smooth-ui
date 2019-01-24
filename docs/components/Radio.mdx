@@ -50,6 +50,40 @@ Disable using `disabled` prop.
 
 In most of case you don't need a `RadioGroup`. It is only necessary if you use [uncontrolled radio buttons](https://reactjs.org/docs/uncontrolled-components.html). All moderns like [Final Form](https://github.com/final-form/react-final-form) or [Formik](https://github.com/jaredpalmer/formik) uses controlled components, so `RadioGroup` is not required.
 
+## Control & Validation
+
+- Set custom focus effect using `control` prop.
+- Set validation using `valid` or `valid={false}`
+
+<Playground>
+  <RadioGroup>
+    <FormCheck>
+      <Radio control id="controlRadio1" name="controlRadios" value="option1" />
+      <FormCheckLabel htmlFor="controlRadio1">Control</FormCheckLabel>
+    </FormCheck>
+    <FormCheck>
+      <Radio
+        control
+        valid={true}
+        id="controlRadio2"
+        name="controlRadios"
+        value="option2"
+      />
+      <FormCheckLabel htmlFor="controlRadio2">Valid control</FormCheckLabel>
+    </FormCheck>
+    <FormCheck>
+      <Radio
+        control
+        valid={false}
+        id="controlRadio3"
+        name="controlRadios"
+        value="option3"
+      />
+      <FormCheckLabel htmlFor="controlRadio3">Invalid control</FormCheckLabel>
+    </FormCheck>
+  </RadioGroup>
+</Playground>
+
 ## API
 
 ### Radio
@@ -57,9 +91,11 @@ In most of case you don't need a `RadioGroup`. It is only necessary if you use [
 <PropsTable
   of={PropDesc({
     checked: PropDesc.bool,
+    control: PropDesc.bool,
     disabled: PropDesc.bool,
     onChange: PropDesc.func,
     size: PropDesc.oneOf(['sm', 'lg']),
+    valid: PropDesc.bool,
     value: PropDesc.string,
     ...getSystemPropDesc(Radio),
   })}

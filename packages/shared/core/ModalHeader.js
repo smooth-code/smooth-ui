@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  modalInnerPadding,
+  modalHeaderBorderWidth,
+  modalHeaderBorderColor,
+  modalContentBorderRadius,
+} from './theming/index'
+import createComponent from './createComponent'
 
 const ModalHeader = createComponent(() => ({
   name: 'modal-header',
-  style: () => css`
+  style: p => css`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: ${th('modalInnerPadding')};
-    border-bottom: ${th('modalHeaderBorderWidth')} solid
-      ${th('modalHeaderBorderColor')};
-    border-top-left-radius: ${th('modalContentBorderRadius')};
-    border-top-right-radius: ${th('modalContentBorderRadius')};
+    padding: ${modalInnerPadding(p)};
+    border-bottom-style: solid;
+    border-bottom-width: ${modalHeaderBorderWidth(p)};
+    border-bottom-color: ${modalHeaderBorderColor(p)};
+    border-top-left-radius: ${modalContentBorderRadius(p)};
+    border-top-right-radius: ${modalContentBorderRadius(p)};
   `,
   propTypes: {
     children: PropTypes.node,

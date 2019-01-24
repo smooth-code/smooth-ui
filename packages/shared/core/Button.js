@@ -1,26 +1,47 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  fontSizeSm,
+  borderRadiusSm,
+  fontSizeBase,
+  borderRadius,
+  fontSizeLg,
+  borderRadiusLg,
+  zIndexControl,
+  transitionBase,
+  btnPaddingYSm,
+  btnPaddingXSm,
+  btnLineHeightSm,
+  btnPaddingY,
+  btnPaddingX,
+  btnLineHeight,
+  btnPaddingYLg,
+  btnPaddingXLg,
+  btnLineHeightLg,
+  btnBorderWidth,
+  btnDisabledOpacity,
+  btnVariant,
+} from './theming/index'
+import createComponent from './createComponent'
 
-const sizeStyle = {
-  sm: css`
-    padding: ${th('btnPaddingYSm')} ${th('btnPaddingXSm')};
-    font-size: ${th('fontSizeSm')};
-    border-radius: ${th('borderRadiusSm')};
-    line-height: ${th('btnLineHeightSm')};
+const btnSize = {
+  sm: p => css`
+    padding: ${btnPaddingYSm(p)} ${btnPaddingXSm(p)};
+    font-size: ${fontSizeSm(p)};
+    border-radius: ${borderRadiusSm(p)};
+    line-height: ${btnLineHeightSm(p)};
   `,
-  md: css`
-    padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
-    font-size: ${th('fontSizeBase')};
-    border-radius: ${th('borderRadius')};
-    line-height: ${th('btnLineHeight')};
+  md: p => css`
+    padding: ${btnPaddingY(p)} ${btnPaddingX(p)};
+    font-size: ${fontSizeBase(p)};
+    border-radius: ${borderRadius(p)};
+    line-height: ${btnLineHeight(p)};
   `,
-  lg: css`
-    padding: ${th('btnPaddingYLg')} ${th('btnPaddingXLg')};
-    font-size: ${th('fontSizeLg')};
-    border-radius: ${th('borderRadiusLg')};
-    line-height: ${th('btnLineHeightLg')};
+  lg: p => css`
+    padding: ${btnPaddingYLg(p)} ${btnPaddingXLg(p)};
+    font-size: ${fontSizeLg(p)};
+    border-radius: ${borderRadiusLg(p)};
+    line-height: ${btnLineHeightLg(p)};
   `,
 }
 
@@ -30,25 +51,21 @@ const Button = createComponent(() => ({
   omitProps: ['size', 'variant'],
   style: p => css`
     display: inline-block;
-    padding: ${th('btnPaddingY')} ${th('btnPaddingX')};
-    z-index: ${th('zIndexControl')};
-    border-radius: ${th('borderRadius')};
-    font-size: ${th('fontSizeBase')};
-    line-height: ${th('btnLineHeight')};
-    border-width: ${th('btnBorderWidth')};
+    z-index: ${zIndexControl(p)};
+    border-width: ${btnBorderWidth(p)};
     cursor: pointer;
 
-    ${th('transitionBase')};
+    ${transitionBase(p)};
 
     /* When used as link */
     text-decoration: none;
 
     &:disabled {
-      opacity: ${th('btnDisabledOpacity')};
+      opacity: ${btnDisabledOpacity(p)};
     }
 
-    ${p.size && sizeStyle[p.size]};
-    ${p.variant && mixin('btnVariant', p.variant)(p)};
+    ${p.size && btnSize[p.size] && btnSize[p.size](p)};
+    ${p.variant && btnVariant(p.variant)(p)};
   `,
   propTypes: {
     children: PropTypes.node,
