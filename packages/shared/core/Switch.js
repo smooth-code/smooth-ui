@@ -38,7 +38,7 @@ const Switch = createComponent(() => ({
       )}
     </SwitchState>
   ),
-  style: css`
+  style: () => css`
     display: inline-block;
     position: relative;
     width: 50px;

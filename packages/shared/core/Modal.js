@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FocusLock from 'react-focus-lock'
-import { RemoveScroll } from 'react-remove-scroll';
+import { RemoveScroll } from 'react-remove-scroll'
 import { css, withTheme } from './styled-engine'
 import { th, mixin } from './utils/system'
 import Transition from './Transition'
@@ -132,7 +132,7 @@ const ModalComponentWithTheme = withTheme(ModalComponent)
 const Modal = createComponent(() => ({
   name: 'modal',
   InnerComponent: ModalComponentWithTheme,
-  style: css`
+  style: () => css`
     position: fixed;
     top: 0;
     right: 0;

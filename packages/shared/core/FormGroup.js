@@ -4,7 +4,7 @@ import createComponent from './utils/createComponent'
 
 const FormGroup = createComponent(() => ({
   name: 'form-group',
-  style: css`
+  style: () => css`
     margin-bottom: 1rem;
   `,
   propTypes: {

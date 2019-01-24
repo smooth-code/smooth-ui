@@ -5,7 +5,7 @@ import createComponent from './utils/createComponent'
 
 const ModalHeader = createComponent(() => ({
   name: 'modal-header',
-  style: css`
+  style: () => css`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

@@ -6,7 +6,7 @@ import createComponent from './utils/createComponent'
 const FormCheckLabel = createComponent(() => ({
   name: 'form-check-label',
   defaultComponent: 'label',
-  style: css`
+  style: () => css`
     padding-left: 0.25rem;
 
     [class*='disabled'] ~ & {

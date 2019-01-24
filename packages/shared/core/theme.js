@@ -44,17 +44,17 @@ export const green = '#28a745'
 export const teal = '#20c997'
 export const cyan = '#17a2b8'
 
-export const primary = th('brick')
-export const secondary = th('gray600')
-export const success = th('green')
-export const info = th('cyan')
-export const warning = th('yellow')
-export const danger = th('red')
-export const light = th('gray100')
-export const dark = th('gray800')
+export const primary = p => th('brick')(p)
+export const secondary = p => th('gray600')(p)
+export const success = p => th('green')(p)
+export const info = p => th('cyan')(p)
+export const warning = p => th('yellow')(p)
+export const danger = p => th('red')(p)
+export const light = p => th('gray100')(p)
+export const dark = p => th('gray800')(p)
 
-export const primaryLight = th('primary', c => lighten(0.3, c))
-export const secondaryLight = th('secondary', c => lighten(0.3, c))
+export const primaryLight = p => th('primary', c => lighten(0.3, c))(p)
+export const secondaryLight = p => th('secondary', c => lighten(0.3, c))(p)
 
 export const yikTextDark = '#111'
 export const yikTextLight = '#fff'
@@ -109,7 +109,7 @@ export const colors = [
   'primaryLight',
   'secondaryLight',
 ].reduce((obj, v) => {
-  obj[v] = th(v)
+  obj[v] = p => th(v)(p)
   return obj
 }, {})
 
@@ -127,12 +127,10 @@ export const borderWidth = '1px'
 // Fonts
 
 export const fontSizeBase = '1rem'
-export const fontSizeSm = th('fontSizeBase', fontSize =>
-  modularScale(-1, fontSize),
-)
-export const fontSizeLg = th('fontSizeBase', fontSize =>
-  modularScale(1, fontSize),
-)
+export const fontSizeSm = p =>
+  th('fontSizeBase', fontSize => modularScale(-1, fontSize))(p)
+export const fontSizeLg = p =>
+  th('fontSizeBase', fontSize => modularScale(1, fontSize))(p)
 
 export const fontWeightLight = 300
 export const fontWeightNormal = 400
@@ -146,62 +144,61 @@ export const lineHeightLg = 1.5
 
 export const inputBtnPaddingY = '.375rem'
 export const inputBtnPaddingX = '.75rem'
-export const inputBtnLineHeight = th('lineHeightBase')
+export const inputBtnLineHeight = p => th('lineHeightBase')(p)
 
 export const inputBtnPaddingYSm = '.25rem'
 export const inputBtnPaddingXSm = '.5rem'
-export const inputBtnLineHeightSm = th('lineHeightSm')
+export const inputBtnLineHeightSm = p => th('lineHeightSm')(p)
 
 export const inputBtnPaddingYLg = '.5rem'
 export const inputBtnPaddingXLg = '1rem'
-export const inputBtnLineHeightLg = th('lineHeightLg')
+export const inputBtnLineHeightLg = p => th('lineHeightLg')(p)
 
-export const inputBtnBorderWidth = th('borderWidth')
+export const inputBtnBorderWidth = p => th('borderWidth')(p)
 
 // Buttons
 
-export const btnPaddingY = th('inputBtnPaddingY')
-export const btnPaddingX = th('inputBtnPaddingX')
-export const btnLineHeight = th('inputBtnLineHeight')
+export const btnPaddingY = p => th('inputBtnPaddingY')(p)
+export const btnPaddingX = p => th('inputBtnPaddingX')(p)
+export const btnLineHeight = p => th('inputBtnLineHeight')(p)
 
-export const btnPaddingYSm = th('inputBtnPaddingYSm')
-export const btnPaddingXSm = th('inputBtnPaddingXSm')
-export const btnLineHeightSm = th('inputBtnLineHeightSm')
+export const btnPaddingYSm = p => th('inputBtnPaddingYSm')(p)
+export const btnPaddingXSm = p => th('inputBtnPaddingXSm')(p)
+export const btnLineHeightSm = p => th('inputBtnLineHeightSm')(p)
 
-export const btnPaddingYLg = th('inputBtnPaddingYLg')
-export const btnPaddingXLg = th('inputBtnPaddingXLg')
-export const btnLineHeightLg = th('inputBtnLineHeightLg')
+export const btnPaddingYLg = p => th('inputBtnPaddingYLg')(p)
+export const btnPaddingXLg = p => th('inputBtnPaddingXLg')(p)
+export const btnLineHeightLg = p => th('inputBtnLineHeightLg')(p)
 
 export const btnBorderWidth = 0
 export const btnDisabledOpacity = 0.8
 
 // Inputs
 
-export const inputPaddingY = th('inputBtnPaddingY')
-export const inputPaddingX = th('inputBtnPaddingX')
-export const inputLineHeight = th('inputBtnLineHeight')
+export const inputPaddingY = p => th('inputBtnPaddingY')(p)
+export const inputPaddingX = p => th('inputBtnPaddingX')(p)
+export const inputLineHeight = p => th('inputBtnLineHeight')(p)
 
-export const inputPaddingYSm = th('inputBtnPaddingYSm')
-export const inputPaddingXSm = th('inputBtnPaddingXSm')
-export const inputLineHeightSm = th('inputBtnLineHeightSm')
+export const inputPaddingYSm = p => th('inputBtnPaddingYSm')(p)
+export const inputPaddingXSm = p => th('inputBtnPaddingXSm')(p)
+export const inputLineHeightSm = p => th('inputBtnLineHeightSm')(p)
 
-export const inputPaddingYLg = th('inputBtnPaddingYLg')
-export const inputPaddingXLg = th('inputBtnPaddingXLg')
-export const inputLineHeightLg = th('inputBtnLineHeightLg')
+export const inputPaddingYLg = p => th('inputBtnPaddingYLg')(p)
+export const inputPaddingXLg = p => th('inputBtnPaddingXLg')(p)
+export const inputLineHeightLg = p => th('inputBtnLineHeightLg')(p)
 
-export const inputBorderWidth = th('inputBtnBorderWidth')
-export const inputBorderColor = th('gray300')
-export const inputBgColor = th('white')
-export const inputDisabledBgColor = th('gray100')
-export const inputDisabledText = th('gray600')
-export const inputPlaceholderText = th('gray600')
-export const inputTextColor = th('gray900')
+export const inputBorderWidth = p => th('inputBtnBorderWidth')(p)
+export const inputBorderColor = p => th('gray300')(p)
+export const inputBgColor = p => th('white')(p)
+export const inputDisabledBgColor = p => th('gray100')(p)
+export const inputDisabledText = p => th('gray600')(p)
+export const inputPlaceholderText = p => th('gray600')(p)
+export const inputTextColor = p => th('gray900')(p)
 
 // Controls
 
-export const controlFocusBorderColor = th('primary', color =>
-  lighten(0.25, color),
-)
+export const controlFocusBorderColor = p =>
+  th('primary', color => lighten(0.25, color))(p)
 
 export const controlFocusBoxShadow = p => color =>
   `0 0 0 0.2rem ${th(color, c => transparentize(0.75, c))(p)}`
@@ -279,10 +276,11 @@ const safeTransitionProperties = [
   'opacity',
 ]
 
-export const transitionBase = mixin(
-  'transition',
-  safeTransitionProperties.map(prop => `${prop} .2s ease-in-out`).join(','),
-)
+export const transitionBase = p =>
+  mixin(
+    'transition',
+    safeTransitionProperties.map(prop => `${prop} .2s ease-in-out`).join(','),
+  )(p)
 
 // Breakpoints
 
@@ -296,7 +294,7 @@ export const colorInterval = 0.08
 // Headings
 
 export const headingsMarginBottom = '.5rem'
-export const headingsFontFamily = th('fontFamily')
+export const headingsFontFamily = p => th('fontFamily')(p)
 export const headingsFontWeight = 500
 export const headingsLineHeight = 1.2
 export const headingsColor = 'inherit'
@@ -318,7 +316,7 @@ export const display2Weight = 300
 export const display3Weight = 300
 export const display4Weight = 300
 
-export const displayLineHeight = th('headingsLineHeight')
+export const displayLineHeight = p => th('headingsLineHeight')(p)
 
 // Modals
 
@@ -330,23 +328,24 @@ export const modalTransitionDuration = 300 // ms
 export const modalDialogMargin = '0.5rem'
 export const modalDialogMarginYSmUp = '1.75rem'
 
-export const modalContentBg = th('white')
-export const modalContentBorderWidth = th('borderWidth')
-export const modalContentBorderColor = th('black', color =>
-  transparentize(0.8, color),
-)
-export const modalContentBorderRadius = th('borderRadiusLg')
-export const modalContentBoxShadowXs = css`0 .25rem .5rem ${th('black', color =>
-  transparentize(0.8, color),
-)}`
-export const modalContentBoxShadowSmUp = css`0 .5rem 1rem ${th('black', color =>
-  transparentize(0.8, color),
-)}`
+export const modalContentBg = p => th('white')(p)
+export const modalContentBorderWidth = p => th('borderWidth')(p)
+export const modalContentBorderColor = p =>
+  th('black', color => transparentize(0.8, color))(p)
+export const modalContentBorderRadius = p => th('borderRadiusLg')(p)
+export const modalContentBoxShadowXs = css`
+  box-shadow: 0 0.25rem 0.5rem
+    ${p => th('black', color => transparentize(0.8, color))(p)};
+`
+export const modalContentBoxShadowSmUp = css`
+  box-shadow: 0 0.5rem 1rem
+    ${p => th('black', color => transparentize(0.8, color))(p)};
+`
 
-export const modalHeaderBorderColor = th('gray200')
-export const modalFooterBorderColor = th('modalHeaderBorderColor')
-export const modalHeaderBorderWidth = th('modalContentBorderWidth')
-export const modalFooterBorderWidth = th('modalHeaderBorderWidth')
+export const modalHeaderBorderColor = p => th('gray200')(p)
+export const modalFooterBorderColor = p => th('modalHeaderBorderColor')(p)
+export const modalHeaderBorderWidth = p => th('modalContentBorderWidth')(p)
+export const modalFooterBorderWidth = p => th('modalHeaderBorderWidth')(p)
 
 // Mixins
 export const base = () => () => css`

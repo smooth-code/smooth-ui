@@ -15,12 +15,12 @@ const renderOption = option => {
 }
 
 const sizeStyle = {
-  sm: css`
+  sm: p => css`
     select {
       padding: ${th('inputPaddingYSm')} ${th('inputPaddingXSm')};
       font-size: ${th('fontSizeSm')};
       border-radius: ${th('borderRadiusSm')};
-      ${p => p.arrow && !p.multiple && 'padding-right: 1.225rem;'};
+      ${p.arrow && !p.multiple && 'padding-right: 1.225rem;'};
     }
 
     .sui-select-arrow {
@@ -28,11 +28,11 @@ const sizeStyle = {
       width: 0.525rem;
     }
   `,
-  md: css`
+  md: p => css`
     select {
       padding: ${th('inputPaddingY')} ${th('inputPaddingX')};
       font-size: ${th('fontSizeBase')};
-      ${p => p.arrow && !p.multiple && 'padding-right: 1.6rem;'};
+      ${p.arrow && !p.multiple && 'padding-right: 1.6rem;'};
       border-radius: ${th('borderRadius')};
     }
 
@@ -41,12 +41,12 @@ const sizeStyle = {
       width: 0.6rem;
     }
   `,
-  lg: css`
+  lg: p => css`
     select {
       padding: ${th('inputPaddingYLg')} ${th('inputPaddingXLg')};
       font-size: ${th('fontSizeLg')};
       border-radius: ${th('borderRadiusLg')};
-      ${p => p.arrow && !p.multiple && 'padding-right: 2rem;'};
+      ${p.arrow && !p.multiple && 'padding-right: 2rem;'};
     }
 
     .sui-select-arrow {
@@ -78,7 +78,18 @@ const invalidStyle = css`
   }
 `
 
-const controlStyle = css`
+const getValidStyle = valid => {
+  switch (valid) {
+    case true:
+      return validStyle
+    case false:
+      return invalidStyle
+    default:
+      return null
+  }
+}
+
+const controlStyle = p => css`
   display: block;
   width: 100%;
 
@@ -92,16 +103,7 @@ const controlStyle = css`
     }
   }
 
-  ${p => {
-    switch (p.valid) {
-      case true:
-        return validStyle
-      case false:
-        return invalidStyle
-      default:
-        return null
-    }
-  }};
+  ${getValidStyle(p.valid)};
 `
 
 const Select = createComponent(() => ({
@@ -148,7 +150,7 @@ const Select = createComponent(() => ({
       </Component>
     )
   },
-  style: css`
+  style: p => css`
     display: inline-block;
     position: relative;
 
@@ -183,8 +185,8 @@ const Select = createComponent(() => ({
       pointer-events: none;
     }
 
-    ${p => p.size && sizeStyle[p.size]};
-    ${p => p.control && controlStyle};
+    ${p.size && sizeStyle[p.size](p)};
+    ${p.control && controlStyle(p)};
   `,
   propTypes: {
     arrow: PropTypes.bool,

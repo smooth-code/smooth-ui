@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 import { styled } from '../styled-engine'
+import * as theme from '../theme'
 import { is, num, get, cascade } from './misc'
 
 export const gth = p => {
   if (!p) return null
   if (p.theme && p.theme.__smoothUI) return p.theme
-  return p.__scTheme
+  return theme
 }
 
 export const lazyTh = name => props => cascade(p => get(gth(p), name), props)
