@@ -1,44 +1,42 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Toggler extends Component {
-  state = { toggled: this.props.defaultToggled }
+function create() {
+  class Toggler extends Component {
+    static propTypes = {
+      children: PropTypes.func.isRequired,
+      defaultToggled: PropTypes.bool,
+      onToggle: PropTypes.func,
+    }
 
-  onToggle = value => {
-    this.setState(
-      previousState => ({
-        toggled: typeof value === 'boolean' ? value : !previousState.toggled,
-      }),
-      () => {
-        if (this.props.onToggle) {
-          this.props.onToggle(this.state.toggled)
-        }
-      },
-    )
+    static defaultProps = {
+      defaultToggled: false,
+    }
+
+    state = { toggled: this.props.defaultToggled }
+
+    onToggle = value => {
+      this.setState(
+        previousState => ({
+          toggled: typeof value === 'boolean' ? value : !previousState.toggled,
+        }),
+        () => {
+          if (this.props.onToggle) {
+            this.props.onToggle(this.state.toggled)
+          }
+        },
+      )
+    }
+
+    render() {
+      return this.props.children({
+        toggled: this.state.toggled,
+        onToggle: this.onToggle,
+      })
+    }
   }
 
-  render() {
-    return this.props.children({
-      toggled: this.state.toggled,
-      onToggle: this.onToggle,
-    })
-  }
+  return Toggler
 }
 
-/* #__PURE__ */
-Object.defineProperty(Toggler, 'propTypes', {
-  value: {
-    children: PropTypes.func.isRequired,
-    defaultToggled: PropTypes.bool,
-    onToggle: PropTypes.func,
-  },
-})
-
-/* #__PURE__ */
-Object.defineProperty(Toggler, 'defaultProps', {
-  value: {
-    defaultToggled: false,
-  },
-})
-
-export default Toggler
+export default create()
