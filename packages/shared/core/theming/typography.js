@@ -1,6 +1,8 @@
 import { modularScale } from 'polished'
 import { thd } from '../utils/index'
 
+export const fontSizes = thd('fontSizes', [12, 14, 16, 20, 24, 32, 48, 64, 72])
+
 export const fontFamily = thd(
   'fontFamily',
   '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',

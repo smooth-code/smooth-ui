@@ -2,16 +2,17 @@
 
 import * as React from 'react'
 
-export type DefaultColors = 'primary'
-| 'secondary'
-| 'success'
-| 'danger'
-| 'warning'
-| 'info'
-| 'light'
-| 'dark'
+export type DefaultColors =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
 
-export type Sizes = "sm" | "md" | "lg"
+export type Sizes = 'sm' | 'md' | 'lg'
 
 interface InputType {
   checked?: boolean
@@ -124,6 +125,7 @@ interface TogglerRenderProps {
   onToggle: (state?: boolean) => void
   toggled: boolean
 }
+
 interface TogglerProps {
   children: (props: TogglerRenderProps) => React.ReactNode
   defaultToggled?: boolean
@@ -160,7 +162,7 @@ export interface BoxProps
 type Omit<T, K> = Pick<T, Exclude<keyof T, keyof K>>
 
 export type OmitBoxProps<T> = Omit<T, BoxProps>
-type OmitFontProps<T> = Omit<T,FontProps>
+type OmitFontProps<T> = Omit<T, FontProps>
 
 export const Box: React.FunctionComponent<BoxProps>
 
@@ -198,7 +200,7 @@ export interface FormCheckProps extends BoxProps {
 export const FormCheck: React.FunctionComponent<FormCheckProps>
 
 export const FormCheckLabel: React.FunctionComponent<
- BoxProps & React.HTMLProps<HTMLLabelElement>
+  BoxProps & React.HTMLProps<HTMLLabelElement>
 >
 
 export interface FormGroupProps extends BoxProps {
@@ -235,9 +237,9 @@ export const Label: React.FunctionComponent<LabelProps>
 
 export interface RadioProps
   extends Omit<React.HTMLProps<HTMLInputElement>, BoxProps & { size: any }>,
-  OmitFontProps<BoxProps> {
+    OmitFontProps<BoxProps> {
   checked?: boolean
-  disabled?:boolean
+  disabled?: boolean
   size?: Sizes
   value?: string
 }
@@ -454,10 +456,6 @@ export interface ThemeType {
   inputPlaceholderText: (props: Object) => string
   inputTextColor: (props: Object) => string
 
-  controlFocusBorderColor: (props: Object) => string
-
-  controlFocusBoxShadow: (props: Object) => (color: string) => string
-
   gridColumns: 12
   gridGutter: 8
 
@@ -476,7 +474,7 @@ export interface ThemeType {
   alertBorderLevel: -9
   alertColorLevel: 6
 
-  alertVariant: (props: Object) => (baseColorTheme: Object) => AlertColorVariant
+  alertVariant: (baseColorTheme: Object) => (props: Object) => AlertColorVariant
 
   zIndexControl: 1
   zIndexInnerSwitch: 10
@@ -484,7 +482,7 @@ export interface ThemeType {
   zIndexModalBackdrop: 1071
 
   transitionEnabled: true
-  transition: (props: Object) => (value: string) => string
+  transition: (value: string) => (props: Object) => string
 
   safeTransitionProperties: [
     'color',
@@ -560,24 +558,17 @@ export interface ThemeType {
 
   base: () => () => (props: Object) => string
 
-  controlFocus: (
-    props: Object,
-  ) => (baseColor: string) => (props: Object) => string
+  controlFocus: (baseColor: string) => (props: Object) => string
+  baseFocus: (baseColor: string) => (props: Object) => string
 
-  btnVariant: (
-    props: Object,
-  ) => (baseColor: string) => (props: Object) => string
+  btnVariant: (baseColor: string) => (props: Object) => string
 
   colorLevel: (
-    props: Object,
-  ) => (
     color: (props: Object) => string | string,
     level: (props: Object) => string | string,
-  ) => string
+  ) => (props: Object) => string
 
-  colorYik: (
-    props: Object,
-  ) => (color: (props: Object) => string | string) => string
+  colorYik: (color: string) => (props: Object) => string
 }
 
 export const theme: ThemeType
@@ -590,21 +581,9 @@ interface AlertColorVariant {
   }
 }
 
-export const lazyTh: (name: string) => (props: Object) => string
-
 export const th: (
   name: string,
   transform?: (res: any) => string,
-) => (props: Object) => string
-
-export const mixin: (
-  name: string,
-  ...args: Array<string>
-) => (props: Object) => string
-
-export const prop: (
-  name: string,
-  themeFallback?: string,
 ) => (props: Object) => string
 
 export const calc: (
@@ -615,19 +594,6 @@ export const calc: (
 export const unit: (unit: string) => (value: number | string) => string
 
 export const px: ReturnType<typeof unit>
-
-interface styleArg {
-  prop: string
-  cssProperty: string
-  transform: Function
-  variants: Array<string>
-}
-
-export function style(arg: styleArg): (props: Object) => Object
-
-export const composeStyles: (
-  ...funcs: Array<(props: Object) => string>
-) => ((props: Object) => Object)
 
 export interface ModalProps extends BoxProps {
   children?: React.ReactNode
@@ -695,20 +661,7 @@ export const DEFAULT_BREAKPOINTS: {
   xl: 1200
 }
 
-export const getBreakpoints: (props: Object) => Object
-
-export const getBreakpointsEntries: (props: Object) => Array<Array<string>>
-
-export const getNextBreakpoint: (name: string, props: Object) => null | string
-
-export const getPreviousBreakpoint: (
-  name: string,
-  props: Object,
-) => null | string
-
-export const getBreakpointMin: (name: string, props: Object) => null | number
-
-export const getBreakpointMax: (name: string, props: Object) => null | number
+export const breakpoints: (props: Object) => Object
 
 export const mediaMinWidth: (value: number | string) => string
 
