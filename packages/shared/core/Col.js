@@ -92,55 +92,69 @@ function getStyleFromProps(p) {
   return style
 }
 
-const Col = createComponent(() => ({
-  name: 'col',
-  omitProps: ['xs', 'sm', 'md', 'lg', 'xl', 'oxs', 'osm', 'omd', 'olg', 'oxl'],
-  style: getStyleFromProps,
-  propTypes: {
-    children: PropTypes.node,
-    gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    xs: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    sm: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    md: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    lg: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    xl: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    oxs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    osm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    omd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    olg: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    oxl: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  },
-}))
+function create() {
+  const Col = createComponent(() => ({
+    name: 'col',
+    omitProps: [
+      'xs',
+      'sm',
+      'md',
+      'lg',
+      'xl',
+      'oxs',
+      'osm',
+      'omd',
+      'olg',
+      'oxl',
+    ],
+    style: getStyleFromProps,
+    propTypes: {
+      children: PropTypes.node,
+      gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      xs: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      sm: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      md: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      lg: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      xl: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      oxs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      osm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      omd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      olg: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      oxl: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    },
+  }))
 
-const Split = createComponent(() => ({
-  name: 'col-split',
-  style: () =>
-    css`
-      width: 100% !important;
-    `,
-}))
+  const Split = createComponent(() => ({
+    name: 'col-split',
+    style: () =>
+      css`
+        width: 100% !important;
+      `,
+  }))
 
-/* #__PURE__ */
-Object.defineProperty(Col, 'Split', { value: Split })
+  Col.Split = Split
 
-export default Col
+  return Col
+}
+
+export default create()
