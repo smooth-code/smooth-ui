@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/smooth-code/smooth-ui/compare/v9.0.0...v9.0.1) (2019-02-04)
+
+**Note:** Version bump only for package @smooth-ui/core-sc
+
+
+
+
+
 # [9.0.0](https://github.com/smooth-code/smooth-ui/compare/v8.1.0...v9.0.0) (2019-02-04)
 
 
