@@ -1,17 +1,9 @@
-import React from 'react'
+import { Component } from 'react'
 
-class SwitchState extends React.Component {
+class SwitchState extends Component {
   state = {
     focused: false,
     checked: this.props.checked || this.props.defaultChecked || false,
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.checked !== undefined && props.checked !== state.checked) {
-      return { ...state, checked: props.checked }
-    }
-
-    return state
   }
 
   handleChange = event => {
@@ -78,5 +70,18 @@ class SwitchState extends React.Component {
     })
   }
 }
+
+function getDerivedStateFromProps(props, state) {
+  if (props.checked !== undefined && props.checked !== state.checked) {
+    return { ...state, checked: props.checked }
+  }
+
+  return state
+}
+
+/* #__PURE__ */
+Object.defineProperty(SwitchState, 'getDerivedStateFromProps', {
+  value: getDerivedStateFromProps,
+})
 
 export default SwitchState

@@ -2,10 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class RadioGroup extends React.Component {
-  static childContextTypes = {
-    suiGroup: PropTypes.object,
-  }
-
   getChildContext() {
     return { suiGroup: this }
   }
@@ -38,8 +34,18 @@ class RadioGroup extends React.Component {
   }
 }
 
-RadioGroup.propTypes = {
-  children: PropTypes.node,
-}
+/* #__PURE__ */
+Object.defineProperty(RadioGroup, 'propTypes', {
+  value: {
+    children: PropTypes.node,
+  },
+})
+
+/* #__PURE__ */
+Object.defineProperty(RadioGroup, 'childContextTypes', {
+  value: {
+    suiGroup: PropTypes.object,
+  },
+})
 
 export default RadioGroup

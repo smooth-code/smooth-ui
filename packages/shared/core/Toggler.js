@@ -1,7 +1,7 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Toggler extends React.Component {
+class Toggler extends Component {
   state = { toggled: this.props.defaultToggled }
 
   onToggle = value => {
@@ -25,14 +25,20 @@ class Toggler extends React.Component {
   }
 }
 
-Toggler.propTypes = {
-  children: PropTypes.func.isRequired,
-  defaultToggled: PropTypes.bool,
-  onToggle: PropTypes.func,
-}
+/* #__PURE__ */
+Object.defineProperty(Toggler, 'propTypes', {
+  value: {
+    children: PropTypes.func.isRequired,
+    defaultToggled: PropTypes.bool,
+    onToggle: PropTypes.func,
+  },
+})
 
-Toggler.defaultProps = {
-  defaultToggled: false,
-}
+/* #__PURE__ */
+Object.defineProperty(Toggler, 'defaultProps', {
+  value: {
+    defaultToggled: false,
+  },
+})
 
 export default Toggler

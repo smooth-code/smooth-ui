@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import createComponent from './utils/createComponent'
+import createComponent from './createComponent'
 
 const Label = createComponent(() => ({
   name: 'label',

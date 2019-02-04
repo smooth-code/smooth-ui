@@ -2,13 +2,13 @@
 /* @jsx jsx */
 import React from 'react'
 import { render } from 'react-dom'
-import { jsx, css, Button, Normalize, styled, uiAs } from '@smooth-ui/core-em'
+import { jsx, css, Button, Normalize, styled } from '@smooth-ui/core-em'
 
 const BlackButton = styled(Button)`
   color: black;
 `
 
-const DivButton = uiAs(Button, 'div')
+const DivButton = Button.withComponent('div')
 
 const App = () => (
   <>
@@ -17,10 +17,10 @@ const App = () => (
       <Button>Basic</Button>
     </div>
     <div>
-      <DivButton>{`uiAs(Button, 'div')`}</DivButton>
+      <DivButton>{`Button.withComponent('div')`}</DivButton>
     </div>
     <div>
-      <Button uiAs="div">{`<Button uiAs="div">`}</Button>
+      <Button as="div">{`<Button as="div">`}</Button>
     </div>
     <div>
       <BlackButton>{`styled(Button)\`color: black\``}</BlackButton>
@@ -35,6 +35,7 @@ const App = () => (
     <div>
       <Button
         css={{ color: 'black' }}
+        backgroundColor="secondary"
       >{`<Button css={{{color: 'black'}}>`}</Button>
     </div>
   </>

@@ -1,5 +1,3 @@
-import * as theme from './theme'
-
 export { default as Alert } from './Alert'
 export { default as Box } from './Box'
 export { default as Breakpoint } from './Breakpoint'
@@ -33,7 +31,9 @@ export { default as Textarea } from './Textarea'
 export { default as Toggler } from './Toggler'
 export { default as Transition } from './Transition'
 export { default as Typography } from './Typography'
-export * from './utils/breakpoints'
-export * from './utils/system'
+
+export * from './utils/index'
+export * from './theming/index'
 export * from './styled-engine'
-export { theme }
+
+export { default as theme } from './theme'

@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th } from './utils/system'
-import createComponent from './utils/createComponent'
+import { danger, success } from './theming/index'
+import createComponent from './createComponent'
 
 const ControlFeedback = createComponent(() => ({
   name: 'control-feedback',
   omitProps: ['valid'],
-  style: css`
+  style: p => css`
     width: 100%;
     margin-top: 0.25rem;
     font-size: 80%;
-    color: ${p => (p.valid ? th('success')(p) : th('danger')(p))};
+    color: ${p.valid ? success(p) : danger(p)};
   `,
   propTypes: {
     children: PropTypes.node,

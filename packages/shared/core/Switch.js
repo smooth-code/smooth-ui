@@ -2,8 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { system } from '@smooth-ui/system'
 import { css } from './styled-engine'
-import { th, mixin } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  inputBorderWidth,
+  inputBorderColor,
+  baseFocus,
+  transitionBase,
+  gray300,
+  gray500,
+  gray900,
+  primary,
+  primaryLight,
+} from './theming/index'
+import createComponent from './createComponent'
 import SwitchState from './SwitchState'
 
 const Switch = createComponent(() => ({
@@ -38,7 +48,7 @@ const Switch = createComponent(() => ({
       )}
     </SwitchState>
   ),
-  style: css`
+  style: p => css`
     display: inline-block;
     position: relative;
     width: 50px;
@@ -48,23 +58,23 @@ const Switch = createComponent(() => ({
       width: 50px;
       height: 24px;
       border-radius: 34px;
-      background-color: ${th('gray300')};
+      background-color: ${gray300(p)};
       overflow: hidden;
       cursor: pointer;
-      border-width: ${th('inputBorderWidth')};
-      border-color: ${th('inputBorderColor')};
+      border-width: ${inputBorderWidth(p)};
+      border-color: ${inputBorderColor(p)};
       border-style: solid;
-      ${th('transitionBase')};
       font-size: 9px;
       font-weight: 800;
+      ${transitionBase(p)};
     }
 
     input:focused + .sui-switch-wrapper {
-      ${mixin('controlFocus')};
+      ${baseFocus(primary(p))(p)};
     }
 
     input:checked + .sui-switch-wrapper {
-      background-color: ${th('primaryLight')};
+      background-color: ${primaryLight(p)};
       border-color: transparent;
 
       .sui-switch-content {
@@ -72,7 +82,7 @@ const Switch = createComponent(() => ({
       }
 
       .sui-switch-ball {
-        background-color: ${th('primary')};
+        background-color: ${primary(p)};
       }
     }
 
@@ -82,19 +92,19 @@ const Switch = createComponent(() => ({
 
     .sui-switch-ball {
       flex-shrink: 0;
-      background-color: ${th('gray500')};
+      background-color: ${gray500(p)};
       border-radius: 50%;
       width: 18px;
       height: 18px;
-      ${th('transitionBase')};
+      ${transitionBase(p)};
     }
 
     .sui-switch-content {
       display: flex;
       align-items: center;
       height: 22px;
-      ${th('transitionBase')};
       transform: translateX(-25px);
+      ${transitionBase(p)};
     }
 
     .sui-switch-label {
@@ -104,16 +114,16 @@ const Switch = createComponent(() => ({
       user-select: none;
 
       &.sui-switch-label-on {
-        color: ${th('primary')};
+        color: ${primary(p)};
       }
 
       &.sui-switch-label-off {
-        color: ${th('gray900')};
+        color: ${gray900(p)};
       }
     }
 
     .sui-switch-wrapper {
-      ${system};
+      ${system.props};
     }
   `,
   propTypes: {

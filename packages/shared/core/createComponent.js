@@ -2,9 +2,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { system as fullSystem } from '@smooth-ui/system'
-import { styled, withTheme } from '../styled-engine'
-import * as theme from '../theme'
-import { omit } from './misc'
+import { styled } from './styled-engine'
+import { getTheme, omit, definitionsToTheme, func } from './utils/index'
+import * as systemDefs from './theming/system'
+
+const defaultSystemTheme = definitionsToTheme(systemDefs)
+
+function getProps(props, defaultProps) {
+  const theme = { ...defaultSystemTheme, ...getTheme(props) }
+  return { ...defaultProps, ...props, theme }
+}
 
 function createComponent(getConfig) {
   const {
@@ -16,33 +23,23 @@ function createComponent(getConfig) {
     render = ({ Component, ...props }) => <Component {...props} />,
     defaultComponent = 'div',
     system = fullSystem,
-    applySystem = system => props => ({ '&&': system.props(props) }),
-    injectTheme,
+    applySystem = system => props => system.props(props),
     InnerComponent: InnerComponentFromConfig,
   } = getConfig()
 
   const omittedProps = [
     'theme',
-    '__scTheme',
     ...(system ? system.meta.props : {}),
     ...omitProps,
   ]
 
   const baseClassName = `sui-${name}`
-  let InnerComponent =
+  const InnerComponent =
     InnerComponentFromConfig ||
     class Component extends React.Component {
       render() {
-        const {
-          className,
-          uiAs,
-          theme,
-          __scTheme,
-          forwardedRef,
-          ...props
-        } = this.props
-
-        const Component = uiAs || defaultComponent
+        const { className, as, forwardedRef, ...props } = this.props
+        const Component = as || defaultComponent
 
         const renderProps = {
           ref: forwardedRef,
@@ -53,15 +50,10 @@ function createComponent(getConfig) {
           ...omit(props, omittedProps),
         }
 
-        if (injectTheme) {
-          renderProps.theme = theme || __scTheme
-        }
-
         return render(renderProps)
       }
     }
 
-  InnerComponent = injectTheme ? withTheme(InnerComponent) : InnerComponent
   InnerComponent.displayName = `sui-${name}`
 
   function forwardRef(props, ref) {
@@ -72,13 +64,17 @@ function createComponent(getConfig) {
   const RefComponent = React.forwardRef(forwardRef)
   RefComponent.displayName = InnerComponent.displayName
 
-  // eslint-disable-next-line no-underscore-dangle
-  RefComponent.__smoothUIComponent = true
-
-  const StyledComponent = styled(RefComponent)`
-    ${style};
-    ${applySystem && applySystem(system)};
-  `
+  const StyledComponent = styled(RefComponent)(p => {
+    const styles = []
+    const props = getProps(p, defaultProps)
+    if (func(style)) {
+      styles.push(style(props))
+    }
+    if (func(applySystem)) {
+      styles.push(applySystem(system)(props))
+    }
+    return styles
+  })
 
   StyledComponent.propTypes = {
     theme: PropTypes.object,
@@ -96,7 +92,6 @@ function createComponent(getConfig) {
   }
 
   StyledComponent.defaultProps = {
-    __scTheme: theme,
     ...defaultProps,
   }
 
