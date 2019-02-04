@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types'
-import { mediaMinWidth } from './utils/breakpoints'
-import { prop, px, th } from './utils/system'
-import createComponent from './utils/createComponent'
+import { px, mediaMinWidth } from './utils/index'
+import { gridMaxWidths, gridGutter, breakpoints } from './theming/index'
+import createComponent from './createComponent'
 
 const styleBreakpoints = p => {
-  const breakpoints = th('breakpoints')(p)
-  const gridMaxWidths = th('gridMaxWidths')(p)
+  const bk = breakpoints(p)
+  const maxWidths = gridMaxWidths(p)
   const style = breakpoint => {
-    const width = breakpoints[breakpoint]
+    const width = bk[breakpoint]
     const media = s => (width === 0 ? s : { [mediaMinWidth(width)]: s })
-    return media({ maxWidth: gridMaxWidths[breakpoint] })
+    return media({ maxWidth: maxWidths[breakpoint] })
   }
-  return Object.keys(breakpoints).reduce(
+  return Object.keys(bk).reduce(
     (obj, breakpoint) => Object.assign(obj, style(breakpoint)),
     {},
   )
@@ -21,7 +21,8 @@ const Grid = createComponent(() => ({
   name: 'grid',
   omitProps: ['gutter', 'fluid'],
   style: p => {
-    const gutter = px(prop('gutter', 'gridGutter')(p))
+    const { gutter: rawGutter = gridGutter(p) } = p
+    const gutter = px(rawGutter)
     return {
       width: '100%',
       paddingRight: gutter,

@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -7,5 +7,8 @@ module.exports = {
         loader: 'babel-loader',
       },
     ],
+  },
+  optimization: {
+    usedExports: true,
   },
 }

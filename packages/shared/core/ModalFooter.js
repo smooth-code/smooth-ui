@@ -1,17 +1,22 @@
 import PropTypes from 'prop-types'
 import { css } from './styled-engine'
-import { th } from './utils/system'
-import createComponent from './utils/createComponent'
+import {
+  modalInnerPadding,
+  modalFooterBorderWidth,
+  modalFooterBorderColor,
+} from './theming/index'
+import createComponent from './createComponent'
 
 const ModalFooter = createComponent(() => ({
   name: 'modal-footer',
-  style: css`
+  style: p => css`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: ${th('modalInnerPadding')};
-    border-top: ${th('modalFooterBorderWidth')} solid
-      ${th('modalFooterBorderColor')};
+    padding: ${modalInnerPadding(p)};
+    border-top-width: ${modalFooterBorderWidth(p)};
+    border-top-style: solid;
+    border-top-color: ${modalFooterBorderColor(p)};
 
     /* Easily place margin between footer elements */
     > :not(:first-child) {

@@ -14,14 +14,14 @@ Smooth UI takes accessibility seriously. We do our best to ensure that all compo
 
 All components implement [reduced motion media query](https://css-tricks.com/introduction-reduced-motion-media-query/), it means they respect settings of users.
 
-`transition` mixin automatically adds the reduced motion media query.
+`transition` utility automatically adds the reduced motion media query.
 
 ```js
-import { mixin } from '@smooth-ui/core-sc'
+import { transition } from '@smooth-ui/core-sc'
 
 const AccessibleButton = styled.button`
   background-color: red;
-  ${mixin('transition', 'background-color 200ms')};
+  ${transition('background-color 200ms')};
 
   &:hover {
     background-color: blue;

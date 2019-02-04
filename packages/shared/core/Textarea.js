@@ -1,6 +1,9 @@
-import { uiAs } from './utils/system'
 import Input from './Input'
 
-const Textarea = uiAs(Input, 'textarea')
+function createTextarea() {
+  const Textarea = Input.withComponent('textarea')
+  Textarea.propTypes = Input.propTypes
+  return Textarea
+}
 
-export default Textarea
+export default createTextarea()

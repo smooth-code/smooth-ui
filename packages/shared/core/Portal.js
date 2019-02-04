@@ -1,17 +1,8 @@
-import React from 'react'
+import { Component } from 'react'
+import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
 
-class Portal extends React.Component {
-  static propTypes = {
-    type: PropTypes.string,
-    children: PropTypes.node,
-  }
-
-  static defaultProps = {
-    type: 'sui-portal',
-  }
-
+class Portal extends Component {
   state = { node: null }
 
   componentDidMount() {
@@ -26,9 +17,24 @@ class Portal extends React.Component {
 
   render() {
     return this.state.node
-      ? ReactDOM.createPortal(this.props.children, this.state.node)
+      ? createPortal(this.props.children, this.state.node)
       : null
   }
 }
+
+/* #__PURE__ */
+Object.defineProperty(Portal, 'propTypes', {
+  value: {
+    type: PropTypes.string,
+    children: PropTypes.node,
+  },
+})
+
+/* #__PURE__ */
+Object.defineProperty(Portal, 'defaultProps', {
+  value: {
+    type: 'sui-portal',
+  },
+})
 
 export default Portal

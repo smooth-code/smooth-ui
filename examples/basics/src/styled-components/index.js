@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React from 'react'
-import { Button, Normalize, styled, uiAs } from '@smooth-ui/core-sc'
+import { Button, Normalize, styled } from '@smooth-ui/core-sc'
 
 const BlackButton = styled(Button)`
   color: black;
 `
 
-const DivButton = uiAs(Button, 'div')
+const DivButton = Button.withComponent('div')
 
 const App = () => (
   <>
@@ -15,10 +15,10 @@ const App = () => (
       <Button>Basic</Button>
     </div>
     <div>
-      <DivButton>{`uiAs(Button, 'div')`}</DivButton>
+      <DivButton>{`Button.withComponent('div')`}</DivButton>
     </div>
     <div>
-      <Button uiAs="div">{`<Button uiAs="div">`}</Button>
+      <Button as="div">{`<Button as="div">`}</Button>
     </div>
     <div>
       <BlackButton>{`styled(Button)\`color: black\``}</BlackButton>
@@ -33,6 +33,7 @@ const App = () => (
     <div>
       <Button
         css={{ color: 'black' }}
+        backgroundColor="secondary"
       >{`<Button css={{{color: 'black'}}>`}</Button>
     </div>
   </>

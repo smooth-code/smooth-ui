@@ -45,7 +45,7 @@ const Box = styled.div`
 
 ### th
 
-`th` lets you get a property from the theme, you can also apply a modifier.
+`th` lets you get a property from the theme, you can also apply a transform function.
 
 ```js
 import { styled, th } from '@smooth-ui/core-sc'
@@ -55,20 +55,6 @@ const RedBox = styled.div`
   height: 200px;
   background-color: ${th('primary')};
   border: 1px solid ${th('primary', color => darken(0.2, color))};
-`
-```
-
-### prop
-
-`prop` lets you get a property from props, you can also specify a theme default.
-
-```js
-import { styled, prop } from '@smooth-ui/core-sc'
-
-const RedBox = styled.div`
-  width: 200px;
-  height: 200px;
-  background-color: ${prop('bgColor', 'primary')};
 `
 ```
 
