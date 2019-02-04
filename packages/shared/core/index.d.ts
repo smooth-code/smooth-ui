@@ -1,7 +1,6 @@
 /// <reference types="react" />
 
 import * as React from 'react'
-import * as styledComponents from 'styled-components'
 
 export type DefaultColors = 'primary'
 | 'secondary'
@@ -16,9 +15,9 @@ export type Sizes = "sm" | "md" | "lg"
 
 interface InputType {
   checked?: boolean
-  onChange?: (e) => void
-  onFocus?: (e) => void
-  onBlur?: (e) => void
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
+  onFocus?: React.FocusEventHandler<HTMLInputElement>
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
   style?: React.CSSProperties
 }
 
@@ -595,7 +594,7 @@ export const lazyTh: (name: string) => (props: Object) => string
 
 export const th: (
   name: string,
-  transform?: (res) => string,
+  transform?: (res: any) => string,
 ) => (props: Object) => string
 
 export const mixin: (
@@ -629,8 +628,6 @@ export function style(arg: styleArg): (props: Object) => Object
 export const composeStyles: (
   ...funcs: Array<(props: Object) => string>
 ) => ((props: Object) => Object)
-
-export const Normalize: styledComponents.GlobalStyleComponent<{__scTheme?: ThemeType},ThemeType>
 
 export interface ModalProps extends BoxProps {
   children?: React.ReactNode
@@ -721,23 +718,3 @@ export const mediaBetweenWidth: (
   min: string | number,
   max: string | number,
 ) => string
-
-export type ResponsiveUtilityStyles =
-  | string
-  | styledComponents.FlattenSimpleInterpolation
-
-export const up: (
-  name: string | number,
-  code: ResponsiveUtilityStyles,
-) => (props: Object) => any
-
-export const down: (
-  name: string | number,
-  code: ResponsiveUtilityStyles,
-) => (props: Object) => any
-
-export const between: (
-  lower: string | number,
-  upper: string | number,
-  code: ResponsiveUtilityStyles,
-) => (props: Object) => any

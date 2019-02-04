@@ -24,12 +24,20 @@ export const getRollupConfig = ({
         exclude: 'node_modules/**',
         configFile: path.join(pwd, '../../babel.config.js'),
       }),
-      copyTypeScriptDefs
-        ? copy({
-            files: `${CORE_DIR}/*.d.ts`,
-            dest: DIST_DIR,
-          })
-        : null,
+      ...(
+        copyTypeScriptDefs
+          ? [
+            copy({
+              files: `${CORE_DIR}/*.d.ts`,
+              dest: `${DIST_DIR}/shared`,
+            }),
+            copy({
+              files: `${SOURCE_DIR}/*.d.ts`,
+              dest: DIST_DIR
+            })
+          ]
+          : []
+      ),
     ],
   }
 
