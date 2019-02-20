@@ -6,7 +6,7 @@ import createComponent from './createComponent'
 const Label = createComponent(() => ({
   name: 'label',
   defaultComponent: 'label',
-  style: css`
+  style: () => css`
     display: inline-block;
     margin-bottom: 0.5rem;
   `,
