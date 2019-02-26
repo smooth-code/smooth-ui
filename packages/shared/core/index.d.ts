@@ -267,6 +267,11 @@ export interface ColProps extends BoxProps {
   md?: string | number
   lg?: string | number
   xl?: string | number
+  oxs?: string | number
+  osm?: string | number
+  omd?: string | number
+  olg?: string | number
+  oxl?: string | number
 }
 
 export const Col: React.FunctionComponent<ColProps>
