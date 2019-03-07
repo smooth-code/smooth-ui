@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/smooth-code/smooth-ui/compare/v9.0.2...v9.1.0) (2019-03-07)
+
+
+### Bug Fixes
+
+* **types:** add offset typings for Col ([#115](https://github.com/smooth-code/smooth-ui/issues/115)) ([e4f4adc](https://github.com/smooth-code/smooth-ui/commit/e4f4adc)), closes [#113](https://github.com/smooth-code/smooth-ui/issues/113)
+
+
+### Features
+
+* introduce universal system ([#117](https://github.com/smooth-code/smooth-ui/issues/117)) ([148fe2e](https://github.com/smooth-code/smooth-ui/commit/148fe2e))
+
+
+
+
+
 ## [9.0.2](https://github.com/smooth-code/smooth-ui/compare/v9.0.1...v9.0.2) (2019-02-20)
 
 
