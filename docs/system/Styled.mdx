@@ -1,0 +1,92 @@
+---
+name: System components
+menu: System
+order: 3
+---
+
+import { Playground } from 'docz'
+import { Box, system, styled } from '@smooth-ui/core-sc'
+
+# System components
+
+System can be use to create styled components, it is like an alternative to the traditional CSS. It gives you more power and more consistency by automatically reading values from theme.
+
+## Use system to create a styled component
+
+```js
+import styled from 'styled-components'
+import system from '@smooth-ui/system'
+
+const Box = styled.div(
+  system({
+    backgroundColor: 'primary',
+    width: { sm: 1, md: 0.5 },
+    height: 100,
+    mx: 'auto',
+    p: 2,
+  }),
+)
+```
+
+The above example create a red `div` with:
+
+- A background with color "primary"
+- A width of `100%` on mobile, `50%` on desktop
+- A height of `100px`
+- A padding of `16px`
+- A `marginLeft` and a `marginRight` of `50%`
+
+> All CSS properties are supported.
+
+## Use props in system
+
+The `system()` returns a function that accepts props. To access props, wrap this function.
+
+```js
+import styled from 'styled-components'
+import system from '@smooth-ui/system'
+
+const Box = styled.div(props =>
+  system({
+    backgroundColor: props.backgroundColor,
+  }),
+)
+```
+
+## Use CSS and system together
+
+Sometimes, using CSS can be useful (media queries, better syntax). System and CSS fits well together.
+
+```js
+import styled from 'styled-components'
+import system from '@smooth-ui/system'
+
+const Box = styled.div`
+  ${system({ px: 1 })}
+
+  @media (min-width: 700px) {
+    ${system({ px: 2 })}
+  }
+`
+```
+
+## Use in CSS prop
+
+System can be used with [emotion css prop](https://emotion.sh/docs/css-prop).
+
+```js
+import system, { cx } from '@smooth-ui/system'
+import { css } from '@emotion/core'
+
+const buttonStyle = css`
+  background-color: hotpink;
+`
+
+function Button(props) {
+  return (
+    <button css={cx([system({ color: 'primary' }), buttonStyle])} {...props} />
+  )
+}
+```
+
+> `cx` is required because emotion does not support function in style array.

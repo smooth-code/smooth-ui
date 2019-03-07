@@ -3,5 +3,5 @@ module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },
-  setupTestFrameworkScriptFile: './unit/setupTests.js',
+  setupFilesAfterEnv: ['./unit/setupTests.js'],
 }

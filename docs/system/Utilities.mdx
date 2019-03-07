@@ -1,37 +1,14 @@
 ---
-name: System
-menu: Basics
+name: Utitilies
+menu: System
 order: 4
 ---
 
-import { Playground } from 'docz'
-import { Box } from '@smooth-ui/core-sc'
+# System Utilities
 
-# System
+Smooth UI system exposes a lot of utilities out of the box.
 
-Smooth UI has a powerful style system that gives you a real styling power using component props:
-
-<Playground>
-  <Box
-    backgroundColor="primary"
-    width={{ sm: 1, md: 0.5 }}
-    height={100}
-    mx="auto"
-    p={2}
-  />
-</Playground>
-
-The above example create a red `div` with:
-
-- A background with color "primary"
-- A width of `100%` on mobile, `50%` on desktop
-- A height of `100px`
-- A padding of `16px`
-- A `marginLeft` and a `marginRight` of `50%`
-
-## Utilities
-
-### Space
+## Space
 
 The space utility converts shorthand margin and padding props to margin and padding CSS declarations.
 
@@ -75,7 +52,7 @@ Margin and padding props follow a shorthand syntax for specifying direction.
 <Box m={{ sm: 1, lg: 2 }} />
 ```
 
-### Dimensions
+## Dimensions
 
 Dimensions utilities parse a component's prop and convert it into a CSS width declaration.
 
@@ -111,7 +88,7 @@ Example using `width`:
 <Box width={{ sm: 1, md: 0.5 }} />
 ```
 
-### Typography
+## Typography
 
 Available typography utilities:
 
@@ -124,7 +101,7 @@ Available typography utilities:
 - `color`
 - `textTransform`
 
-### Flexboxes
+## Flexboxes
 
 Available typography utilities:
 
@@ -140,7 +117,7 @@ Available typography utilities:
 - `alignSelf`
 - `order`
 
-### Backgrounds
+## Backgrounds
 
 Available background utilities:
 
@@ -151,7 +128,7 @@ Available background utilities:
 - `backgroundPosition`
 - `backgroundRepeat`
 
-### Positions
+## Positions
 
 Available position utilities:
 
@@ -162,7 +139,7 @@ Available position utilities:
 - `bottom`
 - `left`
 
-### Borders
+## Borders
 
 Available border utilities:
 
@@ -174,8 +151,12 @@ Available border utilities:
 - `borderColor`
 - `borderRadius`
 - `boxShadow`
+- `borderTopColor`
+- `borderRightColor`
+- `borderBottomColor`
+- `borderLeftColor`
 
-### Basics
+## Basics
 
 Available basic utilities:
 
@@ -186,7 +167,7 @@ Available basic utilities:
 
 Some utilities use a variant defined in theme, a variant can be either an array or an object.
 
-### Space
+## Space
 
 Space utilities uses `theme.spaces` as variant.
 
@@ -197,7 +178,7 @@ export const spaces = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72]
 
 It means you can use `m={2}` and it will be automatically transformed to `16px` (default unit is px).
 
-### Colors
+## Colors
 
 Color utilities (`color`, `backgroundColor`, ...) uses `theme.colors` as variant.
 
@@ -217,7 +198,7 @@ export const colors = {
 
 It means you can use `color="primary"` and it will be automatically transformed to `#bd4932`.
 
-### All variants
+## All variants
 
 - `fontFamily` : `fonts`
 - `fontSize` : `fontSizes`
@@ -239,6 +220,10 @@ It means you can use `color="primary"` and it will be automatically transformed 
 - `borderBottom` : `borders`
 - `borderLeft` : `borders`
 - `borderColor` : `colors`
+- `borderTopColor` : `colors`
+- `borderRightColor` : `colors`
+- `borderBottomColor` : `colors`
+- `borderLeftColor` : `colors`
 - `borderRadius` : `radii`
 - `boxShadow` : `shadows`
 

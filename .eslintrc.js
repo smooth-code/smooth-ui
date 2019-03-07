@@ -21,6 +21,7 @@ module.exports = {
     'no-plusplus': 'off',
     'no-return-assign': 'off',
     'no-param-reassign': 'off',
+    'no-nested-ternary': 'off',
     'no-shadow': 'off',
     'default-case': 'off',
     'no-underscore-dangle': ['off', { allow: ['__smoothUI', '__scTheme'] }],
