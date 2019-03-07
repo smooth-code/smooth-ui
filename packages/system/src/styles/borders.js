@@ -16,10 +16,20 @@ export const borderTop = style({
   transform: getBorder,
 })
 
+export const borderTopColor = style({
+  prop: 'borderTopColor',
+  themeKey: 'colors',
+})
+
 export const borderRight = style({
   prop: 'borderRight',
   themeKey: 'borders',
   transform: getBorder,
+})
+
+export const borderRightColor = style({
+  prop: 'borderRightColor',
+  themeKey: 'colors',
 })
 
 export const borderBottom = style({
@@ -28,10 +38,20 @@ export const borderBottom = style({
   transform: getBorder,
 })
 
+export const borderBottomColor = style({
+  prop: 'borderBottomColor',
+  themeKey: 'colors',
+})
+
 export const borderLeft = style({
   prop: 'borderLeft',
   themeKey: 'borders',
   transform: getBorder,
+})
+
+export const borderLeftColor = style({
+  prop: 'borderLeftColor',
+  themeKey: 'colors',
 })
 
 export const borderColor = style({

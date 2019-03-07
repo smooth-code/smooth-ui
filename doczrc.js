@@ -20,10 +20,12 @@ export default {
   mdPlugins: [externalLinks.default],
   modifyBundlerConfig,
   wrapper: 'docs/config/Wrapper.js',
+  codeSandbox: false,
   menu: [
     'Home',
     'Getting Started',
     'Basics',
+    'System',
     'Advanced',
     'Components',
     'Utilities',

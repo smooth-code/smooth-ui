@@ -37,3 +37,4 @@ export * from './theming/index'
 export * from './styled-engine'
 
 export { default as theme } from './theme'
+export { default as system } from '@smooth-ui/system'
