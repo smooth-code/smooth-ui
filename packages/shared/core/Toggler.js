@@ -1,39 +1,15 @@
-import { Component } from 'react'
 import PropTypes from 'prop-types'
+import useToggle from './hooks/useToggle'
 
 function create() {
-  class Toggler extends Component {
-    static propTypes = {
-      children: PropTypes.func.isRequired,
-      defaultToggled: PropTypes.bool,
-      onToggle: PropTypes.func,
-    }
+  function Toggler({ children, defaultToggled, onToggle: onToggleProp }) {
+    return children(useToggle(defaultToggled, onToggleProp))
+  }
 
-    static defaultProps = {
-      defaultToggled: false,
-    }
-
-    state = { toggled: this.props.defaultToggled }
-
-    onToggle = value => {
-      this.setState(
-        previousState => ({
-          toggled: typeof value === 'boolean' ? value : !previousState.toggled,
-        }),
-        () => {
-          if (this.props.onToggle) {
-            this.props.onToggle(this.state.toggled)
-          }
-        },
-      )
-    }
-
-    render() {
-      return this.props.children({
-        toggled: this.state.toggled,
-        onToggle: this.onToggle,
-      })
-    }
+  Toggler.propTypes = {
+    children: PropTypes.func.isRequired,
+    defaultToggled: PropTypes.bool,
+    onToggle: PropTypes.func,
   }
 
   return Toggler

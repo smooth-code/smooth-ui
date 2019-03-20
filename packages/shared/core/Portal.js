@@ -1,35 +1,17 @@
-import { Component } from 'react'
 import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
+import useNode from './hooks/useNode'
 
 function create() {
-  class Portal extends Component {
-    static propTypes = {
-      type: PropTypes.string,
-      children: PropTypes.node,
-    }
+  function Portal({ children, type = 'sui-portal' }) {
+    const node = useNode(type)
+    if (!node) return null
+    return createPortal(children, node)
+  }
 
-    static defaultProps = {
-      type: 'sui-portal',
-    }
-
-    state = { node: null }
-
-    componentDidMount() {
-      const node = document.createElement(this.props.type)
-      document.body.appendChild(node)
-      this.setState({ node })
-    }
-
-    componentWillUnmount() {
-      document.body.removeChild(this.state.node)
-    }
-
-    render() {
-      return this.state.node
-        ? createPortal(this.props.children, this.state.node)
-        : null
-    }
+  Portal.propTypes = {
+    type: PropTypes.string,
+    children: PropTypes.node,
   }
 
   return Portal

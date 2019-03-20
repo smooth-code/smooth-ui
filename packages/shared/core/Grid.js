@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
-import { px, mediaMinWidth } from './utils/index'
+import { pr, pl } from '@smooth-ui/system'
+import { mediaMinWidth } from './utils/index'
 import { gridMaxWidths, gridGutter, breakpoints } from './theming/index'
+import { getSystemPropTypes } from './utils/propTypes'
 import createComponent from './createComponent'
 
 const styleBreakpoints = p => {
@@ -21,12 +23,11 @@ const Grid = createComponent(() => ({
   name: 'grid',
   omitProps: ['gutter', 'fluid'],
   style: p => {
-    const { gutter: rawGutter = gridGutter(p) } = p
-    const gutter = px(rawGutter)
+    const { gutter = gridGutter(p) } = p
     return {
       width: '100%',
-      paddingRight: gutter,
-      paddingLeft: gutter,
+      ...pr({ pr: gutter })(p),
+      ...pl({ pl: gutter })(p),
       marginRight: 'auto',
       marginLeft: 'auto',
       ...(p.fluid ? null : styleBreakpoints(p)),
@@ -34,7 +35,7 @@ const Grid = createComponent(() => ({
   },
   propTypes: {
     children: PropTypes.node,
-    gutter: PropTypes.number,
+    gutter: getSystemPropTypes(pr).pr,
     fluid: PropTypes.bool,
   },
 }))

@@ -6,6 +6,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
+  plugins: ['react-hooks'],
   rules: {
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'react/forbid-prop-types': 'off',
@@ -14,6 +15,9 @@ module.exports = {
     'react/sort-comp': 'off',
     'react/destructuring-assignment': 'off',
     'react/forbid-foreign-prop-types': 'off',
+
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
 
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': 'off',

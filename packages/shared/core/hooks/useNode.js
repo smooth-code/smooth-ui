@@ -1,14 +1,12 @@
-import { useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function useNode(
-  type = 'sui-portal',
-  container = document.body,
-) {
-  const ref = useRef()
+export default function useNode(type) {
+  const [node, setNode] = useState(null)
   useEffect(() => {
-    ref.node = document.createElement(type)
-    container.appendChild(ref.node)
-    return () => container.removeChild(ref.node)
+    const node = document.createElement(type)
+    document.body.appendChild(node)
+    setNode(node)
+    return () => document.body.removeChild(node)
   }, [type])
-  return ref.node
+  return node
 }
