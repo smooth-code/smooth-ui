@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/smooth-code/smooth-ui/compare/v9.1.0...v10.0.0) (2019-03-20)
+
+
+### Features
+
+* popover, tooltips, responsive grid, hooks ([#122](https://github.com/smooth-code/smooth-ui/issues/122)) ([7bc0b8c](https://github.com/smooth-code/smooth-ui/commit/7bc0b8c))
+
+
+### BREAKING CHANGES
+
+* - React v16.8+ is now required (hooks inside)
+- Grid, Col and Row `gutter` prop is now based on system, **be careful**!
+- Toggler now returns an array `[toggled, onToggle]` instead of an object
+
+
+
+
+
 # [9.1.0](https://github.com/smooth-code/smooth-ui/compare/v9.0.2...v9.1.0) (2019-03-07)
 
 **Note:** Version bump only for package @smooth-ui/core-em
