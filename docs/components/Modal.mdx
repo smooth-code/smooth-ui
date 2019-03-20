@@ -47,7 +47,7 @@ You can toggle a modal from a `Button` using the `Toggler`.
 
 <Playground>
   <Toggler>
-    {({ toggled, onToggle }) => (
+    {([toggled, onToggle]) => (
       <div>
         <Button variant="primary" onClick={() => onToggle(true)}>
           Open modal
@@ -135,7 +135,7 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 <Playground>
   <Toggler>
-    {({ toggled, onToggle }) => (
+    {([toggled, onToggle]) => (
       <div>
         <Button variant="primary" onClick={() => onToggle(true)}>
           Open modal

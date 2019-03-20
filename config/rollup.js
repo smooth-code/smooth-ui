@@ -24,20 +24,18 @@ export const getRollupConfig = ({
         exclude: 'node_modules/**',
         configFile: path.join(pwd, '../../babel.config.js'),
       }),
-      ...(
-        copyTypeScriptDefs
-          ? [
+      ...(copyTypeScriptDefs
+        ? [
             copy({
               files: `${CORE_DIR}/*.d.ts`,
               dest: `${DIST_DIR}/shared`,
             }),
             copy({
               files: `${SOURCE_DIR}/*.d.ts`,
-              dest: DIST_DIR
-            })
+              dest: DIST_DIR,
+            }),
           ]
-          : []
-      ),
+        : []),
     ],
   }
 
@@ -63,6 +61,7 @@ export const getRollupConfig = ({
   const globals = {
     classnames: 'classNames',
     polished: 'polished',
+    'popper.js': 'Popper',
     'prop-types': 'PropTypes',
     'emotion-theming': 'emotionTheming',
     '@emotion/core': 'emotion',

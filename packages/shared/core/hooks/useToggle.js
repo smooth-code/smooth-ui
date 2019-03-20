@@ -1,20 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
-export function useToggle(defaultToggled = false, onToggle) {
-  const ref = useRef()
+export default function useToggle(defaultToggled = false, onToggle) {
+  const onToggleRef = useRef()
+  onToggleRef.current = onToggle
+
   const [toggled, setToggled] = useState(defaultToggled)
-  function toggle(toggled) {
-    setToggled(
-      toggled === undefined ? previousToggled => !previousToggled : toggled,
-    )
-  }
+  const toggle = useCallback(
+    toggled =>
+      setToggled(
+        toggled === undefined ? previousToggled => !previousToggled : toggled,
+      ),
+    [setToggled],
+  )
+
   useEffect(() => {
-    if (!ref.mounted) {
-      ref.mounted = true
+    if (onToggleRef.current) {
+      onToggleRef.current(toggled)
     }
-    if (onToggle) {
-      onToggle(toggled)
-    }
-  }, [toggled])
+  }, [onToggleRef, toggled])
+
   return [toggled, toggle]
 }

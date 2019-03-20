@@ -1,0 +1,51 @@
+---
+name: Popover
+menu: Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Popover, Toggler, Button, Box } from '@smooth-ui/core-sc'
+
+# Popover
+
+Add a `<Popover />` in a component and it will automatically be displayed. Popover is controlled. If you are looking for an automatic behaviour on `mouseover` / `mouseout`, see [Tooltip](/docs-components-tooltip).
+
+## Example
+
+<Playground>
+  <Box p={30}>
+    <Toggler>
+      {([visible, toggleVisible]) => (
+        <Button onClick={() => toggleVisible()}>
+          Show popover
+          <Popover
+            placement="bottom"
+            onClick={e => e.stopPropagation()}
+            onHide={() => toggleVisible(false)}
+            visible={visible}
+          >
+            <Box m={1} p={4} background="white" border="1px solid black">
+              This is a popover!
+            </Box>
+          </Popover>
+        </Button>
+      )}
+    </Toggler>
+  </Box>
+</Playground>
+
+## API
+
+### Popover
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    onHide: PropDesc.func,
+    placement: PropDesc.oneOf(['top', 'right', 'bottom', 'left']),
+    visible: PropDesc.bool,
+    hideOnClickOutside: PropDesc.bool.defaultTo(true),
+    ...getSystemPropDesc(Popover),
+  })}
+/>

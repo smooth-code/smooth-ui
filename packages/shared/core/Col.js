@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
+import { pr, pl } from '@smooth-ui/system'
 import { css } from './styled-engine'
 import { gridGutter, gridColumns, breakpoints } from './theming/index'
-import { px, mediaMinWidth } from './utils/index'
+import { mediaMinWidth } from './utils/index'
+import { getSystemPropTypes } from './utils/propTypes'
 import createComponent from './createComponent'
 
 const common = {
@@ -69,14 +71,13 @@ function getBreakPointStyle(breakpoint, width, p) {
 }
 
 function getStyleFromProps(p) {
-  const { gutter: rawGutter = gridGutter(p) } = p
-  const gutter = px(rawGutter)
+  const { gutter = gridGutter(p) } = p
   const bk = breakpoints(p)
   const breakpointsKeys = Object.keys(bk)
   const style = {
     boxSizing: 'border-box',
-    paddingLeft: gutter,
-    paddingRight: gutter,
+    ...pr({ pr: gutter })(p),
+    ...pl({ pl: gutter })(p),
     flexBasis: 0,
     flexGrow: 1,
     maxWidth: '100%',
@@ -110,7 +111,7 @@ function create() {
     style: getStyleFromProps,
     propTypes: {
       children: PropTypes.node,
-      gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      gutter: getSystemPropTypes(pr).pr,
       xs: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.string,

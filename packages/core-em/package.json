@@ -27,17 +27,18 @@
   },
   "dependencies": {
     "@smooth-ui/system": "^9.1.0",
-    "polished": "^2.3.3",
-    "prop-types": "^15.6.2",
-    "react-focus-lock": "^1.17.7",
-    "react-remove-scroll": "^1.0.2",
-    "react-transition-group": "^2.5.3"
+    "polished": "^3.0.3",
+    "popper.js": "^1.14.7",
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^1.18.3",
+    "react-remove-scroll": "^1.0.5",
+    "react-transition-group": "^2.6.1"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
     "emotion-theming": "^10.0.0",
-    "react": ">=16.3.0",
-    "react-dom": ">=16.3.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   }
 }

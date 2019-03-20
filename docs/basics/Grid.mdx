@@ -305,16 +305,36 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 
 ## Custom gutter
 
-To change default custom gutter, use `gridGutter` in theme.
+To change default custom gutter, use `gridGutter` in theme. Gutter is based on system, please refer to [system documentation](/docs-system-utilities#space) to know more about system.
 
 You can also specify a custom gutter using `gutter` property on `Grid`, `Row` and `Col`.
 
 <Playground>
-  <Grid gutter={5}>
-    <Row gutter={5}>
-      <Col gutter={5}>{`5px gutter`}</Col>
-      <Col gutter={5}>{`5px gutter`}</Col>
-      <Col gutter={5}>{`5px gutter`}</Col>
+  <Grid gutter={2}>
+    <Row gutter={2}>
+      <Col gutter={2}>{`16px gutter`}</Col>
+      <Col gutter={2}>{`16px gutter`}</Col>
+      <Col gutter={2}>{`16px gutter`}</Col>
+    </Row>
+  </Grid>
+</Playground>
+
+### Responsive gutter
+
+With power of system, it is possible to specify a gutter by size of screen.
+
+<Playground>
+  <Grid gutter={{ xs: 1, md: 2 }}>
+    <Row gutter={{ xs: 1, md: 2 }}>
+      <Col
+        gutter={{ xs: 1, md: 2 }}
+      >{`8px gutter on mobile, 16px on desktop`}</Col>
+      <Col
+        gutter={{ xs: 1, md: 2 }}
+      >{`8px gutter on mobile, 16px on desktop`}</Col>
+      <Col
+        gutter={{ xs: 1, md: 2 }}
+      >{`8px gutter on mobile, 16px on desktop`}</Col>
     </Row>
   </Grid>
 </Playground>
@@ -508,7 +528,7 @@ Grid defaults can be customized in theme, these are defaults:
 
 ```js
 export const gridColumns = 12
-export const gridGutter = 16
+export const gridGutter = 1
 
 export const breakpoints = {
   // Extra small screen / phone

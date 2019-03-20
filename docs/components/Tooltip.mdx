@@ -1,0 +1,38 @@
+---
+name: Tooltip
+menu: Components
+---
+
+import { PropsTable, Playground } from 'docz'
+import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Tooltip, Button, Box } from '@smooth-ui/core-sc'
+
+# Tooltip
+
+Add a `<Tooltip />` in a component and it will automatically be displayed. It is recommended to add tooltip on interactive and focusable components like buttons or links.
+
+## Example
+
+<Playground>
+  <Box p={30}>
+    <Button>
+      Button with tooltip
+      <Tooltip placement="top">Top</Tooltip>
+      <Tooltip placement="right">Right</Tooltip>
+      <Tooltip placement="bottom">Bottom</Tooltip>
+      <Tooltip placement="left">Left</Tooltip>
+    </Button>
+  </Box>
+</Playground>
+
+## API
+
+### Tooltip
+
+<PropsTable
+  of={PropDesc({
+    children: PropDesc.node,
+    placement: PropDesc.oneOf(['top', 'right', 'bottom', 'left']),
+    ...getSystemPropDesc(Tooltip),
+  })}
+/>

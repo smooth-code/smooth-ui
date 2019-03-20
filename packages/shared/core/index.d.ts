@@ -462,7 +462,7 @@ export interface ThemeType {
   inputTextColor: (props: Object) => string
 
   gridColumns: 12
-  gridGutter: 8
+  gridGutter: 1
 
   gridMaxWidths: {
     sm: '540px'

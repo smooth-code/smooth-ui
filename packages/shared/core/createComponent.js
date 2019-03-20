@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { system as fullSystem } from '@smooth-ui/system'
 import { styled } from './styled-engine'
 import { getTheme, omit, definitionsToTheme, func } from './utils/index'
+import { getSystemPropTypes } from './utils/propTypes'
 import * as systemDefs from './theming/system'
 
 const defaultSystemTheme = definitionsToTheme(systemDefs)
@@ -80,16 +81,7 @@ function createComponent(getConfig) {
 
   StyledComponent.propTypes = {
     theme: PropTypes.object,
-    ...(system
-      ? system.meta.props.reduce((obj, prop) => {
-          obj[prop] = PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string,
-            PropTypes.object,
-          ])
-          return obj
-        }, {})
-      : {}),
+    ...getSystemPropTypes(system),
     ...propTypes,
   }
 
