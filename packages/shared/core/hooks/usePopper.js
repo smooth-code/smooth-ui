@@ -4,7 +4,7 @@ import PopperJs from 'popper.js'
 export default function usePopper(
   containerRef,
   elementRef,
-  { placement = 'top' } = {},
+  { placement = 'auto' } = {},
 ) {
   useEffect(() => {
     const container = containerRef.current
@@ -16,3 +16,21 @@ export default function usePopper(
     return () => popper.destroy()
   }, [containerRef, elementRef, placement])
 }
+
+export const placements = [
+  'auto',
+  'auto-start',
+  'auto-end',
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end',
+]

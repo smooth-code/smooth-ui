@@ -5,7 +5,7 @@ import { css } from './styled-engine'
 import createComponent from './createComponent'
 import Portal from './Portal'
 import useRandomId from './hooks/useRandomId'
-import usePopper from './hooks/usePopper'
+import usePopper, { placements } from './hooks/usePopper'
 import useAsyncRef from './hooks/useAsyncRef'
 import useEventListener from './hooks/useEventListener'
 import useSetAttribute from './hooks/useSetAttribute'
@@ -15,13 +15,13 @@ function TooltipComponent({
   children,
   id: idProp,
   placement = 'top',
-  forwardedRef,
-  as: As = 'div',
+  ref,
+  Component,
   ...props
 }) {
   const parentRef = useRef()
   const [visible, setVisible] = useState(false)
-  const [tooltipRef, handleTooltipRef] = useAsyncRef(undefined, forwardedRef)
+  const [tooltipRef, handleTooltipRef] = useAsyncRef(undefined, ref)
   const randomId = useRandomId('tooltip')
   const id = idProp || randomId
 
@@ -39,7 +39,7 @@ function TooltipComponent({
     <>
       <ParentElement ref={parentRef} />
       <Portal>
-        <As
+        <Component
           ref={handleTooltipRef}
           id={id}
           aria-hidden={!visible}
@@ -47,7 +47,7 @@ function TooltipComponent({
           {...props}
         >
           {children}
-        </As>
+        </Component>
       </Portal>
     </>
   )
@@ -55,8 +55,8 @@ function TooltipComponent({
 
 const Tooltip = createComponent(() => ({
   name: 'tooltip',
-  defaultComponent: null,
-  InnerComponent: TooltipComponent,
+  defaultComponent: 'div',
+  render: TooltipComponent,
   style: p => css`
     &[aria-hidden='true'] {
       pointer-events: none;
@@ -73,7 +73,7 @@ const Tooltip = createComponent(() => ({
   `,
   propTypes: {
     children: PropTypes.node,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    placement: PropTypes.oneOf(placements),
   },
 }))
 

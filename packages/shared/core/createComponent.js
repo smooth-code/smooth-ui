@@ -39,22 +39,17 @@ function createComponent(getConfig) {
   const baseClassName = `sui-${name}`
   const InnerComponent =
     InnerComponentFromConfig ||
-    class Component extends React.Component {
-      render() {
-        const { className, as, forwardedRef, ...props } = this.props
-        const Component = as || defaultComponent
+    function Component({ className, as, forwardedRef, ...props }) {
+      const Component = as || defaultComponent
 
-        const renderProps = {
-          ref: forwardedRef,
-          Component,
-          className: className
-            ? `${baseClassName} ${className}`
-            : baseClassName,
-          ...omit(props, omittedProps),
-        }
-
-        return render(renderProps)
+      const renderProps = {
+        ref: forwardedRef,
+        Component,
+        className: className ? `${baseClassName} ${className}` : baseClassName,
+        ...omit(props, omittedProps),
       }
+
+      return render(renderProps)
     }
 
   InnerComponent.displayName = `sui-${name}`

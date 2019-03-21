@@ -4,7 +4,7 @@ import { css } from './styled-engine'
 import createComponent from './createComponent'
 import Portal from './Portal'
 import useRandomId from './hooks/useRandomId'
-import usePopper from './hooks/usePopper'
+import usePopper, { placements } from './hooks/usePopper'
 import useSetAttribute from './hooks/useSetAttribute'
 import useAsyncRef from './hooks/useAsyncRef'
 import useClickOutside from './hooks/useClickOutside'
@@ -14,15 +14,15 @@ function PopoverComponent({
   children,
   visible,
   id: idProp,
-  placement = 'top',
-  forwardedRef,
-  as: As = 'div',
+  placement = 'auto',
+  ref,
+  Component,
   hideOnClickOutside = true,
   onHide,
   ...props
 }) {
   const parentRef = useRef()
-  const [popoverRef, handlePopoverRef] = useAsyncRef(undefined, forwardedRef)
+  const [popoverRef, handlePopoverRef] = useAsyncRef(undefined, ref)
   const randomId = useRandomId('tooltip')
   const id = idProp || randomId
 
@@ -38,7 +38,7 @@ function PopoverComponent({
     <>
       <ParentElement ref={parentRef} />
       <Portal>
-        <As
+        <Component
           ref={handlePopoverRef}
           id={id}
           aria-hidden={!visible}
@@ -46,7 +46,7 @@ function PopoverComponent({
           {...props}
         >
           {children}
-        </As>
+        </Component>
       </Portal>
     </>
   )
@@ -54,7 +54,8 @@ function PopoverComponent({
 
 const Popover = createComponent(() => ({
   name: 'popover',
-  InnerComponent: PopoverComponent,
+  render: PopoverComponent,
+  defaultComponent: 'div',
   style: () => css`
     &[aria-hidden='true'] {
       pointer-events: none;
@@ -64,7 +65,7 @@ const Popover = createComponent(() => ({
   propTypes: {
     children: PropTypes.node,
     onHide: PropTypes.func,
-    placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    placement: PropTypes.oneOf(placements),
     visible: PropTypes.bool,
   },
 }))
