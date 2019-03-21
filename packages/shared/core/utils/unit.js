@@ -1,6 +1,7 @@
 import { num } from './misc'
 
 export const unit = unit => value => (num(value) ? `${value}${unit}` : value)
+export const negative = value => (num(value) ? -value : `-${value}`)
 
 export const px = unit('px')
 
