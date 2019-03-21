@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-em",
   "description": "Modern React UI Library",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "keywords": [
     "emotion",
     "ui",
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smooth-ui/system": "^10.0.0",
+    "@smooth-ui/system": "^10.0.1",
     "polished": "^3.0.3",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
