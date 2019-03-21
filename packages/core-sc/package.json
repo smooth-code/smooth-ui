@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-sc",
   "description": "Modern React UI Library",
-  "version": "10.0.1",
+  "version": "10.0.2",
   "keywords": [
     "styled-components",
     "ui",
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smooth-ui/system": "^10.0.1",
+    "@smooth-ui/system": "^10.0.2",
     "polished": "^3.0.3",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
