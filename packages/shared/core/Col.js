@@ -107,6 +107,7 @@ function create() {
       'omd',
       'olg',
       'oxl',
+      'gutter',
     ],
     style: getStyleFromProps,
     propTypes: {
