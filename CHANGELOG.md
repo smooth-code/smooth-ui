@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.3](https://github.com/smooth-code/smooth-ui/compare/v10.0.2...v10.0.3) (2019-03-29)
+
+
+### Bug Fixes
+
+* remove `gutter` from Col` ([bcbb2ed](https://github.com/smooth-code/smooth-ui/commit/bcbb2ed)), closes [#126](https://github.com/smooth-code/smooth-ui/issues/126)
+
+
+
+
+
 ## [10.0.2](https://github.com/smooth-code/smooth-ui/compare/v10.0.1...v10.0.2) (2019-03-21)
 
 
