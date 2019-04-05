@@ -1,5 +1,6 @@
 export const is = n => n !== undefined && n !== null
 export const num = n => typeof n === 'number' && !Number.isNaN(n)
+export const string = n => typeof n === 'string'
 export const func = n => typeof n === 'function'
 
 export const get = (obj, ...paths) =>

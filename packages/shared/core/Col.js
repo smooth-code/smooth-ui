@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { pr, pl } from '@smooth-ui/system'
+import { pr, pl, merge } from '@smooth-ui/system'
 import { css } from './styled-engine'
 import { gridGutter, gridColumns, breakpoints } from './theming/index'
 import { mediaMinWidth } from './utils/index'
@@ -74,20 +74,21 @@ function getStyleFromProps(p) {
   const { gutter = gridGutter(p) } = p
   const bk = breakpoints(p)
   const breakpointsKeys = Object.keys(bk)
-  const style = {
+  let style = {
     boxSizing: 'border-box',
-    ...pr({ pr: gutter })(p),
-    ...pl({ pl: gutter })(p),
     flexBasis: 0,
     flexGrow: 1,
     maxWidth: '100%',
   }
 
+  style = merge(style, pl({ pl: gutter })(p))
+  style = merge(style, pr({ pr: gutter })(p))
+
   let index = -1
   // eslint-disable-next-line no-plusplus
   while (++index < breakpointsKeys.length) {
     const breakpoint = breakpointsKeys[index]
-    Object.assign(style, getBreakPointStyle(breakpoint, bk[breakpoint], p))
+    style = merge(style, getBreakPointStyle(breakpoint, bk[breakpoint], p))
   }
 
   return style
