@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.5](https://github.com/smooth-code/smooth-ui/compare/v10.0.4...v10.0.5) (2019-04-09)
+
+
+### Bug Fixes
+
+* fix grid gutter ([6e33f60](https://github.com/smooth-code/smooth-ui/commit/6e33f60))
+
+
+
+
+
 ## [10.0.4](https://github.com/smooth-code/smooth-ui/compare/v10.0.3...v10.0.4) (2019-04-05)
 
 
