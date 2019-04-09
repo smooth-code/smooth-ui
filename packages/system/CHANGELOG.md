@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.6](https://github.com/smooth-code/smooth-ui/compare/v10.0.5...v10.0.6) (2019-04-09)
+
+
+### Bug Fixes
+
+* fix down & between behaviour ([86f642b](https://github.com/smooth-code/smooth-ui/commit/86f642b))
+
+
+
+
+
 ## [10.0.5](https://github.com/smooth-code/smooth-ui/compare/v10.0.4...v10.0.5) (2019-04-09)
 
 **Note:** Version bump only for package @smooth-ui/system
