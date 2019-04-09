@@ -11,7 +11,7 @@ const styleBreakpoints = p => {
   const maxWidths = gridMaxWidths(p)
   const style = breakpoint => {
     const width = bk[breakpoint]
-    const media = s => (width === 0 ? s : { [mediaMinWidth(width)]: s })
+    const media = s => (width === 0 ? null : { [mediaMinWidth(width)]: s })
     return media({ maxWidth: maxWidths[breakpoint] })
   }
   return Object.keys(bk).reduce(

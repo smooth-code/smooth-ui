@@ -15,27 +15,6 @@ export const breakpoints = thd('breakpoints', {
   xl: 1200,
 })
 
-const getBreakpointsEntries = p => {
-  const bks = breakpoints(p)
-  const entries = Object.keys(bks).reduce(
-    (entries, key) => [...entries, [key, bks[key]]],
-    [],
-  )
-  return entries.sort((a, b) => a[1] > b[1])
-}
-
-const getNextBreakpoint = (name, p) => {
-  const entries = getBreakpointsEntries(p)
-  const index = entries.findIndex(([key]) => key === name)
-  return index < entries.length - 1 ? entries[index + 1][0] : null
-}
-
-const getPreviousBreakpoint = (name, p) => {
-  const entries = getBreakpointsEntries(p)
-  const index = entries.findIndex(([key]) => key === name)
-  return index >= 1 ? entries[index - 1][0] : null
-}
-
 /**
  * Minimum breakpoint width.
  * Null for the smallest breakpoint.
@@ -55,8 +34,9 @@ const getBreakpointMin = (name, p) => {
  * See https://bugs.webkit.org/show_bug.cgi?id=178261
  */
 const getBreakpointMax = (name, p) => {
-  const next = getNextBreakpoint(name, p)
-  return next ? getBreakpointMin(next, p) - 0.02 : null
+  const bks = breakpoints(p)
+  const breakPoint = bks[name]
+  return breakPoint !== 0 ? breakPoint - 0.02 : null
 }
 
 export const up = mixin('up', (name, code) => p => {
@@ -70,10 +50,8 @@ export const up = mixin('up', (name, code) => p => {
 })
 
 export const down = mixin('down', (name, code) => p => {
-  const next = getNextBreakpoint(name, p)
-  const previous = getPreviousBreakpoint(name, p)
-  const value = getBreakpointMax(previous, p)
-  if (next === null) return code
+  const value = getBreakpointMax(name, p)
+  if (value === null) return null
   return css`
     ${mediaMaxWidth(value)} {
       ${code};
@@ -84,12 +62,10 @@ export const down = mixin('down', (name, code) => p => {
 export const between = mixin('between', (lower, upper, code) => p => {
   const min = getBreakpointMin(lower, p)
   const max = getBreakpointMax(upper, p)
-  const upperPrevious = getPreviousBreakpoint(upper, p)
-  const previousMax = getBreakpointMax(upperPrevious, p)
 
   if (min !== null && max !== null) {
     return css`
-      ${mediaBetweenWidth(min, previousMax)} {
+      ${mediaBetweenWidth(min, max)} {
         ${code};
       }
     `

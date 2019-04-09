@@ -139,6 +139,16 @@ describe('#style', () => {
         fontFamily: 'title',
         color: 'blue',
       })
+
+      expect(
+        system({
+          fontFamily: { md: 'title', lg: 'body' },
+          color: { md: 'blue', lg: 'red' },
+        })(),
+      ).toEqual({
+        '@media (min-width: 768px)': { fontFamily: 'title', color: 'blue' },
+        '@media (min-width: 992px)': { fontFamily: 'body', color: 'red' },
+      })
     })
 
     it('should work with custom breakpoints', () => {
