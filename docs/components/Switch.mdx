@@ -3,8 +3,8 @@ name: Switch
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc, getSystemPropDesc, BlockList } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc, getSystemPropDesc, BlockList } from '@docs/utils'
 import { Switch, FormCheck, FormCheckLabel } from '@smooth-ui/core-sc'
 
 # Switch
@@ -43,8 +43,8 @@ Disable using `disabled` props.
 
 ### Switch
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     checked: PropDesc.bool,
     disabled: PropDesc.bool,
     labeled: PropDesc.bool.desc('Add ON/OFF labels'),

@@ -3,8 +3,8 @@ name: Select
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
 import { Select } from '@smooth-ui/core-sc'
 
 # Select
@@ -86,8 +86,8 @@ Disable using `disabled` prop.
 
 ### Select
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     arrow: PropDesc.bool,
     children: PropDesc.node,
     control: PropDesc.bool,

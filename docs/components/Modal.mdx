@@ -3,8 +3,8 @@ name: Modal
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
 import {
   Modal,
   ModalCloseButton,
@@ -217,8 +217,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### Modal
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     onClose: PropDesc.func,
     opened: PropDesc.bool,
@@ -229,8 +229,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalBody
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalBody),
   })}
@@ -238,8 +238,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalContent
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalContent),
   })}
@@ -247,8 +247,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalDialog
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalDialog),
   })}
@@ -256,8 +256,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalFooter
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalFooter),
   })}
@@ -265,8 +265,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalHeader
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalHeader),
   })}
@@ -274,8 +274,8 @@ When modals become too long for the user’s viewport or device, they scroll ind
 
 ### ModalCloseButton
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(ModalCloseButton),
   })}

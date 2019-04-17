@@ -3,8 +3,8 @@ name: Textarea
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
 import { Textarea } from '@smooth-ui/core-sc'
 
 # Textarea
@@ -46,8 +46,8 @@ Disable using `disabled` prop.
 
 ### Textarea
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     control: PropDesc.bool,
     size: PropDesc.oneOf(['sm', 'lg']),
     valid: PropDesc.bool,

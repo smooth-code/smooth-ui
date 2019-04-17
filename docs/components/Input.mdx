@@ -3,8 +3,8 @@ name: Input
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, BlockList, PropDesc, getSystemPropDesc } from '@docs/utils'
 import { Input } from '@smooth-ui/core-sc'
 
 # Input
@@ -54,8 +54,8 @@ Disable using `disabled` prop.
 
 ### Input
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     control: PropDesc.bool,
     size: PropDesc.oneOf(['sm', 'lg']),
     valid: PropDesc.bool,

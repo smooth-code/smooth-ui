@@ -1,5 +1,26 @@
+function typeToString(prop) {
+  const propName = prop.type.name
+  if (propName === 'shape') {
+    return `{ ${Object.entries(prop.type.value)
+      .map(([name, type]) => `${name}: "${typeToString({ type })}"`)
+      .join(' , ')} }`
+  }
+  if (propName === 'union') {
+    return `${prop.type.value.map(type => typeToString({ type })).join(' | ')}`
+  }
+  if (propName === 'enum') {
+    return `${prop.type.value.map(type => type.value).join(' | ')}`
+  }
+  return propName
+}
+
 const createType = typeDesc => {
-  const type = () => typeDesc
+  const type = () => ({
+    ...typeDesc,
+    toString() {
+      return typeToString(this)
+    },
+  })
   Object.defineProperties(type, {
     isRequired: {
       get() {
@@ -31,17 +52,14 @@ const type = (name, { value = null } = {}) =>
     defaultValue: undefined,
   })
 
-const PropDesc = descriptors => ({
-  __docgenInfo: {
-    props: Object.keys(descriptors).reduce(
-      (props, key) => ({
-        ...props,
-        [key]: descriptors[key](),
-      }),
-      {},
-    ),
-  },
-})
+const PropDesc = descriptors =>
+  Object.keys(descriptors).reduce(
+    (props, key) => ({
+      ...props,
+      [key]: descriptors[key](),
+    }),
+    {},
+  )
 
 const node = type('node')
 const string = type('string')

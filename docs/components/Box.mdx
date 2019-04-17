@@ -3,8 +3,8 @@ name: Box
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc, getSystemPropDesc } from '@docs/utils'
 import { Box } from '@smooth-ui/core-sc'
 
 # Box
@@ -36,4 +36,4 @@ Box is a simple component that supports all system properties. You can do nearly
 
 ### Box
 
-<PropsTable of={PropDesc(getSystemPropDesc(Box))} />
+<Props props={PropDesc(getSystemPropDesc(Box))} />
