@@ -3,8 +3,8 @@ name: FormCheck
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc, getSystemPropDesc } from '@docs/utils'
 import { Checkbox, FormCheck, FormCheckLabel } from '@smooth-ui/core-sc'
 
 # FormCheck
@@ -43,8 +43,8 @@ Set inline with `inline` props.
 
 ### FormCheck
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     inline: PropDesc.bool,
     ...getSystemPropDesc(FormCheck),
@@ -53,8 +53,8 @@ Set inline with `inline` props.
 
 ### FormCheckLabel
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     ...getSystemPropDesc(FormCheckLabel),
   })}

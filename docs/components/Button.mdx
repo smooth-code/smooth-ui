@@ -3,8 +3,14 @@ name: Button
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, themeProp, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import {
+  Props,
+  BlockList,
+  PropDesc,
+  themeProp,
+  getSystemPropDesc,
+} from '@docs/utils'
 import { Button } from '@smooth-ui/core-sc'
 
 # Button
@@ -54,8 +60,8 @@ Disable using `disabled` prop.
 
 ### Button
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     disabled: PropDesc.bool,
     size: PropDesc.oneOf(['sm', 'lg']),

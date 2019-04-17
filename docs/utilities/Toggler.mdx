@@ -3,8 +3,8 @@ name: Toggler
 menu: Utilities
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc } from '@docs/utils'
 import { Button, Toggler } from '@smooth-ui/core-sc'
 
 # Toggler
@@ -67,8 +67,8 @@ You can listen when the element is toggled using `onToggle` property.
 
 ### Toggler
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.func.isRequired,
     defaultToggled: PropDesc.bool,
     onToggle: PropDesc.func,

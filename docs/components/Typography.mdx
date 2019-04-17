@@ -3,8 +3,8 @@ name: Typography
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc, BlockList, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc, BlockList, getSystemPropDesc } from '@docs/utils'
 import { Typography } from '@smooth-ui/core-sc'
 
 # Typography
@@ -70,8 +70,8 @@ HTML component is automatically determined from variant. You can customize it us
 
 ### Typography
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     variant: PropDesc.oneOf([
       'h1',

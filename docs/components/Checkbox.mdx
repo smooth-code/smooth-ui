@@ -3,8 +3,14 @@ name: Checkbox
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { BlockList, PropDesc, themeProp, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import {
+  Props,
+  BlockList,
+  PropDesc,
+  themeProp,
+  getSystemPropDesc,
+} from '@docs/utils'
 import { Checkbox, FormCheck, FormCheckLabel } from '@smooth-ui/core-sc'
 
 # Checkbox
@@ -95,8 +101,8 @@ Disable using `disabled` prop.
 
 ### Checkbox
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     checked: PropDesc.bool,
     control: PropDesc.bool,
     disabled: PropDesc.bool,

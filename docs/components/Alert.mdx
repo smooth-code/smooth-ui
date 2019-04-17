@@ -3,8 +3,8 @@ name: Alert
 menu: Components
 ---
 
-import { PropsTable, Playground } from 'docz'
-import { PropDesc, themeProp, getSystemPropDesc } from '@docs/utils'
+import { Playground } from 'docz'
+import { Props, PropDesc, themeProp, getSystemPropDesc } from '@docs/utils'
 import { Alert } from '@smooth-ui/core-sc'
 
 # Alert
@@ -28,8 +28,8 @@ Set variants using `variant` prop.
 
 ### Alert
 
-<PropsTable
-  of={PropDesc({
+<Props
+  props={PropDesc({
     children: PropDesc.node,
     variant: PropDesc.oneOf(themeProp('colorVariants')).defaultTo('primary'),
     ...getSystemPropDesc(Alert),
