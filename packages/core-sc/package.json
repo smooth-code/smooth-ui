@@ -13,8 +13,6 @@
   "sideEffects": false,
   "main": "dist/smooth-ui-core-sc.cjs.js",
   "module": "dist/smooth-ui-core-sc.es.js",
-  "jsnext:main": "dist/smooth-ui-core-sc.es.js",
-  "types": "dist/index.d.ts",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -26,12 +24,13 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.4",
     "@smooth-ui/system": "^10.0.7",
     "polished": "^3.2.0",
     "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
-    "react-focus-lock": "^1.18.3",
-    "react-remove-scroll": "^1.0.6",
+    "react-focus-lock": "^1.19.1",
+    "react-remove-scroll": "^1.0.7",
     "react-transition-group": "^4.0.0"
   },
   "peerDependencies": {
