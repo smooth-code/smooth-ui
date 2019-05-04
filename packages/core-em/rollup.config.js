@@ -6,5 +6,4 @@ export default getRollupConfig({
   name: 'smoothUI',
   buildName: 'smooth-ui-core-em',
   pkg,
-  copyTypeScriptDefs: true,
 })

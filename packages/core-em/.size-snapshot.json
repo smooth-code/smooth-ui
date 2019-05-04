@@ -1,0 +1,21 @@
+{
+  "/Users/neoziro/Projects/smooth-ui/packages/core-em/dist/smooth-ui-core-em.es.js": {
+    "bundled": 105657,
+    "minified": 72464,
+    "gzipped": 15505,
+    "treeshaked": {
+      "rollup": {
+        "code": 495,
+        "import_statements": 495
+      },
+      "webpack": {
+        "code": 2169
+      }
+    }
+  },
+  "/Users/neoziro/Projects/smooth-ui/packages/core-em/dist/smooth-ui-core-em.cjs.js": {
+    "bundled": 112821,
+    "minified": 78916,
+    "gzipped": 16368
+  }
+}

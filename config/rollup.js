@@ -1,61 +1,24 @@
 import path from 'path'
-import resolve from 'rollup-plugin-node-resolve'
+import nodeResolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
-import copy from 'rollup-plugin-cpy'
-import { uglify } from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot'
 
-export const getRollupConfig = ({
-  pkg,
-  pwd,
-  buildName,
-  name,
-  copyTypeScriptDefs,
-}) => {
+export const getRollupConfig = ({ pwd, buildName, name }) => {
   const SOURCE_DIR = path.resolve(pwd, 'src')
   const DIST_DIR = path.resolve(pwd, 'dist')
-  const CORE_DIR = path.resolve(pwd, '../shared/core')
-
-  const baseConfig = {
-    input: `${SOURCE_DIR}/index.js`,
+  const input = `${SOURCE_DIR}/index.js`
+  const external = id => !id.startsWith('.') && !id.startsWith('/')
+  const getBabelOptions = ({ useESModules }) => ({
+    exclude: '**/node_modules/**',
+    runtimeHelpers: true,
+    configFile: path.join(pwd, '../../babel.config.js'),
     plugins: [
-      babel({
-        exclude: 'node_modules/**',
-        configFile: path.join(pwd, '../../babel.config.js'),
-      }),
-      ...(copyTypeScriptDefs
-        ? [
-            copy({
-              files: `${CORE_DIR}/*.d.ts`,
-              dest: `${DIST_DIR}/shared`,
-            }),
-            copy({
-              files: `${SOURCE_DIR}/*.d.ts`,
-              dest: DIST_DIR,
-            }),
-          ]
-        : []),
+      'babel-plugin-annotate-pure-calls',
+      ['@babel/plugin-transform-runtime', { useESModules }],
     ],
-  }
-
-  const esConfig = Object.assign({}, baseConfig, {
-    output: {
-      file: `${DIST_DIR}/${buildName}.es.js`,
-      format: 'es',
-    },
-    external: [
-      ...Object.keys(pkg.peerDependencies || {}),
-      ...Object.keys(pkg.dependencies || {}),
-      'react-transition-group/Transition',
-    ],
-  })
-
-  const cjsConfig = Object.assign({}, esConfig, {
-    output: {
-      file: `${DIST_DIR}/${buildName}.cjs.js`,
-      format: 'cjs',
-    },
   })
 
   const globals = {
@@ -71,41 +34,58 @@ export const getRollupConfig = ({
     'styled-components': 'styled',
   }
 
-  const umdConfig = Object.assign({}, baseConfig, {
+  const umdConfig = {
+    input,
     output: {
-      name,
-      file: `${DIST_DIR}/${buildName}.js`,
+      file: `${DIST_DIR}/${buildName}.umd.js`,
       format: 'umd',
+      name,
       globals,
-      exports: 'named',
-      sourcemap: false,
     },
     external: Object.keys(globals),
-    plugins: [...baseConfig.plugins, resolve({ browser: true }), commonjs()],
-  })
-
-  const minConfig = Object.assign({}, umdConfig, {
-    output: {
-      ...umdConfig.output,
-      file: `${DIST_DIR}/${buildName}.min.js`,
-    },
     plugins: [
-      ...umdConfig.plugins,
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      uglify({
-        compress: {
-          pure_getters: true,
-          unsafe: true,
-          unsafe_comps: true,
-          warnings: false,
-        },
-      }),
+      babel(getBabelOptions({ useESModules: false })),
+      nodeResolve(),
+      commonjs(),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
-  })
-
-  if (process.env.WATCH_MODE) {
-    return [esConfig, cjsConfig]
   }
 
-  return [esConfig, cjsConfig, umdConfig, minConfig]
+  const minConfig = {
+    input,
+    output: {
+      file: `${DIST_DIR}/${buildName}.min.js`,
+      format: 'umd',
+      name,
+      globals,
+    },
+    external: Object.keys(globals),
+    plugins: [
+      babel(getBabelOptions({ useESModules: true })),
+      nodeResolve(),
+      commonjs(),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      terser(),
+    ],
+  }
+
+  const cjsConfig = {
+    input,
+    output: { file: `${DIST_DIR}/${buildName}.cjs.js`, format: 'cjs' },
+    external,
+    plugins: [babel(getBabelOptions({ useESModules: false })), sizeSnapshot()],
+  }
+
+  const esmConfig = {
+    input,
+    output: { file: `${DIST_DIR}/${buildName}.es.js`, format: 'esm' },
+    external,
+    plugins: [babel(getBabelOptions({ useESModules: true })), sizeSnapshot()],
+  }
+
+  if (process.env.WATCH_MODE) {
+    return [esmConfig, cjsConfig]
+  }
+
+  return [esmConfig, cjsConfig, umdConfig, minConfig]
 }
