@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/smooth-code/smooth-ui/compare/v10.0.7...v10.1.0) (2019-05-04)
+
+
+### Features
+
+* remove types ([#136](https://github.com/smooth-code/smooth-ui/issues/136)) ([6c5cd4d](https://github.com/smooth-code/smooth-ui/commit/6c5cd4d))
+
+
+
+
+
 ## [10.0.7](https://github.com/smooth-code/smooth-ui/compare/v10.0.6...v10.0.7) (2019-04-17)
 
 **Note:** Version bump only for package @smooth-ui/core-sc
