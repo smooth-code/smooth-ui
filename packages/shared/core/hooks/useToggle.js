@@ -8,7 +8,7 @@ export default function useToggle(defaultToggled = false, onToggle) {
   const toggle = useCallback(
     toggled =>
       setToggled(
-        toggled === undefined ? previousToggled => !previousToggled : toggled,
+        typeof toggled === 'boolean' ? toggled : previousToggled => !previousToggled
       ),
     [setToggled],
   )
