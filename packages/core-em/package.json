@@ -26,12 +26,12 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@smooth-ui/system": "^10.1.0",
-    "polished": "^3.2.0",
+    "polished": "^3.3.2",
     "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
     "react-focus-lock": "^1.19.1",
-    "react-remove-scroll": "^1.0.7",
-    "react-transition-group": "^4.0.0"
+    "react-remove-scroll": "^1.0.8",
+    "react-transition-group": "^4.0.1"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.0",

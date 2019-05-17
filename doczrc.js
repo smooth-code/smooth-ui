@@ -11,6 +11,7 @@ const modifyBundlerConfig = config => {
 }
 
 export default {
+  debug: true,
   title: 'Smooth UI',
   description: 'Modern UI library for React',
   repository: 'https://github.com/smooth-code/smooth-ui',
