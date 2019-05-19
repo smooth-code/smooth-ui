@@ -5,7 +5,7 @@ export const num = n => typeof n === 'number' && !Number.isNaN(n)
 export const string = n => typeof n === 'string' && n !== ''
 export const obj = n => typeof n === 'object' && n !== null
 export const func = n => typeof n === 'function'
-export const negative = n => n < 0
+export const negative = n => num(n) && n < 0
 
 export const get = (obj, path) =>
   String(path)
@@ -13,21 +13,28 @@ export const get = (obj, path) =>
     .reduce((a, b) => (a && is(a[b]) ? a[b] : undefined), obj)
 
 export function merge(acc, item) {
-  if (!item) {
+  if (!is(item)) {
     return acc
   }
 
-  return deepmerge(acc, item, {
-    clone: false, // No need to clone deep, it's way faster.
-  })
+  // No need to clone deep, it's way faster.
+  return deepmerge(acc, item, { clone: false })
 }
 
-export const assign = (target, source) => {
-  const keys = Object.keys(source || {})
-  const totalKeys = keys.length
-  for (let i = 0; i < totalKeys; i += 1) {
-    const key = keys[i]
-    target[key] = source[key]
+export function flat(array) {
+  const flattend = []
+  function innerFlat(array) {
+    const arrayLength = array.length
+    for (let i = 0; i < arrayLength; i += 1) {
+      const el = array[i]
+      if (Array.isArray(el)) {
+        innerFlat(el)
+      } else {
+        flattend.push(el)
+      }
+    }
   }
-  return target
+
+  innerFlat(array)
+  return flattend
 }

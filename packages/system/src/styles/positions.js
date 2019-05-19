@@ -7,7 +7,7 @@ export const position = style({
 
 export const zIndex = style({
   prop: 'zIndex',
-  themeKey: 'zIndexes',
+  themeKey: 'zIndices',
 })
 
 export const top = style({

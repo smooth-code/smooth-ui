@@ -1,9 +1,6 @@
 import { style, compose } from '../style'
 import { percent } from '../unit'
-
-export const display = style({
-  prop: 'display',
-})
+import { display } from './basics'
 
 export const alignItems = style({
   prop: 'alignItems',
@@ -15,6 +12,10 @@ export const alignContent = style({
 
 export const justifyContent = style({
   prop: 'justifyContent',
+})
+
+export const justifyItems = style({
+  prop: 'justifyItems',
 })
 
 export const flexWrap = style({
@@ -51,6 +52,7 @@ export const flexboxes = compose(
   alignItems,
   alignContent,
   justifyContent,
+  justifyItems,
   flexWrap,
   flexBasis,
   flexDirection,

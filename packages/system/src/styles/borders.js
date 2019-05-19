@@ -59,6 +59,17 @@ export const borderColor = style({
   themeKey: 'colors',
 })
 
+export const borderWidth = style({
+  prop: 'borderWidth',
+  themeKey: 'borderWidths',
+  transform: px,
+})
+
+export const borderStyle = style({
+  prop: 'borderStyle',
+  themeKey: 'borderStyles',
+})
+
 export const borderRadius = style({
   prop: 'borderRadius',
   themeKey: 'radii',
@@ -77,6 +88,8 @@ export const borders = compose(
   borderBottom,
   borderLeft,
   borderColor,
+  borderWidth,
+  borderStyle,
   borderRadius,
   boxShadow,
 )

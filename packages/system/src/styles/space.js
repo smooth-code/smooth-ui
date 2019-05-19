@@ -1,119 +1,104 @@
 import { style, compose } from '../style'
-import { num, negative } from '../util'
+import { transformSpace } from '../unit'
 
-const DEFAULT_SPACING = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72]
-
-function transform(transformedValue, { rawValue, variants = DEFAULT_SPACING }) {
-  if (!num(rawValue)) {
-    return variants[rawValue] || rawValue
-  }
-  const abs = Math.abs(rawValue)
-  const neg = negative(rawValue)
-  const value = variants[abs] || abs
-  if (!num(value)) {
-    return neg ? `-${value}` : value
-  }
-  return value * (neg ? -1 : 1)
-}
-
-const themeKey = 'spaces'
+const themeKey = 'space'
 
 export const m = style({
   prop: 'm',
   cssProperties: ['margin'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const mt = style({
   prop: 'mt',
   cssProperties: ['marginTop'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const mr = style({
   prop: 'mr',
   cssProperties: ['marginRight'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const mb = style({
   prop: 'mb',
   cssProperties: ['marginBottom'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const ml = style({
   prop: 'ml',
   cssProperties: ['marginLeft'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const mx = style({
   prop: 'mx',
   cssProperties: ['marginRight', 'marginLeft'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const my = style({
   prop: 'my',
   cssProperties: ['marginTop', 'marginBottom'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const p = style({
   prop: 'p',
   cssProperties: ['padding'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const pt = style({
   prop: 'pt',
   cssProperties: ['paddingTop'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const pr = style({
   prop: 'pr',
   cssProperties: ['paddingRight'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const pb = style({
   prop: 'pb',
   cssProperties: ['paddingBottom'],
   themeKey,
-  transform,
+  transformtransformSpace: transformSpace,
 })
 
 export const pl = style({
   prop: 'pl',
   cssProperties: ['paddingLeft'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const px = style({
   prop: 'px',
   cssProperties: ['paddingRight', 'paddingLeft'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const py = style({
   prop: 'py',
   cssProperties: ['paddingTop', 'paddingBottom'],
   themeKey,
-  transform,
+  transform: transformSpace,
 })
 
 export const space = compose(

@@ -1,4 +1,4 @@
-import { minBreakpoint, minWidth, DEFAULT_BREAKPOINTS } from './media'
+import { minWidth, DEFAULT_BREAKPOINTS } from './media'
 import { is, num, string, obj, merge, get, func } from './util'
 
 function callOrReturn(fn, arg) {
@@ -40,20 +40,6 @@ function styleFromValue(cssProperties, value, theme, themeKey, transform) {
   return null
 }
 
-function getThemeFromCssArg(propsOrTheme) {
-  if (!propsOrTheme) {
-    return null
-  }
-
-  // Styled Components
-  if (propsOrTheme.theme) {
-    return propsOrTheme.theme
-  }
-
-  // Emotion
-  return propsOrTheme
-}
-
 function getBreakpoints(theme) {
   const themeBreakpoints = getThemeValue(theme, 'breakpoints')
   if (is(themeBreakpoints)) {
@@ -63,25 +49,18 @@ function getBreakpoints(theme) {
 }
 
 function createStyleGenerator(getStyle, props, generators) {
-  const getStyles = attrs => propsOrTheme => {
-    const theme = getThemeFromCssArg(propsOrTheme)
-    return getStyle(attrs, theme)
-  }
-
   const getStylesFromProps = props => {
     const theme = props.theme || null
     return getStyle(props, theme)
   }
 
-  getStyles.meta = {
+  getStylesFromProps.meta = {
     props,
     getStyle,
     generators,
   }
 
-  getStyles.props = getStylesFromProps
-
-  return getStyles
+  return getStylesFromProps
 }
 
 function styleFromBreakPoint(cssProperties, value, theme, themeKey, transform) {
@@ -99,9 +78,9 @@ function styleFromBreakPoint(cssProperties, value, theme, themeKey, transform) {
     )
 
     if (style !== null) {
-      const breakpointValue = minBreakpoint(breakpoints[breakpoint])
+      const breakpointValue = breakpoints[breakpoint]
 
-      if (breakpointValue === null) {
+      if (breakpointValue === 0) {
         allStyle = merge(allStyle, style)
       } else {
         allStyle = merge(allStyle, {
@@ -202,41 +181,4 @@ export function compose(...generators) {
   )
 
   return createStyleGenerator(getStyle, props, generators)
-}
-
-export function universal(generator) {
-  const generatorsByProp = indexGeneratorsByProp([generator])
-
-  function genericGetStyle(opened) {
-    return function getStyle(attrs, theme) {
-      const propKeys = Object.keys(attrs)
-      const propCount = propKeys.length
-      let allStyle = {}
-      for (let i = 0; i < propCount; i++) {
-        const propKey = propKeys[i]
-        const generator = generatorsByProp[propKey]
-        allStyle = merge(
-          allStyle,
-          generator
-            ? generator.meta.getStyle(attrs, theme)
-            : opened
-            ? getStyleFactory(propKey)(attrs, theme)
-            : null,
-        )
-      }
-      return allStyle
-    }
-  }
-
-  const openedGetStyle = genericGetStyle(true)
-  const restrictedGetStyle = genericGetStyle(false)
-
-  const getStyles = createStyleGenerator(openedGetStyle, generator.meta.props, [
-    generator,
-  ])
-  getStyles.props = props => {
-    const theme = props.theme || null
-    return restrictedGetStyle(props, theme, props)
-  }
-  return getStyles
 }

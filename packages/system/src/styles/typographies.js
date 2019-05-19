@@ -1,6 +1,15 @@
 import { px } from '../unit'
 import { style, compose } from '../style'
 
+const DEFAULT_FONT_SIZES = [12, 14, 16, 20, 24, 32, 48, 64, 72]
+
+function transformFontSize(
+  transformedValue,
+  { rawValue, variants = DEFAULT_FONT_SIZES },
+) {
+  return variants[rawValue] || rawValue
+}
+
 export const fontFamily = style({
   prop: 'fontFamily',
   themeKey: 'fonts',
@@ -9,6 +18,7 @@ export const fontFamily = style({
 export const fontSize = style({
   prop: 'fontSize',
   themeKey: 'fontSizes',
+  transform: transformFontSize,
 })
 
 export const lineHeight = style({
@@ -40,7 +50,7 @@ export const textTransform = style({
   prop: 'textTransform',
 })
 
-export const typography = compose(
+export const typographies = compose(
   fontFamily,
   fontSize,
   lineHeight,
