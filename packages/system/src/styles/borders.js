@@ -1,84 +1,94 @@
-import { style, compose } from '../style'
+import { style, themeGetter, compose } from '../style'
 import { num } from '../util'
 import { px } from '../unit'
+import { getColor, getRadius } from './basics'
 
-const getBorder = n => (num(n) && n > 0 ? `${n}px solid` : n)
+export const getBorder = themeGetter({
+  themeKey: 'borders',
+  transform: n => (num(n) && n > 0 ? `${n}px solid` : n),
+})
 
 export const border = style({
   prop: 'border',
-  themeKey: 'borders',
-  transform: getBorder,
+  themeGet: getBorder,
 })
 
 export const borderTop = style({
   prop: 'borderTop',
-  themeKey: 'borders',
-  transform: getBorder,
+  themeGet: getBorder,
 })
 
 export const borderTopColor = style({
   prop: 'borderTopColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
 export const borderRight = style({
   prop: 'borderRight',
-  themeKey: 'borders',
-  transform: getBorder,
+  themeGet: getBorder,
 })
 
 export const borderRightColor = style({
   prop: 'borderRightColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
 export const borderBottom = style({
   prop: 'borderBottom',
-  themeKey: 'borders',
-  transform: getBorder,
+  themeGet: getBorder,
 })
 
 export const borderBottomColor = style({
   prop: 'borderBottomColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
 export const borderLeft = style({
   prop: 'borderLeft',
-  themeKey: 'borders',
-  transform: getBorder,
+  themeGet: getBorder,
 })
 
 export const borderLeftColor = style({
   prop: 'borderLeftColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
 export const borderColor = style({
   prop: 'borderColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
-export const borderWidth = style({
-  prop: 'borderWidth',
+const getBorderWidth = themeGetter({
   themeKey: 'borderWidths',
   transform: px,
 })
 
+export const borderWidth = style({
+  prop: 'borderWidth',
+  themeGet: getBorderWidth,
+})
+
+export const getBorderStyle = themeGetter({
+  themeKey: 'borderStyles',
+})
+
 export const borderStyle = style({
   prop: 'borderStyle',
-  themeKey: 'borderStyles',
+  themeGet: getBorderStyle,
 })
 
 export const borderRadius = style({
   prop: 'borderRadius',
-  themeKey: 'radii',
-  transform: px,
+  themeGet: getRadius,
+})
+
+export const getShadow = themeGetter({
+  themeKey: 'shadows',
 })
 
 export const boxShadow = style({
   prop: 'boxShadow',
-  themeKey: 'shadows',
+  themeGet: getShadow,
 })
 
 export const borders = compose(

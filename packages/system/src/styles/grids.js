@@ -1,22 +1,19 @@
 import { style, compose } from '../style'
-import { transformSpace } from '../unit'
+import { getSpace } from './space'
 
 export const gridGap = style({
   prop: 'gridGap',
-  themeKey: 'spaces',
-  transformValue: transformSpace,
+  themeGet: getSpace,
 })
 
 export const gridColumnGap = style({
   prop: 'gridColumnGap',
-  themeKey: 'spaces',
-  transformValue: transformSpace,
+  themeGet: getSpace,
 })
 
 export const gridRowGap = style({
   prop: 'gridRowGap',
-  themeKey: 'spaces',
-  transformValue: transformSpace,
+  themeGet: getSpace,
 })
 
 export const gridColumn = style({ prop: 'gridColumn' })

@@ -19,9 +19,9 @@
     "gzipped": 2896
   },
   "/Users/neoziro/Projects/smooth-ui/packages/system/dist/smooth-ui-system.es.js": {
-    "bundled": 16153,
-    "minified": 9203,
-    "gzipped": 2608,
+    "bundled": 19418,
+    "minified": 11529,
+    "gzipped": 3257,
     "treeshaked": {
       "rollup": {
         "code": 18,
@@ -33,8 +33,8 @@
     }
   },
   "/Users/neoziro/Projects/smooth-ui/packages/system/dist/smooth-ui-system.cjs.js": {
-    "bundled": 17840,
-    "minified": 10685,
-    "gzipped": 2965
+    "bundled": 21944,
+    "minified": 13774,
+    "gzipped": 3747
   }
 }

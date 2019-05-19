@@ -1,36 +1,38 @@
-import { style, compose } from '../style'
-import { px } from '../unit'
+import { style, themeGetter, compose } from '../style'
+import { getPx } from './basics'
 
 export const position = style({
   prop: 'position',
 })
 
+export const getZIndex = themeGetter({ themeKey: 'zIndices' })
+
 export const zIndex = style({
   prop: 'zIndex',
-  themeKey: 'zIndices',
+  themeGet: getZIndex,
 })
 
 export const top = style({
   prop: 'top',
-  transform: px,
+  themeGet: getPx,
 })
 
 export const right = style({
   prop: 'right',
-  transform: px,
+  themeGet: getPx,
 })
 
 export const bottom = style({
   prop: 'bottom',
-  transform: px,
+  themeGet: getPx,
 })
 
 export const left = style({
   prop: 'left',
-  transform: px,
+  themeGet: getPx,
 })
 
-export const positions = compose(
+export const positioning = compose(
   position,
   zIndex,
   top,

@@ -2,22 +2,22 @@ import { compose } from '../style'
 import { backgrounds } from './backgrounds'
 import { basics } from './basics'
 import { borders } from './borders'
-import { layouts } from './layouts'
+import { layout } from './layout'
 import { flexboxes } from './flexboxes'
 import { grids } from './grids'
-import { positions } from './positions'
+import { positioning } from './positioning'
 import { space } from './space'
-import { typographies } from './typographies'
+import { typography } from './typography'
 
 export * from './backgrounds'
 export * from './basics'
 export * from './borders'
 export * from './flexboxes'
 export * from './grids'
-export * from './layouts'
-export * from './positions'
+export * from './layout'
+export * from './positioning'
 export * from './space'
-export * from './typographies'
+export * from './typography'
 
 export const system = compose(
   backgrounds,
@@ -25,8 +25,8 @@ export const system = compose(
   borders,
   flexboxes,
   grids,
-  layouts,
-  positions,
+  layout,
+  positioning,
   space,
-  typographies,
+  typography,
 )

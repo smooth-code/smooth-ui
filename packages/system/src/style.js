@@ -1,70 +1,57 @@
 import { minWidth, DEFAULT_BREAKPOINTS } from './media'
-import { is, num, string, obj, merge, get, func } from './util'
+import { is, num, string, obj, merge, getThemeValue, warn } from './util'
 
-function callOrReturn(fn, arg) {
-  if (!func(fn)) return fn
-  const next = fn(arg)
-  return callOrReturn(next, arg)
-}
+const transformOptions = {}
 
-function getThemeValue(theme, path, initial) {
-  if (!theme) return undefined
-  return callOrReturn(get(initial || theme, path), { theme })
-}
-
-function getValue(value, variants, theme) {
-  if (is(variants)) {
-    const valueFromVariants = getThemeValue(theme, value, variants)
-    if (is(valueFromVariants)) {
-      return valueFromVariants
-    }
+export const themeGetter = ({
+  transform,
+  themeKey,
+  defaultVariants,
+}) => value => {
+  return props => {
+    let variants = is(themeKey) ? getThemeValue(props, themeKey) : null
+    variants = is(variants) ? variants : defaultVariants
+    const themeValue = is(variants)
+      ? getThemeValue(props, value, variants)
+      : null
+    const computedValue = is(themeValue) ? themeValue : value
+    if (!transform) return computedValue
+    transformOptions.rawValue = value
+    transformOptions.variants = variants
+    return transform(computedValue, transformOptions)
   }
-  return value
 }
 
-function styleFromValue(cssProperties, value, theme, themeKey, transform) {
-  const variants = getThemeValue(theme, themeKey)
-  const computedValue = getValue(value, variants, theme)
+function styleFromValue(cssProperties, value, props, themeGet) {
+  const computedValue = themeGet(value)(props)
   if (string(computedValue) || num(computedValue)) {
     const style = {}
     for (let i = 0; i < cssProperties.length; i++) {
-      style[cssProperties[i]] = transform
-        ? transform(computedValue, {
-            rawValue: value,
-            variants,
-          })
-        : computedValue
+      style[cssProperties[i]] = computedValue
     }
     return style
   }
   return null
 }
 
-function getBreakpoints(theme) {
-  const themeBreakpoints = getThemeValue(theme, 'breakpoints')
-  if (is(themeBreakpoints)) {
-    return themeBreakpoints
-  }
+function getBreakpoints(props) {
+  const themeBreakpoints = getThemeValue(props, 'breakpoints')
+  if (is(themeBreakpoints)) return themeBreakpoints
   return DEFAULT_BREAKPOINTS
 }
 
 function createStyleGenerator(getStyle, props, generators) {
-  const getStylesFromProps = props => {
-    const theme = props.theme || null
-    return getStyle(props, theme)
-  }
-
-  getStylesFromProps.meta = {
+  getStyle.meta = {
     props,
     getStyle,
     generators,
   }
 
-  return getStylesFromProps
+  return getStyle
 }
 
-function styleFromBreakPoint(cssProperties, value, theme, themeKey, transform) {
-  const breakpoints = getBreakpoints(theme)
+function styleFromBreakPoint(cssProperties, value, props, themeGet) {
+  const breakpoints = getBreakpoints(props)
   const keys = Object.keys(value)
   let allStyle = {}
   for (let i = 0; i < keys.length; i++) {
@@ -72,9 +59,8 @@ function styleFromBreakPoint(cssProperties, value, theme, themeKey, transform) {
     const style = styleFromValue(
       cssProperties,
       value[breakpoint],
-      theme,
-      themeKey,
-      transform,
+      props,
+      themeGet,
     )
 
     if (style !== null) {
@@ -92,32 +78,20 @@ function styleFromBreakPoint(cssProperties, value, theme, themeKey, transform) {
   return allStyle
 }
 
-function getStyleFactory(prop, cssProperties, themeKey, transform) {
-  return function getStyle(attrs, theme) {
-    const value = attrs[prop]
+function getStyleFactory(prop, cssProperties, themeGet) {
+  return function getStyle(props) {
+    const value = props[prop]
     if (!is(value)) return null
     cssProperties = cssProperties || [prop]
 
-    const style = styleFromValue(
-      cssProperties,
-      value,
-      theme,
-      themeKey,
-      transform,
-    )
+    const style = styleFromValue(cssProperties, value, props, themeGet)
 
     if (style !== null) {
       return style
     }
 
     if (obj(value)) {
-      return styleFromBreakPoint(
-        cssProperties,
-        value,
-        theme,
-        themeKey,
-        transform,
-      )
+      return styleFromBreakPoint(cssProperties, value, props, themeGet)
     }
 
     return null
@@ -129,8 +103,10 @@ export function style({
   cssProperties,
   themeKey = null,
   transform = null,
+  themeGet = null,
 }) {
-  const getStyle = getStyleFactory(prop, cssProperties, themeKey, transform)
+  themeGet = themeGet || themeGetter({ themeKey, transform })
+  const getStyle = getStyleFactory(prop, cssProperties, themeGet)
   return createStyleGenerator(getStyle, [prop])
 }
 
@@ -152,6 +128,8 @@ function indexGeneratorsByProp(styles) {
 export function compose(...generators) {
   let flatGenerators = []
   generators.forEach(gen => {
+    warn(gen, `Undefined generator in "compose" method`)
+    if (!gen) return
     if (gen.meta.generators) {
       flatGenerators = [...flatGenerators, ...gen.meta.generators]
     } else {
@@ -161,15 +139,15 @@ export function compose(...generators) {
 
   const generatorsByProp = indexGeneratorsByProp(flatGenerators)
 
-  function getStyle(attrs, theme) {
-    const propKeys = Object.keys(attrs)
+  function getStyle(props) {
+    const propKeys = Object.keys(props)
     const propCount = propKeys.length
     let allStyle = {}
     for (let i = 0; i < propCount; i++) {
       const propKey = propKeys[i]
       const generator = generatorsByProp[propKey]
       if (generator) {
-        allStyle = merge(allStyle, generator.meta.getStyle(attrs, theme))
+        allStyle = merge(allStyle, generator.meta.getStyle(props))
       }
     }
     return allStyle

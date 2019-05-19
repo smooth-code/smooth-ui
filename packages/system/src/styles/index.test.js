@@ -111,11 +111,23 @@ describe('styles', () => {
       },
     ],
     [
+      'size',
+      {
+        styleRule: ['width', 'height'],
+        theme: {
+          sizes: {
+            large: 400,
+          },
+        },
+        expectations: [[0.5, '50%'], ['large', '400px'], [50, '50px']],
+      },
+    ],
+    [
       'maxWidth',
       {
         styleRule: 'max-width',
         theme: {
-          widths: {
+          maxWidths: {
             large: 400,
           },
         },
@@ -127,7 +139,7 @@ describe('styles', () => {
       {
         styleRule: 'max-height',
         theme: {
-          heights: {
+          maxHeights: {
             large: 400,
           },
         },
@@ -139,7 +151,7 @@ describe('styles', () => {
       {
         styleRule: 'min-width',
         theme: {
-          widths: {
+          minWidths: {
             large: 400,
           },
         },
@@ -151,7 +163,7 @@ describe('styles', () => {
       {
         styleRule: 'min-height',
         theme: {
-          heights: {
+          minHeights: {
             large: 400,
           },
         },
@@ -163,6 +175,13 @@ describe('styles', () => {
       {
         styleRule: 'display',
         expectations: [['flex', 'flex'], ['block', 'block']],
+      },
+    ],
+    [
+      'verticalAlign',
+      {
+        styleRule: 'vertical-align',
+        expectations: [['middle', 'middle'], ['50%', '50%']],
       },
     ],
     [
@@ -183,6 +202,13 @@ describe('styles', () => {
       'justifyContent',
       {
         styleRule: 'justify-content',
+        expectations: [['flex-start', 'flex-start'], ['center', 'center']],
+      },
+    ],
+    [
+      'justifyItems',
+      {
+        styleRule: 'justify-items',
         expectations: [['flex-start', 'flex-start'], ['center', 'center']],
       },
     ],
@@ -286,7 +312,7 @@ describe('styles', () => {
       'zIndex',
       {
         theme: {
-          zIndexes: {
+          zIndices: {
             alert: 100,
           },
         },
@@ -327,6 +353,20 @@ describe('styles', () => {
       {
         styleRule: 'border',
         expectations: [[1, '1px solid'], ['1px solid red', '1px solid red']],
+      },
+    ],
+    [
+      'borderWidth',
+      {
+        styleRule: 'border-width',
+        expectations: [[1, '1px'], ['20%', '20%']],
+      },
+    ],
+    [
+      'borderStyle',
+      {
+        styleRule: 'border-style',
+        expectations: [['solid', 'solid'], ['dashed', 'dashed']],
       },
     ],
     [
@@ -411,22 +451,33 @@ describe('styles', () => {
       ${styles[name]};
     `
 
-    it('should support basic value', () => {
-      config.expectations.forEach(([value, expected]) => {
-        const props = { [name]: value }
-        const wrapper = mount(<Dummy theme={config.theme} {...props} />)
-        expect(wrapper).toHaveStyleRule(config.styleRule, String(expected))
-      })
-    })
-
-    it('should support breakpoints value', () => {
-      config.expectations.forEach(([value, expected]) => {
-        const props = { [name]: { md: value } }
-        const wrapper = mount(<Dummy theme={config.theme} {...props} />)
-        expect(wrapper).toHaveStyleRule(config.styleRule, String(expected), {
-          media: '(min-width:768px)',
+    describe.each(config.expectations)(
+      'accepts "%s" and returns "%s"',
+      (value, expected) => {
+        it('supports simple value', () => {
+          const props = { [name]: value }
+          const wrapper = mount(<Dummy theme={config.theme} {...props} />)
+          const styleRules = Array.isArray(config.styleRule)
+            ? config.styleRule
+            : [config.styleRule]
+          styleRules.forEach(styleRule => {
+            expect(wrapper).toHaveStyleRule(styleRule, String(expected))
+          })
         })
-      })
-    })
+
+        it('supports breakpoints value', () => {
+          const props = { [name]: { md: value } }
+          const wrapper = mount(<Dummy theme={config.theme} {...props} />)
+          const styleRules = Array.isArray(config.styleRule)
+            ? config.styleRule
+            : [config.styleRule]
+          styleRules.forEach(styleRule => {
+            expect(wrapper).toHaveStyleRule(styleRule, String(expected), {
+              media: '(min-width:768px)',
+            })
+          })
+        })
+      },
+    )
   })
 })

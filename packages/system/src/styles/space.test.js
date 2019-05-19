@@ -1,6 +1,28 @@
-import { space } from './space'
+import { space, getSpace } from './space'
 
-describe('space', () => {
+describe('#getSpace', () => {
+  it('gets a value and transforms it according to spec.', () => {
+    const props = {}
+    expect(getSpace(1)(props)).toEqual(4)
+    expect(getSpace(2)(props)).toEqual(8)
+    expect(getSpace(-2)(props)).toEqual(-8)
+    expect(getSpace(10)(props)).toEqual(10)
+    expect(getSpace(-10)(props)).toEqual(-10)
+    expect(getSpace('50%')(props)).toEqual('50%')
+  })
+
+  it('gets value from the theme', () => {
+    const props = { theme: { space: [0, 10, 20, 30, 40] } }
+    expect(getSpace(1)(props)).toEqual(10)
+    expect(getSpace(2)(props)).toEqual(20)
+    expect(getSpace(-2)(props)).toEqual(-20)
+    expect(getSpace(10)(props)).toEqual(10)
+    expect(getSpace(-10)(props)).toEqual(-10)
+    expect(getSpace('50%')(props)).toEqual('50%')
+  })
+})
+
+describe('#space', () => {
   it('should support m', () => {
     expect(space({ m: 1 })).toEqual({ margin: 4 })
     expect(space({ m: 2 })).toEqual({ margin: 8 })

@@ -20,8 +20,9 @@ const sysSystem = sys.compose(
 const suite = new Benchmark.Suite()
 
 function runSui() {
-  return suiSystem.props({
-    p: { xs: 10, md: 20 },
+  return suiSystem({
+    theme: {},
+    p: { xs: 1, md: 20 },
     mt: 10,
     m: '20px',
     fontSize: 10,
@@ -31,7 +32,7 @@ function runSui() {
 function runMui() {
   return muiSystem({
     theme: {},
-    p: { xs: 10, md: 20 },
+    p: { xs: 1, md: 20 },
     mt: 10,
     m: '20px',
     fontSize: 10,
@@ -39,7 +40,7 @@ function runMui() {
 }
 
 function runSys() {
-  return sysSystem({ p: [10, 20], mt: 10, m: '20px', fontSize: 10 })
+  return sysSystem({ theme: {}, p: [1, 20], mt: 10, m: '20px', fontSize: 10 })
 }
 
 console.log('sui', runSui())

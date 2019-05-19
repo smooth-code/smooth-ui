@@ -1,4 +1,5 @@
 import { style, compose } from '../style'
+import { getColor } from './basics'
 
 export const background = style({
   prop: 'background',
@@ -6,7 +7,7 @@ export const background = style({
 
 export const backgroundColor = style({
   prop: 'backgroundColor',
-  themeKey: 'colors',
+  themeGet: getColor,
 })
 
 export const backgroundImage = style({

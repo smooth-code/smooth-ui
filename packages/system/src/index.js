@@ -1,4 +1,5 @@
 export * from './style'
 export * from './styles/index'
 export * from './cx'
+export * from './th'
 export { merge } from './util'

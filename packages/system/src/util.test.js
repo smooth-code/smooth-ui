@@ -1,4 +1,17 @@
-import { is, num, string, obj, func, negative, get, merge, flat } from './util'
+/* eslint-disable no-console */
+import {
+  is,
+  num,
+  string,
+  obj,
+  func,
+  negative,
+  get,
+  merge,
+  flat,
+  cascade,
+  getThemeValue,
+} from './util'
 
 describe('util', () => {
   describe('#is', () => {
@@ -104,6 +117,28 @@ describe('util', () => {
   describe('#flat', () => {
     it('flattens an array', () => {
       expect(flat([[1, 2], [3, 4]])).toEqual([1, 2, 3, 4])
+    })
+  })
+
+  describe('#cascade', () => {
+    it('calls function until it is not one', () => {
+      expect(cascade(() => () => () => () => 'bar')).toBe('bar')
+    })
+  })
+
+  describe('#getThemeValue', () => {
+    it('gets a value from the theme', () => {
+      expect(getThemeValue({}, 'foo')).toBe(undefined)
+      expect(getThemeValue({ theme: { foo: 'bar' } }, 'foo')).toBe('bar')
+      expect(getThemeValue({ theme: { foo: 'bar' } }, 'x')).toBe(undefined)
+    })
+
+    it('starts from the initial value specified', () => {
+      expect(
+        getThemeValue({ theme: { other: 'x' } }, 'foo', {
+          foo: p => p.theme.other,
+        }),
+      ).toBe('x')
     })
   })
 })

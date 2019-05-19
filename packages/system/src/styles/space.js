@@ -1,104 +1,106 @@
-import { style, compose } from '../style'
-import { transformSpace } from '../unit'
+import { style, themeGetter, compose } from '../style'
+import { num, negative } from '../util'
+import { px as pxUnit } from '../unit'
 
-const themeKey = 'space'
+export const getSpace = themeGetter({
+  themeKey: 'space',
+  defaultVariants: [0, 4, 8, 16, 24, 48, 96, 144, 192, 240],
+  transform: (transformedValue, { rawValue, variants }) => {
+    if (!num(rawValue)) {
+      return variants[rawValue] || rawValue
+    }
+    const abs = Math.abs(rawValue)
+    const neg = negative(rawValue)
+    const value = variants[abs] || abs
+    if (!num(value)) {
+      return pxUnit(neg ? `-${value}` : value)
+    }
+    return pxUnit(value * (neg ? -1 : 1))
+  },
+})
 
 export const m = style({
   prop: 'm',
   cssProperties: ['margin'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const mt = style({
   prop: 'mt',
   cssProperties: ['marginTop'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const mr = style({
   prop: 'mr',
   cssProperties: ['marginRight'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const mb = style({
   prop: 'mb',
   cssProperties: ['marginBottom'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const ml = style({
   prop: 'ml',
   cssProperties: ['marginLeft'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const mx = style({
   prop: 'mx',
   cssProperties: ['marginRight', 'marginLeft'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const my = style({
   prop: 'my',
   cssProperties: ['marginTop', 'marginBottom'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const p = style({
   prop: 'p',
   cssProperties: ['padding'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const pt = style({
   prop: 'pt',
   cssProperties: ['paddingTop'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const pr = style({
   prop: 'pr',
   cssProperties: ['paddingRight'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const pb = style({
   prop: 'pb',
   cssProperties: ['paddingBottom'],
-  themeKey,
-  transformtransformSpace: transformSpace,
+  themeGet: getSpace,
 })
 
 export const pl = style({
   prop: 'pl',
   cssProperties: ['paddingLeft'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const px = style({
   prop: 'px',
   cssProperties: ['paddingRight', 'paddingLeft'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const py = style({
   prop: 'py',
   cssProperties: ['paddingTop', 'paddingBottom'],
-  themeKey,
-  transform: transformSpace,
+  themeGet: getSpace,
 })
 
 export const space = compose(
