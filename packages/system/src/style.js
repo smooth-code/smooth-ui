@@ -1,4 +1,4 @@
-import { minWidth, DEFAULT_BREAKPOINTS } from './media'
+import { reduceBreakpoints } from './media'
 import { is, num, string, obj, merge, getThemeValue, warn } from './util'
 
 const transformOptions = {}
@@ -30,12 +30,6 @@ function styleFromValue(cssProperties, value, props, themeGet) {
   return null
 }
 
-function getBreakpoints(props) {
-  const themeBreakpoints = getThemeValue(props, 'breakpoints')
-  if (is(themeBreakpoints)) return themeBreakpoints
-  return DEFAULT_BREAKPOINTS
-}
-
 function createStyleGenerator(getStyle, props, generators) {
   getStyle.meta = {
     props,
@@ -44,34 +38,6 @@ function createStyleGenerator(getStyle, props, generators) {
   }
 
   return getStyle
-}
-
-function styleFromBreakPoint(cssProperties, value, props, themeGet) {
-  const breakpoints = getBreakpoints(props)
-  const keys = Object.keys(value)
-  let allStyle = {}
-  for (let i = 0; i < keys.length; i++) {
-    const breakpoint = keys[i]
-    const style = styleFromValue(
-      cssProperties,
-      value[breakpoint],
-      props,
-      themeGet,
-    )
-
-    if (style !== null) {
-      const breakpointValue = breakpoints[breakpoint]
-
-      if (breakpointValue === 0) {
-        allStyle = merge(allStyle, style)
-      } else {
-        allStyle = merge(allStyle, {
-          [minWidth(breakpointValue)]: style,
-        })
-      }
-    }
-  }
-  return allStyle
 }
 
 function getStyleFactory(prop, cssProperties, themeGet) {
@@ -87,7 +53,9 @@ function getStyleFactory(prop, cssProperties, themeGet) {
     }
 
     if (obj(value)) {
-      return styleFromBreakPoint(cssProperties, value, props, themeGet)
+      return reduceBreakpoints(props, value, breakpointValue =>
+        styleFromValue(cssProperties, breakpointValue, props, themeGet),
+      )
     }
 
     return null

@@ -3,6 +3,8 @@ import deepmerge from 'deepmerge' // < 1kb payload overhead when lodash/merge is
 
 const __DEV__ = process.env.NODE_ENV !== 'production'
 
+export const identity = x => x
+
 export const is = n => n !== undefined && n !== null
 export const num = n => typeof n === 'number' && !Number.isNaN(n)
 export const string = n => typeof n === 'string' && n !== ''
