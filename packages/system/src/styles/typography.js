@@ -2,7 +2,7 @@ import { style, compose, themeGetter } from '../style'
 import { px } from '../unit'
 import { getColor } from './basics'
 
-export const getFont = themeGetter({ themeKey: 'fonts' })
+export const getFont = themeGetter({ key: 'fonts' })
 
 export const fontFamily = style({
   prop: 'fontFamily',
@@ -10,7 +10,7 @@ export const fontFamily = style({
 })
 
 export const getFontSize = themeGetter({
-  themeKey: 'fontSizes',
+  key: 'fontSizes',
   defaultVariants: [0, 12, 14, 16, 20, 24, 32, 48, 64, 72],
   transform: px,
 })
@@ -20,14 +20,14 @@ export const fontSize = style({
   themeGet: getFontSize,
 })
 
-export const getLineHeight = themeGetter({ themeKey: 'lineHeights' })
+export const getLineHeight = themeGetter({ key: 'lineHeights' })
 
 export const lineHeight = style({
   prop: 'lineHeight',
   themeGet: getLineHeight,
 })
 
-export const getFontWeight = themeGetter({ themeKey: 'fontWeights' })
+export const getFontWeight = themeGetter({ key: 'fontWeights' })
 
 export const fontWeight = style({
   prop: 'fontWeight',
@@ -39,7 +39,7 @@ export const textAlign = style({
 })
 
 export const getLetterSpacing = themeGetter({
-  themeKey: 'letterSpacings',
+  key: 'letterSpacings',
   transform: px,
 })
 

@@ -3,7 +3,7 @@ import { style } from './style'
 describe('#style', () => {
   const fontFamily = style({
     prop: 'fontFamily',
-    themeKey: 'fonts',
+    key: 'fonts',
   })
 
   describe('style', () => {

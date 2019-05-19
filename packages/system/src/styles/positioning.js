@@ -1,11 +1,9 @@
 import { style, themeGetter, compose } from '../style'
 import { getPx } from './basics'
 
-export const position = style({
-  prop: 'position',
-})
+export const position = style({ prop: 'position' })
 
-export const getZIndex = themeGetter({ themeKey: 'zIndices' })
+export const getZIndex = themeGetter({ key: 'zIndices' })
 
 export const zIndex = style({
   prop: 'zIndex',

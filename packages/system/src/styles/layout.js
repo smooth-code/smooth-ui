@@ -7,7 +7,7 @@ export const display = style({
 
 export const getWidth = themeGetter({
   transform: percent,
-  themeKey: 'widths',
+  key: 'widths',
 })
 
 export const width = style({
@@ -17,7 +17,7 @@ export const width = style({
 
 export const getHeight = themeGetter({
   transform: percent,
-  themeKey: 'heights',
+  key: 'heights',
 })
 
 export const height = style({
@@ -27,7 +27,7 @@ export const height = style({
 
 export const getMaxWidth = themeGetter({
   transform: percent,
-  themeKey: 'maxWidths',
+  key: 'maxWidths',
 })
 
 export const maxWidth = style({
@@ -37,7 +37,7 @@ export const maxWidth = style({
 
 export const getMaxHeight = themeGetter({
   transform: percent,
-  themeKey: 'maxHeights',
+  key: 'maxHeights',
 })
 
 export const maxHeight = style({
@@ -47,7 +47,7 @@ export const maxHeight = style({
 
 export const getMinWidth = themeGetter({
   transform: percent,
-  themeKey: 'minWidths',
+  key: 'minWidths',
 })
 
 export const minWidth = style({
@@ -57,7 +57,7 @@ export const minWidth = style({
 
 export const getMinHeight = themeGetter({
   transform: percent,
-  themeKey: 'minHeights',
+  key: 'minHeights',
 })
 
 export const minHeight = style({
@@ -66,7 +66,7 @@ export const minHeight = style({
 })
 
 export const getSize = themeGetter({
-  themeKey: 'sizes',
+  key: 'sizes',
   transform: percent,
 })
 

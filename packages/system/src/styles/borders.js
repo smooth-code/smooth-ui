@@ -4,7 +4,7 @@ import { px } from '../unit'
 import { getColor, getRadius } from './basics'
 
 export const getBorder = themeGetter({
-  themeKey: 'borders',
+  key: 'borders',
   transform: n => (num(n) && n > 0 ? `${n}px solid` : n),
 })
 
@@ -59,7 +59,7 @@ export const borderColor = style({
 })
 
 const getBorderWidth = themeGetter({
-  themeKey: 'borderWidths',
+  key: 'borderWidths',
   transform: px,
 })
 
@@ -69,7 +69,7 @@ export const borderWidth = style({
 })
 
 export const getBorderStyle = themeGetter({
-  themeKey: 'borderStyles',
+  key: 'borderStyles',
 })
 
 export const borderStyle = style({
@@ -83,7 +83,7 @@ export const borderRadius = style({
 })
 
 export const getShadow = themeGetter({
-  themeKey: 'shadows',
+  key: 'shadows',
 })
 
 export const boxShadow = style({

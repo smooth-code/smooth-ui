@@ -3,13 +3,9 @@ import { is, num, string, obj, merge, getThemeValue, warn } from './util'
 
 const transformOptions = {}
 
-export const themeGetter = ({
-  transform,
-  themeKey,
-  defaultVariants,
-}) => value => {
+export const themeGetter = ({ transform, key, defaultVariants }) => value => {
   return props => {
-    let variants = is(themeKey) ? getThemeValue(props, themeKey) : null
+    let variants = is(key) ? getThemeValue(props, key) : null
     variants = is(variants) ? variants : defaultVariants
     const themeValue = is(variants)
       ? getThemeValue(props, value, variants)
@@ -101,11 +97,11 @@ function getStyleFactory(prop, cssProperties, themeGet) {
 export function style({
   prop,
   cssProperties,
-  themeKey = null,
+  key = null,
   transform = null,
   themeGet = null,
 }) {
-  themeGet = themeGet || themeGetter({ themeKey, transform })
+  themeGet = themeGet || themeGetter({ key, transform })
   const getStyle = getStyleFactory(prop, cssProperties, themeGet)
   return createStyleGenerator(getStyle, [prop])
 }

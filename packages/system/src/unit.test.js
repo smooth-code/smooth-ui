@@ -28,7 +28,7 @@ describe('util', () => {
       expect(percent(10)).toBe('10px')
       expect(percent(0.3)).toBe('30%')
       expect(percent('20em')).toBe('20em')
-      expect(percent(-0.3)).toBe('-0.3px')
+      expect(percent(-0.3)).toBe('-30%')
     })
   })
 })

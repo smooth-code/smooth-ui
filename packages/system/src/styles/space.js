@@ -3,7 +3,7 @@ import { num, negative } from '../util'
 import { px as pxUnit } from '../unit'
 
 export const getSpace = themeGetter({
-  themeKey: 'space',
+  key: 'space',
   defaultVariants: [0, 4, 8, 16, 24, 48, 96, 144, 192, 240],
   transform: (transformedValue, { rawValue, variants }) => {
     if (!num(rawValue)) {
