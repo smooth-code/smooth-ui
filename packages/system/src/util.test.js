@@ -8,7 +8,6 @@ import {
   negative,
   get,
   merge,
-  flat,
   cascade,
   getThemeValue,
 } from './util'
@@ -111,12 +110,6 @@ describe('util', () => {
       const a = { x: 1 }
       const result = merge(a, null)
       expect(result).toBe(a)
-    })
-  })
-
-  describe('#flat', () => {
-    it('flattens an array', () => {
-      expect(flat([[1, 2], [3, 4]])).toEqual([1, 2, 3, 4])
     })
   })
 

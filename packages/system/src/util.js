@@ -41,24 +41,6 @@ export const warn = (condition, message) => {
   }
 }
 
-export const flat = array => {
-  const flattend = []
-  function innerFlat(array) {
-    const arrayLength = array.length
-    for (let i = 0; i < arrayLength; i += 1) {
-      const el = array[i]
-      if (Array.isArray(el)) {
-        innerFlat(el)
-      } else {
-        flattend.push(el)
-      }
-    }
-  }
-
-  innerFlat(array)
-  return flattend
-}
-
 export const cascade = (fn, ...args) => {
   if (!func(fn)) return fn
   const next = fn(...args)

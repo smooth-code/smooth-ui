@@ -1,5 +1,14 @@
-import { reduceBreakpoints } from './media'
-import { is, num, string, obj, merge, getThemeValue, warn } from './util'
+import { getBreakpoints, getBreakpointMin, mediaMinWidth } from './media'
+import {
+  is,
+  num,
+  string,
+  obj,
+  merge,
+  getThemeValue,
+  warn,
+  identity,
+} from './util'
 
 const transformOptions = {}
 
@@ -38,6 +47,29 @@ function createStyleGenerator(getStyle, props, generators) {
   }
 
   return getStyle
+}
+
+function reduceBreakpoints(props, values, getStyle = identity) {
+  const breakpoints = getBreakpoints(props)
+  const keys = Object.keys(values)
+  let allStyle = {}
+  for (let i = 0; i < keys.length; i++) {
+    const breakpoint = keys[i]
+    const style = getStyle(values[breakpoint])
+
+    if (style !== null) {
+      const breakpointValue = getBreakpointMin(breakpoints, breakpoint)
+
+      if (breakpointValue === null) {
+        allStyle = merge(allStyle, style)
+      } else {
+        allStyle = merge(allStyle, {
+          [mediaMinWidth(breakpointValue)]: style,
+        })
+      }
+    }
+  }
+  return allStyle
 }
 
 function getStyleFactory(prop, cssProperties, themeGet) {

@@ -1,4 +1,4 @@
-import { is, getThemeValue, merge, identity } from './util'
+import { is, getThemeValue } from './util'
 import { px } from './unit'
 
 const DEFAULT_BREAKPOINTS = {
@@ -40,27 +40,4 @@ export const getBreakpointMin = (breakpoints, key) => {
 export const getBreakpointMax = (breakpoints, key) => {
   const breakPoint = breakpoints[key]
   return breakPoint === 0 ? null : px(breakPoint - 0.02)
-}
-
-export function reduceBreakpoints(props, values, getStyle = identity) {
-  const breakpoints = getBreakpoints(props)
-  const keys = Object.keys(values)
-  let allStyle = {}
-  for (let i = 0; i < keys.length; i++) {
-    const breakpoint = keys[i]
-    const style = getStyle(values[breakpoint])
-
-    if (style !== null) {
-      const breakpointValue = getBreakpointMin(breakpoints, breakpoint)
-
-      if (breakpointValue === null) {
-        allStyle = merge(allStyle, style)
-      } else {
-        allStyle = merge(allStyle, {
-          [mediaMinWidth(breakpointValue)]: style,
-        })
-      }
-    }
-  }
-  return allStyle
 }
