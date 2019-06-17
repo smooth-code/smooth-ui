@@ -17,5 +17,24 @@
     "bundled": 91594,
     "minified": 62677,
     "gzipped": 14451
+  },
+  "/home/charl/Workspaces/OpenSources/smooth-ui/packages/core-sc/dist/smooth-ui-core-sc.es.js": {
+    "bundled": 84861,
+    "minified": 56484,
+    "gzipped": 13668,
+    "treeshaked": {
+      "rollup": {
+        "code": 451,
+        "import_statements": 451
+      },
+      "webpack": {
+        "code": 2093
+      }
+    }
+  },
+  "/home/charl/Workspaces/OpenSources/smooth-ui/packages/core-sc/dist/smooth-ui-core-sc.cjs.js": {
+    "bundled": 91627,
+    "minified": 62704,
+    "gzipped": 14467
   }
 }

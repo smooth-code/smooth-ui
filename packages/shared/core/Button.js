@@ -53,7 +53,7 @@ const Button = createComponent(() => ({
     display: inline-block;
     z-index: ${zIndexControl(p)};
     border-width: ${btnBorderWidth(p)};
-    cursor: pointer;
+    cursor: ${p.disabled ? 'initial' : 'pointer'};
 
     ${transitionBase(p)};
 
