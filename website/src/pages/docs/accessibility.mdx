@@ -1,0 +1,77 @@
+---
+title: Accessibility
+menu: Getting Started
+order: 30
+---
+
+# Accessibility
+
+Smooth UI is an accessibility first library, it follows all [WAI-ARIA practices](https://www.w3.org/TR/wai-aria-practices/).
+All components are rigourously following the specification and implement all best practices in order to make your application usable by everyone.
+
+## WAI-ARIA
+
+Thanks to [reakit](https://reakit.io), all components follow [WAI-ARIA practices](https://www.w3.org/TR/wai-aria-practices/). Some examples:
+
+- `Alert` has the role `alert`
+- `Button` click is trigger when `space` key is pressed when focused
+- `Input` automatically adds `aria-labelledby` when a label is specified
+- ...
+
+## Transitions
+
+### Reduce motion preference
+
+All components implement [reduced motion media query](https://css-tricks.com/introduction-reduced-motion-media-query/), it means they respect settings of users.
+
+A utility called `transition` is available to implement your own accessible transitions:
+
+```jsx live noInline
+import styled from '@xstyled/styled-components'
+import { transition } from '@smooth-ui/core-sc'
+
+const AccessibleButton = styled.button`
+  background-color: red;
+  ${transition('background-color 200ms')};
+
+  &:hover {
+    background-color: blue;
+  }
+`
+
+function Example() {
+  return <AccessibleButton>Hello world</AccessibleButton>
+}
+
+/* 
+  CSS injected in the page will be:
+
+  background-color: red;
+  transition: background-color 200ms;
+  @media screen and (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &:hover {
+    background-color: blue;
+  }
+*/
+
+render(<Example />)
+```
+
+### Turn off all transitions
+
+You can also choose to turn off all transitions by setting `transitionEnabled` to `false` in theme. See [theming guide](/docs/theming/).
+
+## Font size
+
+All components are implemented using `rem` unit. They adapts base font size define by user in the browser. To know more about rem vs px, you can read [this article](https://engageinteractive.co.uk/blog/em-vs-rem-vs-px).
+
+You can also use [xstyled transformers](https://www.smooth-code.com/open-source/xstyled/docs/transformers/) to automatically convert `rem` to `px` in all your styles.
+
+## Font family
+
+Smooth UI doesn't come with any font, it uses the default font of the user operating system. Usually operating system are comfortable and chosen by the user. It is also faster, no font is loaded.
+
+To know more about system font stack, you can read [this article](https://css-tricks.com/snippets/css/system-font-stack/).

@@ -1,0 +1,79 @@
+---
+title: Textarea
+menu: Components
+order: 110
+---
+
+import { Textarea } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Textarea
+
+## Sizes
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import { Textarea, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Textarea scale="xs" placeholder="Extra small" />
+      <Textarea scale="sm" placeholder="Small" />
+      <Textarea scale="base" placeholder="Default" />
+      <Textarea scale="lg" placeholder="Large" />
+      <Textarea scale="xl" placeholder="Extra large" />
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import { Textarea } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Textarea type="number" placeholder="100" />
+}
+
+render(<Example />)
+```
+
+## Validation
+
+- Set validation using `aria-invalid` or `aria-invalid={false}`
+
+```jsx live noInline
+import React from 'react'
+import { Textarea, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Textarea aria-invalid placeholder="Invalid" />
+      <Textarea aria-invalid={false} placeholder="Valid" />
+      <Textarea aria-invalid={null} placeholder="Neutral" />
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Textarea` uses a native HTML `textarea`, it means it is totally accessible on all devices.
+
+## API
+
+### Textarea
+
+<Props of={Textarea} />

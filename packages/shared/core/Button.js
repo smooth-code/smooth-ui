@@ -1,82 +1,94 @@
-import PropTypes from 'prop-types'
-import { css } from './styled-engine'
+import React from 'react'
+import { darken } from 'polished'
+import { Button as ReakitButton } from 'reakit/Button'
+import { th, system } from '@xstyled/system'
+import { node, bool, oneOf, string, oneOfType } from 'prop-desc'
+import * as theme from './theme/common'
+import * as formTheme from './theme/form'
 import {
-  fontSizeSm,
-  borderRadiusSm,
-  fontSizeBase,
-  borderRadius,
-  fontSizeLg,
-  borderRadiusLg,
-  zIndexControl,
-  transitionBase,
-  btnPaddingYSm,
-  btnPaddingXSm,
-  btnLineHeightSm,
-  btnPaddingY,
-  btnPaddingX,
-  btnLineHeight,
-  btnPaddingYLg,
-  btnPaddingXLg,
-  btnLineHeightLg,
-  btnBorderWidth,
-  btnDisabledOpacity,
-  btnVariant,
-} from './theming/index'
-import createComponent from './createComponent'
+  css,
+  SCALES,
+  VARIANTS,
+  createComponent,
+  getSystemPropTypes,
+  colorYik,
+  safeTransition,
+} from './util'
 
-const btnSize = {
-  sm: p => css`
-    padding: ${btnPaddingYSm(p)} ${btnPaddingXSm(p)};
-    font-size: ${fontSizeSm(p)};
-    border-radius: ${borderRadiusSm(p)};
-    line-height: ${btnLineHeightSm(p)};
-  `,
-  md: p => css`
-    padding: ${btnPaddingY(p)} ${btnPaddingX(p)};
-    font-size: ${fontSizeBase(p)};
-    border-radius: ${borderRadius(p)};
-    line-height: ${btnLineHeight(p)};
-  `,
-  lg: p => css`
-    padding: ${btnPaddingYLg(p)} ${btnPaddingXLg(p)};
-    font-size: ${fontSizeLg(p)};
-    border-radius: ${borderRadiusLg(p)};
-    line-height: ${btnLineHeightLg(p)};
-  `,
-}
+export const Button = createComponent({
+  name: 'Button',
+  render: props => {
+    return <ReakitButton {...props} />
+  },
+  theme: [
+    theme,
+    formTheme,
+    {
+      borderWidths: {
+        button: SCALES.reduce((obj, scale) => {
+          obj[scale] = 0
+          return obj
+        }, {}),
+      },
+      components: {
+        Button: p => {
+          const scale = p.scale || 'base'
+          const baseColor =
+            p.variant === null ? null : th.color(p.variant || 'primary')(p)
+          const px = th.space(`textFormControl.x.${scale}`)(p)
+          const py = th.space(`textFormControl.y.${scale}`)(p)
+          return css`
+            display: inline-block;
+            z-index: ${th.zIndex('control')(p)};
+            font-family: ${th.font('base')(p)};
+            font-size: ${th.fontSize(scale)(p)};
+            padding: ${py} ${px};
+            border-radius: ${th.radius(scale)(p)};
+            line-height: ${th.lineHeight(`formControl.${scale}`)(p)};
+            border-width: ${th.borderWidth(`button.${scale}`)(p)};
+            cursor: ${p.disabled ? 'initial' : 'pointer'};
+            ${safeTransition('base')(p)};
 
-const Button = createComponent(() => ({
-  name: 'button',
-  defaultComponent: 'button',
-  omitProps: ['size', 'variant'],
-  style: p => css`
-    display: inline-block;
-    z-index: ${zIndexControl(p)};
-    border-width: ${btnBorderWidth(p)};
-    cursor: ${p.disabled ? 'initial' : 'pointer'};
+            /* When used as link */
+            text-decoration: none;
 
-    ${transitionBase(p)};
+            &:disabled {
+              opacity: 0.8;
+            }
 
-    /* When used as link */
-    text-decoration: none;
+            ${baseColor &&
+              css`
+                color: ${colorYik(baseColor)(p)};
+                background-color: ${baseColor};
 
-    &:disabled {
-      opacity: ${btnDisabledOpacity(p)};
-    }
+                &:focus {
+                  ${p.theme.mixins.baseFocus(baseColor)(p)};
+                }
 
-    ${p.size && btnSize[p.size] && btnSize[p.size](p)};
-    ${p.variant && btnVariant(p.variant)(p)};
-  `,
+                &:not(:disabled):hover,
+                &:not(:disabled):active {
+                  background-color: ${darken(0.05, baseColor)};
+                }
+              `(p)}
+
+            && {
+              ${system(p)}
+            }
+          `
+        },
+      },
+    },
+  ],
   propTypes: {
-    children: PropTypes.node,
-    disabled: PropTypes.bool,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    variant: PropTypes.string,
+    children: node,
+    disabled: bool.desc('Same as the HTML attribute.'),
+    focusable: bool.desc(
+      'When an element is `disabled`, it may still be `focusable`. It works similarly to `readOnly` on form elements. In this case, only `aria-disabled` will be set.',
+    ),
+    scale: oneOf(SCALES).desc('Control the size of the component.'),
+    variant: oneOfType([oneOf(VARIANTS), string])
+      .defaultTo('primary')
+      .desc('Control the color variant of the component.'),
+    ...getSystemPropTypes(system),
   },
-  defaultProps: {
-    size: 'md',
-    variant: 'primary',
-  },
-}))
-
-export default Button
+})

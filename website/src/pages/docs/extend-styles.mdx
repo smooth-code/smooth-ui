@@ -1,0 +1,180 @@
+---
+title: Extend Styles
+menu: Customization
+order: 20
+---
+
+# Extend Styles
+
+The power of Smooth UI is the easiest way to extend styles of a component..
+
+## Use system props
+
+System props are probably the easiest way to extend a component.
+
+For example, you can define the width of a button:
+
+```jsx live noInline
+import React from 'react'
+import { Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Button width={200}>Hello world</Button>
+}
+
+render(<Example />)
+```
+
+See [system props documentation](/docs/system/) to learn how to use it.
+
+## Local override using style
+
+Inline styles are still a good approach for a lot of use-cases. It can be used for very specific changes that don't need media queries or auto-prefixer. All components supports inline style using `style` property.
+
+An example of inline style to change the `padding` of a button:
+
+```jsx live noInline
+import React from 'react'
+import { Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Button style={{ padding: 20 }}>Hello world</Button>
+}
+
+render(<Example />)
+```
+
+## Override values in theme
+
+To extend style, the cleanest way is probably to use the theming feature of Smooth UI. It permits you to change global settings that will impact all components.
+
+Example of changes possible using theme:
+
+- Modify `primary` color
+- Modify breakpoints
+- Modify form control margins
+- Modify the focus glow on controls
+- ...
+
+For example, you can change the primary color:
+
+```jsx live noInline
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { Button } from '@smooth-ui/core-sc'
+
+const theme = {
+  colors: {
+    primary: 'blue',
+  },
+}
+
+function Example() {
+  return <Button>Hello world</Button>
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <Example />
+  </ThemeProvider>,
+)
+```
+
+See [theming documentation](/docs/theming/) to learn how to use theme.
+
+## Override components style in theme
+
+All components can be overrided directly in the theme.
+
+In the following example, the alert is now just something colored in `red`:
+
+```jsx live noInline
+import React from 'react'
+import { css, ThemeProvider } from 'styled-components'
+import { Alert } from '@smooth-ui/core-sc'
+
+const theme = {
+  components: {
+    Alert: p => css`
+      color: red;
+    `,
+  },
+}
+
+function Example() {
+  return <Alert>Hello world</Alert>
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <Example />
+  </ThemeProvider>,
+)
+```
+
+See [theming documentation](/docs/theming/) to learn how to use theme.
+
+## Local override using `css` prop
+
+[Styled Components](https://www.styled-components.com/docs/api#css-prop) and [Emotion](https://emotion.sh/docs/css-prop) both support the `css` property. This is a simple method to extend component style.
+
+```jsx
+<Button
+  css={css`
+    font-size: 20px;
+  `}
+>
+  A customized button
+</Button>
+```
+
+## Local extend using styled
+
+You can override any CSS property of the original component using `styled`. It creates a new component and doesn't affect other components.
+
+An example of a `BorderedButton` extended from a `Button`:
+
+```jsx live noInline
+import React from 'react'
+import styled from 'styled-components'
+import { Button } from '@smooth-ui/core-sc'
+
+const BorderedButton = styled(Button)`
+  border: 2px solid black;
+
+  &:hover {
+    border-color: blue;
+  }
+`
+
+function Example() {
+  return <BorderedButton>Hello world</BorderedButton>
+}
+
+render(<Example />)
+```
+
+## Extend components deeply
+
+Some components are more complex than a `Button`. The `Switch` for an example is a component that includes several elements: a container, a ball... All of these elements have their own classes. To extend it, just use the browser inspector, pick the class and override it 👌.
+
+An example of a custom `Switch` with a black ball 🎱.
+
+```jsx live noInline
+import React from 'react'
+import styled from 'styled-components'
+import { Switch, useCheckboxState } from '@smooth-ui/core-sc'
+
+const BlackBallSwitch = styled(Switch)`
+  [data-switch-ball] {
+    background-color: black !important;
+  }
+`
+
+function Example() {
+  const checkbox = useCheckboxState()
+  return <BlackBallSwitch {...checkbox} />
+}
+
+render(<Example />)
+```

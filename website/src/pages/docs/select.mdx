@@ -1,0 +1,99 @@
+---
+title: Select
+menu: Components
+order: 90
+---
+
+import { Select } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Select
+
+## Sizes
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import { Select, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Select scale="xs">
+        <option>Extra small</option>
+      </Select>
+      <Select scale="sm">
+        <option>Small</option>
+      </Select>
+      <Select scale="base">
+        <option>Default</option>
+      </Select>
+      <Select scale="lg">
+        <option>Large</option>
+      </Select>
+      <Select scale="xl">
+        <option>Extra large</option>
+      </Select>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import { Select } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Select disabled>
+      <option>Disabled</option>
+    </Select>
+  )
+}
+
+render(<Example />)
+```
+
+## Validation
+
+- Set validation using `aria-invalid` or `aria-invalid={false}`
+
+```jsx live noInline
+import React from 'react'
+import { Select, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Select aria-invalid>
+        <option>Invalid</option>
+      </Select>
+      <Select aria-invalid={false}>
+        <option>Valid</option>
+      </Select>
+      <Select aria-invalid={null}>
+        <option>Neutral</option>
+      </Select>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Select` uses a native HTML `select`, it means it is totally accessible on all devices.
+
+## API
+
+### Select
+
+<Props of={Select} />

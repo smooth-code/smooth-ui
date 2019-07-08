@@ -1,125 +1,102 @@
-import PropTypes from 'prop-types'
-import { css } from './styled-engine'
+/* eslint-disable react-hooks/rules-of-hooks */
+import React from 'react'
+import { th, system } from '@xstyled/system'
+import { node, bool, oneOf } from 'prop-desc'
+import * as theme from './theme/common'
+import * as formTheme from './theme/form'
 import {
-  inputPaddingY,
-  inputPaddingX,
-  inputLineHeight,
-  inputPaddingYSm,
-  inputPaddingXSm,
-  inputLineHeightSm,
-  inputPaddingYLg,
-  inputPaddingXLg,
-  inputLineHeightLg,
-  inputBorderWidth,
-  inputBorderColor,
-  inputBgColor,
-  inputDisabledBgColor,
-  inputDisabledText,
-  inputPlaceholderText,
-  inputTextColor,
-  fontSizeSm,
-  borderRadiusSm,
-  fontSizeBase,
-  borderRadius,
-  fontSizeLg,
-  borderRadiusLg,
-  success,
-  danger,
-  controlFocus,
-  transitionBase,
-  primary,
-  baseFocus,
-} from './theming/index'
-import createComponent from './createComponent'
+  css,
+  SCALES,
+  createComponent,
+  getSystemPropTypes,
+  safeTransition,
+} from './util'
+import { useFormControlProps } from './Form'
 
-const sizeStyle = {
-  sm: p => css`
-    padding: ${inputPaddingYSm(p)} ${inputPaddingXSm(p)};
-    font-size: ${fontSizeSm(p)};
-    line-height: ${inputLineHeightSm(p)};
-    border-radius: ${borderRadiusSm(p)};
-  `,
-  md: p => css`
-    padding: ${inputPaddingY(p)} ${inputPaddingX(p)};
-    font-size: ${fontSizeBase(p)};
-    line-height: ${inputLineHeight(p)};
-    border-radius: ${borderRadius(p)};
-  `,
-  lg: p => css`
-    padding: ${inputPaddingYLg(p)} ${inputPaddingXLg(p)};
-    font-size: ${fontSizeLg(p)};
-    line-height: ${inputLineHeightLg(p)};
-    border-radius: ${borderRadiusLg(p)};
-  `,
-}
-
-const validStyle = p => {
-  const { valid } = p
-  if (valid !== true && valid !== false) return null
-  const color = valid ? success(p) : danger(p)
-  return css`
+const validationStyle = color => p =>
+  css`
     border-color: ${color};
 
     &:focus {
       border-color: ${color};
-      ${controlFocus(color)(p)}
+      ${p.theme.mixins.controlFocus(color)(p)}
     }
-  `
-}
+  `(p)
 
-const controlStyle = p => css`
-  display: block;
-  width: 100%;
+export const Input = createComponent({
+  name: 'Input',
+  render: ({ as: As = 'input', ...props }) => {
+    const controlProps = useFormControlProps(props)
+    return <As {...controlProps} />
+  },
+  theme: [
+    theme,
+    formTheme,
+    {
+      components: {
+        Input: p => {
+          const scale = p.scale || 'base'
+          const px = th.space(`textFormControl.x.${scale}`)(p)
+          const py = th.space(`textFormControl.y.${scale}`)(p)
+          const validColor = th.color('form.valid')(p)
+          const invalidColor = th.color('form.invalid')(p)
+          return css`
+            display: block;
+            appearance: none;
+            width: 100%;
+            z-index: ${th.zIndex('control')(p)};
+            font-family: ${th.font('base')(p)};
+            font-size: ${th.fontSize(scale)(p)};
+            border-width: ${th.borderWidth(`formControl.${scale}`)(p)};
+            border-color: ${th.color('formControl.border')(p)};
+            border-style: solid;
+            line-height: ${th.lineHeight(`formControl.${scale}`)(p)};
+            color: ${th.color('formControl.text')(p)};
+            background-color: ${th.color('formControl.background')(p)};
+            padding: ${py} ${px};
+            line-height: ${th.lineHeight(`button.${scale}`)(p)};
+            border-radius: ${th.radius(scale)(p)};
+            ${safeTransition('base')(p)};
 
-  &:focus {
-    ${controlFocus(primary(p))(p)}
-  }
+            &[type='number'] {
+              padding-right: 6rpx;
+            }
 
-  ${validStyle(p)};
-`
+            &::placeholder {
+              color: ${th.color('formControl.placeholder')(p)};
+            }
 
-const Input = createComponent(() => ({
-  name: 'input',
-  defaultComponent: 'input',
-  omitProps: ['control', 'size', 'valid'],
-  style: p => css`
-    display: inline-block;
-    border-width: ${inputBorderWidth(p)};
-    border-color: ${inputBorderColor(p)};
-    border-style: solid;
-    line-height: ${inputLineHeight(p)};
-    color: ${inputTextColor(p)};
-    ${transitionBase(p)};
-    background-color: ${inputBgColor(p)};
+            &:disabled {
+              background-color: ${th.color('formControl.disabled.background')(
+                p,
+              )};
+              color: ${th.color('formControl.disabled.text')(p)};
+            }
 
-    &[type='number'] {
-      padding-right: 6px;
-    }
+            &:focus {
+              ${p.theme.mixins.controlFocus(th.color('primary')(p))(p)}
+            }
 
-    &::placeholder {
-      color: ${inputPlaceholderText(p)};
-    }
+            &[aria-invalid='true'] {
+              ${validationStyle(invalidColor)(p)};
+            }
 
-    &:focus {
-      ${baseFocus(primary(p))(p)}
-    }
+            &[aria-invalid='false'] {
+              ${validationStyle(validColor)(p)};
+            }
 
-    &:disabled {
-      background-color: ${inputDisabledBgColor(p)};
-      color: ${inputDisabledText(p)};
-    }
-
-    ${p.size && sizeStyle[p.size] && sizeStyle[p.size](p)};
-    ${p.control && controlStyle(p)};
-  `,
+            && {
+              ${system(p)};
+            }
+          `
+        },
+      },
+    },
+  ],
   propTypes: {
-    control: PropTypes.bool,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    valid: PropTypes.bool,
+    children: node,
+    disabled: bool,
+    scale: oneOf(SCALES),
+    ...getSystemPropTypes(system),
   },
-  defaultProps: {
-    size: 'md',
-  },
-}))
-
-export default Input
+})

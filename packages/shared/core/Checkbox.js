@@ -1,215 +1,220 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Checkbox as ReakitCheckbox } from 'reakit/Checkbox'
+import { th, system } from '@xstyled/system'
+import { func, bool, oneOf, node } from 'prop-desc'
+import * as theme from './theme/common'
+import * as formTheme from './theme/form'
 import {
-  dimensions,
-  space,
-  flexboxes,
-  basics,
-  backgrounds,
-  positions,
-  borders,
-  compose,
-} from '@smooth-ui/system'
-import {
-  zIndexControl,
-  borderRadiusSm,
-  borderRadius,
-  borderRadiusLg,
-  success,
-  danger,
-  white,
-  primary,
-  transitionBase,
-  inputBgColor,
-  inputBorderWidth,
-  inputBorderColor,
-  inputDisabledBgColor,
-  controlFocus,
-  baseFocus,
-} from './theming/index'
-import { css } from './styled-engine'
-import SwitchState from './SwitchState'
-import createComponent from './createComponent'
+  css,
+  SCALES,
+  safeTransition,
+  createComponent,
+  getSystemPropTypes,
+} from './util'
+import { useFormGroupControlProps } from './Form'
 
-const sizeStyle = {
-  sm: p => css`
-    .sui-checkbox-content {
-      border-radius: ${borderRadiusSm(p)};
-      width: 0.875rem;
-      height: 0.875rem;
-    }
+export { useCheckboxState } from 'reakit/Checkbox'
 
-    .sui-checkbox-check {
-      width: 8px;
-      height: 8px;
-    }
-  `,
-  md: p => css`
-    .sui-checkbox-content {
-      border-radius: ${borderRadius(p)};
-      width: 1rem;
-      height: 1rem;
-    }
+export const CheckboxGroup = createComponent({
+  name: 'CheckboxGroup',
+  render: ({ as: As = 'fieldset', ...props }) => {
+    return <As role="group" {...props} />
+  },
+  theme: {
+    components: {
+      CheckboxGroup: p => {
+        return css`
+          padding: 0;
+          border: 0;
 
-    .sui-checkbox-check {
-      width: 10px;
-      height: 10px;
-    }
-  `,
-  lg: p => css`
-    .sui-checkbox-content {
-      border-radius: ${borderRadiusLg(p)};
-      width: 1.25rem;
-      height: 1.25rem;
-    }
+          &[aria-orientation='horizontal'] > [data-form-check] {
+            display: inline-flex;
+            margin-right: 1em;
+          }
 
-    .sui-checkbox-check {
-      width: 12px;
-      height: 12px;
-    }
-  `,
-}
+          && {
+            ${system(p)}
+          }
+        `
+      },
+    },
+  },
+  propTypes: {
+    children: node,
+    'aria-orientation': oneOf(['vertical', 'horizontal']).desc(
+      'Specify the orientation of the checkbox group.',
+    ),
+    ...getSystemPropTypes(system),
+  },
+})
 
-const validStyle = p => {
-  const { valid } = p
-  if (valid !== true && valid !== false) return null
-  const color = valid ? success(p) : danger(p)
+const validationStyle = color => p => {
   return css`
-    input + .sui-checkbox-content,
-    input:checked + .sui-checkbox-content {
+    &[aria-checked='true'] {
       border-color: ${color};
-    }
-
-    input:checked + .sui-checkbox-content {
       background-color: ${color};
     }
 
-    input:focus + .sui-checkbox-content {
+    &:focus {
       border-color: ${color};
-      ${controlFocus(color)(p)}
+      ${p.theme.mixins.controlFocus(color)(p)};
     }
-  `
+  `(p)
 }
 
-const controlStyle = p =>
-  css`
-    input:focus + .sui-checkbox-content {
-      ${controlFocus(primary(p))(p)}
-    }
+const noop = () => {}
 
-    ${validStyle(p)};
-  `
+const BaseCheckbox = React.forwardRef(function BaseCheckbox(
+  { type, checked, disabled, id, name, value, ...props },
+  ref,
+) {
+  const inputRef = React.useRef()
+  const handleInputFocus = React.useCallback(() => {
+    inputRef.current.parentElement.focus()
+  }, [])
+  return (
+    <div ref={ref} {...props}>
+      <input
+        ref={inputRef}
+        tabIndex={-1}
+        type={type}
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        name={name}
+        value={value}
+        onChange={noop}
+        onFocus={handleInputFocus}
+      />
+      <svg data-checkmark viewBox="0 0 512 512">
+        <path
+          fill="currentColor"
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+        />
+      </svg>
+    </div>
+  )
+})
 
-const containerSystem = compose(
-  basics,
-  dimensions,
-  space,
-  flexboxes,
-  positions,
-)
+export const Checkbox = createComponent({
+  name: 'Checkbox',
+  render: ({ as = BaseCheckbox, ...props }) => {
+    const controlProps = useFormGroupControlProps(props)
+    return <ReakitCheckbox as={as} {...controlProps} />
+  },
+  theme: [
+    theme,
+    formTheme,
+    {
+      sizes: {
+        checkbox: {
+          container: {
+            xs: '10rpx',
+            sm: '12rpx',
+            base: '16rpx',
+            lg: '22rpx',
+            xl: '28rpx',
+          },
+          checkmark: {
+            xs: '6rpx',
+            sm: '8rpx',
+            base: '10rpx',
+            lg: '14rpx',
+            xl: '18rpx',
+          },
+        },
+      },
+      components: {
+        Checkbox: p => {
+          const scale = p.scale || 'base'
+          const validColor = th.color('form.valid')(p)
+          const invalidColor = th.color('form.invalid')(p)
+          const containerSize = th.size(`checkbox.container.${scale}`)(p)
+          const checkmarkSize = th.size(`checkbox.checkmark.${scale}`)(p)
+          return css`
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: ${containerSize};
+            height: ${containerSize};
+            z-index: ${th.zIndex('control')(p)};
+            background-color: ${th.color('formControl.background')(p)};
+            border-radius: ${th.radius(scale)(p)};
+            border-style: solid;
+            border-width: ${th.borderWidth(`formControl.${scale}`)(p)};
+            border-color: ${th.color('formControl.border')(p)};
+            ${safeTransition('base')(p)};
 
-const contentSystem = compose(
-  dimensions,
-  backgrounds,
-  borders,
-)
+            input {
+              top: 0;
+              left: 0;
+              width: 100%;
+              cursor: inherit;
+              height: 100%;
+              margin: 0;
+              opacity: 0;
+              padding: 0;
+              position: absolute;
+            }
 
-const system = compose(
-  containerSystem,
-  contentSystem,
-)
+            [data-checkmark] {
+              height: ${checkmarkSize};
+              width: ${checkmarkSize};
+              pointer-events: none;
+              transform: scale(0);
+              transform-origin: center;
+              color: ${th.color('white')(p)};
+              ${safeTransition('base')(p)};
+            }
 
-const Checkbox = createComponent(() => ({
-  name: 'checkbox',
-  omitProps: ['control', 'valid'],
-  system,
-  applySystem: null,
-  render: ({ Component, ref, className, size, ...props }) => (
-    <SwitchState {...props}>
-      {({ input }) => (
-        <Component className={className}>
-          <input ref={ref} type="checkbox" {...input} />
-          <div className="sui-checkbox-content">
-            <svg className="sui-checkbox-check" viewBox="0 0 512 512">
-              <path
-                fill="currentColor"
-                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-              />
-            </svg>
-          </div>
-        </Component>
-      )}
-    </SwitchState>
-  ),
-  style: p => css`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 1.5rem;
-    height: 1.5rem;
-    z-index: ${zIndexControl(p)};
+            &[aria-checked='true'] {
+              background-color: ${th.color('primary')(p)};
+              border-color: transparent;
 
-    .sui-checkbox-check {
-      pointer-events: none;
-      transform: scale(0);
-      transform-origin: center;
-      color: ${white(p)};
-      ${transitionBase(p)};
-    }
+              > svg {
+                transform: scale(1);
+              }
+            }
 
-    .sui-checkbox-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 1rem;
-      height: 1rem;
-      background-color: ${inputBgColor(p)};
-      border-radius: ${borderRadius(p)};
-      border-style: solid;
-      border-width: ${inputBorderWidth(p)};
-      border-color: ${inputBorderColor(p)};
-      ${transitionBase(p)};
-    }
+            &:focus {
+              ${p.theme.mixins.controlFocus(th.color('primary')(p))(p)};
+            }
 
-    input:checked + .sui-checkbox-content {
-      background-color: ${primary(p)};
-      border-color: transparent;
+            &[aria-disabled] {
+              opacity: 0.6;
+            }
 
-      svg {
-        transform: scale(1);
-      }
-    }
+            &[aria-invalid='true'] {
+              ${validationStyle(invalidColor)(p)};
+            }
 
-    input:focus + .sui-checkbox-content {
-      ${baseFocus(primary(p))(p)};
-    }
+            &[aria-invalid='false'] {
+              ${validationStyle(validColor)(p)};
+            }
 
-    input:disabled + .sui-checkbox-content {
-      background-color: ${inputDisabledBgColor(p)};
-    }
-
-    ${sizeStyle[p.size] && sizeStyle[p.size] && sizeStyle[p.size](p)};
-    ${p.control && controlStyle(p)};
-
-    ${containerSystem.props};
-
-    .sui-checkbox-content {
-      ${contentSystem.props};
-    }
-  `,
+            && {
+              ${system(p)}
+            }
+          `
+        },
+      },
+    },
+  ],
   propTypes: {
-    checked: PropTypes.bool,
-    control: PropTypes.bool,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    valid: PropTypes.bool,
-    value: PropTypes.string,
+    checked: bool.desc(
+      "Checkbox's checked state. If present, it's used instead of state.",
+    ),
+    disabled: bool.desc('Same as the HTML attribute.'),
+    focusable: bool.desc(
+      'When an element is `disabled`, it may still be `focusable`. It works similarly to `readOnly` on form elements. In this case, only `aria-disabled` will be set.',
+    ),
+    onChange: func.desc('Same as the "checkbox" `onChange` prop.'),
+    scale: oneOf(SCALES)
+      .desc('Control the size of the component.')
+      .defaultTo('base'),
+    ...getSystemPropTypes(system),
   },
-  defaultProps: {
-    size: 'md',
-  },
-}))
-
-export default Checkbox
+})

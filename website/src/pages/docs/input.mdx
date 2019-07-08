@@ -1,0 +1,94 @@
+---
+title: Input
+menu: Components
+order: 60
+---
+
+import { Input } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Input
+
+## Sizes
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import { Input, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Input scale="xs" placeholder="Extra small" />
+      <Input scale="sm" placeholder="Small" />
+      <Input scale="base" placeholder="Default" />
+      <Input scale="lg" placeholder="Large" />
+      <Input scale="xl" placeholder="Extra large" />
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Types
+
+All HTML5 types are supported, `"number"` is adapted.
+
+```jsx live noInline
+import React from 'react'
+import { Input } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Input type="number" placeholder="100" />
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import { Input } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Input disabled placeholder="Disabled" />
+}
+
+render(<Example />)
+```
+
+## Validation
+
+- Set validation using `aria-invalid` or `aria-invalid={false}`
+
+```jsx live noInline
+import React from 'react'
+import { Input, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Input aria-invalid placeholder="Invalid" />
+      <Input aria-invalid={false} placeholder="Valid" />
+      <Input aria-invalid={null} placeholder="Neutral" />
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Input` uses a native HTML `input`, it means it is totally accessible on all devices.
+
+## API
+
+### Input
+
+<Props of={Input} />

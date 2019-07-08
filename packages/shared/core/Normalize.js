@@ -1,14 +1,12 @@
 import { normalize } from 'polished'
-import { fontFamily, fontSizeBase, lineHeightBase } from './theming/index'
-import { createGlobalStyle } from './styled-engine'
+import { createGlobalStyle } from '@xstyled/x'
+import { fonts } from './theme/common'
 
 export const Normalize = createGlobalStyle`
   ${normalize()}
-  html,
-  body {
-    font-family: ${fontFamily};
-    font-size: ${fontSizeBase};
-    line-height: ${lineHeightBase};
+
+  html, body {
+    font-family: ${fonts.base};
     -webkit-font-smoothing: antialiased;
   }
 
@@ -16,5 +14,3 @@ export const Normalize = createGlobalStyle`
     box-sizing: border-box;
   }
 `
-
-export default Normalize

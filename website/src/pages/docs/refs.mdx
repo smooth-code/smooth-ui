@@ -1,0 +1,30 @@
+---
+title: Refs
+menu: Advanced
+order: 30
+---
+
+# Refs
+
+Accessing `ref` is useful is lot of cases: animation library, accessing DOM.. All Smooth UI components implements `React.forwardRef` to give you access to the underlying DOM component.
+
+## Usage
+
+Passing a `ref` prop to a Smooth UI component will give you the ref of the DOM node.
+
+```jsx live noInline
+import React from 'react'
+import { Input, Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  const ref = useRef()
+  return (
+    <>
+      <Button onClick={() => ref.current.focus()}>Focus input</Button>
+      <Input ref={ref} />
+    </>
+  )
+}
+
+render(<Example />)
+```

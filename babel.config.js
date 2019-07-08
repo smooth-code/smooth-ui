@@ -28,8 +28,8 @@ module.exports = api => {
         {
           replacements: [
             {
-              original: '(.*)styled-engine$',
-              replacement: `$1styled-engine/${STYLED_ENGINE}`,
+              original: '(.*)xstyled/x$',
+              replacement: `$1xstyled/${STYLED_ENGINE}`,
             },
           ],
         },

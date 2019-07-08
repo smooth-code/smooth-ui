@@ -1,0 +1,397 @@
+---
+title: Form
+menu: Components
+order: 50
+---
+
+import {
+  Form,
+  FormCheck,
+  FormCheckLabel,
+  FormField,
+  FormFieldLabel,
+} from 'smooth-ui-sc-next'
+import { LiveConfig } from 'smooth-doc/components'
+import { Props } from '../../components/Props'
+
+# Form
+
+## Basic
+
+`Form`, `FormField`, `FormFieldLabel`, `FormCheck`, `FormCheckLabel` are the fundations of form layout. Components are smart and automatically links labels to form controls if a name is provided. A unique `id` is automatically generated, `htmlFor` is added on `label` and `aria-labelledby` / `aria-describedby` attributes are added on controls.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Form,
+  FormCheck,
+  FormCheckLabel,
+  FormField,
+  FormFieldLabel,
+  Input,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  useRadioState,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState()
+  const [vegetables, setVegetables] = React.useState(new Set())
+  const handleVegetableChange = React.useCallback(value => () => {
+    setVegetables(vegetables => {
+      const next = new Set(vegetables)
+      if (next.has(value)) {
+        next.delete(value)
+      } else {
+        next.add(value)
+      }
+      return next
+    })
+  })
+  return (
+    <Form>
+      <FormField>
+        <FormFieldLabel name="name">Name</FormFieldLabel>
+        <Input name="name" />
+      </FormField>
+      <FormField>
+        <FormFieldLabel name="firstname">Firstname</FormFieldLabel>
+        <Input name="firstname" />
+      </FormField>
+      <FormField>
+        <FormFieldLabel id="vegetables">Vegetables</FormFieldLabel>
+        <CheckboxGroup aria-labelledby="vegetables">
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('lettuce')}
+              onChange={handleVegetableChange('lettuce')}
+              value="lettuce"
+            />
+            <FormCheckLabel name="vegetables">lettuce</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('cabbage')}
+              onChange={handleVegetableChange('cabbage')}
+              value="cabbage"
+            />
+            <FormCheckLabel name="vegetables">cabbage</FormCheckLabel>
+          </FormCheck>
+        </CheckboxGroup>
+      </FormField>
+      <FormField>
+        <FormFieldLabel id="fruits">Fruits</FormFieldLabel>
+        <RadioGroup {...radio} aria-labelledby="fruits">
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="apple" />
+            <FormCheckLabel name="fruit">apple</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="orange" />
+            <FormCheckLabel name="fruit">orange</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="watermelon" />
+            <FormCheckLabel name="fruit">watermelon</FormCheckLabel>
+          </FormCheck>
+        </RadioGroup>
+      </FormField>
+    </Form>
+  )
+}
+
+render(<Example />)
+```
+
+## Horizontal form
+
+Create horizontal forms with the system by adding the `row` property to `FormField` and using the `col` property to specify the width of your labels and controls. `FormFieldLabel` are automatically vertically centered with their associated form controls when `col` is used.
+You can invert this behaviour by specifying `py={0}`.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Form,
+  FormCheck,
+  FormCheckLabel,
+  FormField,
+  FormFieldLabel,
+  Input,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  useRadioState,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState()
+  const [vegetables, setVegetables] = React.useState(new Set())
+  const handleVegetableChange = React.useCallback(value => () => {
+    setVegetables(vegetables => {
+      const next = new Set(vegetables)
+      if (next.has(value)) {
+        next.delete(value)
+      } else {
+        next.add(value)
+      }
+      return next
+    })
+  })
+  return (
+    <Form>
+      <FormField row>
+        <FormFieldLabel col name="name">
+          Name
+        </FormFieldLabel>
+        <Input col={0.8} name="name" />
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col name="firstname">
+          Firstname
+        </FormFieldLabel>
+        <Input col={0.8} name="firstname" />
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col py={0} id="vegetables">
+          Vegetables
+        </FormFieldLabel>
+        <CheckboxGroup col={0.8} aria-labelledby="vegetables">
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('lettuce')}
+              onChange={handleVegetableChange('lettuce')}
+              value="lettuce"
+            />
+            <FormCheckLabel name="vegetables">lettuce</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('cabbage')}
+              onChange={handleVegetableChange('cabbage')}
+              value="cabbage"
+            />
+            <FormCheckLabel name="vegetables">cabbage</FormCheckLabel>
+          </FormCheck>
+        </CheckboxGroup>
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col py={0} id="fruits">
+          Fruits
+        </FormFieldLabel>
+        <RadioGroup {...radio} col={0.8} aria-labelledby="fruits">
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="apple" />
+            <FormCheckLabel name="fruit">apple</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="orange" />
+            <FormCheckLabel name="fruit">orange</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="watermelon" />
+            <FormCheckLabel name="fruit">watermelon</FormCheckLabel>
+          </FormCheck>
+        </RadioGroup>
+      </FormField>
+    </Form>
+  )
+}
+
+render(<Example />)
+```
+
+## Scaled forms
+
+All components accept a property `scale` to scale properly with form controls.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Form,
+  FormField,
+  FormFieldLabel,
+  Input,
+  FormCheck,
+  FormCheckLabel,
+  Checkbox,
+  useCheckboxState,
+  Button,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const checkbox = useCheckboxState()
+  return (
+    <Form>
+      <FormField row scale="lg">
+        <FormFieldLabel col scale="lg" name="email">
+          Email
+        </FormFieldLabel>
+        <Input col={0.8} scale="lg" type="email" name="email" />
+      </FormField>
+      <FormField row scale="lg">
+        <FormFieldLabel col scale="lg" name="password">
+          Password
+        </FormFieldLabel>
+        <Input col={0.8} scale="lg" type="password" name="password" />
+      </FormField>
+      <FormField row scale="lg">
+        <Button type="submit" ml="20%" col={0.4} scale="lg">
+          Submit
+        </Button>
+        <FormCheck col={0.4} pl="20rpx">
+          <Checkbox {...checkbox} scale="lg" name="remember" />
+          <FormCheckLabel scale="lg" name="remember">
+            Remember me
+          </FormCheckLabel>
+        </FormCheck>
+      </FormField>
+    </Form>
+  )
+}
+
+render(<Example />)
+```
+
+## Horizontal Radios & Checkboxes
+
+Use `orientation: "horizontal"` on `useRadioState` and `aria-orientation="horizontal"` on `RadioGroup` and `CheckboxGroup` to display controls horizontally.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Form,
+  FormCheck,
+  FormCheckLabel,
+  FormField,
+  FormFieldLabel,
+  Input,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  useRadioState,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState({ orientation: 'horizontal' })
+  const [vegetables, setVegetables] = React.useState(new Set())
+  const handleVegetableChange = React.useCallback(value => () => {
+    setVegetables(vegetables => {
+      const next = new Set(vegetables)
+      if (next.has(value)) {
+        next.delete(value)
+      } else {
+        next.add(value)
+      }
+      return next
+    })
+  })
+  return (
+    <Form>
+      <FormField row>
+        <FormFieldLabel col name="name">
+          Name
+        </FormFieldLabel>
+        <Input col={0.8} name="name" />
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col name="firstname">
+          Firstname
+        </FormFieldLabel>
+        <Input col={0.8} name="firstname" />
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col py={0} id="vegetables">
+          Vegetables
+        </FormFieldLabel>
+        <CheckboxGroup
+          col={0.8}
+          aria-orientation="horizontal"
+          aria-labelledby="vegetables"
+        >
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('lettuce')}
+              onChange={handleVegetableChange('lettuce')}
+              value="lettuce"
+            />
+            <FormCheckLabel name="vegetables">lettuce</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Checkbox
+              name="vegetables"
+              checked={vegetables.has('cabbage')}
+              onChange={handleVegetableChange('cabbage')}
+              value="cabbage"
+            />
+            <FormCheckLabel name="vegetables">cabbage</FormCheckLabel>
+          </FormCheck>
+        </CheckboxGroup>
+      </FormField>
+      <FormField row>
+        <FormFieldLabel col py={0} id="fruits">
+          Fruits
+        </FormFieldLabel>
+        <RadioGroup
+          {...radio}
+          col={0.8}
+          aria-orientation="horizontal"
+          aria-labelledby="fruits"
+        >
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="apple" />
+            <FormCheckLabel name="fruit">apple</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="orange" />
+            <FormCheckLabel name="fruit">orange</FormCheckLabel>
+          </FormCheck>
+          <FormCheck>
+            <Radio {...radio} name="fruit" value="watermelon" />
+            <FormCheckLabel name="fruit">watermelon</FormCheckLabel>
+          </FormCheck>
+        </RadioGroup>
+      </FormField>
+    </Form>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+All forms components follow [WAI-ARIA Pattern](https://www.w3.org/TR/wai-aria-1.1/) to ensure a complete accesibility of your forms.
+
+- Role `form` is automatically added to `form` if not a native `form` element
+- `aria-describedby` and `aria-labelledby` are automatically added on `label` when a name is provided
+
+## API
+
+### Form
+
+<Props of={Form} />
+
+### FormField
+
+<Props of={FormField} />
+
+### FormFieldLabel
+
+<Props of={FormFieldLabel} />
+
+### FormCheck
+
+<Props of={FormCheck} />
+
+### FormCheckLabel
+
+<Props of={FormCheckLabel} />

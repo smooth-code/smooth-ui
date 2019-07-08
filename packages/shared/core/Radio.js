@@ -1,199 +1,210 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
-  dimensions,
-  space,
-  flexboxes,
-  basics,
-  backgrounds,
-  positions,
-  borders,
-  compose,
-} from '@smooth-ui/system'
+  Radio as ReakitRadio,
+  RadioGroup as ReakitRadioGroup,
+} from 'reakit/Radio'
+import { th, system } from '@xstyled/system'
+import { node, string, any, bool, oneOf } from 'prop-desc'
+import * as theme from './theme/common'
+import * as formTheme from './theme/form'
 import {
-  primary,
-  transitionBase,
-  inputBgColor,
-  inputBorderWidth,
-  inputBorderColor,
-  inputDisabledBgColor,
-  baseFocus,
-  controlFocus,
-  success,
-  danger,
-} from './theming/index'
-import { css } from './styled-engine'
-import SwitchState from './SwitchState'
-import createComponent from './createComponent'
+  css,
+  createComponent,
+  getSystemPropTypes,
+  SCALES,
+  safeTransition,
+} from './util'
+import { useFormGroupControlProps } from './Form'
 
-const sizeStyle = {
-  sm: css`
-    .sui-radio-content {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
+export { useRadioState } from 'reakit/Radio'
 
-    .sui-radio-circle {
-      width: 8px;
-      height: 8px;
-    }
-  `,
-  md: css`
-    .sui-radio-content {
-      width: 1rem;
-      height: 1rem;
-    }
+export const RadioGroup = createComponent({
+  name: 'RadioGroup',
+  render: props => {
+    return <ReakitRadioGroup {...props} />
+  },
+  theme: {
+    components: {
+      RadioGroup: p => {
+        return css`
+          padding: 0;
+          border: 0;
 
-    .sui-radio-circle {
-      width: 10px;
-      height: 10px;
-    }
-  `,
-  lg: css`
-    .sui-radio-content {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
+          &[aria-orientation='horizontal'] > [data-form-check] {
+            display: inline-flex;
+            margin-right: 1em;
+          }
 
-    .sui-radio-circle {
-      width: 14px;
-      height: 14px;
-    }
-  `,
-}
+          && {
+            ${system(p)}
+          }
+        `
+      },
+    },
+  },
+  propTypes: {
+    children: node,
+    'aria-orientation': oneOf(['vertical', 'horizontal']).desc(
+      'Specify the orientation of the radio group.',
+    ),
+    ...getSystemPropTypes(system),
+  },
+})
 
-const validStyle = p => {
-  const { valid } = p
-  if (valid !== true && valid !== false) return null
-  const color = valid ? success(p) : danger(p)
-  return css`
-    input + .sui-radio-content,
-    input:checked + .sui-radio-content {
+const validationStyle = color => p =>
+  css`
+    &[aria-checked='true'] {
       border-color: ${color};
-    }
-
-    input:checked + .sui-radio-content .sui-radio-circle {
       background-color: ${color};
     }
 
-    input:focus + .sui-radio-content {
+    &:focus {
       border-color: ${color};
-      ${controlFocus(color)(p)}
+      ${p.theme.mixins.controlFocus(color)(p)};
     }
-  `
-}
+  `(p)
 
-const controlStyle = p =>
-  css`
-    input:focus + .sui-radio-content {
-      ${controlFocus(primary(p))(p)}
-    }
+const noop = () => {}
 
-    ${validStyle(p)};
-  `
+const BaseRadio = React.forwardRef(function BaseRadio(
+  { type, checked, disabled, id, name, value, ...props },
+  ref,
+) {
+  const inputRef = React.useRef()
+  const handleInputFocus = React.useCallback(() => {
+    inputRef.current.parentElement.focus()
+  }, [])
+  return (
+    <div ref={ref} {...props}>
+      <input
+        ref={inputRef}
+        tabIndex={-1}
+        type={type}
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        onChange={noop}
+        name={name}
+        value={value}
+        onFocus={handleInputFocus}
+      />
+      <div data-checkmark />
+    </div>
+  )
+})
 
-const containerSystem = compose(
-  basics,
-  dimensions,
-  space,
-  flexboxes,
-  positions,
-)
+export const Radio = createComponent({
+  name: 'Radio',
+  render: ({ as = BaseRadio, ...props }) => {
+    const controlProps = useFormGroupControlProps(props)
+    return <ReakitRadio as={as} {...controlProps} />
+  },
+  theme: [
+    theme,
+    formTheme,
+    {
+      sizes: {
+        radio: {
+          container: {
+            xs: '10rpx',
+            sm: '12rpx',
+            base: '16rpx',
+            lg: '22rpx',
+            xl: '28rpx',
+          },
+          checkmark: {
+            xs: '6rpx',
+            sm: '8rpx',
+            base: '10rpx',
+            lg: '14rpx',
+            xl: '18rpx',
+          },
+        },
+      },
+      components: {
+        Radio: p => {
+          const scale = p.scale || 'base'
+          const validColor = th.color('form.valid')(p)
+          const invalidColor = th.color('form.invalid')(p)
+          const containerSize = th.size(`radio.container.${scale}`)(p)
+          const checkmarkSize = th.size(`radio.checkmark.${scale}`)(p)
+          return css`
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: ${containerSize};
+            height: ${containerSize};
+            z-index: ${th.zIndex('control')(p)};
+            background-color: ${th.color('formControl.background')(p)};
+            border-radius: 50%;
+            border-style: solid;
+            border-width: ${th.borderWidth(`formControl.${scale}`)(p)};
+            border-color: ${th.color('formControl.border')(p)};
+            ${safeTransition('base')(p)};
 
-const contentSystem = compose(
-  dimensions,
-  backgrounds,
-  borders,
-)
+            & > input {
+              top: 0;
+              left: 0;
+              width: 100%;
+              cursor: inherit;
+              height: 100%;
+              margin: 0;
+              opacity: 0;
+              padding: 0;
+              position: absolute;
+            }
 
-const system = compose(
-  containerSystem,
-  contentSystem,
-)
+            & > [data-checkmark] {
+              height: ${checkmarkSize};
+              width: ${checkmarkSize};
+              pointer-events: none;
+              transform: scale(0);
+              transform-origin: center;
+              border-radius: 50%;
+              background-color: ${th.color('primary')(p)};
+              ${safeTransition('base')(p)};
+            }
 
-const Radio = createComponent(() => ({
-  name: 'radio',
-  system,
-  applySystem: null,
-  render: ({ Component, ref, className, size, control, valid, ...props }) => (
-    <SwitchState {...props}>
-      {({ input }) => (
-        <Component className={className}>
-          <input ref={ref} type="radio" {...input} />
-          <div className="sui-radio-content">
-            <div className="sui-radio-circle" />
-          </div>
-        </Component>
-      )}
-    </SwitchState>
-  ),
-  style: p => css`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 1.5rem;
-    height: 1.5rem;
-    position: relative;
+            &[aria-checked='true'] > [data-checkmark] {
+              transform: scale(1);
+            }
 
-    .sui-radio-content {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: ${inputBgColor(p)};
-      border-width: ${inputBorderWidth(p)};
-      border-style: solid;
-      border-color: ${inputBorderColor(p)};
-      ${transitionBase(p)};
-    }
+            &:focus {
+              ${p.theme.mixins.controlFocus(th.color('primary')(p))(p)};
+            }
 
-    input:checked + .sui-radio-content {
-      border-color: ${primary(p)};
+            &[aria-disabled] {
+              opacity: 0.6;
+            }
 
-      .sui-radio-circle {
-        transform: scale(1);
-      }
-    }
+            &[aria-invalid='true'] {
+              ${validationStyle(invalidColor)(p)};
+            }
 
-    input:focus + .sui-radio-content {
-      ${baseFocus(primary(p))(p)};
-    }
+            &[aria-invalid='false'] {
+              ${validationStyle(validColor)(p)};
+            }
 
-    input:disabled + .sui-radio-content {
-      background-color: ${inputDisabledBgColor(p)};
-    }
-
-    .sui-radio-circle {
-      ${transitionBase(p)};
-      border-radius: 50%;
-      background-color: ${primary(p)};
-      transform: scale(0);
-    }
-
-    ${p.size && sizeStyle[p.size]};
-
-    ${containerSystem.props};
-
-    .sui-radio-content {
-      ${contentSystem.props};
-    }
-
-    ${p.control && controlStyle(p)};
-  `,
+            && {
+              ${system(p)}
+            }
+          `
+        },
+      },
+    },
+  ],
   propTypes: {
-    control: PropTypes.bool,
-    checked: PropTypes.bool,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    valid: PropTypes.bool,
-    value: PropTypes.string,
+    checked: bool.desc('Same as the `checked` attribute.'),
+    disabled: bool.desc('Same as the HTML attribute.'),
+    focusable: bool.desc(
+      'When an element is `disabled`, it may still be `focusable`. It works similarly to `readOnly` on form elements. In this case, only `aria-disabled` will be set.',
+    ),
+    stopId: string.desc('Element ID.'),
+    value: any.desc('Same as the value attribute.'),
+    scale: oneOf(SCALES),
+    ...getSystemPropTypes(system),
   },
-  defaultProps: {
-    size: 'md',
-  },
-}))
-
-export default Radio
+})
