@@ -28,6 +28,12 @@ It is focused on developer experience, productivity. You can focus on what you w
 
 **See the documentation at [smooth-ui.smooth-code.com](https://smooth-ui.smooth-code.com/)** for more information about using Smooth UI!
 
+## Sponsors
+
+[<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
+
+BrowserStack allows us to test in real browsers.
+
 ## License
 
 Licensed under the MIT License, Copyright © 2018-present Smooth Code.
