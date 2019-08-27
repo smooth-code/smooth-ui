@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@smooth-ui/system": "^11.0.0",
     "@xstyled/emotion": "^1.10.0",
     "@xstyled/util": "^1.10.0",
     "polished": "^3.4.1",
