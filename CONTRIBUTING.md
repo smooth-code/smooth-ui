@@ -43,10 +43,12 @@ _Before_ submitting a pull request, please make sure the following is done…
 4.  If you've added code that should be tested, add tests. You can use watch mode that continuously transforms changed files to make your life easier.
 
     ```sh
-    # build packages continuously
+    # build packages continuously:
     yarn run build:watch
-    # run docs
-    yarn run dev
+    # in website folder have to run:
+    yarn && yarn run dev
+    # each time you want to update the documentation to reflect your change, use:
+    yarn update-website
     ```
 
 5.  If you've changed APIs, update the documentation.
