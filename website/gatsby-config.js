@@ -5,6 +5,10 @@ module.exports = {
       options: {
         name: 'Smooth UI',
         slug: 'smooth-ui',
+        author: 'Greg Bergé',
+        siteUrl: 'https://www.smooth-code.com/open-source/smooth-ui',
+        description:
+          'Modern UI library for React. Focused on productivity, flexibility and accessibility.',
         github: 'https://github.com/smooth-code/smooth-ui',
         menu: ['Getting Started', 'Customization', 'Components', 'Advanced'],
         nav: [{ title: 'Docs', url: '/docs/' }],

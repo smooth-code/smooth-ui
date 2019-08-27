@@ -1292,10 +1292,10 @@
     "@babel/runtime" "^7.4.4"
     deepmerge "^3.2.0"
 
-"@smooth-ui/system@^11.0.0-alpha.0":
-  version "11.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@smooth-ui/system/-/system-11.0.0-alpha.0.tgz#cf376eed6ee963d659e087191a9c0ff4651578a2"
-  integrity sha512-a3jAG/xnUJduh0lYc02eQZ6qjXPjB9dSmoorAwNlN7hjg8aUk/u5OWPSw1q8TDlamLwKPcyNG5zZZVliIR0FQQ==
+"@smooth-ui/system@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/system/-/system-11.0.0.tgz#7976cb09d1649b4c02b6737e27e1c90a07699685"
+  integrity sha512-cFX+gwAtjrU95Y2N0ww+nXS4dYxb7QDUXPvhW2SZjLMmiZNqJiGYbbCKDqcl3ek9k4QncJxVu0jF/H2UiAIleA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     deepmerge "^4.0.0"
@@ -11617,9 +11617,9 @@ smooth-code-landers@^1.3.2:
   integrity sha512-LeIvPo86MQBdh5xVntlcem8La4IdVA9klkPZYpPjxFyK3c1BzNaitm2Gm70MhNk4Gc+zMATDwxqZ1gZZRlatQA==
 
 smooth-doc@^2.3.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/smooth-doc/-/smooth-doc-2.5.0.tgz#b89eb80a7e4d4b1625c22d7deb6f1725852b617e"
-  integrity sha512-3nI7pL9LXhOFRdUDw3K8QUGiZ/uk+/KY5SJvubi6MyWagQ8rpidb0EE9Ct91ASUZ5FvsmBcfjaAZiFgdPKiKNA==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/smooth-doc/-/smooth-doc-2.6.0.tgz#8988eafacf1c2ead877c9452dde33121dcad5059"
+  integrity sha512-gHmthH/f5deN+FHIXKZM/yY0QJc52huRC1vCQUjcnxaiYHc1MFPBea4xtTGeGhu2dMq+dmBXVOGKw4T1vwmt+g==
   dependencies:
     "@mdx-js/mdx" "^1.0.14"
     "@mdx-js/react" "^1.0.6"
@@ -11650,13 +11650,13 @@ smooth-doc@^2.3.0:
     styled-components "^4.2.0"
     unist-util-visit "^2.0.0"
 
-"smooth-ui-em-next@npm:@smooth-ui/core-em@11.0.0-alpha.0":
-  version "11.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@smooth-ui/core-em/-/core-em-11.0.0-alpha.0.tgz#d4d7f52fccbf78caf2eab709fa53dd5ce91a3e6a"
-  integrity sha512-YJmZ6iY1i20Yqfo6T1p4FV84Q9m6pk2E4O2sA8HmxYTnqLVLxIvAGj3UVM+/UEKCcVYY0vuNOkAXD79AUIG9Zg==
+"smooth-ui-em-next@npm:@smooth-ui/core-em@latest":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/core-em/-/core-em-11.0.0.tgz#cc9d094c3e7e2a56ac89efda12e9e69fd72fbf1e"
+  integrity sha512-lyMEyLstDkMo0MtVKYcwQ4lLSYGpHi/ZeeCG7ZSsk+JkYlTO/b/IsTfmFo+DG2yR44PfzXU+9FsZ6HGU5tot7w==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@smooth-ui/system" "^11.0.0-alpha.0"
+    "@smooth-ui/system" "^11.0.0"
     "@xstyled/emotion" "^1.10.0"
     "@xstyled/util" "^1.10.0"
     polished "^3.4.1"
@@ -11664,13 +11664,13 @@ smooth-doc@^2.3.0:
     prop-types "^15.7.2"
     react-flatten-children "^1.0.0"
 
-"smooth-ui-sc-next@npm:@smooth-ui/core-sc@11.0.0-alpha.0":
-  version "11.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@smooth-ui/core-sc/-/core-sc-11.0.0-alpha.0.tgz#f5a2cee29fac0a4f0ada2fc1f439286c962e3b5d"
-  integrity sha512-WbYqh+NZO8NjY7EneXIEJDkrdqXskJwHaIhhrqUC3pufN1Our0xTrAkJNtxdQEH5d7C9RL1YjG0g6rwC5BhyZw==
+"smooth-ui-sc-next@npm:@smooth-ui/core-sc@latest":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/core-sc/-/core-sc-11.0.0.tgz#c6eaae0ad64ebceb6d41b8da0f159165b1273c8d"
+  integrity sha512-84tDdJfI54MKsAWnny2kC7VnxSwDnxgXeLH0oWCnmv2MJCFEt15e+PTgOcvATIp+IPaHIKgPsrB/C+AxCjzjTA==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@smooth-ui/system" "^11.0.0-alpha.0"
+    "@smooth-ui/system" "^11.0.0"
     "@xstyled/styled-components" "^1.10.0"
     "@xstyled/util" "^1.10.0"
     polished "^3.4.1"
