@@ -1,0 +1,32 @@
+---
+title: System
+menu: Advanced
+order: 10
+---
+
+# System
+
+Smooth UI implements [xstyled system](https://www.smooth-code.com/open-source/xstyled/docs/system-props/) in all components. It gives you real power to style your application in a declarative way.
+
+## Use system props
+
+System props gives you an opportunity to modify all styles directly from props.
+
+For example, you can easily change the `backgroundColor` and the horizontal `padding` of a `Button`:
+
+```jsx live noInline
+import React from 'react'
+import { Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Button px="2rem" backgroundColor="blue">
+      Hello world
+    </Button>
+  )
+}
+
+render(<Example />)
+```
+
+You can see all possibility offered by system properties on [xstyled documentation](https://www.smooth-code.com/open-source/xstyled/docs/system-props/).

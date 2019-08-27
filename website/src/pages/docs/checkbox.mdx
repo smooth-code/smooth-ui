@@ -1,0 +1,156 @@
+---
+title: Checkbox
+menu: Components
+order: 40
+---
+
+import { Checkbox, CheckboxGroup } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Checkbox
+
+## Basic
+
+It receives the same props as controlled inputs, such as `checked` and `onChange`.
+
+```jsx live noInline
+import React from 'react'
+import { Checkbox, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  const [checked, setChecked] = React.useState(false)
+  const toggle = () => setChecked(!checked)
+  return (
+    <label>
+      <Checkbox checked={checked} onChange={toggle} /> Check me
+    </label>
+  )
+}
+
+render(<Example />)
+```
+
+## useCheckboxState
+
+For convenience, [Reakit provides a `useCheckboxState`](https://reakit.io/docs/checkbox/#usecheckboxstate) that already implements the state logic.
+
+```jsx live noInline
+import React from 'react'
+import { Checkbox, useCheckboxState } from '@smooth-ui/core-sc'
+
+function Example() {
+  const checkbox = useCheckboxState()
+  return (
+    <label>
+      <Checkbox {...checkbox} /> Check me
+    </label>
+  )
+}
+
+render(<Example />)
+```
+
+## Sizes
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Checkbox,
+  useCheckboxState,
+  FormCheck,
+  FormCheckLabel,
+  Boxer,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const checkbox = useCheckboxState()
+  return (
+    <Boxer my={3}>
+      <FormCheck>
+        <Checkbox {...checkbox} scale="xs" name="xs" />
+        <FormCheckLabel scale="xs" name="xs">
+          Extra small
+        </FormCheckLabel>
+      </FormCheck>
+      <FormCheck>
+        <Checkbox {...checkbox} scale="sm" name="sm" />
+        <FormCheckLabel scale="sm" name="sm">
+          Small
+        </FormCheckLabel>
+      </FormCheck>
+      <FormCheck>
+        <Checkbox {...checkbox} scale="base" name="base" />
+        <FormCheckLabel scale="base" name="base">
+          Base (default)
+        </FormCheckLabel>
+      </FormCheck>
+      <FormCheck>
+        <Checkbox {...checkbox} scale="lg" name="lg" />
+        <FormCheckLabel scale="lg" name="lg">
+          Large
+        </FormCheckLabel>
+      </FormCheck>
+      <FormCheck>
+        <Checkbox {...checkbox} scale="xl" name="xl" />
+        <FormCheckLabel scale="xl" name="xl">
+          Extra large
+        </FormCheckLabel>
+      </FormCheck>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Checkbox,
+  FormCheck,
+  FormCheckLabel,
+  useCheckboxState,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const checkbox = useCheckboxState({ state: true })
+  return (
+    <FormCheck>
+      <Checkbox disabled {...checkbox} />
+      <FormCheckLabel>Disabled 🤷‍♂️</FormCheckLabel>
+    </FormCheck>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Checkbox` uses [Reakit Checkbox](https://reakit.io/docs/checkbox) under the hood, it means it follows [WAI-ARIA Checkbox Pattern](https://www.w3.org/TR/wai-aria-practices/#checkbox).
+
+`CheckboxGroup` follows [WAI_ARIA Checkbox Group Pattern](https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/examples/checkbox/checkbox-2.html).
+
+[Read more about accessibility on Reakit](https://reakit.io/docs/checkbox/#accessibility).
+
+## API
+
+### useCheckboxState
+
+See [Reakit documentation](https://reakit.io/docs/checkbox/#usecheckboxstate-1).
+
+### Checkbox
+
+<Props of={Checkbox} />
+
+`Switch` also includes a bunch of state properties, see [Reakit documentation](https://reakit.io/docs/checkbox/#checkbox).
+
+### CheckboxGroup
+
+<Props of={CheckboxGroup} />

@@ -1,0 +1,77 @@
+---
+title: Box
+menu: Components
+order: 20
+---
+
+import { Box, Boxer } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Box
+
+`Box` is a base component with all system props from [xstyled](https://www.smooth-code.com/open-source/xstyled/docs/system-components/) built-in. You could code your entire application using this component!
+
+## Box
+
+`Box` is a div with superpowers.
+
+```jsx live noInline
+import React from 'react'
+import { Box } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Box
+      backgroundColor="primary"
+      width={{ sm: 1, md: 0.5 }}
+      height={100}
+      mx="auto"
+      p={2}
+    />
+  )
+}
+
+render(<Example />)
+```
+
+The above example create a red div with:
+
+- A background with color "primary"
+- A width of `100%` on mobile, `50%` on desktop
+- A height of `100px`
+- A padding of `16px`
+- A `marginLeft` and a `marginRight` of `50%`
+
+[Read more about system](/docs/system/)
+
+## Boxer
+
+`Boxer` wrap all children in a `Box` with props applied on each `Box`.
+
+The following example wraps the two `div` in a container with a vertical margin of `10px`:
+
+```jsx live noInline
+import React from 'react'
+import { Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <div>Hello</div>
+      <div>World</div>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## API
+
+### Box
+
+<Props of={Box} />
+
+### Boxer
+
+<Props of={Boxer} />

@@ -1,0 +1,43 @@
+---
+title: Getting Started
+menu: Getting Started
+order: 20
+---
+
+# Getting Started
+
+## Installation
+
+First you have to make a choice between [styled-components](https://styled-components.com) and [emotion](https://emotion.sh).
+If you don't know any of two, it is easier to start with [styled-components](https://styled-components.com).
+
+### Styled Components
+
+```bash
+npm install @smooth-ui/core-sc reakit styled-components
+```
+
+### Emotion
+
+```bash
+npm install @smooth-ui/core-em reakit @emotion/core @emotion/styled emotion-theming
+```
+
+## Usage
+
+There is no required setup to use Smooth UI, it exposes ready to use components.
+
+You can use components in your React app:
+
+```jsx live noInline
+import React from 'react'
+import { Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Button>Hello Smooth</Button>
+}
+
+render(<Example />)
+```
+
+> Even if it is not strictly required, it is strongly recommended to add `Normalize` in your application, see [guide](/docs/normalize/).

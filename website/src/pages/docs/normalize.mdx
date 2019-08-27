@@ -1,0 +1,31 @@
+---
+title: Normalize
+menu: Components
+order: 70
+---
+
+# Normalize
+
+Smooth UI includes a `Normalize` component, it is strongly recommended to use it. Several global CSS codes are injected:
+
+- Normalize abnormalities across browsers, see [polished `normalize`](https://polished.js.org/docs/#normalize).
+- Enable theme fonts, by default [System fonts](https://css-tricks.com/snippets/css/system-font-stack/) are used.
+- Set `box-sizing` to `border-box`, [most of time it is easier for you](https://www.paulirish.com/2012/box-sizing-border-box-ftw/).
+
+## Usage
+
+Import `Normalize` from `@smooth-ui/core-sc` or `@smooth-ui/core-em`, then add it in the root of your application.
+
+```jsx
+import React from 'react'
+import { Normalize } from '@smooth-ui/core-sc'
+
+function App() {
+  return (
+    <>
+      <Normalize />
+      {/* Your code ... */}
+    </>
+  )
+}
+```

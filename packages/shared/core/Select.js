@@ -1,187 +1,100 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import PropTypes from 'prop-types'
-import { css } from './styled-engine'
+import { th, system } from '@xstyled/system'
+import { node, bool, oneOf } from 'prop-desc'
+import * as theme from './theme/common'
+import * as formTheme from './theme/form'
 import {
-  inputPaddingY,
-  inputPaddingX,
-  inputLineHeight,
-  inputPaddingYSm,
-  inputPaddingXSm,
-  inputLineHeightSm,
-  inputPaddingYLg,
-  inputPaddingXLg,
-  inputLineHeightLg,
-  inputBorderWidth,
-  inputBorderColor,
-  inputDisabledBgColor,
-  inputDisabledText,
-  inputTextColor,
-  fontSizeSm,
-  borderRadiusSm,
-  fontSizeBase,
-  borderRadius,
-  fontSizeLg,
-  borderRadiusLg,
-  success,
-  danger,
-  controlFocus,
-  transitionBase,
-  primary,
-  baseFocus,
-} from './theming/index'
-import createComponent from './createComponent'
+  css,
+  SCALES,
+  createComponent,
+  getSystemPropTypes,
+  safeTransition,
+} from './util'
+import { useFormControlProps } from './Form'
 
-const sizeStyle = {
-  sm: p => css`
-    select {
-      padding: ${inputPaddingYSm(p)} ${inputPaddingXSm(p)};
-      font-size: ${fontSizeSm(p)};
-      line-height: ${inputLineHeightSm(p)};
-      border-radius: ${borderRadiusSm(p)};
-      ${p.arrow && !p.multiple && 'padding-right: 1.225rem;'};
-    }
+const validationStyle = color => p =>
+  css`
+    border-color: ${color};
 
-    .sui-select-arrow {
-      right: 0.35rem;
-      width: 0.525rem;
-    }
-  `,
-  md: p => css`
-    select {
-      padding: ${inputPaddingY(p)} ${inputPaddingX(p)};
-      font-size: ${fontSizeBase(p)};
-      line-height: ${inputLineHeight(p)};
-      ${p.arrow && !p.multiple && 'padding-right: 1.6rem;'};
-      border-radius: ${borderRadius(p)};
-    }
-
-    .sui-select-arrow {
-      right: 0.5rem;
-      width: 0.6rem;
-    }
-  `,
-  lg: p => css`
-    select {
-      padding: ${inputPaddingYLg(p)} ${inputPaddingXLg(p)};
-      font-size: ${fontSizeLg(p)};
-      line-height: ${inputLineHeightLg(p)};
-      border-radius: ${borderRadiusLg(p)};
-      ${p.arrow && !p.multiple && 'padding-right: 2rem;'};
-    }
-
-    .sui-select-arrow {
-      right: 0.625rem;
-      width: 0.75rem;
-    }
-  `,
-}
-
-const validStyle = p => {
-  const { valid } = p
-  if (valid !== true && valid !== false) return null
-  const color = valid ? success(p) : danger(p)
-  return css`
-    select {
+    &:focus {
       border-color: ${color};
-
-      &:focus {
-        border-color: ${color};
-        ${controlFocus(color)(p)}
-      }
+      ${p.theme.mixins.controlFocus(color)(p)}
     }
-  `
-}
+  `(p)
 
-const controlStyle = p => css`
-  &,
-  select {
-    display: block;
-    width: 100%;
-  }
+export const Select = createComponent({
+  name: 'Select',
+  render: ({ as: As = 'select', ...props }) => {
+    const controlProps = useFormControlProps(props)
+    return <As {...controlProps} />
+  },
+  theme: [
+    theme,
+    formTheme,
+    {
+      components: {
+        Select: p => {
+          const scale = p.scale || 'base'
+          const px = th.space(`textFormControl.x.${scale}`)(p)
+          const py = th.space(`textFormControl.y.${scale}`)(p)
+          const validColor = th.color('form.valid')(p)
+          const invalidColor = th.color('form.invalid')(p)
+          return css`
+            display: block;
+            appearance: none;
+            width: 100%;
+            z-index: ${th.zIndex('control')(p)};
+            font-family: ${th.font('base')(p)};
+            font-size: ${th.fontSize(scale)(p)};
+            border-width: ${th.borderWidth(`formControl.${scale}`)(p)};
+            border-color: ${th.color('formControl.border')(p)};
+            border-style: solid;
+            line-height: ${th.lineHeight(`formControl.${scale}`)(p)};
+            color: ${th.color('formControl.text')(p)};
+            background-color: ${th.color('formControl.background')(p)};
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+              no-repeat right 0.75rem center/8px 10px;
+            padding: ${py} ${px};
+            line-height: ${th.lineHeight(`formControl.${scale}`)(p)};
+            border-radius: ${th.radius(scale)(p)};
+            ${safeTransition('base')(p)};
 
-  select:focus {
-    ${controlFocus(primary(p))(p)};
-  }
+            &::placeholder {
+              color: ${th.color('formControl.placeholder')(p)};
+            }
 
-  ${validStyle(p)};
-`
+            &:disabled {
+              background-color: ${th.color('formControl.disabled.background')(
+                p,
+              )};
+              color: ${th.color('formControl.disabled.text')(p)};
+            }
 
-const Arrow = () => (
-  <svg className="sui-select-arrow" viewBox="0 0 10 5">
-    <g fill="none" fillRule="evenodd">
-      <path d="M17 14H-7v-24h24" />
-      <path fill="currentColor" opacity={0.5} d="M0 0l5 5 5-5" />
-    </g>
-  </svg>
-)
+            &:focus {
+              ${p.theme.mixins.controlFocus(th.color('primary')(p))(p)}
+            }
 
-const Select = createComponent(() => ({
-  name: 'select',
-  render: ({
-    Component,
-    arrow,
-    control,
-    className,
-    size,
-    valid,
-    children,
-    ...props
-  }) => (
-    <Component className={className}>
-      {arrow && !props.multiple ? <Arrow /> : null}
-      <select {...props}>{children}</select>
-    </Component>
-  ),
-  style: p => css`
-    display: inline-block;
-    position: relative;
+            &[aria-invalid='true'] {
+              ${validationStyle(invalidColor)(p)};
+            }
 
-    select {
-      /* Disable appearance */
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -webkit-border-radius: 0;
+            &[aria-invalid='false'] {
+              ${validationStyle(validColor)(p)};
+            }
 
-      display: inline-block;
-      border-width: ${inputBorderWidth(p)};
-      border-color: ${inputBorderColor(p)};
-      border-style: solid;
-      line-height: ${inputLineHeight(p)};
-      ${transitionBase(p)};
-      color: ${inputTextColor(p)};
-
-      &:focus {
-        ${baseFocus(primary(p))(p)};
-      }
-
-      &:disabled {
-        background-color: ${inputDisabledBgColor(p)};
-        color: ${inputDisabledText(p)};
-      }
-    }
-
-    .sui-select-arrow {
-      position: absolute;
-      top: 50%;
-      pointer-events: none;
-    }
-
-    ${p.size && sizeStyle[p.size] && sizeStyle[p.size](p)};
-    ${p.control && controlStyle(p)};
-  `,
+            && {
+              ${system(p)}
+            }
+          `
+        },
+      },
+    },
+  ],
   propTypes: {
-    arrow: PropTypes.bool,
-    control: PropTypes.bool,
-    options: PropTypes.array,
-    size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    valid: PropTypes.bool,
-    children: PropTypes.node,
+    children: node,
+    disabled: bool,
+    scale: oneOf(SCALES),
+    ...getSystemPropTypes(system),
   },
-  defaultProps: {
-    arrow: true,
-    size: 'md',
-  },
-}))
-
-export default Select
+})

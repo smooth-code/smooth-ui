@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-em",
   "description": "Modern React UI Library",
-  "version": "10.1.0",
+  "version": "11.0.0-alpha.0",
   "keywords": [
     "emotion",
     "ui",
@@ -24,20 +24,21 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
-    "@smooth-ui/system": "^10.1.0",
-    "polished": "^3.3.2",
-    "popper.js": "^1.15.0",
+    "@babel/runtime": "^7.5.5",
+    "@smooth-ui/system": "^11.0.0-alpha.0",
+    "@xstyled/emotion": "^1.10.0",
+    "@xstyled/util": "^1.10.0",
+    "polished": "^3.4.1",
+    "prop-desc": "^1.0.0",
     "prop-types": "^15.7.2",
-    "react-focus-lock": "^1.19.1",
-    "react-remove-scroll": "^1.0.8",
-    "react-transition-group": "^4.0.1"
+    "react-flatten-children": "^1.0.0"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
     "emotion-theming": "^10.0.0",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react-dom": ">=16.8.0",
+    "reakit": ">=1.0.0-beta.6 <2.0.0"
   }
 }

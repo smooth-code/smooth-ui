@@ -1,9 +1,16 @@
-import Input from './Input'
+/* eslint-disable react-hooks/rules-of-hooks */
+import React from 'react'
+import { Input } from './Input'
+import { useFormControlProps } from './Form'
+import { createInnerComponent } from './util'
 
-function createTextarea() {
-  const Textarea = Input.withComponent('textarea')
-  Textarea.propTypes = Input.propTypes
-  return Textarea
-}
+const InnerTextarea = createInnerComponent({
+  name: 'Textarea',
+  render: ({ as: As = 'textarea', ...props }) => {
+    const controlProps = useFormControlProps(props)
+    return <As {...props} {...controlProps} />
+  },
+})
 
-export default createTextarea()
+export const Textarea = Input.withComponent(InnerTextarea)
+Textarea.propTypes = Input.propTypes

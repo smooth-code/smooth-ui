@@ -1,0 +1,141 @@
+---
+title: Radio
+menu: Components
+order: 80
+---
+
+import { Radio, RadioGroup } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Radio
+
+## Basic
+
+```jsx live noInline
+import React from 'react'
+import { Radio, RadioGroup, Boxer, useRadioState } from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState()
+  return (
+    <RadioGroup {...radio} aria-label="fruits">
+      <Boxer my={1}>
+        <label>
+          <Radio {...radio} value="apple" /> apple
+        </label>
+        <label>
+          <Radio {...radio} value="orange" /> orange
+        </label>
+        <label>
+          <Radio {...radio} value="watermelon" /> watermelon
+        </label>
+      </Boxer>
+    </RadioGroup>
+  )
+}
+
+render(<Example />)
+```
+
+## Sizes
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import {
+  Radio,
+  RadioGroup,
+  Boxer,
+  FormCheck,
+  FormCheckLabel,
+  useRadioState,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState()
+  const toggle = () => setChecked(!checked)
+  return (
+    <RadioGroup {...radio} aria-label="sizes">
+      <Boxer my={3}>
+        <FormCheck>
+          <Radio {...radio} scale="xs" value="xs" name="xs" />
+          <FormCheckLabel scale="xs" name="xs">
+            Extra small
+          </FormCheckLabel>
+        </FormCheck>
+        <FormCheck>
+          <Radio {...radio} scale="sm" value="sm" name="sm" />
+          <FormCheckLabel scale="sm" name="sm">
+            Small
+          </FormCheckLabel>
+        </FormCheck>
+        <FormCheck>
+          <Radio {...radio} scale="base" value="base" name="base" />
+          <FormCheckLabel scale="base" name="base">
+            Default
+          </FormCheckLabel>
+        </FormCheck>
+        <FormCheck>
+          <Radio {...radio} scale="lg" value="lg" name="lg" />
+          <FormCheckLabel scale="lg" name="lg">
+            Large
+          </FormCheckLabel>
+        </FormCheck>
+        <FormCheck>
+          <Radio {...radio} scale="xl" value="xl" name="xl" />
+          <FormCheckLabel scale="xl" name="xl">
+            Extra large
+          </FormCheckLabel>
+        </FormCheck>
+      </Boxer>
+    </RadioGroup>
+  )
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import { Radio, RadioGroup, Boxer, useRadioState } from '@smooth-ui/core-sc'
+
+function Example() {
+  const radio = useRadioState()
+  return (
+    <RadioGroup {...radio} aria-label="radios">
+      <label>
+        <Radio disabled {...radio} value="disabled" /> disabled
+      </label>
+    </RadioGroup>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+Radio uses [Reakit Radio](https://reakit.io/docs/radio) under the hood, it means it follows [WAI-ARIA Radio Button/Group Pattern](https://www.w3.org/TR/wai-aria-practices/#radiobutton).
+
+[Read more about accessibility on Reakit](https://reakit.io/docs/radio/#accessibility).
+
+## API
+
+### useRadioState
+
+See [Reakit documentation](https://reakit.io/docs/radio/#useradiostate).
+
+### Radio
+
+<Props of={Radio} />
+
+`Radio` also includes a bunch of state properties, see [Reakit documentation](https://reakit.io/docs/radio/#radio).
+
+### RadioGroup
+
+<Props of={RadioGroup} />

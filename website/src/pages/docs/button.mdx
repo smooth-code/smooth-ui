@@ -1,0 +1,93 @@
+---
+title: Button
+menu: Components
+order: 30
+---
+
+import { Button } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Button
+
+## Variants
+
+Set variants using `variant` prop. All colors defined in your theme (or not) can be used.
+
+```jsx live noInline
+import React from 'react'
+import { Button, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Button>Default (primary)</Button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="success">Success</Button>
+      <Button variant="danger">Danger</Button>
+      <Button variant="warning">Warning</Button>
+      <Button variant="info">Info</Button>
+      <Button variant="light">Light</Button>
+      <Button variant="dark">Dark</Button>
+      <Button variant="#804FCE">Custom color</Button>
+      <Button variant={null}>No variant</Button>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Scales
+
+Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.
+
+```jsx live noInline
+import React from 'react'
+import { Button, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Button scale="xs">Extra small</Button>
+      <Button scale="sm">Small</Button>
+      <Button scale="base">Default</Button>
+      <Button scale="lg">Large</Button>
+      <Button scale="xl">Extra large</Button>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Disabled
+
+Disable using `disabled` prop.
+
+```jsx live noInline
+import React from 'react'
+import { Button } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Button variant="primary" disabled>
+      Disabled
+    </Button>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Button` uses [Reakit Button](https://reakit.io/docs/button/) under the hood, it means it follows [WAI-ARIA Button Pattern](https://www.w3.org/TR/wai-aria-practices/#button).
+
+[Read more about accessibility on Reakit](https://reakit.io/docs/button/#accessibility).
+
+## API
+
+### Button
+
+<Props of={Button} />

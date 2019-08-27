@@ -22,13 +22,14 @@ export const getRollupConfig = ({ pwd, buildName, name }) => {
   })
 
   const globals = {
-    classnames: 'classNames',
     polished: 'polished',
-    'popper.js': 'Popper',
     'prop-types': 'PropTypes',
+    'prop-desc': 'PropDesc',
     'emotion-theming': 'emotionTheming',
     '@emotion/core': 'emotion',
     '@emotion/styled': 'styled',
+    '@xstyled/styled-components': 'xstyled',
+    '@xstyled/emotion': 'xstyled',
     react: 'React',
     'react-dom': 'ReactDom',
     'styled-components': 'styled',
@@ -73,14 +74,22 @@ export const getRollupConfig = ({ pwd, buildName, name }) => {
     input,
     output: { file: `${DIST_DIR}/${buildName}.cjs.js`, format: 'cjs' },
     external,
-    plugins: [babel(getBabelOptions({ useESModules: false })), sizeSnapshot()],
+    plugins: [
+      nodeResolve(),
+      babel(getBabelOptions({ useESModules: false })),
+      sizeSnapshot(),
+    ],
   }
 
   const esmConfig = {
     input,
     output: { file: `${DIST_DIR}/${buildName}.es.js`, format: 'esm' },
     external,
-    plugins: [babel(getBabelOptions({ useESModules: true })), sizeSnapshot()],
+    plugins: [
+      nodeResolve(),
+      babel(getBabelOptions({ useESModules: true })),
+      sizeSnapshot(),
+    ],
   }
 
   if (process.env.WATCH_MODE) {

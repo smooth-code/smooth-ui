@@ -1,0 +1,46 @@
+---
+title: Smooth UI - Modern React UI Library
+---
+
+import { HomeHero, ShowCase } from 'smooth-doc/components'
+import { Grid, Row, Col } from '@smooth-ui/core-sc'
+
+<HomeHero
+  title={
+    <>
+      <div>Modern UI library for React.</div>
+      <div style={{ fontSize: '0.8em' }}>Write less, do more 💅👩‍🎤.</div>
+    </>
+  }
+/>
+
+<ShowCase>
+  <Grid maxWidth={1000} gutter={20}>
+    <Row>
+      <Col xs={12} md={4}>
+        <h2>Accessible ♿️</h2>
+        <ul>
+          <li>WAI-ARIA compliance</li>
+          <li>Smart transitions</li>
+          <li>Accessible fonts</li>
+        </ul>
+      </Col>
+      <Col xs={12} md={4}>
+        <h2>Productive 🚀</h2>
+        <ul>
+          <li>Ready to use</li>
+          <li>System props</li>
+          <li>Good documentation</li>
+        </ul>
+      </Col>
+      <Col xs={12} md={4}>
+        <h2>Flexible 👌</h2>
+        <ul>
+          <li>Emotion 👩‍🎤</li>
+          <li>Styled Components 💅</li>
+          <li>Theming</li>
+        </ul>
+      </Col>
+    </Row>
+  </Grid>
+</ShowCase>

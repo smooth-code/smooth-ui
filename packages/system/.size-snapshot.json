@@ -1,22 +1,22 @@
 {
   "dist/smooth-ui-system.es.js": {
-    "bundled": 13913,
-    "minified": 8818,
-    "gzipped": 2534,
+    "bundled": 38,
+    "minified": 34,
+    "gzipped": 50,
     "treeshaked": {
       "rollup": {
-        "code": 5543,
-        "import_statements": 25
+        "code": 0,
+        "import_statements": 0
       },
       "webpack": {
-        "code": 6537
+        "code": 951
       }
     }
   },
   "dist/smooth-ui-system.cjs.js": {
-    "bundled": 15600,
-    "minified": 10304,
-    "gzipped": 2896
+    "bundled": 55,
+    "minified": 47,
+    "gzipped": 64
   },
   "/Users/neoziro/Projects/smooth-ui/packages/system/dist/smooth-ui-system.es.js": {
     "bundled": 16153,
