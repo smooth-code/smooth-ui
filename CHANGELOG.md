@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://github.com/smooth-code/smooth-ui/compare/v11.0.0...v11.0.1) (2019-08-27)
+
+
+### Bug Fixes
+
+* remove smooth-ui system ([baf257f](https://github.com/smooth-code/smooth-ui/commit/baf257f))
+
+
+
+
+
 # [10.1.0](https://github.com/smooth-code/smooth-ui/compare/v10.0.7...v10.1.0) (2019-05-04)
 
 
