@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-sc",
   "description": "Modern React UI Library",
-  "version": "10.1.0",
+  "version": "11.0.0-alpha.0",
   "keywords": [
     "styled-components",
     "ui",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@smooth-ui/system": "^10.1.0",
+    "@smooth-ui/system": "^11.0.0-alpha.0",
     "@xstyled/styled-components": "^1.10.0",
     "@xstyled/util": "^1.10.0",
     "polished": "^3.4.1",
