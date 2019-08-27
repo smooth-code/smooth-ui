@@ -1292,6 +1292,14 @@
     "@babel/runtime" "^7.4.4"
     deepmerge "^3.2.0"
 
+"@smooth-ui/system@^11.0.0-alpha.0":
+  version "11.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/system/-/system-11.0.0-alpha.0.tgz#cf376eed6ee963d659e087191a9c0ff4651578a2"
+  integrity sha512-a3jAG/xnUJduh0lYc02eQZ6qjXPjB9dSmoorAwNlN7hjg8aUk/u5OWPSw1q8TDlamLwKPcyNG5zZZVliIR0FQQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    deepmerge "^4.0.0"
+
 "@types/configstore@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@types/configstore/-/configstore-2.1.1.tgz#cd1e8553633ad3185c3f2f239ecff5d2643e92b6"
@@ -11642,11 +11650,13 @@ smooth-doc@^2.3.0:
     styled-components "^4.2.0"
     unist-util-visit "^2.0.0"
 
-"smooth-ui-em-next@file:../packages/core-em":
-  version "10.1.0"
+"smooth-ui-em-next@npm:@smooth-ui/core-em@11.0.0-alpha.0":
+  version "11.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/core-em/-/core-em-11.0.0-alpha.0.tgz#d4d7f52fccbf78caf2eab709fa53dd5ce91a3e6a"
+  integrity sha512-YJmZ6iY1i20Yqfo6T1p4FV84Q9m6pk2E4O2sA8HmxYTnqLVLxIvAGj3UVM+/UEKCcVYY0vuNOkAXD79AUIG9Zg==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@smooth-ui/system" "^10.1.0"
+    "@smooth-ui/system" "^11.0.0-alpha.0"
     "@xstyled/emotion" "^1.10.0"
     "@xstyled/util" "^1.10.0"
     polished "^3.4.1"
@@ -11654,11 +11664,13 @@ smooth-doc@^2.3.0:
     prop-types "^15.7.2"
     react-flatten-children "^1.0.0"
 
-"smooth-ui-sc-next@file:../packages/core-sc":
-  version "10.1.0"
+"smooth-ui-sc-next@npm:@smooth-ui/core-sc@11.0.0-alpha.0":
+  version "11.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@smooth-ui/core-sc/-/core-sc-11.0.0-alpha.0.tgz#f5a2cee29fac0a4f0ada2fc1f439286c962e3b5d"
+  integrity sha512-WbYqh+NZO8NjY7EneXIEJDkrdqXskJwHaIhhrqUC3pufN1Our0xTrAkJNtxdQEH5d7C9RL1YjG0g6rwC5BhyZw==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@smooth-ui/system" "^10.1.0"
+    "@smooth-ui/system" "^11.0.0-alpha.0"
     "@xstyled/styled-components" "^1.10.0"
     "@xstyled/util" "^1.10.0"
     polished "^3.4.1"
