@@ -18,7 +18,7 @@ import { Props } from '../../components/Props'
 
 ## Basic
 
-`Form`, `FormField`, `FormFieldLabel`, `FormCheck`, `FormCheckLabel` are the fundations of form layout. Components are smart and automatically links labels to form controls if a name is provided. A unique `id` is automatically generated, `htmlFor` is added on `label` and `aria-labelledby` / `aria-describedby` attributes are added on controls.
+`Form`, `FormField`, `FormFieldLabel`, `FormCheck`, `FormCheckLabel` are the foundations of form layout. Components are smart and automatically link labels to form controls if a name is provided. A unique `id` is automatically generated, `htmlFor` is added to `label` and `aria-labelledby` / `aria-describedby` attributes are added to controls.
 
 ```jsx live noInline
 import React from 'react'
@@ -372,7 +372,7 @@ render(<Example />)
 All forms components follow [WAI-ARIA Pattern](https://www.w3.org/TR/wai-aria-1.1/) to ensure a complete accesibility of your forms.
 
 - Role `form` is automatically added to `form` if not a native `form` element
-- `aria-describedby` and `aria-labelledby` are automatically added on `label` when a name is provided
+- `aria-describedby` and `aria-labelledby` are automatically added to `label` when a name is provided
 
 ## API
 

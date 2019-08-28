@@ -6,21 +6,21 @@ order: 10
 
 # Theming
 
-Smooth UI is entirely configurable from theme. It uses [Styled Components theming feature](https://www.styled-components.com/docs/advanced#theming) or [emotion-theming](https://emotion.sh/docs/theming) under the hood. You can customize nearly everything using theme!
+Smooth UI is entirely configurable from the theme. It uses [Styled Components theming feature](https://www.styled-components.com/docs/advanced#theming) or [emotion-theming](https://emotion.sh/docs/theming) under the hood. You can customize nearly anything using the theme!
 
 ## Theme engine
 
-Smooth UI rely on [styled-components theming](https://www.styled-components.com/docs/advanced#theming) and [emotion theming](https://emotion.sh/docs/theming) that works similarly. If you already use it in your application, it will work out of the box!
+Smooth UI relies on [styled-components theming](https://www.styled-components.com/docs/advanced#theming) and [emotion theming](https://emotion.sh/docs/theming) that works similarly. If you already use it in your application, it will work out of the box!
 
 ## Theme specification
 
-Smooth UI uses [xstyled](https://www.smooth-code.com/open-source/xstyled/) that implement a powerful [theme specification](https://www.smooth-code.com/open-source/xstyled/docs/theme-specification/).
+Smooth UI uses [xstyled](https://www.smooth-code.com/open-source/xstyled/) that implements a powerful [theme specification](https://www.smooth-code.com/open-source/xstyled/docs/theme-specification/).
 
-All system properties are binded to theme, it really gives super powers!
+All system properties are binded to the theme, it really gives super powers!
 
 ## Use a custom theme
 
-You can use the `ThemeProvider` provided by `styled-components` or `emotion-theming`. You must setup your provider before any Smooth UI component.
+You can use the `ThemeProvider` provided by `styled-components` or `emotion-theming`. You must set your provider up before any Smooth UI component.
 
 ```jsx live noInline
 import React from 'react'
@@ -46,7 +46,7 @@ render(
 
 ## Default theme
 
-Smooth UI automatically merge its default theme in components. If you want to use Smooth UI theme in your application you can import it directly from `@smooth-ui/core-sc` or `@smooth-ui/core-em`.
+Smooth UI automatically merges its default theme in components. If you want to use Smooth UI theme in your application you can import it directly from `@smooth-ui/core-sc` or `@smooth-ui/core-em`.
 
 All theme values are [in the code](https://github.com/smooth-code/smooth-ui/tree/master/packages/shared/core/theme/common).
 
@@ -94,7 +94,7 @@ render(
 
 ## Build components with theme
 
-`@xstyled/system` provides lot of utilities to access theme in your components.
+`@xstyled/system` provides lot of utilities to access the theme in your components.
 
 For example, you can use `th` to access a theme property:
 
@@ -110,7 +110,7 @@ const RedBox = styled.div`
 
 ## Theme reference
 
-Smooth UI also support theme reference, using `th` you can refer to another theme value without repeating it:
+Smooth UI also supports theme reference, using `th` you can refer to another theme value without repeating it:
 
 ```js
 // theme.js
