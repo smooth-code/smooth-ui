@@ -15,6 +15,7 @@ module.exports = {
     'react/sort-comp': 'off',
     'react/destructuring-assignment': 'off',
     'react/forbid-foreign-prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',

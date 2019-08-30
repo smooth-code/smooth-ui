@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@xstyled/styled-components": "^1.10.0",
-    "@xstyled/util": "^1.10.0",
+    "@xstyled/styled-components": "^1.11.0",
+    "@xstyled/util": "^1.11.0",
     "polished": "^3.4.1",
     "prop-desc": "^1.0.0",
     "prop-types": "^15.7.2",
@@ -40,6 +40,6 @@
   },
   "devDependencies": {
     "@xstyled/styled-components": "^1.10.0",
-    "@xstyled/system": "^1.10.0"
+    "@xstyled/system": "^1.11.0"
   }
 }
