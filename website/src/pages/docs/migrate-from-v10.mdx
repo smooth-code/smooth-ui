@@ -1,0 +1,295 @@
+---
+title: Migrate from v10
+menu: Getting Started
+order: 50
+---
+
+# Migrate from v10
+
+Smooth UI v11 is a big breaking change and the migration from v10 could be difficult. This guide will help you achieve it.
+
+## Previous documentation
+
+The previous documentation is still accessible and will remain accessible on this url:
+
+https://smooth-ui-v10.smooth-code.com
+
+## System
+
+`@smooth-ui/system` is replaced by [`@xstyled/system`](https://www.smooth-code.com/open-source/xstyled/). The behaviour is the same and everything is documented.
+
+## Normalize
+
+- No breaking change.
+
+## Theming
+
+Smooth UI v11 follows [xstyled theme specification]([a new theme specification](https://www.smooth-code.com/open-source/xstyled/docs/theme-specification/)).
+
+`ThemeProvider` has no breaking change, it still uses the one provided either by `styled-component` or by `emotion-theming`.
+
+## Emotion
+
+Smooth UI v11 is still compatible with emotion.
+
+## Forms
+
+Form layouts have been reimplemented to improve accessibility, [see new `Form` documentation](https://www.smooth-code.com/open-source/smooth-ui/docs/form/).
+
+- `FormGroup` becomes `FormField`
+- `Label` becomes `FormFieldLabel`
+- `control` prop is no longer required
+
+## Grid
+
+- `Grid` is gone, you can reimplement it:
+
+```jsx
+// Example of a custom `Grid` component
+const Grid = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+`
+```
+
+- `Row` and `Col` are now available everywhere as `row` and `col` property, [see xstyled documentation](https://www.smooth-code.com/open-source/xstyled/docs/system-props/#xgrids).
+
+```jsx
+// v10
+import { Grid, Row, Col } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Grid>
+      <Row>
+        <Col xs={12} md={4}>
+          One
+        </Col>
+        <Col xs={12} md={4}>
+          Two
+        </Col>
+        <Col xs={12} md={4}>
+          Three
+        </Col>
+      </Row>
+    </Grid>
+  )
+}
+
+// v11
+import { Box } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Box mx="auto" px={20} maxWidth={800}>
+      <Box row>
+        <Box col={{ xs: 1, md: 4 / 12 }}>One</Box>
+        <Box col={{ xs: 1, md: 4 / 12 }}>Two</Box>
+        <Box col={{ xs: 1, md: 4 / 12 }}>Three</Box>
+      </Box>
+    </Box>
+  )
+}
+```
+
+## Components
+
+### Alert
+
+No breaking change, you have nothing to migrate.
+
+### Box
+
+- `Box` comes now from [@xstyled/system](https://www.smooth-code.com/open-source/xstyled/docs/system-components/#use-the-box-component) but for convenience it is also re-exported from `@smooth-ui/core-sc` and `@smooth-ui/core-em`.
+- It implements [a new theme specification](https://www.smooth-code.com/open-source/xstyled/docs/theme-specification/)
+
+### Button
+
+- `Button` uses [Reakit Button](https://reakit.io/docs/button/) to improve its accessibility
+- Property `size` is now `scale`
+
+### Checkbox
+
+- `Checkbox` uses [Reakit Checkbox](https://reakit.io/docs/checkbox/) to improve its accessiblity
+- Property `size` is now `scale`
+- Property `valid` is now `aria-invalid` (inversed)
+
+### FormCheck
+
+- Property `inline` is gone, you can now use `aria-orientation` on `RadioGroup` or `CheckboxGroup`
+
+### Input
+
+- Property `size` is now `scale`
+- Property `valid` is now `aria-invalid` (inversed)
+
+### Modal
+
+- `Modal` is gone, you have to implement your own with [Reakit Dialog](https://reakit.io/docs/dialog/)
+
+### Popover
+
+- `Popover` is gone, you have to implement your own with [Reakit Popover](https://reakit.io/docs/popover/)
+
+### Radio
+
+- `Radio` uses [Reakit Radio](https://reakit.io/docs/radio/) to improve its accessiblity
+- It now requires a `RadioGroup` and a `useRadioState` to work
+- Property `size` is now `scale`
+- Property `valid` is now `aria-invalid` (inversed)
+
+### Select
+
+- Property `size` is now `scale`
+- Property `valid` is now `aria-invalid` (inversed)
+
+### Switch
+
+- The inner component has changed, if you style it, you have to adapt it
+
+### Textarea
+
+- Property `size` is now `scale`
+- Property `valid` is now `aria-invalid` (inversed)
+
+### Tooltip
+
+- `Tooltip` is gone, you have to implement your own with [Reakit Tooltip](https://reakit.io/docs/tooltip/)
+
+### Typography
+
+- `Typography` is gone, you have to implement your own
+
+## Utilities
+
+### Breakpoint
+
+The utility has been removed, you can do it with a `Box`:
+
+```jsx
+// v10
+<Breakpoint down="md">
+  Displayed down to md
+</Breakpoint>
+
+// v11
+<Box display={{ md: 'none' }}>
+  Displayed down to md
+</Box>
+```
+
+```jsx
+// v10
+<Breakpoint up="md">
+  Displayed up to md
+</Breakpoint>
+
+// v11
+<Box display={{ xs: 'none', md: 'block' }}>
+  Displayed up to md
+</Box>
+```
+
+### SwitchState
+
+`SwitchState` is gone, use directly [Reakit Checkbox](https://reakit.io/docs/checkbox/) to implement the same kind of behaviour.
+
+### Toggler
+
+`Toggler` is gone, use [React.useState](https://reactjs.org/docs/hooks-state.html) instead.
+
+```jsx
+// v10
+import { Toggler } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Toggler defaultToggled>
+      {([toggled, onToggle]) => (
+        <Button onClick={onToggle}>{toggled ? 'ON' : 'OFF'}</Button>
+      )}
+    </Toggler>
+  )
+}
+
+// v11
+import React from 'react'
+
+function Example() {
+  const [toggled, setToggled] = React.useState(true)
+  return (
+    <Button onClick={() => setToggled(x => !x)}>
+      {toggled ? 'ON' : 'OFF'}
+    </Button>
+  )
+}
+```
+
+### styled & css
+
+`styled` and `css` are no longer exported from `@smooth-ui/core-sc` / `@smooth-ui/core-em`, you can import them from from `@xstyled/styled-components` / `@xstyled/emotion` if you want to use it.
+
+**Styled Components:**
+
+```jsx
+// v10
+import { styled, css } from '@smooth-ui/core-sc'
+
+// v11
+import styled, { css } from '@xstyled/styled-components'
+```
+
+**Emotion:**
+
+```jsx
+// v10
+import { styled, css } from '@smooth-ui/core-em'
+
+// v11
+import styled, { css } from '@xstyled/emotion'
+```
+
+### th
+
+`th` utility is now exported from `@xstyled/system` and [it is improved](https://www.smooth-code.com/open-source/xstyled/docs/system-utilities/#theme-getters).
+
+```jsx
+// v10
+import { th } from '@smooth-ui/core-sc'
+
+// v11
+import { th } from '@xstyled/system'
+```
+
+### unit, px
+
+`unit` and `px` are not longer exported. Use `th.px` instead.
+
+```jsx
+// v10
+import { th } from '@smooth-ui/core-sc'
+
+css`
+  font-size: ${px(10)};
+`
+
+// v11
+import { th } from '@xstyled/system'
+
+css`
+  font-size: ${th.px(10)};
+`
+```
+
+### up, down, between
+
+Responsive utilities are now exported from `@xstyled/system`, [see documentation](https://www.smooth-code.com/open-source/xstyled/docs/system-utilities/#responsive-utilities).
+
+```jsx
+// v10
+import { up, down, between } from '@smooth-ui/core-sc'
+
+// v11
+import { up, down, between } from '@xstyled/system'
+```
