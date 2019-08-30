@@ -62,7 +62,7 @@ export const Button = createComponent({
                 background-color: ${baseColor};
 
                 &:focus {
-                  ${p.theme.mixins.baseFocus(baseColor)(p)};
+                  ${p.theme.mixins.controlFocus(baseColor)(p)};
                 }
 
                 &:not(:disabled):hover,

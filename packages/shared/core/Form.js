@@ -101,7 +101,6 @@ export function createFieldsGroupContext(type) {
     return {
       ...props,
       id,
-      'aria-describedby': props['aria-describedby'] || labelId,
       'aria-labelledby': props['aria-labelledby'] || labelId,
     }
   }
