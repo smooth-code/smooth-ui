@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.2](https://github.com/smooth-code/smooth-ui/compare/v11.0.1...v11.0.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **a11y:** add focus ring on Button ([b24487a](https://github.com/smooth-code/smooth-ui/commit/b24487a))
+* **a11y:** remove aria-describedby (redundant with aria-labelledby) ([03d4d94](https://github.com/smooth-code/smooth-ui/commit/03d4d94))
+
+
+
+
+
 ## [11.0.1](https://github.com/smooth-code/smooth-ui/compare/v11.0.0...v11.0.1) (2019-08-27)
 
 
