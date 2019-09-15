@@ -11,7 +11,7 @@
 [![Small size][size-badge]][build-min]
 
 ```sh
-npm install @smooth-ui/core-sc styled-components
+npm install @smooth-ui/core-sc reakit styled-components
 ```
 
 Smooth UI is a style system / UI library for [React](https://reactjs.org/). It works with [Styled Components 💅](https://www.styled-components.com) or [Emotion 👩‍🎤](https://emotion.sh/).
