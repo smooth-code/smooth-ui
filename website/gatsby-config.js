@@ -23,5 +23,11 @@ module.exports = {
         component: require.resolve(`./src/components/layout`),
       },
     },
+    {
+      resolve: '@bundle-analyzer/gatsby-plugin',
+      options: {
+        token: '0f76d516797d28b3eac9999c701186d94360c766',
+      },
+    },
   ],
 }

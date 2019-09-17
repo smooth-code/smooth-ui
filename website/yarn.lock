@@ -774,12 +774,37 @@
     gzip-size "^5.1.1"
     omit-deep "^0.3.0"
 
+"@bundle-analyzer/core@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@bundle-analyzer/core/-/core-0.4.0.tgz#8cf972668d92dfd6a7cbfe8e159cb4a926d9d572"
+  integrity sha512-dJT8BUTDbSFIX2ynKOLf7IYFRff5bIkB8GHAoF+thkhNLptl33+YZplOpQLAI++/ZNJlIJuPw//l/UpPEUERQw==
+  dependencies:
+    axios "^0.19.0"
+    brotli-size "^1.0.0"
+    cosmiconfig "^5.2.1"
+    gzip-size "^5.1.1"
+    omit-deep "^0.3.0"
+
+"@bundle-analyzer/gatsby-plugin@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@bundle-analyzer/gatsby-plugin/-/gatsby-plugin-0.4.0.tgz#7d481ae7d0a2567c667f5be2e90baf893e29376e"
+  integrity sha512-D/iGCfv/veLhwDdZyUqnLK0tCmH0YQF/2P3GL6ZbOeeIw8g6jKxDZdzBLXMiwweTIUZFCDoDjnEX1W4xYMI/Tg==
+  dependencies:
+    "@bundle-analyzer/webpack-plugin" "^0.4.0"
+
 "@bundle-analyzer/webpack-plugin@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@bundle-analyzer/webpack-plugin/-/webpack-plugin-0.3.1.tgz#1877cf0a8494ca66619bd585ea5606fe3d5fce0a"
   integrity sha512-tL6q+YsO4tUWNdcaICQ/qteFRmxNVwIN22q0WyZLD29DEvchWlggixsA3cDi/9g8ThjQYusrmuYMmQO1rjVHNQ==
   dependencies:
     "@bundle-analyzer/core" "^0.3.1"
+
+"@bundle-analyzer/webpack-plugin@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@bundle-analyzer/webpack-plugin/-/webpack-plugin-0.4.0.tgz#220a90a00277e170fc271a2f587f4e61db224d05"
+  integrity sha512-Ak88ObUJVTRTO3u0WDfg38YwEfOpmT9YMjnpX8SAuWW6KuQmBVN/frtt4RkzBc+UfgxVIJ0mPjUV967WRLOsnQ==
+  dependencies:
+    "@bundle-analyzer/core" "^0.4.0"
 
 "@emotion/cache@^10.0.15":
   version "10.0.15"
@@ -2556,6 +2581,14 @@ brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
+
+brotli-size@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/brotli-size/-/brotli-size-1.0.0.tgz#9dde191db7c5519cf21eb872c58794ec12811a5a"
+  integrity sha512-vLc7vUKuDh1GsxeWW+X0epesdhxVRG5h2uuF6YlV67xlI/r5tRWSXeiZRNX7GpuYr8p1LLKGsxt/MyQ+o0zG6Q==
+  dependencies:
+    duplexer "^0.1.1"
+    iltorb "^2.4.3"
 
 brotli-size@^4.0.0:
   version "4.0.0"
@@ -6790,6 +6823,17 @@ ignore@^5.1.1:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.4.tgz#84b7b3dbe64552b6ef0eca99f6743dbec6d97adf"
   integrity sha512-MzbUSahkTW1u7JpKKjY7LCARd1fU5W2rLdxlM4kdkayuCwZImjkpluF9CM1aLewYJguPDqewLam18Y6AU69A8A==
 
+iltorb@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/iltorb/-/iltorb-2.4.3.tgz#b489689d24c8a25a2cf170c515f97954edd45577"
+  integrity sha512-cr/kC07Cf9sW3TWH7yUxV2QkNjby4LMCsXGmxPCQs5x//QzTpF3GLPNY7L66G+DkNGaTRCgY+vYZ+dyAcuDOnQ==
+  dependencies:
+    detect-libc "^1.0.3"
+    nan "^2.13.2"
+    npmlog "^4.1.2"
+    prebuild-install "^5.3.0"
+    which-pm-runs "^1.0.0"
+
 imagemin-mozjpeg@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/imagemin-mozjpeg/-/imagemin-mozjpeg-8.0.0.tgz#d2ca4e8c982c7c6eda55069af89dee4c1cebcdfd"
@@ -8695,7 +8739,7 @@ name-all-modules-plugin@^1.0.1:
   resolved "https://registry.yarnpkg.com/name-all-modules-plugin/-/name-all-modules-plugin-1.0.1.tgz#0abfb6ad835718b9fb4def0674e06657a954375c"
   integrity sha1-Cr+2rYNXGLn7Te8GdOBmV6lUN1w=
 
-nan@^2.12.1, nan@^2.14.0:
+nan@^2.12.1, nan@^2.13.2, nan@^2.14.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
