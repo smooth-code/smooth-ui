@@ -763,17 +763,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bundle-analyzer/core@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@bundle-analyzer/core/-/core-0.3.1.tgz#31635b10505f1361b41826e9ffda28d4f156d757"
-  integrity sha512-wg4ofAphjmMBz0MfsmUXWn/NwRAOsxY5SDy3XsBlqWP8Z/+i6jLmFmAVYpjD7tKcmHnpYmLTa9Ma011rod9MAw==
-  dependencies:
-    axios "^0.19.0"
-    brotli-size "^4.0.0"
-    cosmiconfig "^5.2.1"
-    gzip-size "^5.1.1"
-    omit-deep "^0.3.0"
-
 "@bundle-analyzer/core@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@bundle-analyzer/core/-/core-0.4.0.tgz#8cf972668d92dfd6a7cbfe8e159cb4a926d9d572"
@@ -791,13 +780,6 @@
   integrity sha512-D/iGCfv/veLhwDdZyUqnLK0tCmH0YQF/2P3GL6ZbOeeIw8g6jKxDZdzBLXMiwweTIUZFCDoDjnEX1W4xYMI/Tg==
   dependencies:
     "@bundle-analyzer/webpack-plugin" "^0.4.0"
-
-"@bundle-analyzer/webpack-plugin@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@bundle-analyzer/webpack-plugin/-/webpack-plugin-0.3.1.tgz#1877cf0a8494ca66619bd585ea5606fe3d5fce0a"
-  integrity sha512-tL6q+YsO4tUWNdcaICQ/qteFRmxNVwIN22q0WyZLD29DEvchWlggixsA3cDi/9g8ThjQYusrmuYMmQO1rjVHNQ==
-  dependencies:
-    "@bundle-analyzer/core" "^0.3.1"
 
 "@bundle-analyzer/webpack-plugin@^0.4.0":
   version "0.4.0"
@@ -2589,13 +2571,6 @@ brotli-size@^1.0.0:
   dependencies:
     duplexer "^0.1.1"
     iltorb "^2.4.3"
-
-brotli-size@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/brotli-size/-/brotli-size-4.0.0.tgz#a05ee3faad3c0e700a2f2da826ba6b4d76e69e5e"
-  integrity sha512-uA9fOtlTRC0iqKfzff1W34DXUA3GyVqbUaeo3Rw3d4gd1eavKVCETXrn3NzO74W+UVkG3UHu8WxUi+XvKI/huA==
-  dependencies:
-    duplexer "0.1.1"
 
 browserify-aes@^1.0.0, browserify-aes@^1.0.4:
   version "1.2.0"
@@ -4436,7 +4411,7 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-duplexer@0.1.1, duplexer@^0.1.1:
+duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
   integrity sha1-rOb/gIwc5mtX0ev5eXessCM0z8E=
