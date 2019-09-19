@@ -1,7 +1,7 @@
 module.exports = {
-  __experimentalThemes: [
+  plugins: [
     {
-      resolve: require.resolve('smooth-doc'),
+      resolve: 'smooth-doc',
       options: {
         name: 'Smooth UI',
         slug: 'smooth-ui',
@@ -12,11 +12,9 @@ module.exports = {
         github: 'https://github.com/smooth-code/smooth-ui',
         menu: ['Getting Started', 'Customization', 'Components', 'Advanced'],
         nav: [{ title: 'Docs', url: '/docs/' }],
-        codeFundProperty: 268,
+        codeFundProperty: 430,
       },
     },
-  ],
-  plugins: [
     {
       resolve: `gatsby-plugin-layout`,
       options: {
