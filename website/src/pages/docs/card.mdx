@@ -1,0 +1,112 @@
+---
+title: Card
+menu: Components
+order: 35
+---
+
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardHeader,
+  CardFooter,
+} from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Card
+
+Cards provide a flexible and extensible content container with multiple variants and options.
+
+## Basic
+
+```jsx live noInline
+import React from 'react'
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardImg,
+  Text,
+  Button,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Card maxWidth={400}>
+      <CardImg src="https://source.unsplash.com/random/1200x400" />
+      <CardBody>
+        <CardTitle>
+          <Text variant="h4">My card Title</Text>
+        </CardTitle>
+        <Text forwardedAs="p">Some text</Text>
+        <Button forwardedAs="a" href="#">
+          Go somewhere
+        </Button>
+      </CardBody>
+    </Card>
+  )
+}
+
+render(<Example />)
+```
+
+## Header and Footer
+
+```jsx live noInline
+import React from 'react'
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardHeader,
+  CardFooter,
+  Text,
+  Button,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Card maxWidth={400}>
+      <CardHeader>This is a card header</CardHeader>
+      <CardBody>
+        <CardTitle>
+          <Text variant="h4">My card Title</Text>
+        </CardTitle>
+        <Text forwardedAs="p">Some text</Text>
+        <Button forwardedAs="a" href="#">
+          Go somewhere
+        </Button>
+      </CardBody>
+      <CardFooter>This is a card footer</CardFooter>
+    </Card>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+There is no specific accessibility issue with cards.
+
+## API
+
+### Card
+
+<Props of={Card} />
+
+### CardHeader
+
+<Props of={CardHeader} />
+
+### CardBody
+
+<Props of={CardBody} />
+
+### CardTitle
+
+<Props of={CardTitle} />
+
+### CardFooter
+
+<Props of={CardFooter} />

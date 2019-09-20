@@ -1,0 +1,43 @@
+---
+title: Separator
+menu: Components
+order: 95
+---
+
+import { Separator } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Separator
+
+The `Separator` represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section.
+
+## Basic
+
+```jsx live noInline
+import React from 'react'
+import { Text, Separator } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <>
+      <Text forwardedAs="p">One TextaragraTexth</Text>
+      <Separator />
+      <Text forwardedAs="p">Another paragraph</Text>
+    </>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+- It uses the `hr` HTML5 element.
+- It automatically set `aria-orientation` to `horizontal`.
+- It has role `separator`.
+
+## API
+
+### Separator
+
+<Props of={Separator} />

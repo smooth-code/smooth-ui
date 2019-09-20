@@ -30,7 +30,8 @@
     "polished": "^3.4.1",
     "prop-desc": "^1.0.0",
     "prop-types": "^15.7.2",
-    "react-flatten-children": "^1.0.0"
+    "react-flatten-children": "^1.0.0",
+    "react-merge-refs": "^1.0.0"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.0",

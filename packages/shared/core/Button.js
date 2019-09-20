@@ -52,6 +52,10 @@ export const Button = createComponent({
             /* When used as link */
             text-decoration: none;
 
+            &[type='button'] {
+              appearance: none;
+            }
+
             &:disabled {
               opacity: 0.8;
             }
@@ -67,6 +71,7 @@ export const Button = createComponent({
 
                 &:not(:disabled):hover,
                 &:not(:disabled):active {
+                  color: ${colorYik(baseColor)(p)};
                   background-color: ${darken(0.05, baseColor)};
                 }
               `(p)}

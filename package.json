@@ -5,14 +5,13 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:docs": "yarn build && docz build && cp _redirects .docz/dist",
-    "build:watch": "WATCH_MODE=true lerna run --parallel build -- --watch",
+    "dev": "WATCH_MODE=true lerna run --parallel build -- --watch",
     "update-website": "cp -r ./packages/core-sc/dist ./website/node_modules/smooth-ui-sc-next && cp -r ./packages/core-em/dist ./website/node_modules/smooth-ui-em-next",
     "ci": "yarn lint && yarn test && yarn build && bundlesize && yarn tsc:check || true",
-    "dev": "docz dev",
     "format": "prettier --write \"**/*.{js,json,md,mdx}\"",
     "lint": "eslint .",
     "release": "lerna publish --conventional-commits --force-publish=* && conventional-github-releaser --preset angular",
+    "prerelease": "lerna publish prerelease --force-publish=* && conventional-github-releaser --preset angular",
     "test": "jest"
   },
   "bundlesize": [

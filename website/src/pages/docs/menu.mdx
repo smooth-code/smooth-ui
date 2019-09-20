@@ -1,0 +1,146 @@
+---
+title: Menu
+menu: Components
+order: 65
+---
+
+import {
+  Menu,
+  MenuItem,
+  MenuDisclosure,
+  MenuSeparator,
+} from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Menu
+
+Accessible `Menu` component.
+
+## Basic
+
+```jsx live noInline
+import React from 'react'
+import {
+  useMenuState,
+  Menu,
+  MenuItem,
+  MenuDisclosure,
+  MenuSeparator,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const menu = useMenuState()
+  return (
+    <>
+      <MenuDisclosure {...menu}>Preferences</MenuDisclosure>
+      <Menu {...menu} aria-label="Preferences">
+        <MenuItem {...menu}>Settings</MenuItem>
+        <MenuItem {...menu} disabled>
+          Extensions
+        </MenuItem>
+        <MenuSeparator {...menu} />
+        <MenuItem {...menu}>Keyboard shortcuts</MenuItem>
+      </Menu>
+    </>
+  )
+}
+
+render(<Example />)
+```
+
+## Animated
+
+Make it animated using `unstable_animated` attribute in `useMenuState`.
+
+```jsx live noInline
+import React from 'react'
+import {
+  useMenuState,
+  Menu,
+  MenuItem,
+  MenuDisclosure,
+  MenuSeparator,
+} from '@smooth-ui/core-sc'
+
+function Example() {
+  const menu = useMenuState({ unstable_animated: true })
+  return (
+    <>
+      <MenuDisclosure {...menu}>Preferences</MenuDisclosure>
+      <Menu {...menu} aria-label="Preferences">
+        <MenuItem {...menu}>Settings</MenuItem>
+        <MenuItem {...menu} disabled>
+          Extensions
+        </MenuItem>
+        <MenuSeparator {...menu} />
+        <MenuItem {...menu}>Keyboard shortcuts</MenuItem>
+      </Menu>
+    </>
+  )
+}
+
+render(<Example />)
+```
+
+## Submenu
+
+Make it animated using `unstable_animated` attribute in `useMenuState`.
+
+```jsx live noInline
+import React from 'react'
+import {
+  useMenuState,
+  Menu,
+  MenuItem,
+  MenuDisclosure,
+  MenuSeparator,
+} from '@smooth-ui/core-sc'
+
+const PreferencesMenu = React.forwardRef((props, ref) => {
+  const menu = useMenuState()
+  return (
+    <>
+      <MenuDisclosure ref={ref} {...menu} {...props}>
+        Preferences
+      </MenuDisclosure>
+      <Menu {...menu} aria-label="Preferences">
+        <MenuItem {...menu}>Settings</MenuItem>
+        <MenuItem {...menu} disabled>
+          Extensions
+        </MenuItem>
+        <MenuSeparator {...menu} />
+        <MenuItem {...menu}>Keyboard shortcuts</MenuItem>
+      </Menu>
+    </>
+  )
+})
+
+function Example() {
+  const menu = useMenuState()
+  return (
+    <>
+      <MenuDisclosure {...menu}>Code</MenuDisclosure>
+      <Menu {...menu} aria-label="Code">
+        <MenuItem {...menu}>About Visual Studio Code</MenuItem>
+        <MenuItem {...menu}>Check for Updates...</MenuItem>
+        <MenuSeparator {...menu} />
+        <MenuItem {...menu} forwardedAs={PreferencesMenu} />
+      </Menu>
+    </>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+`Menu` uses [Reakit Menu](https://reakit.io/docs/menu/) under the hood, it means it follows WAI-ARIA Pattern.
+
+[Read more about Menu accessibility on Reakit](https://reakit.io/docs/menu/#accessibility).
+
+## API
+
+### Menu
+
+<Props of={Menu} />
