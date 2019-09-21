@@ -47,7 +47,14 @@ export const getRollupConfig = ({ pwd, buildName, name }) => {
     plugins: [
       babel(getBabelOptions({ useESModules: false })),
       nodeResolve(),
-      commonjs(),
+      commonjs({
+        namedExports: {
+          '../../node_modules/body-scroll-lock/lib/bodyScrollLock.min.js': [
+            'disableBodyScroll',
+            'enableBodyScroll',
+          ],
+        },
+      }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
   }
@@ -64,7 +71,14 @@ export const getRollupConfig = ({ pwd, buildName, name }) => {
     plugins: [
       babel(getBabelOptions({ useESModules: true })),
       nodeResolve(),
-      commonjs(),
+      commonjs({
+        namedExports: {
+          '../../node_modules/body-scroll-lock/lib/bodyScrollLock.min.js': [
+            'disableBodyScroll',
+            'enableBodyScroll',
+          ],
+        },
+      }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       terser(),
     ],
