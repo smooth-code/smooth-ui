@@ -19,8 +19,8 @@
     "reakit": "^1.0.0-beta.7",
     "smooth-code-landers": "^1.3.2",
     "smooth-doc": "^2.7.1",
-    "smooth-ui-em-next": "npm:@smooth-ui/core-em@next",
-    "smooth-ui-sc-next": "npm:@smooth-ui/core-sc@next",
+    "smooth-ui-em-next": "npm:@smooth-ui/core-em@latest",
+    "smooth-ui-sc-next": "npm:@smooth-ui/core-sc@latest",
     "styled-components": "^4.2.0"
   }
 }
