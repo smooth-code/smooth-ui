@@ -11,7 +11,7 @@
     "format": "prettier --write \"**/*.{js,json,md,mdx}\"",
     "lint": "eslint .",
     "release": "lerna publish --conventional-commits --force-publish=* && conventional-github-releaser --preset angular",
-    "prerelease": "lerna publish prerelease --force-publish=* && conventional-github-releaser --preset angular",
+    "pre-release": "lerna publish prerelease --force-publish=* && conventional-github-releaser --preset angular",
     "test": "jest"
   },
   "bundlesize": [
