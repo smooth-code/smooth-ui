@@ -21,28 +21,27 @@ function getThemeCache(theme) {
   return cache
 }
 
-export function createInnerComponent({ name, render }) {
+export function createInnerComponent({ name, render, theme = {} }) {
   const InnerComponent = React.forwardRef(function InnerComponent(props, ref) {
     const { as, safeProps } = useProps(props)
-    return render({ ref, as, ...safeProps })
+    return render({ ref, as, ...safeProps }, { theme, ...props })
   })
   InnerComponent.displayName = name
   return InnerComponent
 }
 
-export function createComponent({ name, render, theme, propTypes }) {
+export function createComponent({ name, render, theme = {}, propTypes }) {
   theme = Array.isArray(theme) ? mergeClone(...theme) : theme
-  const InnerComponent = React.forwardRef(function InnerComponent(props, ref) {
-    const { as, safeProps } = useProps(props)
-    return render({ ref, as, ...safeProps })
-  })
-  InnerComponent.displayName = name
+  const InnerComponent = createInnerComponent({ name, render, theme })
   const Component = styled(InnerComponent)`
     ${p => {
       const cache = getThemeCache(p.theme)
       cache[name] = cache[name] || mergeClone(theme, p.theme)
       const props = { ...p, theme: cache[name] }
-      return props.theme.components[name](props)
+      const componentStyle = props.theme.components
+        ? props.theme.components[name]
+        : null
+      return componentStyle ? componentStyle(props) : null
     }}
   `
   Component.displayName = `styled(${name})`

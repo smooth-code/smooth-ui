@@ -1,4 +1,5 @@
 import { th } from '@xstyled/system'
+import { transparentize } from 'polished'
 
 export const colors = {
   black: '#000',
@@ -34,6 +35,9 @@ export const colors = {
   danger: th.color('red'),
   light: th.color('gray100'),
   dark: th.color('gray800'),
+
+  highlightBackground: p => transparentize(0.96, th.color('black')(p)),
+  highlightBorder: p => transparentize(0.875, th.color('black')(p)),
 
   form: {
     valid: th.color('success'),

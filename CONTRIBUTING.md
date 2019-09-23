@@ -44,9 +44,9 @@ _Before_ submitting a pull request, please make sure the following is done…
 
     ```sh
     # build packages continuously:
-    yarn run build:watch
+    yarn dev
     # in website folder have to run:
-    yarn && yarn run dev
+    yarn && yarn dev
     # each time you want to update the documentation to reflect your change, use:
     yarn update-website
     ```

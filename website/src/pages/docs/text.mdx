@@ -1,0 +1,175 @@
+---
+title: Text
+menu: Components
+order: 105
+---
+
+import { Text } from 'smooth-ui-sc-next'
+import { Props } from '../../components/Props'
+
+# Text
+
+Text makes your text fit in your boxes will built-in ellipsis support.
+
+## Basic
+
+```jsx live noInline
+import React from 'react'
+import { Text, Box } from '@smooth-ui/core-sc'
+
+function Example() {
+  return <Text>This is a simple text, nothing fancy.</Text>
+}
+
+render(<Example />)
+```
+
+## Headings
+
+Text component has built-in variants for `h*` elements.
+
+```jsx live noInline
+import React from 'react'
+import { Text, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Text variant="h1">h1. Heading</Text>
+      <Text variant="h2">h2. Heading</Text>
+      <Text variant="h3">h3. Heading</Text>
+      <Text variant="h4">h4. Heading</Text>
+      <Text variant="h5">h5. Heading</Text>
+      <Text variant="h6">h6. Heading</Text>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+### Customize Headings
+
+Variant and semantic are two different things, you could use a variant `h1` and choose to use a `h2` tag using `forwardedAs`. In the following example, we use `div` for each of them.
+
+```jsx live noInline
+import React from 'react'
+import { Text, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Text forwardedAs="div" variant="h1">
+        h1. Heading
+      </Text>
+      <Text forwardedAs="div" variant="h2">
+        h2. Heading
+      </Text>
+      <Text forwardedAs="div" variant="h3">
+        h3. Heading
+      </Text>
+      <Text forwardedAs="div" variant="h4">
+        h4. Heading
+      </Text>
+      <Text forwardedAs="div" variant="h5">
+        h5. Heading
+      </Text>
+      <Text forwardedAs="div" variant="h6">
+        h6. Heading
+      </Text>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Display Headings
+
+Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a display heading—a larger, slightly more opinionated heading style. Keep in mind these headings are not responsive by default.
+
+```jsx live noInline
+import React from 'react'
+import { Text, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Text variant="display-1">Display 1</Text>
+      <Text variant="display-2">Display 2</Text>
+      <Text variant="display-3">Display 3</Text>
+      <Text variant="display-4">Display 4</Text>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
+## Add a new variant
+
+Variants are defined in `texts` section of your theme, you can add a variant by [customizing your theme](/docs/theming/).
+
+```jsx live noInline
+import React from 'react'
+import { css, ThemeProvider } from 'styled-components'
+import { Text } from '@smooth-ui/core-sc'
+
+const theme = {
+  texts: {
+    'comic-title': {
+      // If you don't specify a `forwardedAs` in your component, it will use this one
+      // by default it uses a `span`
+      defaultAs: 'h1',
+      style: css`
+        font-family: 'comic sans ms', sans-serif;
+        font-size: 5rem;
+      `,
+    },
+  },
+}
+
+function Example() {
+  return <Text variant="comic-title">Hello world</Text>
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <Example />
+  </ThemeProvider>,
+)
+```
+
+## Ellispis & multilines
+
+Make your text fit on one line or several lines using `lines` property.
+
+```jsx live noInline
+import React from 'react'
+import { Text, Box, Separator } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Box width={200}>
+      <Text lines={1}>This text should fit on one line.</Text>
+      <Separator />
+      <Text lines={2}>
+        This text should fit on two lines, and takes the space of two lines.
+      </Text>
+    </Box>
+  )
+}
+
+render(<Example />)
+```
+
+## Accessibility
+
+- The ellipsis uses [line-clamp](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp), it means your text stay in the page and is visible by screen reader.
+- By default, variants induces the HTML element that will be used, but your are free to use yours.
+
+## API
+
+### Text
+
+<Props of={Text} />
