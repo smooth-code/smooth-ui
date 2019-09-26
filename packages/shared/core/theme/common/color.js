@@ -36,11 +36,38 @@ export const colors = {
   light: th.color('gray100'),
   dark: th.color('gray800'),
 
-  highlightBackground: p => transparentize(0.96, th.color('black')(p)),
-  highlightBorder: p => transparentize(0.875, th.color('black')(p)),
+  lighter: th.color('white'),
+  light100: th.color('gray100'),
+  light200: th.color('gray200'),
+  light300: th.color('gray300'),
+  light400: th.color('gray400'),
+  light500: th.color('gray500'),
+  light600: th.color('gray600'),
+  light700: th.color('gray700'),
+  light800: th.color('gray800'),
+  light900: th.color('gray900'),
+  darker: th.color('black'),
+  highlightBackground: p => transparentize(0.96, th.color('darker')(p)),
+  highlightBorder: p => transparentize(0.875, th.color('darker')(p)),
 
   form: {
     valid: th.color('success'),
     invalid: th.color('danger'),
+  },
+
+  modes: {
+    dark: {
+      lighter: th.color('black'),
+      darker: th.color('white'),
+      light100: th.color('gray900'),
+      light200: th.color('gray800'),
+      light300: th.color('gray700'),
+      light400: th.color('gray600'),
+      light500: th.color('gray500'),
+      light600: th.color('gray400'),
+      light700: th.color('gray300'),
+      light800: th.color('gray200'),
+      light900: th.color('gray100'),
+    },
   },
 }

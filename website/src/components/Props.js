@@ -1,46 +1,56 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import styled from 'styled-components'
+import styled from '@xstyled/styled-components'
+import { th } from '@xstyled/system'
 import { Tooltip } from '@smooth-ui/core-sc'
 
 const Table = styled.table`
   display: table !important;
-  box-shadow: rgb(206, 212, 222) 0px 0px 0px 1px;
   background-color: transparent;
   border-collapse: collapse;
-  color: rgb(19, 22, 31);
+  color: text;
   overflow-y: hidden;
   overflow-x: initial;
   width: 100%;
-  font-size: 14px;
+  font-size: 14;
   padding: 0;
   border-spacing: 0;
   border-style: hidden;
-  border-radius: 2px;
   table-layout: auto;
+  border-radius: 4;
+  box-shadow: ${th.color('border')} 0 0 0 1px;
 `
 
 const Thead = styled.thead`
-  color: rgb(125, 137, 156);
-  background: rgb(238, 241, 245);
+  color: text;
+  background-color: secondary-bg;
   text-align: left;
 `
 
 const Th = styled.th`
   font-weight: 400;
-  padding: 20px;
+  padding: 20;
+
+  &:first-child {
+    border-radius: 4 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 4 0;
+  }
 `
 
 const Tbody = styled.tbody`
   > tr {
-    border-top: 1px solid rgb(206, 212, 222);
+    border-top: 1;
+    border-color: border;
   }
 `
 
 const Td = styled.td`
   line-height: 2;
   font-weight: 200;
-  padding: 12px 20px;
+  padding: 12 20;
 `
 
 const GROUP_REGEXP = /^\[(.*)]\s+/

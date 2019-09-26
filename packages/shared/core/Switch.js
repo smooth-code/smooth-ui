@@ -120,7 +120,7 @@ export const Switch = createComponent({
             border-radius: ${th.radius('34rpx')(p)};
             width: ${width};
             height: ${height};
-            background-color: ${th.color('gray300')(p)};
+            background-color: ${th.color('light300')(p)};
             overflow: hidden;
             cursor: pointer;
             border-width: ${th.borderWidth(`formControl.base`)(p)};
@@ -153,7 +153,7 @@ export const Switch = createComponent({
 
             [data-switch-ball] {
               flex-shrink: 0;
-              background-color: ${th.color('gray500')(p)};
+              background-color: ${th.color('light500')(p)};
               border-radius: 50%;
               width: ${ballSize};
               height: ${ballSize};

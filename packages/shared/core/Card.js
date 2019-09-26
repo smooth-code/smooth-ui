@@ -18,7 +18,7 @@ export const Card = createComponent({
             flex-direction: column;
             min-width: 0;
             word-wrap: break-word;
-            background-color: ${th.color('white')(p)};
+            background-color: ${th.color('lighter')(p)};
             background-clip: border-box;
             border: 0.0625rem solid;
             border-color: ${th.color('highlightBorder')(p)};
@@ -130,7 +130,7 @@ export const CardHeader = createComponent({
             padding: 0.75rem 1.25rem;
             margin-bottom: 0; /* Removes the default margin-bottom of <hN> */
             background-color: ${th.color('highlightBackground')(p)};
-            border-bottom: 0.0625rem;
+            border-bottom: 0.0625rem solid;
             border-bottom-color: ${th.color('highlightBorder')(p)};
 
             &:first-child {
@@ -164,7 +164,7 @@ export const CardFooter = createComponent({
           return css`
             padding: 0.75rem 1.25rem;
             background-color: ${th.color('highlightBackground')(p)};
-            border-top: 0.0625rem;
+            border-top: 0.0625rem solid;
             border-top-color: ${th.color('highlightBorder')(p)};
 
             &:last-child {
