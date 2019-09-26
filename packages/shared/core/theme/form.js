@@ -24,13 +24,13 @@ export const space = {
 export const colors = {
   ...baseColors,
   formControl: {
-    background: th.color('white'),
-    border: th.color('gray400'),
-    text: th.color('gray900'),
-    placeholder: th.color('gray600'),
+    background: th.color('lighter'),
+    border: th.color('light400'),
+    text: th.color('light900'),
+    placeholder: th.color('light600'),
     disabled: {
-      background: th.color('gray100'),
-      text: th.color('gray900'),
+      background: th.color('light100'),
+      text: th.color('light900'),
     },
   },
 }

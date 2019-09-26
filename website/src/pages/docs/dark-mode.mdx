@@ -1,0 +1,46 @@
+---
+title: Dark Mode
+menu: Customization
+order: 15
+---
+
+# Dark Mode
+
+Dark Mode is built-in Smooth UI, every components have their dark mode.
+
+## Use with xstyled color modes
+
+xstyled has a [built-in support for color modes and dark mode](https://www.smooth-code.com/open-source/xstyled/docs/color-modes/). If you use it, Smooth UI is already compatible except one thing: custom properties. Smooth UI is very dynamic and it is yet possible to achieve everything using custom properties.
+
+To disable it, [set `useCustomProperties` to `false` in your theme](https://www.smooth-code.com/open-source/xstyled/docs/color-modes/#turn-off-custom-properties).
+
+## Use dark mode without xstyled
+
+To enable dark mode, add a theme and specify `colorMode: 'dark'`:
+
+```jsx live noInline
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { Alert } from '@smooth-ui/core-sc'
+
+const darkTheme = {
+  colorMode: 'dark',
+}
+
+const lightTheme = {
+  colorMode: 'light',
+}
+
+render(
+  <div>
+    <ThemeProvider theme={darkTheme}>
+      <Alert>Dark Alert</Alert>
+    </ThemeProvider>
+    <ThemeProvider theme={lightTheme}>
+      <Alert>Light Alert</Alert>
+    </ThemeProvider>
+  </div>,
+)
+```
+
+See [theming documentation](/docs/theming/).

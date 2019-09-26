@@ -33,7 +33,7 @@ export const Menu = createComponent({
             border: 0.0625rem solid;
             border-color: ${th.color('highlightBorder')(p)};
             font-family: ${th.font('base')(p)};
-            background-color: ${th.color('white')(p)};
+            background-color: ${th.color('lighter')(p)};
             border-radius: ${th.radius('base')(p)};
             padding: 0.5rem 0.25rem;
             z-index: 999;
@@ -86,7 +86,7 @@ export const MenuItem = createComponent({
             padding: 8rpx;
             border: 0;
             border-radius: ${th.radius('base')(p)};
-            color: ${th.color('gray700')(p)};
+            color: ${th.color('light700')(p)};
             font-size: 14rpx;
             display: block;
             width: 100%;
@@ -105,6 +105,16 @@ export const MenuItem = createComponent({
             &:hover {
               outline: none;
               background-color: ${th.color('highlightBackground')(p)};
+            }
+
+            &[disabled],
+            &[aria-disabled='true'] {
+              color: ${th.color('light500')(p)};
+              cursor: default;
+
+              &:hover {
+                background-color: transparent;
+              }
             }
           `
         },

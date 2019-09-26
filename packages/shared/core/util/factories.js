@@ -30,13 +30,25 @@ export function createInnerComponent({ name, render, theme = {} }) {
   return InnerComponent
 }
 
+function computeTheme(baseTheme, customTheme) {
+  const theme = mergeClone(baseTheme, customTheme)
+  if (!theme.colors || !theme.colors.modes) return baseTheme
+  return {
+    ...theme,
+    colors: {
+      ...theme.colors,
+      ...theme.colors.modes[theme.colorMode || theme.__colorMode],
+    },
+  }
+}
+
 export function createComponent({ name, render, theme = {}, propTypes }) {
   theme = Array.isArray(theme) ? mergeClone(...theme) : theme
   const InnerComponent = createInnerComponent({ name, render, theme })
   const Component = styled(InnerComponent)`
     ${p => {
       const cache = getThemeCache(p.theme)
-      cache[name] = cache[name] || mergeClone(theme, p.theme)
+      cache[name] = cache[name] || computeTheme(theme, p.theme)
       const props = { ...p, theme: cache[name] }
       const componentStyle = props.theme.components
         ? props.theme.components[name]

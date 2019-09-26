@@ -13,6 +13,9 @@ module.exports = {
         menu: ['Getting Started', 'Customization', 'Components', 'Advanced'],
         nav: [{ title: 'Docs', url: '/docs/' }],
         codeFundProperty: 430,
+        theme: {
+          useCustomProperties: false,
+        },
       },
     },
     {

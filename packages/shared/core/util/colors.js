@@ -3,7 +3,7 @@ import { th } from '@xstyled/system'
 
 export const colorLevel = (color, level) => p => {
   const colorInterval = p.theme.colorInterval || 0.08
-  const baseColor = level > 0 ? th.color('black')(p) : th.color('white')(p)
+  const baseColor = level > 0 ? th.color('darker')(p) : th.color('lighter')(p)
   const absLevel = Math.abs(level)
   return mix(absLevel * colorInterval, baseColor, color)
 }
