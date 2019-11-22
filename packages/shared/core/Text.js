@@ -2,7 +2,7 @@
 import React from 'react'
 import { node, number, string, oneOfType, oneOf } from 'prop-desc'
 import mergeRefs from 'react-merge-refs'
-import { th, compose, space, typography } from '@xstyled/system'
+import { th, system } from '@xstyled/system'
 import { css, createComponent, getSystemPropTypes } from './util'
 import * as theme from './theme/common'
 
@@ -16,11 +16,6 @@ function ellipsis({ lines = Infinity }) {
     white-space: normal;
   `
 }
-
-const system = compose(
-  space,
-  typography,
-)
 
 export const TEXT_VARIANTS = [
   'h1',
@@ -42,7 +37,7 @@ export const Text = createComponent({
     { theme, variant },
   ) => {
     const variantConfig = variant ? theme.texts[variant] : null
-    const As = asProp || ((variantConfig && variantConfig.defaultAs) || 'span')
+    const As = asProp || (variantConfig && variantConfig.defaultAs) || 'span'
     const localRef = React.useRef()
     const [height, setHeight] = React.useState(null)
     React.useLayoutEffect(() => {

@@ -3,3 +3,5 @@ dist/
 package.json
 CHANGELOG.md
 .docz/
+website/public
+website/.cache
