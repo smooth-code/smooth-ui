@@ -1,7 +1,7 @@
 {
   "name": "@smooth-ui/core-sc",
   "description": "Modern React UI Library",
-  "version": "11.1.1",
+  "version": "11.1.2",
   "keywords": [
     "styled-components",
     "ui",

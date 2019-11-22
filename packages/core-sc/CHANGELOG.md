@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://github.com/smooth-code/smooth-ui/compare/v11.1.1...v11.1.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* fix internal theme usage ([fc74682](https://github.com/smooth-code/smooth-ui/commit/fc74682c5f1fdac73b507f3d90018840a38cdcdf))
+
+
+
+
+
 ## [11.1.1](https://github.com/smooth-code/smooth-ui/compare/v11.1.0...v11.1.1) (2019-09-27)
 
 **Note:** Version bump only for package @smooth-ui/core-sc
