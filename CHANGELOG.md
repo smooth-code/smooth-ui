@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://github.com/smooth-code/smooth-ui/compare/v11.1.2...v11.1.3) (2019-11-22)
+
+
+### Features
+
+* enable all system on Text ([5937e59](https://github.com/smooth-code/smooth-ui/commit/5937e596ba57e2f6aed431ccf4400d896982a5d2))
+
+
+
+
+
 ## [11.1.2](https://github.com/smooth-code/smooth-ui/compare/v11.1.1...v11.1.2) (2019-11-22)
 
 
