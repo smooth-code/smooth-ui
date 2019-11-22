@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '@xstyled/x'
+import styled, { useTheme } from '@xstyled/x'
 import { omit } from '@xstyled/util'
 import { systemProps } from './system'
 import { mergeClone } from './misc'
@@ -21,18 +21,9 @@ function getThemeCache(theme) {
   return cache
 }
 
-export function createInnerComponent({ name, render, theme = {} }) {
-  const InnerComponent = React.forwardRef(function InnerComponent(props, ref) {
-    const { as, safeProps } = useProps(props)
-    return render({ ref, as, ...safeProps }, { theme, ...props })
-  })
-  InnerComponent.displayName = name
-  return InnerComponent
-}
-
 function computeTheme(baseTheme, customTheme) {
   const theme = mergeClone(baseTheme, customTheme)
-  if (!theme.colors || !theme.colors.modes) return baseTheme
+  if (!theme.colors || !theme.colors.modes) return theme
   return {
     ...theme,
     colors: {
@@ -42,17 +33,40 @@ function computeTheme(baseTheme, customTheme) {
   }
 }
 
-export function createComponent({ name, render, theme = {}, propTypes }) {
-  theme = Array.isArray(theme) ? mergeClone(...theme) : theme
-  const InnerComponent = createInnerComponent({ name, render, theme })
+function getTheme(name, baseTheme, customTheme) {
+  const themeCache = getThemeCache(customTheme)
+  themeCache[name] = themeCache[name] || computeTheme(baseTheme, customTheme)
+  return themeCache[name]
+}
+
+export function createInnerComponent({ name, render, theme: baseTheme = {} }) {
+  const InnerComponent = React.forwardRef(function InnerComponent(props, ref) {
+    const customTheme = useTheme()
+    const theme = getTheme(name, baseTheme, customTheme)
+    const { as, safeProps } = useProps(props)
+    return render({ ref, as, ...safeProps }, { theme, ...props })
+  })
+  InnerComponent.displayName = name
+  return InnerComponent
+}
+
+export function createComponent({
+  name,
+  render,
+  theme: themeArg = {},
+  propTypes,
+}) {
+  const baseTheme = Array.isArray(themeArg) ? mergeClone(...themeArg) : themeArg
+  const InnerComponent = createInnerComponent({
+    name,
+    render,
+    theme: baseTheme,
+  })
   const Component = styled(InnerComponent)`
     ${p => {
-      const cache = getThemeCache(p.theme)
-      cache[name] = cache[name] || computeTheme(theme, p.theme)
-      const props = { ...p, theme: cache[name] }
-      const componentStyle = props.theme.components
-        ? props.theme.components[name]
-        : null
+      const theme = getTheme(name, baseTheme, p.theme)
+      const props = { ...p, theme }
+      const componentStyle = theme.components ? theme.components[name] : null
       return componentStyle ? componentStyle(props) : null
     }}
   `
