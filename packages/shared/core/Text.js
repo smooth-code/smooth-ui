@@ -17,6 +17,14 @@ function ellipsis({ lines = Infinity }) {
   `
 }
 
+const isServer = typeof window === 'undefined'
+
+function useUniversalLayoutEffect(callback, deps) {
+  return isServer
+    ? React.useEffect(callback, deps)
+    : React.useLayoutEffect(callback, deps)
+}
+
 export const TEXT_VARIANTS = [
   'h1',
   'h2',
@@ -40,7 +48,7 @@ export const Text = createComponent({
     const As = asProp || (variantConfig && variantConfig.defaultAs) || 'span'
     const localRef = React.useRef()
     const [height, setHeight] = React.useState(null)
-    React.useLayoutEffect(() => {
+    useUniversalLayoutEffect(() => {
       if (!window.getComputedStyle || lines === Infinity) return
       const style = window.getComputedStyle(localRef.current)
       const lineHeight = parseInt(style.lineHeight, 10)
