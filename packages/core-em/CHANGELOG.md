@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.4](https://github.com/smooth-code/smooth-ui/compare/v11.1.3...v11.1.4) (2019-11-23)
+
+**Note:** Version bump only for package @smooth-ui/core-em
+
+
+
+
+
 ## [11.1.3](https://github.com/smooth-code/smooth-ui/compare/v11.1.2...v11.1.3) (2019-11-22)
 
 **Note:** Version bump only for package @smooth-ui/core-em
