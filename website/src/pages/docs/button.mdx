@@ -38,6 +38,55 @@ function Example() {
 render(<Example />)
 ```
 
+## Outline
+
+Add `outline` prop to use the outline variant of buttons.
+
+```jsx live noInline
+import React from 'react'
+import { Button, Boxer } from '@smooth-ui/core-sc'
+
+function Example() {
+  return (
+    <Boxer my={10}>
+      <Button outline>Default (primary)</Button>
+      <Button outline variant="primary">
+        Primary
+      </Button>
+      <Button outline variant="secondary">
+        Secondary
+      </Button>
+      <Button outline variant="success">
+        Success
+      </Button>
+      <Button outline variant="danger">
+        Danger
+      </Button>
+      <Button outline variant="warning">
+        Warning
+      </Button>
+      <Button outline variant="info">
+        Info
+      </Button>
+      <Button outline variant="light">
+        Light
+      </Button>
+      <Button outline variant="dark">
+        Dark
+      </Button>
+      <Button outline variant="#804FCE">
+        Custom color
+      </Button>
+      <Button outline variant={null}>
+        No variant
+      </Button>
+    </Boxer>
+  )
+}
+
+render(<Example />)
+```
+
 ## Scales
 
 Set scales using `scale` prop like `"xs"`, `"sm"`, `"lg"` or `"xl"`. The default scale is `"base"`.

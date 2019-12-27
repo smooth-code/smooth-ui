@@ -1,5 +1,5 @@
 import React from 'react'
-import { darken } from 'polished'
+import { darken, transparentize } from 'polished'
 import { Button as ReakitButton } from 'reakit/Button'
 import { th, system } from '@xstyled/system'
 import { node, bool, oneOf, string, oneOfType } from 'prop-desc'
@@ -17,7 +17,7 @@ import {
 
 export const Button = createComponent({
   name: 'Button',
-  render: props => {
+  render: ({ variant, outline, ...props }) => {
     return <ReakitButton {...props} />
   },
   theme: [
@@ -32,6 +32,7 @@ export const Button = createComponent({
       },
       components: {
         Button: p => {
+          const { outline } = p
           const scale = p.scale || 'base'
           const baseColor =
             p.variant === null ? null : th.color(p.variant || 'primary')(p)
@@ -61,6 +62,7 @@ export const Button = createComponent({
             }
 
             ${baseColor &&
+              !outline &&
               css`
                 color: ${colorYik(baseColor)(p)};
                 background-color: ${baseColor};
@@ -75,6 +77,27 @@ export const Button = createComponent({
                   background-color: ${darken(0.05, baseColor)};
                 }
               `(p)}
+
+            ${baseColor &&
+              outline &&
+              css`
+                color: ${darken(0.05, baseColor)};
+                background-color: transparent;
+                border: 1;
+                border-color: ${baseColor};
+
+                &:focus {
+                  ${p.theme.mixins.controlFocus(baseColor)(p)};
+                  border-color: ${baseColor};
+                }
+
+                &:not(:disabled):hover,
+                &:not(:disabled):active {
+                  color: ${darken(0.1, baseColor)};
+                  border-color: ${darken(0.05, baseColor)};
+                  background-color: ${transparentize(0.8, baseColor)};
+                }
+              `}
 
             && {
               ${system(p)}
