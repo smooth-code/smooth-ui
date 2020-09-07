@@ -82,7 +82,7 @@ export const Button = createComponent({
               outline &&
               css`
                 color: ${darken(0.05, baseColor)};
-                background-color: transparent;
+                background-color: transparent !important;
                 border: 1;
                 border-color: ${baseColor};
 
