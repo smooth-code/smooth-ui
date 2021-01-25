@@ -11,7 +11,7 @@ module.exports = {
           'Modern UI library for React. Focused on productivity, flexibility and accessibility.',
         github: 'https://github.com/smooth-code/smooth-ui',
         menu: ['Getting Started', 'Customization', 'Components', 'Advanced'],
-        nav: [{ title: 'Docs', url: '/docs/' }],
+        nav: [{ title: 'Docs', url: 'https://gajewsky.github.io/smooth-ui/docs/getting-started/' }],
         codeFundProperty: 430,
         theme: {
           useCustomProperties: false,
