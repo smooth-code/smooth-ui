@@ -1,3 +1,5 @@
+> **Warning** This project is deprecated and no longer maintained.
+
 <h1 align="center">
   <a target="_blank" href="https://smooth-ui.smooth-code.com">
     <img src="https://raw.githubusercontent.com/smooth-code/smooth-ui/master/resources/smooth-ui-logo.png?token=AAQQPuM4Puh4DdUkTB1OufRD9oW_EOHzks5agcuiwA%3D%3D" alt="smooth-ui" title="smooth-ui" width="300">
